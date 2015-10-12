@@ -1,0 +1,9 @@
+c:\users\alexh_000\documents\visual studio 2015\Projects\Racegame\Racegame\bin\Debug\Racegame.exe.config
+c:\users\alexh_000\documents\visual studio 2015\Projects\Racegame\Racegame\bin\Debug\Racegame.exe
+c:\users\alexh_000\documents\visual studio 2015\Projects\Racegame\Racegame\bin\Debug\Racegame.pdb
+c:\users\alexh_000\documents\visual studio 2015\Projects\Racegame\Racegame\obj\Debug\Racegame.csprojResolveAssemblyReference.cache
+c:\users\alexh_000\documents\visual studio 2015\Projects\Racegame\Racegame\obj\Debug\Racegame.Racegame.resources
+c:\users\alexh_000\documents\visual studio 2015\Projects\Racegame\Racegame\obj\Debug\Racegame.Properties.Resources.resources
+c:\users\alexh_000\documents\visual studio 2015\Projects\Racegame\Racegame\obj\Debug\Racegame.csproj.GenerateResource.Cache
+c:\users\alexh_000\documents\visual studio 2015\Projects\Racegame\Racegame\obj\Debug\Racegame.exe
+c:\users\alexh_000\documents\visual studio 2015\Projects\Racegame\Racegame\obj\Debug\Racegame.pdb
