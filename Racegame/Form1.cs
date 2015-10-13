@@ -269,7 +269,7 @@ namespace Racegame
         }
         public void DamageHandler()
         {
-            Totalhealth = Damage();
+           /* Totalhealth = Damage();
             Size healthbarsize = new Size(Totalhealth / 50, 10);
             HealthBox.Size = healthbarsize;
             if (Totalhealth <= 0)
@@ -278,6 +278,7 @@ namespace Racegame
                 speedY = 0;
                 this.label2.Text = "game over";
             }
+            */
         }
 
     }

@@ -177,7 +177,6 @@
         private System.Windows.Forms.PictureBox FuelBox;
         private System.Windows.Forms.PictureBox HealthBox;
         private System.Windows.Forms.PictureBox ItemBox;
-
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox Groen;
