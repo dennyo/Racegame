@@ -39,12 +39,15 @@
             this.Groen = new System.Windows.Forms.PictureBox();
             this.Checkpoint = new System.Windows.Forms.PictureBox();
             this.Finish = new System.Windows.Forms.PictureBox();
+            this.Fueladder = new System.Windows.Forms.Timer(this.components);
+            this.ItemFrame = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.Auto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Groen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Checkpoint)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Finish)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemFrame)).BeginInit();
             this.SuspendLayout();
             // 
             // Auto
@@ -103,6 +106,7 @@
             // Groen
             // 
             this.Groen.BackColor = System.Drawing.Color.Black;
+            this.Groen.ErrorImage = ((System.Drawing.Image)(resources.GetObject("Groen.ErrorImage")));
             this.Groen.Location = new System.Drawing.Point(662, 93);
             this.Groen.Name = "Groen";
             this.Groen.Size = new System.Drawing.Size(291, 162);
@@ -127,12 +131,29 @@
             this.Finish.TabStop = false;
             this.Finish.Visible = false;
             // 
+            // Fueladder
+            // 
+            this.Fueladder.Interval = 17;
+            this.Fueladder.Tick += new System.EventHandler(this.Fueladder_Tick);
+            // 
+            // ItemFrame
+            // 
+            this.ItemFrame.BackColor = System.Drawing.Color.Transparent;
+            this.ItemFrame.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ItemFrame.Location = new System.Drawing.Point(12, 28);
+            this.ItemFrame.Name = "ItemFrame";
+            this.ItemFrame.Size = new System.Drawing.Size(64, 64);
+            this.ItemFrame.TabIndex = 8;
+            this.ItemFrame.TabStop = false;
+            this.ItemFrame.Visible = false;
+            // 
             // Racegame
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1002, 712);
+            this.Controls.Add(this.ItemFrame);
             this.Controls.Add(this.Finish);
             this.Controls.Add(this.Checkpoint);
             this.Controls.Add(this.Groen);
@@ -153,6 +174,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.Groen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Checkpoint)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Finish)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemFrame)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -169,6 +191,8 @@
         private System.Windows.Forms.PictureBox Groen;
         private System.Windows.Forms.PictureBox Checkpoint;
         private System.Windows.Forms.PictureBox Finish;
+        private System.Windows.Forms.Timer Fueladder;
+        private System.Windows.Forms.PictureBox ItemFrame;
     }
 }
 
