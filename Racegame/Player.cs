@@ -17,8 +17,11 @@ namespace RaceGame {
         private int MaxSize;
         public int Height;
         public int Width;
+        public int Speed = 10;
+        public int Health = 100;
+        public int Fuel = 10000;
         public float Angle = 0f;
-        private Keys up, down, right, left;
+        public Keys up, down, right, left;
         private bool UpActive = false;
         private bool DownActive = false;
         private bool RightActive = false;
@@ -41,18 +44,16 @@ namespace RaceGame {
             //Temporary code for a rectangle player.
             Image temp = new Bitmap(Width, Width);
             Graphics t = Graphics.FromImage(temp);
-            t.FillRectangle(new SolidBrush(Color.Green), 0, 0, Width, Height);
+            //t.FillRectangle(new SolidBrush(Color.Green), 0, 0, Width, Height);
+            t.DrawImage(Image.FromFile(@"C:\Users\Mark\Downloads\RaceGame - voorbeeld\RaceGame\RaceGame2\car.jpg"), new Point(0, 0));
             image = new Bitmap(temp);
             temp.Save(Path.Combine(Environment.CurrentDirectory, "test.jpg"));
             t.Dispose();
-            DrawPlayer(g);
 
         }
 
         public void DrawPlayer(Graphics g) {
             g.DrawImage(RotateImage(), X, Y);
-            g.Dispose();
-            Console.WriteLine(Angle);
         }
 
         private Bitmap RotateImage() {
@@ -84,24 +85,71 @@ namespace RaceGame {
 
         }
 
-        public void Move() {
-            //if(UpActive) {
+        public void Move(Form form) {
+            form.Invalidate();
+            if(UpActive) {
                 //X += (int)(10 * Math.Cos(Angle));
                 //Y += (int)(10 * Math.Sin(Angle));
-                //Console.WriteLine(Math.Sin(Angle));
-                if((Angle <= 90 && Angle >= 0) || (Angle >= -360 && Angle <= -270)) {
-                    //Console.WriteLine("Right lower");
-                    Console.WriteLine(X + ":" + Y);
-                    Console.WriteLine(Math.Asin(Math.Sin(Angle) * 512));
-                }else if((Angle >= 90 && Angle <= 180) || (Angle >= -270 && Angle <= -180)) {
-                    //Console.WriteLine("Left lower");
-                }else if((Angle >= 180 && Angle <= 270) || (Angle >= -180 && Angle <= -90)) {
-                    //Console.WriteLine("Left upper");
-                }else if((Angle >= 270 && Angle <= 360) || (Angle >= -90 && Angle <= 0)) {
-                    //Console.WriteLine("Right upper");
-                //}
-
+                Console.WriteLine(Angle);
+                if(Speed > 0) {
+                    if((Angle > -80 && Angle < -10 ) || (Angle > 280 && Angle < 360)){
+                        //Move right upper
+                        X += Speed;
+                        Y -= Speed;
+                    }else if((Angle < 80 && Angle > 10) || (Angle < -280 && Angle > -360)){
+                        //Move right lower
+                        Y += Speed;
+                        X += Speed;
+                    }else if(Angle <= 10 && Angle >= -10){
+                        //Move right
+                        X += Speed;
+                    }else if((Angle <= -80 && Angle >= -100) || (Angle >= 260 && Angle <= 280)) {
+                        //Move up
+                        Y -= Speed;
+                    }else if((Angle < -100 && Angle > -170) || (Angle > 190 && Angle < 260)) {
+                        //Move left upper
+                        X -= Speed;
+                        Y -= Speed;
+                    }else if((Angle > -260 && Angle < -190) || (Angle > 100 && Angle < 170)) {
+                        //Move left lower
+                        Y += Speed;
+                        X -= Speed;
+                    }else if((Angle >= -190 && Angle <= -160) || (Angle > 170 && Angle < 190)) {
+                        //Move left
+                        X -= Speed;
+                    }else if((Angle >= -280 && Angle <= -260) || (Angle <= 100 && Angle >= 80)) {
+                        //Down
+                        Y += Speed;
+                    }
+                }
             }
+                /*if((Angle < 90 && Angle > 0) || (Angle > -360 && Angle < -270)) {
+                    //Console.WriteLine("Right lower");
+                    X += 1;
+                    Y -= 1;
+                }else if((Angle > 90 && Angle < 180) || (Angle > -270 && Angle < -180)) {
+                    //Console.WriteLine("Left lower");
+                    X -= 1;
+                    Y -= 1;
+                }else if((Angle > 180 && Angle < 270) || (Angle > -180 && Angle < -90)) {
+                    //Console.WriteLine("Left upper");
+                    X -= 1;
+                    Y += 1;
+                }else if((Angle > 270 && Angle < 360) || (Angle > -90 && Angle < 0)) {
+                    //Console.WriteLine("Right upper");
+                    X += 1;
+                    Y += 1;
+                }else if(Angle == 0 || Angle == 360 || Angle == -360) {
+                    X+= 1;
+                }else if(Angle == 90 || Angle == -270) {
+                    Y -= 1;
+                }else if(Angle == 180 || Angle == -180) {
+                    X -= 1;
+                }*/
+                
+                
+
+            //}
             if(Angle <= -356 || Angle >= 356) {
                 Angle = 0;
             }
