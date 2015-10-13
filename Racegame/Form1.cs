@@ -7,7 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using System.Windows.Forms;
+using RaceGame;
 
 namespace Racegame
 {
@@ -17,6 +19,11 @@ namespace Racegame
         public int speedX = 10;
         public int speedY = 10;
         public int fuel = 10000;
+        public float angle = 0;
+        public bool isLoaded = false;
+        Graphics g;
+        Player p1;
+        Player p2;
         public int laps = 0;
         public bool CheckpointPassed = false;
 
@@ -24,12 +31,35 @@ namespace Racegame
         {
             InitializeComponent();
             GameTimer.Enabled = true;
+            //        Player(Graphics g, System.Drawing.Color color, Keys up, Keys down, Keys right, Keys left, int x, int y, int width, int height) {
+            g = this.CreateGraphics();
+            p2 = new Player(g, null, Keys.Up, Keys.Down, Keys.Right, Keys.Left, 300, 400, 80, 50);
+            p1 = new Player(g, null, Keys.W, Keys.S, Keys.D, Keys.A, 300, 400, 80, 50);
+
+            //this.KeyDown += p1.ControlHandler;
+            this.KeyDown += p2.ControlDownHandler;
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(p2.ControlUpHandler);
+            
+            this.KeyDown += p1.ControlDownHandler;
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(p1.ControlUpHandler);
+
         }
 
         private void GameTimer_Tick(object sender, EventArgs e)
         {
+            FuelHandler();
+            //PlayerTwo.Location = new Point(PlayerTwo.Location.X + speedX, PlayerTwo.Location.Y + speedY);
+            BorderHandler();
+            p2.Move(this);
+            p1.Move(this);
+            
+        }
+
+        public void Draw(Graphics g) {
+            
+            
             //FuelHandler();
-            Auto.Location = new Point(Auto.Location.X + speedX, Auto.Location.Y + speedY);
+            //Auto.Location = new Point(Auto.Location.X + speedX, Auto.Location.Y + speedY);
             BorderHandler();
             CollisionHandler();
             ItemHandler();
@@ -50,10 +80,12 @@ namespace Racegame
                 speedY = 0;
             }
         }
+       
 
         public void BorderHandler()
         {
-            if (Auto.Location.X >= 1024 - Auto.Size.Width && speedX >= 0)
+            ///Moet nog even naar gekeken worden want dit moet er wel zijn!
+            /*if (Auto.Location.X >= 1024 - Auto.Size.Width && speedX >= 0)
             {
                 speedX = -speedX;
             }
@@ -68,7 +100,16 @@ namespace Racegame
             if (Auto.Location.Y <= 0 && speedY <= 0)
             {
                 speedY = -speedY;
-            }
+            }*/
+        }
+
+        private void Racegame_Paint(object sender, PaintEventArgs e) {
+            p1.DrawPlayer(e.Graphics);
+            e.Graphics.ResetTransform();
+            p2.DrawPlayer(e.Graphics);
+            e.Graphics.ResetTransform();
+
+            //e.Graphics.Dispose();
         }
 
         public void CollisionHandler()
@@ -78,7 +119,8 @@ namespace Racegame
 
         public void CheckCollision(PictureBox b)
         {
-            if (Auto.Location.X + Auto.Size.Width >= b.Location.X &&
+            ///Moet nog even naar gekeken worden want dit moet er wel zijn!
+            /*if (Auto.Location.X + Auto.Size.Width >= b.Location.X &&
                 Auto.Location.X <= b.Location.X + b.Size.Width &&
                 Auto.Location.Y + Auto.Size.Height >= b.Location.Y &&
                 Auto.Location.Y <= b.Location.Y + b.Size.Height)
@@ -87,7 +129,7 @@ namespace Racegame
                 speedY = 0;
                 Auto.BackColor = Color.Orange;
 
-            }
+            }*/
         }
 
         public void ItemHandler()
@@ -97,7 +139,9 @@ namespace Racegame
 
         public void CheckItems(PictureBox b)
         {
-            if (Auto.Location.X + Auto.Size.Width >= b.Location.X &&
+            ///Moet nog even naar gekeken worden want dit moet er wel zijn!
+
+            /*if (Auto.Location.X + Auto.Size.Width >= b.Location.X &&
                 Auto.Location.X <= b.Location.X + b.Size.Width &&
                 Auto.Location.Y + Auto.Size.Height >= b.Location.Y &&
                 Auto.Location.Y <= b.Location.Y + b.Size.Height &&
@@ -106,7 +150,7 @@ namespace Racegame
                 b.Visible = false;
                 boost();
                 RespawnHandler();
-            }
+            }*/
         }
 
         public void RespawnHandler()
@@ -149,14 +193,16 @@ namespace Racegame
 
         public bool Checkpoints(PictureBox b)
         {
-            if (Auto.Location.X + Auto.Size.Width >= b.Location.X &&
+            ///Moet nog even naar gekeken worden want dit moet er wel zijn!
+
+            /*if (Auto.Location.X + Auto.Size.Width >= b.Location.X &&
                 Auto.Location.X <= b.Location.X + b.Size.Width &&
                 Auto.Location.Y + Auto.Size.Height >= b.Location.Y &&
                 Auto.Location.Y <= b.Location.Y + b.Size.Height &&
                 CheckpointPassed == false)
             {
                 CheckpointPassed = true;
-            }
+            }*/
             return CheckpointPassed;
 
         }
@@ -170,7 +216,9 @@ namespace Racegame
         public bool RondeTeller()
         {
             {
-                if (Auto.Location.X + Auto.Size.Width >= Finish.Location.X &&
+                ///Moet nog even naar gekeken worden want dit moet er wel zijn!
+
+                /*if (Auto.Location.X + Auto.Size.Width >= Finish.Location.X &&
                 Auto.Location.X <= Finish.Location.X + Finish.Size.Width &&
                 Auto.Location.Y + Auto.Size.Height >= Finish.Location.Y &&
                 Auto.Location.Y <= Finish.Location.Y + Finish.Size.Height &&
@@ -186,15 +234,12 @@ namespace Racegame
                 {
                     speedX = 0;
                     speedY = 0;
-                }
+                }*/
                 return CheckpointPassed;
 
             }
 
         }
-
-
-
 
     }
 }
