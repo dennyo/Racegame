@@ -26,6 +26,7 @@ namespace Racegame
         Player p2;
         public int laps = 0;
         public bool CheckpointPassed = false;
+        public int Totalhealth = 100;
 
         public Racegame()
         {
@@ -239,6 +240,32 @@ namespace Racegame
 
             }
 
+        }
+        public int Damage()
+        {
+            int health = 100;
+            int damageauto = 10;
+            if (Auto.Location.X >= 1024 - Auto.Size.Width && speedX >= 0)
+            {
+                speedX = -speedX;
+                int Totalhealt = health -= damageauto;
+            }
+            if (Auto.Location.X <= 0 && speedX <= 0)
+            {
+                speedX = -speedX;
+                int Totalhealt = health -= damageauto;
+            }
+            if (Auto.Location.Y >= 768 - 2 * Auto.Size.Height && speedY >= 0)
+            {
+                speedY = -speedY;
+                int Totalhealt = health -= damageauto;
+            }
+            if (Auto.Location.Y <= 0 && speedY <= 0)
+            {
+                speedY = -speedY;
+                int Totalhealt = health -= damageauto;
+            }
+            return Totalhealth;
         }
 
     }
