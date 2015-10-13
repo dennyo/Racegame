@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Racegame));
             this.GameTimer = new System.Windows.Forms.Timer(this.components);
             this.FuelBox = new System.Windows.Forms.PictureBox();
+            this.HealthBox = new System.Windows.Forms.PictureBox();
             this.ItemBox = new System.Windows.Forms.PictureBox();
             this.Speed2 = new System.Windows.Forms.Label();
             this.Ronde1 = new System.Windows.Forms.Label();
@@ -45,6 +46,7 @@
             this.Ronde2 = new System.Windows.Forms.Label();
             this.Fueladder2 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.HealthBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Groen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Checkpoint)).BeginInit();
@@ -67,6 +69,14 @@
             this.FuelBox.TabIndex = 1;
             this.FuelBox.TabStop = false;
             // 
+            // HealthBox
+            // 
+            this.HealthBox.BackColor = System.Drawing.Color.Red;
+            this.HealthBox.Location = new System.Drawing.Point(12, 12);
+            this.HealthBox.Name = "HealthBox";
+            this.HealthBox.Size = new System.Drawing.Size(200, 10);
+            this.HealthBox.TabIndex = 2;
+            this.HealthBox.TabStop = false;
             // ItemBox
             // 
             this.ItemBox.BackColor = System.Drawing.Color.Yellow;
@@ -105,6 +115,8 @@
             this.Groen.Name = "Groen";
             this.Groen.Size = new System.Drawing.Size(71, 71);
             this.Groen.TabIndex = 4;
+            this.Groen.Size = new System.Drawing.Size(291, 162);
+            this.Groen.TabIndex = 6;
             this.Groen.TabStop = false;
             // 
             // Checkpoint
@@ -112,7 +124,7 @@
             this.Checkpoint.Location = new System.Drawing.Point(429, -3);
             this.Checkpoint.Name = "Checkpoint";
             this.Checkpoint.Size = new System.Drawing.Size(100, 197);
-            this.Checkpoint.TabIndex = 6;
+            this.Checkpoint.TabIndex = 7;
             this.Checkpoint.TabStop = false;
             this.Checkpoint.Visible = false;
             // 
@@ -121,7 +133,7 @@
             this.Finish.Location = new System.Drawing.Point(458, 310);
             this.Finish.Name = "Finish";
             this.Finish.Size = new System.Drawing.Size(45, 180);
-            this.Finish.TabIndex = 7;
+            this.Finish.TabIndex = 8;
             this.Finish.TabStop = false;
             this.Finish.Visible = false;
             // 
@@ -179,6 +191,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.ClientSize = new System.Drawing.Size(1006, 721);
+            this.Controls.Add(this.FuelBox);
+            this.Controls.Add(this.HealthBox);
+            this.DoubleBuffered = true;
             this.ClientSize = new System.Drawing.Size(1002, 712);
             this.Controls.Add(this.Ronde2);
             this.Controls.Add(this.Speed1);
@@ -200,6 +216,7 @@
             this.TransparencyKey = System.Drawing.Color.Maroon;
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Racegame_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.HealthBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Groen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Checkpoint)).EndInit();
@@ -213,10 +230,12 @@
         #endregion
         private System.Windows.Forms.Timer GameTimer;
         private System.Windows.Forms.PictureBox FuelBox;
+        private System.Windows.Forms.PictureBox HealthBox;
         private System.Windows.Forms.PictureBox ItemBox;
-
         private System.Windows.Forms.Label Speed2;
         private System.Windows.Forms.Label Ronde1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox Groen;
         private System.Windows.Forms.PictureBox Checkpoint;
         private System.Windows.Forms.PictureBox Finish;
