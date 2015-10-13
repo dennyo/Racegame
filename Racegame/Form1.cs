@@ -81,7 +81,7 @@ namespace Racegame
                 speedY = 0;
             }
         }
-       
+
 
         public void BorderHandler()
         {
@@ -243,29 +243,41 @@ namespace Racegame
         }
         public int Damage()
         {
-            int health = 100;
+            /*int health = 100;
             int damageauto = 10;
             if (Auto.Location.X >= 1024 - Auto.Size.Width && speedX >= 0)
             {
                 speedX = -speedX;
-                int Totalhealt = health -= damageauto;
+                int Totalhealth = health -= damageauto;
             }
             if (Auto.Location.X <= 0 && speedX <= 0)
             {
                 speedX = -speedX;
-                int Totalhealt = health -= damageauto;
+                int Totalhealth = health -= damageauto;
             }
             if (Auto.Location.Y >= 768 - 2 * Auto.Size.Height && speedY >= 0)
             {
                 speedY = -speedY;
-                int Totalhealt = health -= damageauto;
+                int Totalhealth = health -= damageauto;
             }
             if (Auto.Location.Y <= 0 && speedY <= 0)
             {
                 speedY = -speedY;
-                int Totalhealt = health -= damageauto;
+                int Totalhealth = health -= damageauto;
+            } */
+            return Totalhealth; 
+        }
+        public void DamageHandler()
+        {
+            Totalhealth = Damage();
+            Size healthbarsize = new Size(Totalhealth / 50, 10);
+            HealthBox.Size = healthbarsize;
+            if (Totalhealth <= 0)
+            {
+                speedX = 0;
+                speedY = 0;
+                this.label2.Text = "game over";
             }
-            return Totalhealth;
         }
 
     }
