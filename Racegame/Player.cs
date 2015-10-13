@@ -13,7 +13,7 @@ namespace RaceGame {
    public class Player {
 
         public bool CheckpointPassed = false;
-        public int laps = 0;
+        public int laps = 1;
         public int X;
         public int Y;
         private int MaxSize;
@@ -48,7 +48,7 @@ namespace RaceGame {
             Image temp = new Bitmap(Width, Width);
             Graphics t = Graphics.FromImage(temp);
             //t.FillRectangle(new SolidBrush(Color.Green), 0, 0, Width, Height);
-            t.DrawImage(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "car.jpg")), new Point(0, 0));
+            t.DrawImage(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "auto.png")), new Point(0, 0));
             image = new Bitmap(temp);
             temp.Save(Path.Combine(Environment.CurrentDirectory, "test.jpg"));
             t.Dispose();

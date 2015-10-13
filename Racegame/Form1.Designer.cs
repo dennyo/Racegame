@@ -77,6 +77,7 @@
             this.HealthBox.Size = new System.Drawing.Size(200, 10);
             this.HealthBox.TabIndex = 2;
             this.HealthBox.TabStop = false;
+            // 
             // ItemBox
             // 
             this.ItemBox.BackColor = System.Drawing.Color.Yellow;
@@ -111,11 +112,9 @@
             this.Groen.BackColor = System.Drawing.Color.Transparent;
             this.Groen.ErrorImage = ((System.Drawing.Image)(resources.GetObject("Groen.ErrorImage")));
             this.Groen.Image = ((System.Drawing.Image)(resources.GetObject("Groen.Image")));
-            this.Groen.Location = new System.Drawing.Point(864, 189);
+            this.Groen.Location = new System.Drawing.Point(319, 219);
             this.Groen.Name = "Groen";
-            this.Groen.Size = new System.Drawing.Size(71, 71);
-            this.Groen.TabIndex = 4;
-            this.Groen.Size = new System.Drawing.Size(291, 162);
+            this.Groen.Size = new System.Drawing.Size(61, 60);
             this.Groen.TabIndex = 6;
             this.Groen.TabStop = false;
             // 
@@ -191,11 +190,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1006, 721);
-            this.Controls.Add(this.FuelBox);
+            this.ClientSize = new System.Drawing.Size(1008, 712);
             this.Controls.Add(this.HealthBox);
-            this.DoubleBuffered = true;
-            this.ClientSize = new System.Drawing.Size(1002, 712);
             this.Controls.Add(this.Ronde2);
             this.Controls.Add(this.Speed1);
             this.Controls.Add(this.FuelBox2);

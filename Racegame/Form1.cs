@@ -299,7 +299,7 @@ namespace Racegame
 
                 b.Text = "Lap: " + a.laps;
 
-                if (a.laps == 4)
+                if (a.laps >= 4)
                 {
                     a.SpeedX = 0;
                     a.SpeedY = 0;
@@ -327,63 +327,28 @@ namespace Racegame
 
         public int Damage(Player a)
         {
-<<<<<<< HEAD
             int Totalhealth = 100;
-=======
-            /*int health = 100;
->>>>>>> 55eaa336863ac32b8918e32d0158ba03260999e3
+            int health = 100;
             int damageauto = 10;
             if (a.X >= 1024 - a.Width && a.SpeedX >= 0)
             {
-<<<<<<< HEAD
                Totalhealth = a.Health -= damageauto;
-=======
-                speedX = -speedX;
-                int Totalhealth = health -= damageauto;
->>>>>>> 55eaa336863ac32b8918e32d0158ba03260999e3
             }
             if (a.X <= 0 && a.SpeedX <= 0)
             {
-<<<<<<< HEAD
                 Totalhealth = a.Health -= damageauto;
-=======
-                speedX = -speedX;
-                int Totalhealth = health -= damageauto;
->>>>>>> 55eaa336863ac32b8918e32d0158ba03260999e3
             }
             if (a.Y >= 768 - 2 * a.Height && a.SpeedY >= 0)
             {
-<<<<<<< HEAD
                 Totalhealth = a.Health -= damageauto;
-=======
-                speedY = -speedY;
-                int Totalhealth = health -= damageauto;
->>>>>>> 55eaa336863ac32b8918e32d0158ba03260999e3
             }
             if (a.Y <= 0 && a.SpeedY <= 0)
             {
-<<<<<<< HEAD
                 Totalhealth = a.Health -= damageauto;
-=======
-                speedY = -speedY;
-                int Totalhealth = health -= damageauto;
-            } */
+            } 
             return Totalhealth; 
         }
-        public void DamageHandler()
-        {
-           /* Totalhealth = Damage();
-            Size healthbarsize = new Size(Totalhealth / 50, 10);
-            HealthBox.Size = healthbarsize;
-            if (Totalhealth <= 0)
-            {
-                speedX = 0;
-                speedY = 0;
-                this.label2.Text = "game over";
->>>>>>> 55eaa336863ac32b8918e32d0158ba03260999e3
-            }
-            */
         }
     }
-}
+
 
