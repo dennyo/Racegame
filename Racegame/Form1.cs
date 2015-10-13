@@ -6,7 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using System.Windows.Forms;
+using RaceGame;
 
 namespace Racegame
 {
@@ -16,18 +18,40 @@ namespace Racegame
         public int speedX = 10;
         public int speedY = 8;
         public int fuel = 10000;
+        public float angle = 0;
+        public bool isLoaded = false;
+        Graphics g;
+        //Player p1;
+        Player p2;
 
         public Racegame()
         {
             InitializeComponent();
             GameTimer.Enabled = true;
+            //        Player(Graphics g, System.Drawing.Color color, Keys up, Keys down, Keys right, Keys left, int x, int y, int width, int height) {
+            g = this.CreateGraphics();
+            //p1 = new Player(g, Color.Green, Keys.Up, Keys.Down, Keys.Right, Keys.Left, 300, 400, 80, 50);
+            p2 = new Player(g, null, Keys.W, Keys.S, Keys.D, Keys.A, 300, 400, 80, 50);
+
+            //this.KeyDown += p1.ControlHandler;
+            this.KeyDown += p2.ControlDownHandler;
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(p2.ControlUpHandler);
+
+
         }
 
         private void GameTimer_Tick(object sender, EventArgs e)
         {
             FuelHandler();
-            Auto.Location = new Point(Auto.Location.X + speedX, Auto.Location.Y + speedY);
+            //PlayerTwo.Location = new Point(PlayerTwo.Location.X + speedX, PlayerTwo.Location.Y + speedY);
             BorderHandler();
+            p2.Move();
+            Invalidate();
+        }
+
+        public void Draw(Graphics g) {
+            
+            
         }
 
         public void FuelHandler()
@@ -41,27 +65,32 @@ namespace Racegame
                 speedY = 0;
             }
         }
+       
 
         public void BorderHandler()
         {
-            if (Auto.Location.X >= 1024 - Auto.Size.Width)
+            if (p2.X >= 1024 - p2.Width)
             {
                 speedX = -speedX;
             }
-            if (Auto.Location.X <= 0)
+            if (p2.X <= 0)
             {
                 speedX = -speedX;
             }
-            if (Auto.Location.Y >= 768 - 2 * Auto.Size.Height)
+            if (p2.Y >= 768 - 2 * p2.Height)
             {
                 speedY = -speedY;
             }
-            if (Auto.Location.Y <= 0)
+            if (p2.Y <= 0)
             {
                 speedY = -speedY;
             }
         }
-        
+
+        private void Racegame_Paint(object sender, PaintEventArgs e) {
+            //p1.DrawPlayer(e.Graphics);
+            p2.DrawPlayer(e.Graphics);
+        }
     }
 }
 

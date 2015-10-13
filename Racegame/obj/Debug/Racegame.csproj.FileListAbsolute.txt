@@ -7,3 +7,12 @@ c:\users\alexh_000\documents\visual studio 2015\Projects\Racegame\Racegame\obj\D
 c:\users\alexh_000\documents\visual studio 2015\Projects\Racegame\Racegame\obj\Debug\Racegame.csproj.GenerateResource.Cache
 c:\users\alexh_000\documents\visual studio 2015\Projects\Racegame\Racegame\obj\Debug\Racegame.exe
 c:\users\alexh_000\documents\visual studio 2015\Projects\Racegame\Racegame\obj\Debug\Racegame.pdb
+C:\Users\Mark\Documents\school\Project Racegame\Racegame\bin\Debug\Racegame.exe.config
+C:\Users\Mark\Documents\school\Project Racegame\Racegame\obj\Debug\Racegame.exe
+C:\Users\Mark\Documents\school\Project Racegame\Racegame\obj\Debug\Racegame.pdb
+C:\Users\Mark\Documents\school\Project Racegame\Racegame\bin\Debug\Racegame.exe
+C:\Users\Mark\Documents\school\Project Racegame\Racegame\bin\Debug\Racegame.pdb
+C:\Users\Mark\Documents\school\Project Racegame\Racegame\obj\Debug\Racegame.csprojResolveAssemblyReference.cache
+C:\Users\Mark\Documents\school\Project Racegame\Racegame\obj\Debug\Racegame.Racegame.resources
+C:\Users\Mark\Documents\school\Project Racegame\Racegame\obj\Debug\Racegame.Properties.Resources.resources
+C:\Users\Mark\Documents\school\Project Racegame\Racegame\obj\Debug\Racegame.csproj.GenerateResource.Cache
