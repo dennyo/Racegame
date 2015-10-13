@@ -18,6 +18,7 @@ namespace Racegame
         public int speedY = 10;
         public int fuel = 10000;
         public int laps = 0;
+        public bool CheckpointPassed = false;
 
         public Racegame()
         {
@@ -33,7 +34,9 @@ namespace Racegame
             CollisionHandler();
             ItemHandler();
             SpeedMeter();
-            RondeTeller();
+            CheckpointPassed = Checkpointhandler();
+            CheckpointPassed = RondeTeller();
+
         }
 
         public void FuelHandler()
@@ -70,7 +73,7 @@ namespace Racegame
 
         public void CollisionHandler()
         {
-            CheckCollision(Groen);
+            //CheckCollision(Groen);
         }
 
         public void CheckCollision(PictureBox b)
@@ -144,20 +147,37 @@ namespace Racegame
             this.label1.Text = "Speed: " + Math.Round(speed, 1);
         }
 
-        public void Checkpoints()
+        public bool Checkpoints(PictureBox b)
         {
+            if (Auto.Location.X + Auto.Size.Width >= b.Location.X &&
+                Auto.Location.X <= b.Location.X + b.Size.Width &&
+                Auto.Location.Y + Auto.Size.Height >= b.Location.Y &&
+                Auto.Location.Y <= b.Location.Y + b.Size.Height &&
+                CheckpointPassed == false)
+            {
+                CheckpointPassed = true;
+            }
+            return CheckpointPassed;
 
         }
 
-        public void RondeTeller()
+        public bool Checkpointhandler()
         {
-            for (int i = 0; i < 4; i++)
+            CheckpointPassed = Checkpoints(Checkpoint);
+            return CheckpointPassed;
+        }
+
+        public bool RondeTeller()
+        {
             {
-                if (Auto.Location.X >= 500 && Auto.Location.X <= 510 && Auto.Location.Y >= 400 && Auto.Location.Y <= 768)
-                    // deze getallen moeten aangepast worden aan de positie van de finish!
+                if (Auto.Location.X + Auto.Size.Width >= Finish.Location.X &&
+                Auto.Location.X <= Finish.Location.X + Finish.Size.Width &&
+                Auto.Location.Y + Auto.Size.Height >= Finish.Location.Y &&
+                Auto.Location.Y <= Finish.Location.Y + Finish.Size.Height &&
+                CheckpointPassed == true)
                 {
                     laps = laps + 1;
-                    break;
+                    CheckpointPassed = false;
                 }
 
                 this.label2.Text = "Lap: " + laps;
@@ -167,17 +187,9 @@ namespace Racegame
                     speedX = 0;
                     speedY = 0;
                 }
+                return CheckpointPassed;
+
             }
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
 
         }
 

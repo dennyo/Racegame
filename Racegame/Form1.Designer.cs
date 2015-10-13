@@ -34,16 +34,17 @@
             this.GameTimer = new System.Windows.Forms.Timer(this.components);
             this.FuelBox = new System.Windows.Forms.PictureBox();
             this.ItemBox = new System.Windows.Forms.PictureBox();
-<<<<<<< HEAD
-            this.Groen = new System.Windows.Forms.PictureBox();
-=======
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
->>>>>>> 67af7051f8bfeef050a62895387d7675aa712a21
+            this.Groen = new System.Windows.Forms.PictureBox();
+            this.Checkpoint = new System.Windows.Forms.PictureBox();
+            this.Finish = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.Auto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Groen)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Checkpoint)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Finish)).BeginInit();
             this.SuspendLayout();
             // 
             // Auto
@@ -79,16 +80,6 @@
             this.ItemBox.TabIndex = 3;
             this.ItemBox.TabStop = false;
             // 
-<<<<<<< HEAD
-            // Groen
-            // 
-            this.Groen.BackColor = System.Drawing.Color.Black;
-            this.Groen.Location = new System.Drawing.Point(662, 93);
-            this.Groen.Name = "Groen";
-            this.Groen.Size = new System.Drawing.Size(291, 162);
-            this.Groen.TabIndex = 4;
-            this.Groen.TabStop = false;
-=======
             // label1
             // 
             this.label1.BackColor = System.Drawing.SystemColors.ControlDark;
@@ -108,21 +99,45 @@
             this.label2.Size = new System.Drawing.Size(200, 50);
             this.label2.TabIndex = 5;
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
->>>>>>> 67af7051f8bfeef050a62895387d7675aa712a21
+            // 
+            // Groen
+            // 
+            this.Groen.BackColor = System.Drawing.Color.Black;
+            this.Groen.Location = new System.Drawing.Point(662, 93);
+            this.Groen.Name = "Groen";
+            this.Groen.Size = new System.Drawing.Size(291, 162);
+            this.Groen.TabIndex = 4;
+            this.Groen.TabStop = false;
+            // 
+            // Checkpoint
+            // 
+            this.Checkpoint.Location = new System.Drawing.Point(429, -3);
+            this.Checkpoint.Name = "Checkpoint";
+            this.Checkpoint.Size = new System.Drawing.Size(100, 197);
+            this.Checkpoint.TabIndex = 6;
+            this.Checkpoint.TabStop = false;
+            this.Checkpoint.Visible = false;
+            // 
+            // Finish
+            // 
+            this.Finish.Location = new System.Drawing.Point(458, 310);
+            this.Finish.Name = "Finish";
+            this.Finish.Size = new System.Drawing.Size(45, 180);
+            this.Finish.TabIndex = 7;
+            this.Finish.TabStop = false;
+            this.Finish.Visible = false;
             // 
             // Racegame
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-<<<<<<< HEAD
             this.ClientSize = new System.Drawing.Size(1002, 712);
+            this.Controls.Add(this.Finish);
+            this.Controls.Add(this.Checkpoint);
             this.Controls.Add(this.Groen);
-=======
-            this.ClientSize = new System.Drawing.Size(1008, 712);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
->>>>>>> 67af7051f8bfeef050a62895387d7675aa712a21
             this.Controls.Add(this.ItemBox);
             this.Controls.Add(this.FuelBox);
             this.Controls.Add(this.Auto);
@@ -136,6 +151,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Groen)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Checkpoint)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Finish)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -146,12 +163,12 @@
         private System.Windows.Forms.Timer GameTimer;
         private System.Windows.Forms.PictureBox FuelBox;
         private System.Windows.Forms.PictureBox ItemBox;
-<<<<<<< HEAD
-        private System.Windows.Forms.PictureBox Groen;
-=======
+
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
->>>>>>> 67af7051f8bfeef050a62895387d7675aa712a21
+        private System.Windows.Forms.PictureBox Groen;
+        private System.Windows.Forms.PictureBox Checkpoint;
+        private System.Windows.Forms.PictureBox Finish;
     }
 }
 
