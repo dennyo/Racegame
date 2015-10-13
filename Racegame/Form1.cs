@@ -35,7 +35,7 @@ namespace Racegame
 
         public void FuelHandler()
         {
-            fuel -= Math.Abs((speedX + speedY));
+            fuel -= Math.Abs((Math.Abs(speedX) + Math.Abs(speedY)));
             Size fuelboxsize = new Size(fuel / 50, 10);
             FuelBox.Size = fuelboxsize;
             if (fuel <= 0)
@@ -47,19 +47,19 @@ namespace Racegame
 
         public void BorderHandler()
         {
-            if (Auto.Location.X >= 1024 - Auto.Size.Width)
+            if (Auto.Location.X >= 1024 - Auto.Size.Width && speedX >= 0)
             {
                 speedX = -speedX;
             }
-            if (Auto.Location.X <= 0)
+            if (Auto.Location.X <= 0 && speedX <= 0)
             {
                 speedX = -speedX;
             }
-            if (Auto.Location.Y >= 768 - 2 * Auto.Size.Height)
+            if (Auto.Location.Y >= 768 - 2 * Auto.Size.Height && speedY >= 0)
             {
                 speedY = -speedY;
             }
-            if (Auto.Location.Y <= 0)
+            if (Auto.Location.Y <= 0 && speedY <= 0)
             {
                 speedY = -speedY;
             }
@@ -67,7 +67,7 @@ namespace Racegame
 
         public void CollisionHandler()
         {
-            
+            CheckCollision(Groen);
         }
 
         public void CheckCollision(PictureBox b)
@@ -80,6 +80,7 @@ namespace Racegame
                 speedX = 0;
                 speedY = 0;
                 Auto.BackColor = Color.Orange;
+
             }
         }
 
@@ -104,7 +105,10 @@ namespace Racegame
 
         public void RespawnHandler()
         {
-            RespawnItems(ItemBox);
+            if(ItemBox.Visible == false)
+            {
+                RespawnItems(ItemBox);
+            }
         }
         
         public async void RespawnItems(PictureBox b)
