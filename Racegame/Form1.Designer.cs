@@ -34,7 +34,12 @@
             this.GameTimer = new System.Windows.Forms.Timer(this.components);
             this.FuelBox = new System.Windows.Forms.PictureBox();
             this.ItemBox = new System.Windows.Forms.PictureBox();
+<<<<<<< HEAD
             this.Groen = new System.Windows.Forms.PictureBox();
+=======
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+>>>>>>> 67af7051f8bfeef050a62895387d7675aa712a21
             ((System.ComponentModel.ISupportInitialize)(this.Auto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemBox)).BeginInit();
@@ -74,6 +79,7 @@
             this.ItemBox.TabIndex = 3;
             this.ItemBox.TabStop = false;
             // 
+<<<<<<< HEAD
             // Groen
             // 
             this.Groen.BackColor = System.Drawing.Color.Black;
@@ -82,20 +88,47 @@
             this.Groen.Size = new System.Drawing.Size(291, 162);
             this.Groen.TabIndex = 4;
             this.Groen.TabStop = false;
+=======
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(773, 577);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(200, 50);
+            this.label1.TabIndex = 4;
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(773, 640);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(200, 50);
+            this.label2.TabIndex = 5;
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+>>>>>>> 67af7051f8bfeef050a62895387d7675aa712a21
             // 
             // Racegame
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+<<<<<<< HEAD
             this.ClientSize = new System.Drawing.Size(1002, 712);
             this.Controls.Add(this.Groen);
+=======
+            this.ClientSize = new System.Drawing.Size(1008, 712);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+>>>>>>> 67af7051f8bfeef050a62895387d7675aa712a21
             this.Controls.Add(this.ItemBox);
             this.Controls.Add(this.FuelBox);
             this.Controls.Add(this.Auto);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximumSize = new System.Drawing.Size(1024, 768);
-            this.MinimumSize = new System.Drawing.Size(1024, 768);
+            this.MinimumSize = new System.Drawing.Size(1024, 736);
             this.Name = "Racegame";
             this.Text = "Racegame";
             this.TransparencyKey = System.Drawing.Color.Maroon;
@@ -113,7 +146,12 @@
         private System.Windows.Forms.Timer GameTimer;
         private System.Windows.Forms.PictureBox FuelBox;
         private System.Windows.Forms.PictureBox ItemBox;
+<<<<<<< HEAD
         private System.Windows.Forms.PictureBox Groen;
+=======
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+>>>>>>> 67af7051f8bfeef050a62895387d7675aa712a21
     }
 }
 
