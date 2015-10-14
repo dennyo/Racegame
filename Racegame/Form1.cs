@@ -319,6 +319,7 @@ namespace Racegame
             if (a.laps >= 4 && FinishPassed == false)
                 {
                     this.FinishMessage.Visible = true;
+                    this.PlayAgain.Visible = true;
                     if (a == p1)
                     {
                         this.FinishMessage.Text = "Player 1 wins!";
@@ -371,7 +372,12 @@ namespace Racegame
             } 
             return Totalhealth; 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
         }
+    }
     }
 
 
