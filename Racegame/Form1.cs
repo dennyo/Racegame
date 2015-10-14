@@ -250,8 +250,8 @@ namespace Racegame
 
         public void Speed(Player a, Label b)
         {
-            double speed = Math.Sqrt(Math.Abs(Math.Pow(a.SpeedX, 2) + Math.Pow(a.SpeedY, 2)));
-            b.Text = "Speed: " + Math.Round(speed, 1);
+            double speed = Math.Sqrt(Math.Pow(a.SpeedX, 2) + Math.Pow(a.SpeedY, 2));
+            b.Text = "Speed: " + Math.Round(speed, 0) * 3 + " km/h";
         }
 
         public bool Checkpoints(Player a, PictureBox b)
