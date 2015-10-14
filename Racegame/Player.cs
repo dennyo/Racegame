@@ -53,8 +53,8 @@ namespace RaceGame {
             //Temporary code for a rectangle player.
             Image temp = new Bitmap(Width, Width);
             Graphics t = Graphics.FromImage(temp);
-            t.FillRectangle(new SolidBrush(Color.Green), 0, 0, Width, Height);
-            //t.DrawImage(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "auto.png")), new Point(0, 0));
+            //t.FillRectangle(new SolidBrush(Color.Green), 0, 0, Width, Height);
+            t.DrawImage(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "auto.png")), new Point(0, 0));
             image = new Bitmap(temp);
             temp.Save(Path.Combine(Environment.CurrentDirectory, "test.jpg"));
             t.Dispose();
