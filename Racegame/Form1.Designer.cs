@@ -32,36 +32,18 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Racegame));
             this.GameTimer = new System.Windows.Forms.Timer(this.components);
             this.FuelBox = new System.Windows.Forms.PictureBox();
-<<<<<<< HEAD
-=======
             this.ItemBox = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.Groen = new System.Windows.Forms.PictureBox();
             this.Checkpoint = new System.Windows.Forms.PictureBox();
             this.Finish = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.Auto)).BeginInit();
->>>>>>> FETCH_HEAD
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Groen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Checkpoint)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Finish)).BeginInit();
             this.SuspendLayout();
-            // 
-<<<<<<< HEAD
-=======
-            // Auto
-            // 
-            this.Auto.BackColor = System.Drawing.Color.Lime;
-            this.Auto.Location = new System.Drawing.Point(445, 538);
-            this.Auto.Name = "Auto";
-            this.Auto.Size = new System.Drawing.Size(150, 100);
-            this.Auto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.Auto.TabIndex = 0;
-            this.Auto.TabStop = false;
-            // 
->>>>>>> FETCH_HEAD
             // GameTimer
             // 
             this.GameTimer.Interval = 17;
@@ -137,11 +119,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-<<<<<<< HEAD
             this.ClientSize = new System.Drawing.Size(1006, 721);
             this.Controls.Add(this.FuelBox);
             this.DoubleBuffered = true;
-=======
             this.ClientSize = new System.Drawing.Size(1002, 712);
             this.Controls.Add(this.Finish);
             this.Controls.Add(this.Checkpoint);
@@ -150,19 +130,13 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ItemBox);
             this.Controls.Add(this.FuelBox);
-            this.Controls.Add(this.Auto);
->>>>>>> FETCH_HEAD
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximumSize = new System.Drawing.Size(1024, 768);
             this.MinimumSize = new System.Drawing.Size(1024, 736);
             this.Name = "Racegame";
             this.Text = "Racegame";
-<<<<<<< HEAD
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Racegame_Paint);
-=======
             this.TransparencyKey = System.Drawing.Color.Maroon;
-            ((System.ComponentModel.ISupportInitialize)(this.Auto)).EndInit();
->>>>>>> FETCH_HEAD
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Groen)).EndInit();
@@ -176,7 +150,7 @@
         private System.Windows.Forms.Timer GameTimer;
         private System.Windows.Forms.PictureBox FuelBox;
         private System.Windows.Forms.PictureBox ItemBox;
-
+        
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox Groen;
