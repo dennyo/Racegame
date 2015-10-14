@@ -13,6 +13,7 @@ namespace RaceGame {
    public class Player {
 
         public bool CheckpointPassed = false;
+        public bool FinishPassed = false;
         public int laps = 1;
         public float X;
         public float Y;
