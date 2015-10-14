@@ -105,57 +105,22 @@ namespace RaceGame {
             if(Brake) {
                 Speed -= 0.1f;
             }
+            Console.WriteLine(Angle);
 
-            //if(UpActive) {
-                //X += (int)(10 * Math.Cos(Angle));
-                //Y += (int)(10 * Math.Sin(Angle));
-                Console.WriteLine(Angle);
-
-                    SpeedX = (float) Speed * ((float)Math.Cos(Math.PI / 180 * Angle));
-                    SpeedY = (float) Speed * ((float)Math.Sin(Math.PI / 180 * Angle));
-                    X += SpeedX;
-                    Y += SpeedY;
-
-                    /*if((Angle > -80 && Angle < -10 ) || (Angle > 280 && Angle < 360)){
-                        //Move right upper
-                        X += SpeedX;
-                        Y -= SpeedY;
-                    }else if((Angle < 80 && Angle > 10) || (Angle < -280 && Angle > -360)){
-                        //Move right lower
-                        Y += SpeedY;
-                        X += SpeedX;
-                    }else if(Angle <= 10 && Angle >= -10){
-                        //Move right
-                        X += SpeedX;
-                    }else if((Angle <= -80 && Angle >= -100) || (Angle >= 260 && Angle <= 280)) {
-                        //Move up
-                        Y -= SpeedY;
-                    }else if((Angle < -100 && Angle > -170) || (Angle > 190 && Angle < 260)) {
-                        //Move left upper
-                        X -= SpeedX;
-                        Y -= SpeedY;
-                    }else if((Angle > -260 && Angle < -190) || (Angle > 100 && Angle < 170)) {
-                        //Move left lower
-                        Y += SpeedX;
-                        X -= SpeedY;
-                    }else if((Angle >= -190 && Angle <= -160) || (Angle > 170 && Angle < 190)) {
-                        //Move left
-                        X -= SpeedX;
-                    }else if((Angle >= -280 && Angle <= -260) || (Angle <= 100 && Angle >= 80)) {
-                        //Down
-                        Y += SpeedY;
-                    }*/
-            //}
-                
+            SpeedX = (float) Speed * ((float)Math.Cos(Math.PI / 180 * Angle));
+            SpeedY = (float) Speed * ((float)Math.Sin(Math.PI / 180 * Angle));
+            X += SpeedX;
+            Y += SpeedY;
+            
 
             if(Angle <= -356 || Angle >= 356) {
                 Angle = 0;
             }
             if(LeftActive) {
-                Angle -= 5f;
+                Angle -= 2 * Speed / 8 + 1;
             }
             if(RightActive) {
-                Angle += 5f;
+                Angle += 2 * Speed / 8 + 1;
             }
         }
 
