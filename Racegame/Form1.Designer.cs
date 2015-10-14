@@ -45,6 +45,7 @@
             this.Speed1 = new System.Windows.Forms.Label();
             this.Ronde2 = new System.Windows.Forms.Label();
             this.Fueladder2 = new System.Windows.Forms.Timer(this.components);
+            this.FinishMessage = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.HealthBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemBox)).BeginInit();
@@ -129,7 +130,7 @@
             // 
             // Finish
             // 
-            this.Finish.Location = new System.Drawing.Point(458, 310);
+            this.Finish.Location = new System.Drawing.Point(457, 309);
             this.Finish.Name = "Finish";
             this.Finish.Size = new System.Drawing.Size(45, 180);
             this.Finish.TabIndex = 8;
@@ -185,28 +186,41 @@
             // 
             this.Fueladder2.Tick += new System.EventHandler(this.Fueladder2_Tick);
             // 
+            // FinishMessage
+            // 
+            this.FinishMessage.BackColor = System.Drawing.Color.Transparent;
+            this.FinishMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FinishMessage.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.FinishMessage.Location = new System.Drawing.Point(143, 197);
+            this.FinishMessage.Name = "FinishMessage";
+            this.FinishMessage.Size = new System.Drawing.Size(781, 292);
+            this.FinishMessage.TabIndex = 13;
+            this.FinishMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.FinishMessage.Visible = false;
+            // 
             // Racegame
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1006, 721);
+            this.ClientSize = new System.Drawing.Size(1008, 721);
+            this.Controls.Add(this.FinishMessage);
             this.Controls.Add(this.HealthBox);
             this.Controls.Add(this.Ronde2);
             this.Controls.Add(this.Speed1);
             this.Controls.Add(this.FuelBox2);
             this.Controls.Add(this.ItemFrame);
-            this.Controls.Add(this.Finish);
             this.Controls.Add(this.Checkpoint);
             this.Controls.Add(this.Groen);
             this.Controls.Add(this.Ronde1);
             this.Controls.Add(this.Speed2);
             this.Controls.Add(this.ItemBox);
             this.Controls.Add(this.FuelBox);
+            this.Controls.Add(this.Finish);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximumSize = new System.Drawing.Size(1024, 768);
-            this.MinimumSize = new System.Drawing.Size(1024, 768);
+            this.MinimumSize = new System.Drawing.Size(1024, 736);
             this.Name = "Racegame";
             this.Text = "Racegame";
             this.TransparencyKey = System.Drawing.Color.Maroon;
@@ -241,6 +255,7 @@
         private System.Windows.Forms.Label Speed1;
         private System.Windows.Forms.Label Ronde2;
         private System.Windows.Forms.Timer Fueladder2;
+        private System.Windows.Forms.Label FinishMessage;
     }
 }
 
