@@ -262,11 +262,11 @@ namespace Racegame
                 a.X <= b.Location.X + b.Size.Width &&
                 a.Y + a.Height >= b.Location.Y &&
                 a.Y <= b.Location.Y + b.Size.Height &&
-                CheckpointPassed == false)
+                a.CheckpointPassed == false)
             {
-                CheckpointPassed = true;
+                a.CheckpointPassed = true;
             }
-            return CheckpointPassed;
+            return a.CheckpointPassed;
 
         }
 
@@ -294,7 +294,7 @@ namespace Racegame
                 a.CheckpointPassed == true)
                 {
                     a.laps = a.laps + 1;
-                    CheckpointPassed = false;
+                    a.CheckpointPassed = false;
                 }
 
                 b.Text = "Lap: " + a.laps;
@@ -303,8 +303,9 @@ namespace Racegame
                 {
                     a.SpeedX = 0;
                     a.SpeedY = 0;
+                    b.Text = "Race complete.";
                 }
-                return CheckpointPassed;
+                return a.CheckpointPassed;
 
             }
 
