@@ -21,13 +21,14 @@ namespace RaceGame {
         public int Width;
         public float SpeedX = 0;
         public float SpeedY = 0;
+        public int MaxSpeed = 14;
         public float Speed = 0;
         public int Health = 100;
         public int Fuel = 10000;
         public float Angle = 0f;
         public Keys up, down, right, left, action;
-        public bool Gas = false;
         public bool Brake = false;
+        public bool Gas = false;
         private bool UpActive = false;
         private bool DownActive = false;
         private bool RightActive = false;
@@ -95,18 +96,17 @@ namespace RaceGame {
         public void Move(Form form) {
             form.Invalidate();
 
-            if(Brake) {
-                if((SpeedX <= 14 || SpeedY <= 14 && Speed <= 1)) {
-                    Speed -= 0.1f;
-                }
-            }
             if(Gas) {
-                if((SpeedX <= 14 || SpeedY <= 14 && Speed <= 1)) {
+                if(SpeedX <= MaxSpeed && SpeedY <= MaxSpeed && Speed < MaxSpeed) {
                     Speed += 0.1f;
                 }
             }
 
-            if(UpActive) {
+            if(Brake) {
+                Speed -= 0.1f;
+            }
+
+            //if(UpActive) {
                 //X += (int)(10 * Math.Cos(Angle));
                 //Y += (int)(10 * Math.Sin(Angle));
                 Console.WriteLine(Angle);
@@ -145,17 +145,17 @@ namespace RaceGame {
                         //Down
                         Y += SpeedY;
                     }*/
-            }
+            //}
                 
 
             if(Angle <= -356 || Angle >= 356) {
                 Angle = 0;
             }
             if(LeftActive) {
-                Angle -= 4f;
+                Angle -= 5f;
             }
             if(RightActive) {
-                Angle += 4f;
+                Angle += 5f;
             }
         }
 
@@ -171,8 +171,8 @@ namespace RaceGame {
                 RightActive = true;
             }
             if (e.KeyCode == down) {
-                Brake = true;
                 DownActive = true;
+                Brake = true;
             }
             if(e.KeyCode == action) {
                 //Code voor actions hier
@@ -184,9 +184,6 @@ namespace RaceGame {
             if(e.KeyCode == up) {
                 Gas = false;
                 UpActive = false;
-                for(int i = 0; i < Speed * 10; i++) {
-                    Speed = Speed - 0.1f;
-                }
             }
             if (e.KeyCode == left) {
                 LeftActive = false;
@@ -195,8 +192,8 @@ namespace RaceGame {
                 RightActive = false;
             }
             if (e.KeyCode == down) {
-                Brake = false;
                 DownActive = false;
+                Brake = false;
             }
         }
 
