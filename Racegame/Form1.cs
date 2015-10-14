@@ -34,7 +34,7 @@ namespace Racegame
             //        Player(Graphics g, System.Drawing.Color color, Keys up, Keys down, Keys right, Keys left, int x, int y, int width, int height) {
             g = this.CreateGraphics();
             p2 = new Player(g, null, Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.RShiftKey, 600, 400, 64, 64);
-            p1 = new Player(g, null, Keys.W, Keys.S, Keys.D, Keys.A, Keys.LShiftKey, 200, 600, 80, 50);
+            p1 = new Player(g, null, Keys.W, Keys.S, Keys.D, Keys.A, Keys.LShiftKey, 200, 500, 64, 64);
 
             //this.KeyDown += p1.ControlHandler;
             this.KeyDown += p2.ControlDownHandler;
@@ -48,7 +48,6 @@ namespace Racegame
         private void GameTimer_Tick(object sender, EventArgs e)
         {
             FuelHandler();
-            //PlayerTwo.Location = new Point(PlayerTwo.Location.X + speedX, PlayerTwo.Location.Y + speedY);
             BorderHandler();
             p2.Move(this);
             p1.Move(this);
@@ -57,7 +56,7 @@ namespace Racegame
             SpeedMeter();
             Checkpointhandler();
             RondeTeller();
-            Console.WriteLine(p1.SpeedY);
+            PlayerCollision();
         }
 
         public void Draw(Graphics g) {
@@ -68,15 +67,18 @@ namespace Racegame
         }
         public void FuelHandler()
         {
-            Fueling(p1, FuelBox);
-            Fueling(p2, FuelBox2);
+            Fueling(p1, FuelBox, HealthBox);
+            Fueling(p2, FuelBox2, HealthBox1);
         }
 
-        public void Fueling(Player a, PictureBox b)
+        public void Fueling(Player a, PictureBox b, PictureBox c)
         {
-            a.Fuel -= (int) Math.Abs((Math.Abs(a.SpeedX) + Math.Abs(a.SpeedY)));
+            a.Fuel -= Math.Abs(Convert.ToInt16(a.Speed));
             Size fuelboxsize = new Size(a.Fuel / 250 * 10, 10);
             b.Size = fuelboxsize;
+            Size healthboxsize = new Size(a.Health * 4 , 10);
+            c.Size = healthboxsize;
+
             if (a.Fuel <= 0)
             {
                 a.Speed = 0;
@@ -93,23 +95,32 @@ namespace Racegame
         {
             if (a.X >= ClientSize.Width - p1.Width && a.SpeedX >= 0)
             {
+                a.Health -= Math.Abs(Convert.ToInt16(a.Speed));
                 a.Speed = 0;
                 a.X -= 10;
             }
             if (a.X <= 0)
             {
+                a.Health -= Math.Abs(Convert.ToInt16(a.Speed));
                 a.Speed = 0;
                 a.X += 10;
             }
             if (a.Y >= ClientSize.Height - 2 * a.Height && a.SpeedY >= 0)
             {
+                a.Health -= Math.Abs(Convert.ToInt16(a.Speed));
                 a.Speed = 0;
                 a.Y -= 10;
             }
             if (a.Y <= 0)
             {
+                a.Health -= Math.Abs(Convert.ToInt16(a.Speed));
                 a.Speed = 0;
                 a.Y += 10;
+            }
+
+            if (a.Health <= 0)
+            {
+                a.Speed = 0;
             }
         }
 
@@ -131,9 +142,9 @@ namespace Racegame
         public void CheckCollision(Player a, PictureBox b)
         {
             ///Moet nog even naar gekeken worden want dit moet er wel zijn!
-            if (a.X + a.Width >= b.Location.X &&
+            if (a.X + a.MaxSize >= b.Location.X &&
                 a.X <= b.Location.X + b.Size.Width &&
-                a.Y + a.Height >= b.Location.Y &&
+                a.Y + a.MaxSize >= b.Location.Y &&
                 a.Y <= b.Location.Y + b.Size.Height)
             {
                 a.Speed = 0;
@@ -239,7 +250,7 @@ namespace Racegame
         }
         async System.Threading.Tasks.Task WaitMethod3()
         {
-            await System.Threading.Tasks.Task.Delay(100);
+            await System.Threading.Tasks.Task.Delay(50);
         }
 
         public void SpeedMeter()
@@ -251,11 +262,8 @@ namespace Racegame
         public void Speed(Player a, Label b)
         {
             double speed = Math.Sqrt(Math.Pow(a.SpeedX, 2) + Math.Pow(a.SpeedY, 2));
-<<<<<<< HEAD
-            b.Text = "Speed: " + Math.Round(speed, 0) + " km/h";
-=======
+
             b.Text = "Speed: " + Math.Round(speed, 0);
->>>>>>> 06e8cea862c53d73c52ed3644d511fff07e0c866
         }
 
         public bool Checkpoints(Player a, PictureBox b)
@@ -316,43 +324,32 @@ namespace Racegame
 
         private void Fueladder_Tick(object sender, EventArgs e)
         {
-            p1.Fuel += (int) Math.Abs((Math.Abs(p1.SpeedX) + Math.Abs(p1.SpeedY)));
+            p1.Fuel += Convert.ToInt16(p1.Speed);
         }
         private void Fueladder2_Tick(object sender, EventArgs e)
         {
-            p2.Fuel += (int) Math.Abs((Math.Abs(p2.SpeedX) + Math.Abs(p2.SpeedY)));
+            p2.Fuel += Convert.ToInt16(p2.Speed);
         }
 
-        public void Damagehandler()
+
+        public void PlayerCollision()
         {
-            Damage(p1);
-            Damage(p2);
+            if (p1.X + p1.MaxSize -18 >= p2.X + 18 &&
+       p1.X + 18 <= p2.X + p2.Width -18 &&
+       p1.Y + p1.MaxSize - 18>= p2.Y + 18 &&
+       p1.Y + 18 <= p2.Y + p2.Height - 18)
+            {
+                p1.Health -= Convert.ToInt16(p1.Speed + p2.Speed);
+                p2.Health -= Convert.ToInt16(p1.Speed + p2.Speed);
+                p1.Speed = 0;
+                p2.Speed = 0;
+            }
+
+
         }
 
-        public int Damage(Player a)
-        {
-            int Totalhealth = 100;
-            int health = 100;
-            int damageauto = 10;
-            if (a.X >= 1024 - a.Width && a.SpeedX >= 0)
-            {
-               Totalhealth = a.Health -= damageauto;
-            }
-            if (a.X <= 0 && a.SpeedX <= 0)
-            {
-                Totalhealth = a.Health -= damageauto;
-            }
-            if (a.Y >= 768 - 2 * a.Height && a.SpeedY >= 0)
-            {
-                Totalhealth = a.Health -= damageauto;
-            }
-            if (a.Y <= 0 && a.SpeedY <= 0)
-            {
-                Totalhealth = a.Health -= damageauto;
-            } 
-            return Totalhealth; 
         }
-        }
+    
     }
 
 

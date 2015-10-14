@@ -45,6 +45,7 @@
             this.Speed1 = new System.Windows.Forms.Label();
             this.Ronde2 = new System.Windows.Forms.Label();
             this.Fueladder2 = new System.Windows.Forms.Timer(this.components);
+            this.HealthBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.HealthBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemBox)).BeginInit();
@@ -53,6 +54,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.Finish)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemFrame)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.HealthBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // GameTimer
@@ -72,7 +74,7 @@
             // HealthBox
             // 
             this.HealthBox.BackColor = System.Drawing.Color.Red;
-            this.HealthBox.Location = new System.Drawing.Point(794, 12);
+            this.HealthBox.Location = new System.Drawing.Point(545, 12);
             this.HealthBox.Name = "HealthBox";
             this.HealthBox.Size = new System.Drawing.Size(200, 10);
             this.HealthBox.TabIndex = 2;
@@ -112,9 +114,9 @@
             this.Groen.BackColor = System.Drawing.Color.Transparent;
             this.Groen.ErrorImage = ((System.Drawing.Image)(resources.GetObject("Groen.ErrorImage")));
             this.Groen.Image = ((System.Drawing.Image)(resources.GetObject("Groen.Image")));
-            this.Groen.Location = new System.Drawing.Point(319, 219);
+            this.Groen.Location = new System.Drawing.Point(929, 44);
             this.Groen.Name = "Groen";
-            this.Groen.Size = new System.Drawing.Size(61, 60);
+            this.Groen.Size = new System.Drawing.Size(65, 62);
             this.Groen.TabIndex = 6;
             this.Groen.TabStop = false;
             // 
@@ -183,14 +185,25 @@
             // 
             // Fueladder2
             // 
+            this.Fueladder2.Interval = 17;
             this.Fueladder2.Tick += new System.EventHandler(this.Fueladder2_Tick);
+            // 
+            // HealthBox1
+            // 
+            this.HealthBox1.BackColor = System.Drawing.Color.Red;
+            this.HealthBox1.Location = new System.Drawing.Point(545, 28);
+            this.HealthBox1.Name = "HealthBox1";
+            this.HealthBox1.Size = new System.Drawing.Size(200, 10);
+            this.HealthBox1.TabIndex = 12;
+            this.HealthBox1.TabStop = false;
             // 
             // Racegame
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1006, 721);
+            this.ClientSize = new System.Drawing.Size(1002, 712);
+            this.Controls.Add(this.HealthBox1);
             this.Controls.Add(this.HealthBox);
             this.Controls.Add(this.Ronde2);
             this.Controls.Add(this.Speed1);
@@ -219,6 +232,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.Finish)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemFrame)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.HealthBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -241,6 +255,7 @@
         private System.Windows.Forms.Label Speed1;
         private System.Windows.Forms.Label Ronde2;
         private System.Windows.Forms.Timer Fueladder2;
+        private System.Windows.Forms.PictureBox HealthBox1;
     }
 }
 
