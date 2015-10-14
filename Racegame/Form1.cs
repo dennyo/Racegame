@@ -159,7 +159,8 @@ namespace Racegame
                 b.Visible == true)
             {
                 b.Visible = false;
-                GetItem();      
+                GetItem();
+                boost(a);   
                 RespawnHandler();
             }
         }
@@ -214,11 +215,11 @@ namespace Racegame
             {
                 Fueladder2.Enabled = true;
             }
-            a.Speed *= 20;
-            a.Speed *= 20;
+            a.Speed = 28;
+            a.MaxSpeed *= 2;
             await WaitMethod2();
-            a.Speed /= 20;
-            a.Speed /= 20;
+            a.Speed /= 28;
+            a.MaxSpeed /= 2;
             if(a == p1)
             {
                 Fueladder.Enabled = false;
