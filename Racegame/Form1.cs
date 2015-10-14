@@ -94,22 +94,22 @@ namespace Racegame
         {
             if (a.X >= ClientSize.Width - p1.Width && a.SpeedX >= 0)
             {
-                a.SpeedX = 0;
+                a.Speed = 0;
                 a.X -= 10;
             }
             if (a.X <= 0)
             {
-                a.SpeedX = 0;
+                a.Speed = 0;
                 a.X += 10;
             }
             if (a.Y >= ClientSize.Height - 2 * a.Height && a.SpeedY >= 0)
             {
-                a.SpeedY = 0;
+                a.Speed = 0;
                 a.Y -= 10;
             }
             if (a.Y <= 0)
             {
-                a.SpeedY = 0;
+                a.Speed = 0;
                 a.Y += 10;
             }
         }
@@ -137,8 +137,8 @@ namespace Racegame
                 a.Y + a.Height >= b.Location.Y &&
                 a.Y <= b.Location.Y + b.Size.Height)
             {
-                a.SpeedX = 0;
-                a.SpeedY = 0;
+                a.Speed = 0;
+                a.Speed = 0; 
             }
         }
 
@@ -214,11 +214,11 @@ namespace Racegame
             {
                 Fueladder2.Enabled = true;
             }
-            a.SpeedX *= 2;
-            a.SpeedY *= 2;
+            a.Speed *= 20;
+            a.Speed *= 20;
             await WaitMethod2();
-            a.SpeedX /= 2;
-            a.SpeedY /= 2;
+            a.Speed /= 20;
+            a.Speed /= 20;
             if(a == p1)
             {
                 Fueladder.Enabled = false;
@@ -251,7 +251,7 @@ namespace Racegame
         public void Speed(Player a, Label b)
         {
             double speed = Math.Sqrt(Math.Pow(a.SpeedX, 2) + Math.Pow(a.SpeedY, 2));
-            b.Text = "Speed: " + Math.Round(speed, 0) * 3 + " km/h";
+            b.Text = "Speed: " + Math.Round(speed, 0) + " km/h";
         }
 
         public bool Checkpoints(Player a, PictureBox b)
