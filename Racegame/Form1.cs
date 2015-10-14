@@ -251,7 +251,11 @@ namespace Racegame
         public void Speed(Player a, Label b)
         {
             double speed = Math.Sqrt(Math.Pow(a.SpeedX, 2) + Math.Pow(a.SpeedY, 2));
+<<<<<<< HEAD
             b.Text = "Speed: " + Math.Round(speed, 0) + " km/h";
+=======
+            b.Text = "Speed: " + Math.Round(speed, 0);
+>>>>>>> 06e8cea862c53d73c52ed3644d511fff07e0c866
         }
 
         public bool Checkpoints(Player a, PictureBox b)
@@ -301,8 +305,7 @@ namespace Racegame
 
                 if (a.laps >= 4)
                 {
-                    a.SpeedX = 0;
-                    a.SpeedY = 0;
+                    a.Speed = 0;
                     b.Text = "Race complete.";
                 }
                 return a.CheckpointPassed;
