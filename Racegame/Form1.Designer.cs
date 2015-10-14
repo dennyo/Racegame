@@ -204,6 +204,7 @@
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1008, 721);
+            this.Controls.Add(this.ItemBox);
             this.Controls.Add(this.FinishMessage);
             this.Controls.Add(this.HealthBox);
             this.Controls.Add(this.Ronde2);
@@ -214,7 +215,6 @@
             this.Controls.Add(this.Groen);
             this.Controls.Add(this.Ronde1);
             this.Controls.Add(this.Speed2);
-            this.Controls.Add(this.ItemBox);
             this.Controls.Add(this.FuelBox);
             this.Controls.Add(this.Finish);
             this.DoubleBuffered = true;

@@ -303,8 +303,16 @@ namespace Racegame
                 {
                     a.Speed = 0;
                     b.Text = "Race complete.";
-                    this.FinishMessage.Text = "RACE OVER";
                     this.FinishMessage.Visible = true;
+                    if (a == p1)
+                    {
+                        this.FinishMessage.Text = "Player 1 wins!";
+                    }
+                    else if (a == p2)
+                    {
+                        this.FinishMessage.Text = "Player 2 wins!";
+                    }
+
                 }
                 return a.CheckpointPassed;
 
