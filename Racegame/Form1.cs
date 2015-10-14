@@ -79,8 +79,7 @@ namespace Racegame
             b.Size = fuelboxsize;
             if (a.Fuel <= 0)
             {
-                a.SpeedX = 0;
-                a.SpeedY = 0;
+                a.Speed = 0;
             }
         }
 
@@ -215,10 +214,10 @@ namespace Racegame
             {
                 Fueladder2.Enabled = true;
             }
-            a.Speed = 28;
+            a.Speed = 20;
             a.MaxSpeed *= 2;
             await WaitMethod2();
-            a.Speed /= 28;
+            a.Speed = 14;
             a.MaxSpeed /= 2;
             if(a == p1)
             {
