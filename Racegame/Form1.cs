@@ -18,6 +18,7 @@ namespace Racegame
     {
 
         public bool CheckpointPassed = false;
+        public bool FinishPassed = false;
         Image Banana = new Bitmap(Path.Combine(Environment.CurrentDirectory, "Banana.png"));
         Image Mushroom = new Bitmap(Path.Combine(Environment.CurrentDirectory, "Mushroom.png"));
         Image Fuel = new Bitmap(Path.Combine(Environment.CurrentDirectory, "fuel.png"));
@@ -56,7 +57,12 @@ namespace Racegame
             SpeedMeter();
             Checkpointhandler();
             RondeTeller();
+<<<<<<< HEAD
             PlayerCollision();
+=======
+            Console.WriteLine(p1.SpeedY);
+            FinishHandler();
+>>>>>>> 43d12f6c05d385d828bfa3acb69a83a0a06467c8
         }
 
         public void Draw(Graphics g) {
@@ -262,7 +268,10 @@ namespace Racegame
         public void Speed(Player a, Label b)
         {
             double speed = Math.Sqrt(Math.Pow(a.SpeedX, 2) + Math.Pow(a.SpeedY, 2));
+<<<<<<< HEAD
 
+=======
+>>>>>>> 43d12f6c05d385d828bfa3acb69a83a0a06467c8
             b.Text = "Speed: " + Math.Round(speed, 0);
         }
 
@@ -310,17 +319,39 @@ namespace Racegame
                 }
 
                 b.Text = "Lap: " + a.laps;
-
-                if (a.laps >= 4)
-                {
-                    a.Speed = 0;
-                    b.Text = "Race complete.";
-                }
                 return a.CheckpointPassed;
+            }
+        }
+
+        public void FinishHandler()
+        {
+            p1.FinishPassed = Finishing(p1, FinishMessage);
+            p2.FinishPassed = Finishing(p2, FinishMessage);
+            if(FinishPassed == true)
+            {
+                p1.Speed = 0;
+                p2.Speed = 0;
+            }
+        }
+            public bool Finishing(Player a, Label b)
+        {
+            if (a.laps >= 4 && FinishPassed == false)
+                {
+                    this.FinishMessage.Visible = true;
+                    this.PlayAgain.Visible = true;
+                    if (a == p1)
+                    {
+                        this.FinishMessage.Text = "Player 1 wins!";
+                    }
+                    else if (a == p2)
+                    {
+                        this.FinishMessage.Text = "Player 2 wins!";
+                    }
+                FinishPassed = true;
+                }
+            return FinishPassed;
 
             }
-
-        }
 
         private void Fueladder_Tick(object sender, EventArgs e)
         {
@@ -348,8 +379,17 @@ namespace Racegame
 
         }
 
+<<<<<<< HEAD
         }
     
+=======
+        private void PlayAgain_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
+        }
+
+      }
+>>>>>>> 43d12f6c05d385d828bfa3acb69a83a0a06467c8
     }
 
 
