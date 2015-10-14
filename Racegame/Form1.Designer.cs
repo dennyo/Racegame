@@ -207,10 +207,10 @@
             this.PlayAgain.Name = "PlayAgain";
             this.PlayAgain.Size = new System.Drawing.Size(153, 41);
             this.PlayAgain.TabIndex = 14;
-            this.PlayAgain.Text = "Play Again";
+            this.PlayAgain.Text = "Restart";
             this.PlayAgain.UseVisualStyleBackColor = true;
             this.PlayAgain.Visible = false;
-            this.PlayAgain.Click += new System.EventHandler(this.button1_Click);
+            this.PlayAgain.Click += new System.EventHandler(this.PlayAgain_Click);
             // 
             // Racegame
             // 
@@ -218,7 +218,6 @@
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1008, 721);
-            this.Controls.Add(this.PlayAgain);
             this.Controls.Add(this.ItemBox);
             this.Controls.Add(this.HealthBox);
             this.Controls.Add(this.Ronde2);
@@ -232,6 +231,7 @@
             this.Controls.Add(this.FuelBox);
             this.Controls.Add(this.Finish);
             this.Controls.Add(this.FinishMessage);
+            this.Controls.Add(this.PlayAgain);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximumSize = new System.Drawing.Size(1024, 768);

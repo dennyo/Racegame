@@ -373,11 +373,12 @@ namespace Racegame
             return Totalhealth; 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void PlayAgain_Click(object sender, EventArgs e)
         {
             Application.Restart();
         }
-    }
+
+      }
     }
 
 
