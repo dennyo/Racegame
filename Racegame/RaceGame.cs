@@ -40,15 +40,11 @@ namespace Racegame
             //        Player(Graphics g, System.Drawing.Color color, Keys up, Keys down, Keys right, Keys left, int x, int y, int width, int height) {
             g = this.CreateGraphics();
 
-            p2 = new Player(g, null, Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.RShiftKey, 600, 400, 64, 64);
-            p1 = new Player(g, null, Keys.W, Keys.S, Keys.D, Keys.A, Keys.LShiftKey, 200, 500, 64, 64);
+            p2 = new Player(Character.David, g, this, null, Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.RShiftKey, 600, 400, 64, 64);
+            p1 = new Player(Character.Nynke, g, this, null, Keys.W, Keys.S, Keys.D, Keys.A, Keys.LShiftKey, 200, 500, 64, 64);
 
             //this.KeyDown += p1.ControlHandler;
-            this.KeyDown += p2.ControlDownHandler;
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(p2.ControlUpHandler);
 
-            this.KeyDown += p1.ControlDownHandler;
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(p1.ControlUpHandler);
 
         }
 

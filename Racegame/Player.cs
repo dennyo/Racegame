@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Racegame;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -37,8 +38,10 @@ namespace RaceGame {
         private bool LeftActive = false;
         public Graphics g;
         private Bitmap image;
+        public Character character;
+        private Form main;
 
-        public Player(Graphics g, Bitmap imagew, Keys up, Keys down, Keys right, Keys left, Keys action, int x, int y, int width, int height) {
+        public Player(Character character, Graphics g, Form main, Bitmap imagew, Keys up, Keys down, Keys right, Keys left, Keys action, int x, int y, int width, int height) {
             this.X = x;
             this.Y = y;
             this.up = up;
@@ -49,13 +52,18 @@ namespace RaceGame {
             this.Width = width;
             this.Height = height;
             this.g = g;
-            this.MaxSize = (int) (Math.Sqrt(Math.Pow(Width, 2) + Math.Pow(Height, 2)) * 1.2);
+            this.MaxSize = width;
+            this.character = character;
+            this.main = main;
+
+            main.KeyDown += ControlDownHandler;
+            main.KeyUp += new System.Windows.Forms.KeyEventHandler(ControlUpHandler);
 
             //Temporary code for a rectangle player.
-            Image temp = new Bitmap(MaxSize, MaxSize);
+            Image temp = new Bitmap(Width, Width);
             Graphics t = Graphics.FromImage(temp);
             //t.FillRectangle(new SolidBrush(Color.Green), 0, 0, Width, Height);
-            t.DrawImage(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Schw1.png")), new Point(0, 0));
+            t.DrawImage(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Schw1.png")), new Rectangle(new Point(0, 0), new Size(Width, Height)));
             image = new Bitmap(temp);
             temp.Save(Path.Combine(Environment.CurrentDirectory, "test.jpg"));
             t.Dispose();
@@ -67,22 +75,18 @@ namespace RaceGame {
         }
 
         private Bitmap RotateImage() {
-            MaxSize = (int) (Math.Sqrt(Math.Pow(Width, 2) + Math.Pow(Height, 2)) * 1.2);
-            int tempx = (int) (MaxSize / 4.0f + MaxSize / 4);
-            int tempy = (int) (MaxSize / 4.0f + MaxSize / 4);
-
-            Bitmap toReturn = new Bitmap(MaxSize, MaxSize);
+            Bitmap toReturn = new Bitmap(Width, Width);
 
             using(Graphics g = Graphics.FromImage(toReturn)){
                 //g.TranslateTransform(tempx, tempy);
                 //g.RotateTransform(Angle);
                 //g.TranslateTransform(- tempx, - tempy);
-                g.DrawImage(image, new Point(0, 0));
+                g.DrawImage(image, new Rectangle(new Point(0, 0), new Size(Width, Height)));
 
                 //Outline box
-                /*Pen pen = new Pen(Color.Black, 2);
+                Pen pen = new Pen(Color.Black, 2);
                 pen.Alignment = PenAlignment.Inset; //<-- this
-                g.DrawRectangle(pen, new Rectangle(0, 0, MaxSize, MaxSize));*/
+                g.DrawRectangle(pen, new Rectangle(0, 0, Width, Width));
 
                 //Center red dot.
                 //g.FillRectangle(new SolidBrush(Color.Red), tempx, tempy, 1, 1);
@@ -101,6 +105,18 @@ namespace RaceGame {
                 if(SpeedX <= MaxSpeed && SpeedY <= MaxSpeed && Speed < MaxSpeed) {
                     Speed += 0.1f;
                 }
+            }
+
+            if(!Gas && !Brake) {
+                if(Speed > -1 && Speed < 1) {
+                    Speed = 0;
+                }
+                if(Speed < 0) {
+                    Speed += 0.2f;
+                }else if(Speed > 0) {
+                    Speed -= 0.2f;
+                }
+                Console.WriteLine(Speed);
             }
 
             if(Brake && Speed > - MaxSpeed) {
@@ -144,7 +160,6 @@ namespace RaceGame {
                 //Code voor actions hier
                 string sound = "";
                 Random rand = new Random();
-                Console.WriteLine(rand.Next(2));
                 switch(rand.Next(2)) {
                     case 0:
                         sound = "AIRPORN.wav";

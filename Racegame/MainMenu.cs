@@ -13,11 +13,11 @@ using System.Windows.Forms;
 
 namespace Racegame
 {
-    public partial class Form2 : Form
+    public partial class MainMenu : Form
     {
         public SoundPlayer player;
 
-        public Form2()
+        public MainMenu()
         {
             InitializeComponent();
             player = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, "THEMESONG.wav"));
