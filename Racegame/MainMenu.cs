@@ -16,6 +16,7 @@ namespace Racegame
     public partial class MainMenu : Form
     {
         public SoundPlayer player;
+        public Racegame racegame;
 
         public MainMenu()
         {
@@ -32,7 +33,8 @@ namespace Racegame
         private void button1_Click(object sender, EventArgs e)
         {        
             player.Stop();
-            Racegame frm = new Racegame(this, player);
+            Racegame frm = new Racegame(this);
+            this.racegame = frm;
             frm.Show();
         }
 

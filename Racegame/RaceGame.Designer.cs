@@ -140,11 +140,6 @@
             this.Finish.TabStop = false;
             this.Finish.Visible = false;
             // 
-            // Fueladder
-            // 
-            this.Fueladder.Interval = 17;
-            this.Fueladder.Tick += new System.EventHandler(this.Fueladder_Tick);
-            // 
             // ItemFrame
             // 
             this.ItemFrame.BackColor = System.Drawing.Color.Transparent;
@@ -184,11 +179,6 @@
             this.Ronde2.Size = new System.Drawing.Size(200, 50);
             this.Ronde2.TabIndex = 11;
             this.Ronde2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // Fueladder2
-            // 
-            this.Fueladder2.Interval = 17;
-            this.Fueladder2.Tick += new System.EventHandler(this.Fueladder2_Tick);
             // 
             // HealthBox1
             // 
