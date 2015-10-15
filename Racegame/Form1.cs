@@ -57,12 +57,9 @@ namespace Racegame
             SpeedMeter();
             Checkpointhandler();
             RondeTeller();
-<<<<<<< HEAD
             PlayerCollision();
-=======
             Console.WriteLine(p1.SpeedY);
             FinishHandler();
->>>>>>> 43d12f6c05d385d828bfa3acb69a83a0a06467c8
         }
 
         public void Draw(Graphics g) {
@@ -141,8 +138,8 @@ namespace Racegame
 
         public void CollisionHandler()
         {
-            CheckCollision(p1, Groen);
-            CheckCollision(p2, Groen);
+            //CheckCollision(p1, Groen);
+            //CheckCollision(p2, Groen);
         }
 
         public void CheckCollision(Player a, PictureBox b)
@@ -268,10 +265,6 @@ namespace Racegame
         public void Speed(Player a, Label b)
         {
             double speed = Math.Sqrt(Math.Pow(a.SpeedX, 2) + Math.Pow(a.SpeedY, 2));
-<<<<<<< HEAD
-
-=======
->>>>>>> 43d12f6c05d385d828bfa3acb69a83a0a06467c8
             b.Text = "Speed: " + Math.Round(speed, 0);
         }
 
@@ -378,18 +371,13 @@ namespace Racegame
 
 
         }
-
-<<<<<<< HEAD
-        }
-    
-=======
         private void PlayAgain_Click(object sender, EventArgs e)
         {
             Application.Restart();
         }
-
-      }
->>>>>>> 43d12f6c05d385d828bfa3acb69a83a0a06467c8
     }
+
+}
+    
 
 

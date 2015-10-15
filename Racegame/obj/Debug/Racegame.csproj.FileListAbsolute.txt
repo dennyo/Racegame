@@ -57,3 +57,4 @@ C:\Users\alexh_000\Documents\Visual Studio 2015\Projects\Negers\Racegame\obj\Deb
 C:\Users\alexh_000\Documents\Visual Studio 2015\Projects\Negers\Racegame\obj\Debug\Racegame.csproj.GenerateResource.Cache
 C:\Users\Denny\School\P1P Racegame\ProjectRacegame\Racegame\obj\Debug\SuperSchweizerKart.Racegame.resources
 C:\Users\Denny\School\P1P Racegame\ProjectRacegame\Racegame\obj\Debug\Racegame.Form2.resources
+C:\Users\alexh_000\Documents\Visual Studio 2015\Projects\Negers\Racegame\obj\Debug\Racegame.Form2.resources
