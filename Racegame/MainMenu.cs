@@ -31,13 +31,14 @@ namespace Racegame
 
         private void button1_Click(object sender, EventArgs e)
         {        
-            player.Stop();
-            Racegame frm = new Racegame(this, player);
-            frm.Show();
+            CharacterSelect frm = new CharacterSelect(this, player);
+            frm.ShowDialog();
+            this.Close();
         }
 
-        private void Form2_FormClosed(object sender, FormClosedEventArgs e) {
-            this.Dispose();
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
