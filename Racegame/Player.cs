@@ -51,7 +51,7 @@ namespace RaceGame {
             this.MaxSize = (int) Math.Sqrt(Math.Pow(Width, 2) + Math.Pow(Height, 2));
 
             //Temporary code for a rectangle player.
-            Image temp = new Bitmap(Width, Width);
+            Image temp = new Bitmap(MaxSize, MaxSize);
             Graphics t = Graphics.FromImage(temp);
             //t.FillRectangle(new SolidBrush(Color.Green), 0, 0, Width, Height);
             t.DrawImage(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "auto.png")), new Point(0, 0));

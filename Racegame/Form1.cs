@@ -34,8 +34,8 @@ namespace Racegame
             GameTimer.Enabled = true;
             //        Player(Graphics g, System.Drawing.Color color, Keys up, Keys down, Keys right, Keys left, int x, int y, int width, int height) {
             g = this.CreateGraphics();
-            p2 = new Player(g, null, Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.RShiftKey, 600, 400, 64, 64);
-            p1 = new Player(g, null, Keys.W, Keys.S, Keys.D, Keys.A, Keys.LShiftKey, 200, 500, 64, 64);
+            p2 = new Player(g, null, Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.RShiftKey, 600, 400, 32, 32);
+            p1 = new Player(g, null, Keys.W, Keys.S, Keys.D, Keys.A, Keys.LShiftKey, 200, 500, 32, 32);
 
             //this.KeyDown += p1.ControlHandler;
             this.KeyDown += p2.ControlDownHandler;
@@ -57,7 +57,7 @@ namespace Racegame
             SpeedMeter();
             Checkpointhandler();
             RondeTeller();
-            PlayerCollision();
+            //PlayerCollision();
             Console.WriteLine(p1.SpeedY);
             FinishHandler();
         }
@@ -140,8 +140,18 @@ namespace Racegame
 
         public void CollisionHandler()
         {
-            //CheckCollision(p1, Groen);
-            //CheckCollision(p2, Groen);
+            bool p1stop = intersects(p1, Groen);
+            bool p2stop = intersects(p2, Groen);
+
+            if(p1stop == true)
+            {
+                p1.Speed = 0;
+            }
+            if(p2stop == true)
+            {
+                p2.Speed = 0;
+            }
+            
         }
 
         public void CheckCollision(Player a, PictureBox b)
@@ -159,6 +169,7 @@ namespace Racegame
 
         public void ItemHandler()
         {
+
             CheckItems(p1, ItemBox);
             CheckItems(p2, ItemBox);
         }
@@ -373,20 +384,35 @@ namespace Racegame
 
 
         }
-<<<<<<< HEAD
+
+        bool intersects(Player circle, PictureBox rect)
+        {
+            double circlex;
+            double circley;
+            double cornerDistance_sq;
+            circlex = Math.Abs((circle.X) - (rect.Location.X));
+            circley = Math.Abs((circle.Y) -  (rect.Location.Y));
+
+            if (circlex > (rect.Width / 2 + circle.Width/ 2)) { return false; }
+            if (circley > (rect.Height / 2 + circle.Height / 2)) { return false; }
+
+            if (circlex <= (rect.Width / 2)) { return true; }
+            if (circley <= (rect.Height / 2)) { return true; }
+
+            cornerDistance_sq = Math.Pow(circlex - rect.Width / 2, 2) +
+                                 Math.Pow(circley - rect.Height / 2, 2);
+            Math.Sqrt(Math.Pow(circle.Width, 2) + (Math.Pow(circle.Width, 2)) - circle.Width);
+
+            return (cornerDistance_sq <= (circle.Width ^ 2));
+        }
         private void PlayAgain_Click(object sender, EventArgs e)
         {
             Application.Restart();
         }
-=======
-
-
->>>>>>> 2009b6c97330f437f333f326f4c79ef1695efa14
     }
 }
     
 
-}
     
 
 

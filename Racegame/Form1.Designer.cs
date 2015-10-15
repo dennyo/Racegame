@@ -47,11 +47,8 @@
             this.Fueladder2 = new System.Windows.Forms.Timer(this.components);
             this.HealthBox1 = new System.Windows.Forms.PictureBox();
             this.FinishMessage = new System.Windows.Forms.Label();
-<<<<<<< HEAD
             this.PlayAgain = new System.Windows.Forms.Button();
-=======
             this.MainMenu = new System.Windows.Forms.Button();
->>>>>>> 2009b6c97330f437f333f326f4c79ef1695efa14
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.HealthBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemBox)).BeginInit();
@@ -89,7 +86,7 @@
             // ItemBox
             // 
             this.ItemBox.BackColor = System.Drawing.Color.Yellow;
-            this.ItemBox.Location = new System.Drawing.Point(681, 144);
+            this.ItemBox.Location = new System.Drawing.Point(94, 153);
             this.ItemBox.Name = "ItemBox";
             this.ItemBox.Size = new System.Drawing.Size(43, 41);
             this.ItemBox.TabIndex = 3;
@@ -117,12 +114,11 @@
             // 
             // Groen
             // 
-            this.Groen.BackColor = System.Drawing.Color.Transparent;
+            this.Groen.BackColor = System.Drawing.Color.DarkOrange;
             this.Groen.ErrorImage = ((System.Drawing.Image)(resources.GetObject("Groen.ErrorImage")));
-            this.Groen.Image = ((System.Drawing.Image)(resources.GetObject("Groen.Image")));
-            this.Groen.Location = new System.Drawing.Point(929, 44);
+            this.Groen.Location = new System.Drawing.Point(722, 171);
             this.Groen.Name = "Groen";
-            this.Groen.Size = new System.Drawing.Size(65, 62);
+            this.Groen.Size = new System.Drawing.Size(154, 150);
             this.Groen.TabIndex = 6;
             this.Groen.TabStop = false;
             // 
@@ -215,9 +211,8 @@
             this.FinishMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.FinishMessage.Visible = false;
             // 
-            // MainMenu
+            // PlayAgain
             // 
-<<<<<<< HEAD
             this.PlayAgain.AutoSize = true;
             this.PlayAgain.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PlayAgain.Location = new System.Drawing.Point(457, 448);
@@ -227,17 +222,18 @@
             this.PlayAgain.Text = "Restart";
             this.PlayAgain.UseVisualStyleBackColor = true;
             this.PlayAgain.Visible = false;
-=======
+            // 
+            // MainMenu
+            // 
             this.MainMenu.AutoSize = true;
             this.MainMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainMenu.Location = new System.Drawing.Point(401, 434);
             this.MainMenu.Name = "MainMenu";
-            this.MainMenu.Size = new System.Drawing.Size(198, 41);
+            this.MainMenu.Size = new System.Drawing.Size(288, 56);
             this.MainMenu.TabIndex = 14;
             this.MainMenu.Text = "Back To Menu";
             this.MainMenu.UseVisualStyleBackColor = true;
             this.MainMenu.Visible = false;
->>>>>>> 2009b6c97330f437f333f326f4c79ef1695efa14
             // 
             // Racegame
             // 
@@ -245,12 +241,8 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-<<<<<<< HEAD
-            this.ClientSize = new System.Drawing.Size(1002, 712);
-=======
             this.ClientSize = new System.Drawing.Size(1008, 721);
             this.Controls.Add(this.MainMenu);
->>>>>>> 2009b6c97330f437f333f326f4c79ef1695efa14
             this.Controls.Add(this.HealthBox1);
             this.Controls.Add(this.ItemBox);
             this.Controls.Add(this.HealthBox);
@@ -307,11 +299,8 @@
         private System.Windows.Forms.Timer Fueladder2;
         private System.Windows.Forms.PictureBox HealthBox1;
         private System.Windows.Forms.Label FinishMessage;
-<<<<<<< HEAD
         private System.Windows.Forms.Button PlayAgain;
-=======
         private System.Windows.Forms.Button MainMenu;
->>>>>>> 2009b6c97330f437f333f326f4c79ef1695efa14
     }
 }
 
