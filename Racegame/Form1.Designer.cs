@@ -47,7 +47,11 @@
             this.Fueladder2 = new System.Windows.Forms.Timer(this.components);
             this.HealthBox1 = new System.Windows.Forms.PictureBox();
             this.FinishMessage = new System.Windows.Forms.Label();
+<<<<<<< HEAD
             this.PlayAgain = new System.Windows.Forms.Button();
+=======
+            this.MainMenu = new System.Windows.Forms.Button();
+>>>>>>> 2009b6c97330f437f333f326f4c79ef1695efa14
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.HealthBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemBox)).BeginInit();
@@ -211,8 +215,9 @@
             this.FinishMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.FinishMessage.Visible = false;
             // 
-            // PlayAgain
+            // MainMenu
             // 
+<<<<<<< HEAD
             this.PlayAgain.AutoSize = true;
             this.PlayAgain.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PlayAgain.Location = new System.Drawing.Point(457, 448);
@@ -222,6 +227,17 @@
             this.PlayAgain.Text = "Restart";
             this.PlayAgain.UseVisualStyleBackColor = true;
             this.PlayAgain.Visible = false;
+=======
+            this.MainMenu.AutoSize = true;
+            this.MainMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MainMenu.Location = new System.Drawing.Point(401, 434);
+            this.MainMenu.Name = "MainMenu";
+            this.MainMenu.Size = new System.Drawing.Size(198, 41);
+            this.MainMenu.TabIndex = 14;
+            this.MainMenu.Text = "Back To Menu";
+            this.MainMenu.UseVisualStyleBackColor = true;
+            this.MainMenu.Visible = false;
+>>>>>>> 2009b6c97330f437f333f326f4c79ef1695efa14
             // 
             // Racegame
             // 
@@ -229,7 +245,12 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+<<<<<<< HEAD
             this.ClientSize = new System.Drawing.Size(1002, 712);
+=======
+            this.ClientSize = new System.Drawing.Size(1008, 721);
+            this.Controls.Add(this.MainMenu);
+>>>>>>> 2009b6c97330f437f333f326f4c79ef1695efa14
             this.Controls.Add(this.HealthBox1);
             this.Controls.Add(this.ItemBox);
             this.Controls.Add(this.HealthBox);
@@ -244,7 +265,6 @@
             this.Controls.Add(this.FuelBox);
             this.Controls.Add(this.Finish);
             this.Controls.Add(this.FinishMessage);
-            this.Controls.Add(this.PlayAgain);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
@@ -287,7 +307,11 @@
         private System.Windows.Forms.Timer Fueladder2;
         private System.Windows.Forms.PictureBox HealthBox1;
         private System.Windows.Forms.Label FinishMessage;
+<<<<<<< HEAD
         private System.Windows.Forms.Button PlayAgain;
+=======
+        private System.Windows.Forms.Button MainMenu;
+>>>>>>> 2009b6c97330f437f333f326f4c79ef1695efa14
     }
 }
 

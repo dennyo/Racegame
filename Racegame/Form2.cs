@@ -23,11 +23,9 @@ namespace Racegame
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {        
+        {
             Racegame frm = new Racegame();
             frm.Show();
-            frm.Activate();
-            this.Hide();
         }
         // Create Form2.
         public class Form1 : Form

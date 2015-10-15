@@ -40,7 +40,7 @@ namespace Racegame
             //this.KeyDown += p1.ControlHandler;
             this.KeyDown += p2.ControlDownHandler;
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(p2.ControlUpHandler);
-            
+
             this.KeyDown += p1.ControlDownHandler;
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(p1.ControlUpHandler);
 
@@ -62,9 +62,10 @@ namespace Racegame
             FinishHandler();
         }
 
-        public void Draw(Graphics g) {
-            
-            
+        public void Draw(Graphics g)
+        {
+
+
             //FuelHandler();
             //Auto.Location = new Point(Auto.Location.X + speedX, Auto.Location.Y + speedY);
         }
@@ -79,7 +80,7 @@ namespace Racegame
             a.Fuel -= Math.Abs(Convert.ToInt16(a.Speed));
             Size fuelboxsize = new Size(a.Fuel / 250 * 10, 10);
             b.Size = fuelboxsize;
-            Size healthboxsize = new Size(a.Health * 4 , 10);
+            Size healthboxsize = new Size(a.Health * 4, 10);
             c.Size = healthboxsize;
 
             if (a.Fuel <= 0)
@@ -127,7 +128,8 @@ namespace Racegame
             }
         }
 
-        private void Racegame_Paint(object sender, PaintEventArgs e) {
+        private void Racegame_Paint(object sender, PaintEventArgs e)
+        {
             p1.DrawPlayer(e.Graphics);
             e.Graphics.ResetTransform();
             p2.DrawPlayer(e.Graphics);
@@ -151,7 +153,7 @@ namespace Racegame
                 a.Y <= b.Location.Y + b.Size.Height)
             {
                 a.Speed = 0;
-                a.Speed = 0; 
+                a.Speed = 0;
             }
         }
 
@@ -161,7 +163,7 @@ namespace Racegame
             CheckItems(p2, ItemBox);
         }
 
-        public void CheckItems(Player a, PictureBox b)          
+        public void CheckItems(Player a, PictureBox b)
         {
             ///Moet nog even naar gekeken worden want dit moet er wel zijn!
 
@@ -173,7 +175,7 @@ namespace Racegame
             {
                 b.Visible = false;
                 GetItem();
-                boost(a);   
+                boost(a);
                 RespawnHandler();
             }
         }
@@ -185,37 +187,37 @@ namespace Racegame
             ItemFrame.Visible = true;
             for (int i = 0; i < 30; i++)
             {
-                if(number == 0)
+                if (number == 0)
                 {
                     ItemFrame.Image = Banana;
                 }
-                if(number == 1)
+                if (number == 1)
                 {
                     ItemFrame.Image = Mushroom;
                 }
-                if(number == 2)
+                if (number == 2)
                 {
                     ItemFrame.Image = Fuel;
                 }
                 number = rand.Next(3);
                 await WaitMethod3();
             }
-            
+
 
         }
 
         public void RespawnHandler()
         {
-            if(ItemBox.Visible == false)
+            if (ItemBox.Visible == false)
             {
                 RespawnItems(ItemBox);
             }
         }
-        
+
         public async void RespawnItems(PictureBox b)
         {
-                await WaitMethod();
-                b.Visible = true;
+            await WaitMethod();
+            b.Visible = true;
         }
 
         public async void boost(Player a)
@@ -233,7 +235,7 @@ namespace Racegame
             await WaitMethod2();
             a.Speed = 14;
             a.MaxSpeed /= 2;
-            if(a == p1)
+            if (a == p1)
             {
                 Fueladder.Enabled = false;
             }
@@ -320,31 +322,31 @@ namespace Racegame
         {
             p1.FinishPassed = Finishing(p1, FinishMessage);
             p2.FinishPassed = Finishing(p2, FinishMessage);
-            if(FinishPassed == true)
+            if (FinishPassed == true)
             {
                 p1.Speed = 0;
                 p2.Speed = 0;
             }
         }
-            public bool Finishing(Player a, Label b)
+        public bool Finishing(Player a, Label b)
         {
             if (a.laps >= 4 && FinishPassed == false)
+            {
+                this.FinishMessage.Visible = true;
+                this.MainMenu.Visible = true;
+                if (a == p1)
                 {
-                    this.FinishMessage.Visible = true;
-                    this.PlayAgain.Visible = true;
-                    if (a == p1)
-                    {
-                        this.FinishMessage.Text = "Player 1 wins!";
-                    }
-                    else if (a == p2)
-                    {
-                        this.FinishMessage.Text = "Player 2 wins!";
-                    }
-                FinishPassed = true;
+                    this.FinishMessage.Text = "Player 1 wins!";
                 }
+                else if (a == p2)
+                {
+                    this.FinishMessage.Text = "Player 2 wins!";
+                }
+                FinishPassed = true;
+            }
             return FinishPassed;
 
-            }
+        }
 
         private void Fueladder_Tick(object sender, EventArgs e)
         {
@@ -358,9 +360,9 @@ namespace Racegame
 
         public void PlayerCollision()
         {
-            if (p1.X + p1.MaxSize -18 >= p2.X + 18 &&
-       p1.X + 18 <= p2.X + p2.Width -18 &&
-       p1.Y + p1.MaxSize - 18>= p2.Y + 18 &&
+            if (p1.X + p1.MaxSize - 18 >= p2.X + 18 &&
+       p1.X + 18 <= p2.X + p2.Width - 18 &&
+       p1.Y + p1.MaxSize - 18 >= p2.Y + 18 &&
        p1.Y + 18 <= p2.Y + p2.Height - 18)
             {
                 p1.Health -= Convert.ToInt16(p1.Speed + p2.Speed);
@@ -371,11 +373,18 @@ namespace Racegame
 
 
         }
+<<<<<<< HEAD
         private void PlayAgain_Click(object sender, EventArgs e)
         {
             Application.Restart();
         }
+=======
+
+
+>>>>>>> 2009b6c97330f437f333f326f4c79ef1695efa14
     }
+}
+    
 
 }
     
