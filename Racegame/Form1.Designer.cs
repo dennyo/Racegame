@@ -213,7 +213,6 @@
             // 
             // MainMenu
             // 
-
             this.MainMenu.AutoSize = true;
             this.MainMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainMenu.Location = new System.Drawing.Point(401, 434);
@@ -229,7 +228,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1006, 721);
+            this.ClientSize = new System.Drawing.Size(1008, 721);
             this.Controls.Add(this.MainMenu);
             this.Controls.Add(this.HealthBox1);
             this.Controls.Add(this.ItemBox);
@@ -252,7 +251,6 @@
             this.Name = "Racegame";
             this.Text = "Racegame";
             this.TransparencyKey = System.Drawing.Color.Maroon;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Racegame_FormClosing);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Racegame_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.HealthBox)).EndInit();
@@ -291,4 +289,3 @@
         private System.Windows.Forms.Button MainMenu;
     }
 }
-

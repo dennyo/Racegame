@@ -49,13 +49,13 @@ namespace RaceGame {
             this.Width = width;
             this.Height = height;
             this.g = g;
-            this.MaxSize = (int) Math.Sqrt(Math.Pow(Width, 2) + Math.Pow(Height, 2));
+            this.MaxSize = (int) (Math.Sqrt(Math.Pow(Width, 2) + Math.Pow(Height, 2)) * 1.2);
 
             //Temporary code for a rectangle player.
             Image temp = new Bitmap(MaxSize, MaxSize);
             Graphics t = Graphics.FromImage(temp);
             //t.FillRectangle(new SolidBrush(Color.Green), 0, 0, Width, Height);
-            t.DrawImage(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "auto.png")), new Point(0, 0));
+            t.DrawImage(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Schw1.png")), new Point(0, 0));
             image = new Bitmap(temp);
             temp.Save(Path.Combine(Environment.CurrentDirectory, "test.jpg"));
             t.Dispose();
@@ -67,23 +67,22 @@ namespace RaceGame {
         }
 
         private Bitmap RotateImage() {
-            MaxSize = (int) Math.Sqrt(Math.Pow(Width, 2) + Math.Pow(Height, 2));
-            MaxSize = (int)(MaxSize * 1);
+            MaxSize = (int) (Math.Sqrt(Math.Pow(Width, 2) + Math.Pow(Height, 2)) * 1.2);
             int tempx = (int) (MaxSize / 4.0f + MaxSize / 4);
             int tempy = (int) (MaxSize / 4.0f + MaxSize / 4);
 
             Bitmap toReturn = new Bitmap(MaxSize, MaxSize);
 
             using(Graphics g = Graphics.FromImage(toReturn)){
-                g.TranslateTransform(tempx, tempy);
-                g.RotateTransform(Angle);
-                g.TranslateTransform(- tempx, - tempy);
-                g.DrawImage(image, new Point((MaxSize - Width) / 3, (MaxSize / 4)));
+                //g.TranslateTransform(tempx, tempy);
+                //g.RotateTransform(Angle);
+                //g.TranslateTransform(- tempx, - tempy);
+                g.DrawImage(image, new Point(0, 0));
 
                 //Outline box
-                Pen pen = new Pen(Color.Black, 2);
+                /*Pen pen = new Pen(Color.Black, 2);
                 pen.Alignment = PenAlignment.Inset; //<-- this
-                g.DrawRectangle(pen, new Rectangle(0, 0, MaxSize, MaxSize));
+                g.DrawRectangle(pen, new Rectangle(0, 0, MaxSize, MaxSize));*/
 
                 //Center red dot.
                 //g.FillRectangle(new SolidBrush(Color.Red), tempx, tempy, 1, 1);
@@ -140,7 +139,7 @@ namespace RaceGame {
                 DownActive = true;
                 Brake = true;
             }
-            Console.WriteLine(e.KeyCode);
+
             if(e.KeyCode == action) {
                 //Code voor actions hier
                 string sound = "";
@@ -157,7 +156,6 @@ namespace RaceGame {
                 }
                 SoundPlayer player = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, sound));
                 player.Play();
-
 
             }
 

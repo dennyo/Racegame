@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Media;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -33,14 +34,6 @@ namespace Racegame
             player.Stop();
             Racegame frm = new Racegame(this, player);
             frm.Show();
-        }
-        // Create Form2.
-        public class Form1 : Form
-        {
-            public Form1()
-            {
-                
-            }
         }
 
         private void Form2_FormClosed(object sender, FormClosedEventArgs e) {
