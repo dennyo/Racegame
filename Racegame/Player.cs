@@ -36,6 +36,7 @@ namespace RaceGame {
         private bool DownActive = false;
         private bool RightActive = false;
         private bool LeftActive = false;
+        private bool horn = false;
         public Graphics g;
         private Bitmap image;
         public Character Character;
@@ -49,7 +50,7 @@ namespace RaceGame {
         public Label RondeLabel;
         public System.Windows.Forms.Timer FuelTimer;
         double[] angles = new double[23] {8.65, 23.35, 35.45, 47.55, 59.65, 71.75, 83.85, 96.15, 108.25, 120.35, 132.45, 144.55, 156.65, 171.35, 191.25, 213.75, 236.25, 258.75, 281.25, 303.75, 326.25, 348.75, 368.65};
-
+        Dictionary<int[], ColorHandler> kleuren = new Dictionary<int[], ColorHandler>();
 
         public Player(Character character, Graphics g, Form main, Bitmap imagew, Keys up, Keys down, Keys right, Keys left, Keys action, int x, int y, int width, int height, PictureBox fuel, PictureBox healthBox, PictureBox groen, PictureBox itembox, PictureBox itemframe, System.Windows.Forms.Timer fuelTimer, Label speedLabel, Label rondeLabel) {
             this.X = x;
@@ -75,8 +76,15 @@ namespace RaceGame {
             this.HealthBox = healthBox;
             this.rect = new Rectangle(0, 0, Width, Width);
 
+<<<<<<< HEAD
 
         main.KeyDown += ControlDownHandler;
+=======
+            kleuren.Add(new int[3] {255, 150, 0}, ColorHandler.Pitstop);
+            kleuren.Add(new int[3] {0, 255, 0}, ColorHandler.Gras);
+
+            main.KeyDown += ControlDownHandler;
+>>>>>>> 7f2aa1557af21f0734c663e8366d975c11155bc2
             main.KeyUp += new System.Windows.Forms.KeyEventHandler(ControlUpHandler);
 
             //Temporary code for a rectangle player.
@@ -205,20 +213,21 @@ namespace RaceGame {
         public void Move(Form form) {
             form.Invalidate();
 
+
             if(Gas) {
                 if(SpeedX <= MaxSpeed && SpeedY <= MaxSpeed && Speed < MaxSpeed) {
                     Speed += 0.2f;
                 }
             }
 
-            if(!Gas && !Brake) {
+            if((!Gas && !Brake) || Speed > MaxSpeed) {
                 if(Speed > -1 && Speed < 1) {
                     Speed = 0;
                 }
                 if(Speed < 0) {
-                    Speed += 0.2f;
+                    Speed += 0.5f;
                 }else if(Speed > 0) {
-                    Speed -= 0.2f;
+                    Speed -= 0.5f;
                 }
             }
 
@@ -235,12 +244,69 @@ namespace RaceGame {
             if(Angle <= -356 || Angle >= 356) {
                 Angle = 0;
             }
-            if(LeftActive) {
+            if((LeftActive) || (RightActive && DownActive)) {
                 Angle -= Math.Abs(2 * Math.Abs(Speed) / 7 + 1);
             }
-            if(RightActive) {
+            if((RightActive) || (LeftActive && DownActive)) {
                 Angle += Math.Abs(2 * Math.Abs(Speed) / 7 + 1);
             }
+
+
+        }
+
+        public void HandleColor(Bitmap image) {
+
+
+            //Oranje
+            //R 255
+            //G 150
+            //0
+
+            //Groen
+            //G 255
+            //R 0
+            //B 0
+            
+            int xCenter = (int) (X + Width / 2);
+            int yCenter = (int) (Y + Height / 2);
+            foreach(int[] col in kleuren.Keys) {
+                if(image.GetPixel(xCenter, yCenter).R == col[0] && image.GetPixel(xCenter, yCenter).G == col[1] && image.GetPixel(xCenter, yCenter).B == col[2]) {
+                    switch(kleuren[col]) {
+
+                        case ColorHandler.Gat:
+
+                            break;
+
+                        case ColorHandler.Gras:
+                            MaxSpeed = 5;
+                            break;
+
+                        case ColorHandler.Water:
+
+                            break;
+
+                        case ColorHandler.Pitstop:
+                            MaxSpeed = 3;
+                            if(Health > 90) {
+                                Health = 100;
+                            }else if(Health < 100) {
+                                Health += 10;
+                            }
+
+                            if(Fuel > 9900) {
+                                Fuel = 10000;
+                            }else if(Fuel < 10000) {
+                                Fuel += 100;
+                            }
+                            break;
+
+                        default:
+                            MaxSpeed = 9;
+                            break;
+                    }
+                }
+            }
+
         }
 
 
@@ -259,11 +325,11 @@ namespace RaceGame {
                 DownActive = true;
                 Brake = true;
             }
-
             if(e.KeyCode == action) {
                 //Code voor actions hier
                 string sound = "";
                 Random rand = new Random();
+
                 switch(rand.Next(2)) {
                     case 0:
                         sound = "AIRPORN.wav";
@@ -273,13 +339,25 @@ namespace RaceGame {
                         sound = "WILLIE.wav";
                         break;
                 }
-                SoundPlayer player = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, sound));
-                player.Play();
 
+                if (Character == Character.David) {
+                    //sound = "r2d2.wav";
+                }
+
+                PlaySound(sound);
             }
 
         }
         
+        public void PlaySound(string sound) {
+            new System.Threading.Thread(() => {
+                var c = new System.Windows.Media.MediaPlayer();
+                c.Open(new System.Uri(Path.Combine(Environment.CurrentDirectory, sound)));
+                c.Play();
+
+            }).Start();
+        }
+
         public void ControlUpHandler(object sender, System.Windows.Forms.KeyEventArgs e) {
             if(e.KeyCode == up) {
                 Gas = false;
