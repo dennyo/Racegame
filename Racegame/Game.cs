@@ -13,6 +13,7 @@ namespace Racegame {
 
     public enum Character {Jos, Fiona, David, Jop, Nynke, Sibbele, Joris, Dick };
     public enum Map {Standard, Koopa_Beach, Rainbow_Road, Zelda };
+    public enum ColorHandler {Gras, Water, Pitstop, Gat };
 
     public class Game {
 
@@ -22,6 +23,7 @@ namespace Racegame {
         Image Banana = new Bitmap(Path.Combine(Environment.CurrentDirectory, "Banana.png"));
         Image Mushroom = new Bitmap(Path.Combine(Environment.CurrentDirectory, "Mushroom.png"));
         Image Fuel = new Bitmap(Path.Combine(Environment.CurrentDirectory, "fuel.png"));
+        Bitmap colormap;
 
         SoundPlayer soundtrack;
         SoundPlayer mainMenuSound;
@@ -55,6 +57,25 @@ namespace Racegame {
 
             p2.FuelTimer.Interval = 17;
             p2.FuelTimer.Tick += new System.EventHandler(this.Fueladder2_Tick);
+
+            switch(map) {
+                case Map.Koopa_Beach:
+
+                    break;
+
+                case Map.Rainbow_Road:
+                    
+                    break;
+
+                case Map.Standard:
+                    colormap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Colormap1.png")));
+                    break;
+
+                case Map.Zelda:
+
+                    break;
+
+            }
         }
 
         public void Execute() {
@@ -69,6 +90,12 @@ namespace Racegame {
             RondeTeller();
             PlayerCollision();
             FinishHandler();
+            ColorHandler();
+        }
+
+        public void ColorHandler() {
+            p1.HandleColor(colormap);
+            p2.HandleColor(colormap);
         }
 
         public void FuelHandler()
