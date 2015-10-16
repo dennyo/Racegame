@@ -32,7 +32,8 @@ namespace Racegame
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+        private void button9_Click(object sender, EventArgs e)
         {
             player.Stop();
             this.Hide();
@@ -41,64 +42,11 @@ namespace Racegame
             this.Close();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button10_Click(object sender, EventArgs e)
         {
             player.Stop();
             this.Hide();
-            Racegame frm = new Racegame(main);
-            frm.ShowDialog();
-            this.Close();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            player.Stop();
-            this.Hide();
-            Racegame frm = new Racegame(main);
-            frm.ShowDialog();
-            this.Close();
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            player.Stop();
-            this.Hide();
-            Racegame frm = new Racegame(main);
-            frm.ShowDialog();
-            this.Close();
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            player.Stop();
-            this.Hide();
-            Racegame frm = new Racegame(main);
-            frm.ShowDialog();
-            this.Close();
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            player.Stop();
-            this.Hide();
-            Racegame frm = new Racegame(main);
-            frm.ShowDialog();
-            this.Close();
-        }
-        private void button7_Click(object sender, EventArgs e)
-        {
-            player.Stop();
-            this.Hide();
-            Racegame frm = new Racegame(main);
-            frm.ShowDialog();
-            this.Close();
-        }
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-            player.Stop();
-            this.Hide();
-            Racegame frm = new Racegame(main);
+            MainMenu frm = new MainMenu();
             frm.ShowDialog();
             this.Close();
         }
