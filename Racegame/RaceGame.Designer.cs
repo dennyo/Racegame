@@ -229,11 +229,8 @@
             this.MainMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainMenu.Location = new System.Drawing.Point(401, 434);
             this.MainMenu.Name = "MainMenu";
-<<<<<<< HEAD:Racegame/Form1.Designer.cs
             this.MainMenu.Size = new System.Drawing.Size(288, 56);
-=======
             this.MainMenu.Size = new System.Drawing.Size(246, 49);
->>>>>>> 2ce289947dce4dbb3dcb933d241aa105b6f9b424:Racegame/RaceGame.Designer.cs
             this.MainMenu.TabIndex = 14;
             this.MainMenu.Text = "Back To Menu";
             this.MainMenu.UseVisualStyleBackColor = true;
@@ -263,13 +260,10 @@
             this.Controls.Add(this.FinishMessage);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-<<<<<<< HEAD:Racegame/Form1.Designer.cs
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
             this.MinimumSize = new System.Drawing.Size(1024, 736);
-=======
             this.MaximumSize = new System.Drawing.Size(1024, 768);
             this.MinimumSize = new System.Drawing.Size(1024, 768);
->>>>>>> 2ce289947dce4dbb3dcb933d241aa105b6f9b424:Racegame/RaceGame.Designer.cs
             this.Name = "Racegame";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Racegame";

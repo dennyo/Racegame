@@ -39,14 +39,8 @@ namespace Racegame
             GameTimer.Enabled = true;
             //        Player(Graphics g, System.Drawing.Color color, Keys up, Keys down, Keys right, Keys left, int x, int y, int width, int height) {
             g = this.CreateGraphics();
-<<<<<<< HEAD:Racegame/Form1.cs
-            p2 = new Player(g, null, Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.RShiftKey, 600, 400, 32, 32);
-            p1 = new Player(g, null, Keys.W, Keys.S, Keys.D, Keys.A, Keys.LShiftKey, 200, 500, 32, 32);
-=======
-
             p2 = new Player(Character.David, g, this, null, Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.RShiftKey, 600, 400, 64, 64);
             p1 = new Player(Character.Nynke, g, this, null, Keys.W, Keys.S, Keys.D, Keys.A, Keys.LShiftKey, 200, 500, 64, 64);
->>>>>>> 2ce289947dce4dbb3dcb933d241aa105b6f9b424:Racegame/RaceGame.cs
 
             //this.KeyDown += p1.ControlHandler;
 
@@ -69,13 +63,6 @@ namespace Racegame
             FinishHandler();
         }
 
-        public void Draw(Graphics g)
-        {
-
-
-            //FuelHandler();
-            //Auto.Location = new Point(Auto.Location.X + speedX, Auto.Location.Y + speedY);
-        }
         public void FuelHandler()
         {
             Fueling(p1, FuelBox, HealthBox);
@@ -147,17 +134,8 @@ namespace Racegame
 
         public void CollisionHandler()
         {
-            bool p1stop = intersects(p1, Groen);
-            bool p2stop = intersects(p2, Groen);
-
-            if(p1stop == true)
-            {
-                p1.Speed = 0;
-            }
-            if(p2stop == true)
-            {
-                p2.Speed = 0;
-            }
+            CheckCollision(p1, Groen);
+            CheckCollision(p2, Groen);
             
         }
 
@@ -391,39 +369,13 @@ namespace Racegame
 
 
         }
-
-<<<<<<< HEAD:Racegame/Form1.cs
-        bool intersects(Player circle, PictureBox rect)
+        private void Racegame_FormClosing(object sender, FormClosingEventArgs e)
         {
-            double circlex;
-            double circley;
-            double cornerDistance_sq;
-            circlex = Math.Abs((circle.X) - (rect.Location.X));
-            circley = Math.Abs((circle.Y) -  (rect.Location.Y));
-=======
-        private void Racegame_FormClosing(object sender, FormClosingEventArgs e) {
             main.Show();
             player.PlayLooping();
         }
-        
->>>>>>> 2ce289947dce4dbb3dcb933d241aa105b6f9b424:Racegame/RaceGame.cs
+     
 
-            if (circlex > (rect.Width / 2 + circle.Width/ 2)) { return false; }
-            if (circley > (rect.Height / 2 + circle.Height / 2)) { return false; }
-
-            if (circlex <= (rect.Width / 2)) { return true; }
-            if (circley <= (rect.Height / 2)) { return true; }
-
-            cornerDistance_sq = Math.Pow(circlex - rect.Width / 2, 2) +
-                                 Math.Pow(circley - rect.Height / 2, 2);
-            Math.Sqrt(Math.Pow(circle.Width, 2) + (Math.Pow(circle.Width, 2)) - circle.Width);
-
-            return (cornerDistance_sq <= (circle.Width ^ 2));
-        }
-        private void PlayAgain_Click(object sender, EventArgs e)
-        {
-            Application.Restart();
-        }
     }
 }
     
