@@ -34,7 +34,7 @@ namespace Racegame
 
             g = this.CreateGraphics();
             p2 = new Player(Character.David, g, this, null, Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.RShiftKey, 600, 400, 64, 64, FuelBox2, HealthBox, Groen, ItemBox, ItemFrame, Fueladder2, Speed2, Ronde2);
-            p1 = new Player(Character.Nynke, g, this, null, Keys.W, Keys.S, Keys.D, Keys.A, Keys.LShiftKey, 200, 500, 64, 64, FuelBox, HealthBox1, Groen, ItemBox, ItemFrame, Fueladder, Speed1, Ronde1);
+            p1 = new Player(Character.David, g, this, null, Keys.W, Keys.S, Keys.D, Keys.A, Keys.LShiftKey, 200, 500, 64, 64, FuelBox, HealthBox1, Groen, ItemBox, ItemFrame, Fueladder, Speed1, Ronde1);
             Game game = new Game(main, this, p1, p2, Map.Standard, "THEMESONG.wav", Finish, FinishMessage, Checkpoint);
             this.game = game;
 

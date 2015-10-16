@@ -24,7 +24,7 @@ namespace RaceGame {
         public Rectangle rect;
         public float SpeedX = 0;
         public float SpeedY = 0;
-        public int MaxSpeed = 14;
+        public int MaxSpeed = 9;
         public float Speed = 0;
         public int Health = 100;
         public int Fuel = 10000;
@@ -48,6 +48,8 @@ namespace RaceGame {
         public Label SpeedLabel;
         public Label RondeLabel;
         public System.Windows.Forms.Timer FuelTimer;
+        double[] angles = new double[23] {8.65, 23.35, 35.45, 47.55, 59.65, 71.75, 83.85, 96.15, 108.25, 120.35, 132.45, 144.55, 156.65, 171.35, 191.25, 213.75, 236.25, 258.75, 281.25, 303.75, 326.25, 348.75, 368.65};
+
 
         public Player(Character character, Graphics g, Form main, Bitmap imagew, Keys up, Keys down, Keys right, Keys left, Keys action, int x, int y, int width, int height, PictureBox fuel, PictureBox healthBox, PictureBox groen, PictureBox itembox, PictureBox itemframe, System.Windows.Forms.Timer fuelTimer, Label speedLabel, Label rondeLabel) {
             this.X = x;
@@ -87,6 +89,38 @@ namespace RaceGame {
             t.Dispose();
 
         }
+        
+        public string getCharacterUrl(Character ch, int number) {
+            switch(ch) {
+                case Character.Jos:
+                    return "cars/jos" + number + ".png";
+
+                case Character.Fiona:
+                    return "cars/fiona" + number + ".png";
+
+                case Character.David:
+                    return "cars/D" + number + ".png";
+
+                case Character.Jop:
+                    return "cars/jop" + number + ".png";
+
+                case Character.Nynke:
+                    return "cars/nynke" + number + ".png";
+
+                case Character.Sibbele:
+                    return "cars/sibbele" + number + ".png";
+
+                case Character.Joris:
+                    return "cars/joris" + number + ".png";
+
+                case Character.Dick:
+                    return "cars/dick" + number + ".png";
+
+                default:
+                    return "";
+
+            }
+        }
 
         public void DrawPlayer(Graphics g) {
             g.DrawImage(RotateImage(), X, Y);
@@ -99,13 +133,28 @@ namespace RaceGame {
                 //g.TranslateTransform(tempx, tempy);
                 //g.RotateTransform(Angle);
                 //g.TranslateTransform(- tempx, - tempy);
-                g.DrawImage(image, new Rectangle(new Point(0, 0), new Size(Width, Height)));
+                /*int number = 0;
+                if(Angle < 0) {
+                    number = (int) Math.Floor((Math.Abs(Angle) + 90) / (360 / 21) + 1);
+                }else {
+                    number = (int) Math.Floor((Angle + 90) / (360 / 21) + 1);
+                }*/
+                /*int number = (int) Math.Abs(Math.Floor((Math.Abs(Angle > 0 ? 360 - Angle : Angle) + 90) / (360 / 21)) + 1);
+                if(number >= 23) number = number - 22;*/
+                
+
+                Image img = Image.FromFile(Path.Combine(Environment.CurrentDirectory, getCharacterUrl(this.Character, getImageNumber(Angle))));
+                g.DrawImage(img, new Rectangle(new Point(0, 0), new Size(Width, Height)));
 
                 //Outline box
-                Pen pen = new Pen(Color.Black, 2);
+                /*Pen pen = new Pen(Color.Black, 2);
                 pen.Alignment = PenAlignment.Inset; //<-- this
+<<<<<<< HEAD
                 g.DrawRectangle(pen, new Rectangle(0, 0, Width, Width));
                 g.DrawEllipse(pen, new Rectangle(0 , 0, Width, Width));
+=======
+                g.DrawRectangle(pen, new Rectangle(0, 0, Width, Width));*/
+>>>>>>> 44d128ab63bef140d3b0466ab22584c468a4b31a
 
                 //Center red dot.
                 //g.FillRectangle(new SolidBrush(Color.Red), tempx, tempy, 1, 1);
@@ -117,12 +166,55 @@ namespace RaceGame {
 
         }
 
+	    public bool isBetween(double angle1, double angle2, double check){
+		    return angle1 < angle2 ? check >= angle1 && check <= angle2 : check <= angle1 && check >= angle2;
+	    }
+
+        public int getImageNumber(double angle) {
+            if(angle > 360) {
+                angle = angle - 360;
+            }else if(angle < 0) {
+                angle = Math.Abs(360 + angle);
+            }
+            angle = 360 - angle;
+
+            if(angle > 8.65 && angle <= 23.35) return 6;
+            if(angle > 23.35 && angle <= 35.45) return 7;
+            if(angle > 35.45 && angle <= 47.55) return 8;
+            if(angle > 47.55 && angle <= 59.65) return 9;
+            if(angle > 59.65 && angle <= 71.75) return 10;
+            if(angle > 71.75 && angle <= 83.85) return 11;
+            if(angle > 83.85 && angle <= 96.15) return 12;
+            if(angle > 96.15 && angle <= 108.25) return 13;
+            if(angle > 108.25 && angle <= 120.35) return 14;
+            if(angle > 120.35 && angle <= 132.45) return 15;
+            if(angle > 132.45 && angle <= 144.55) return 16;
+            if(angle > 144.55 && angle <= 156.65) return 17;
+            if(angle > 156.65 && angle <= 171.35) return 18;
+            if(angle > 171.35 && angle <= 191.25) return 19;
+            if(angle > 191.25 && angle <= 213.75) return 20;
+            if(angle > 213.75 && angle <= 236.25) return 21;
+            if(angle > 236.25 && angle <= 258.75) return 22;
+            if(angle > 258.75 && angle <= 281.25) return 1;
+            if(angle > 281.25 && angle <= 303.75) return 2;
+            if(angle > 303.75 && angle <= 326.25) return 3;
+            if(angle > 326.25 && angle <= 348.75) return 4;
+            if(angle > 348.75 || angle <= 8.65) return 5;
+
+            return 1;
+        }
+	
+
         public void Move(Form form) {
             form.Invalidate();
 
             if(Gas) {
                 if(SpeedX <= MaxSpeed && SpeedY <= MaxSpeed && Speed < MaxSpeed) {
+<<<<<<< HEAD
                     Speed += 0.5f;
+=======
+                    Speed += 0.2f;
+>>>>>>> 44d128ab63bef140d3b0466ab22584c468a4b31a
                 }
             }
 
@@ -135,11 +227,10 @@ namespace RaceGame {
                 }else if(Speed > 0) {
                     Speed -= 0.2f;
                 }
-                Console.WriteLine(Speed);
             }
 
             if(Brake && Speed > - MaxSpeed) {
-                Speed -= 0.1f;
+                Speed -= 0.2f;
             }
 
             SpeedX = (float) Speed * ((float)Math.Cos(Math.PI / 180 * Angle));
