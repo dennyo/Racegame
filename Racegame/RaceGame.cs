@@ -17,38 +17,39 @@ namespace Racegame
 {
     public partial class Racegame : Form
     {
-
-        public bool CheckpointPassed = false;
-        public bool FinishPassed = false;
-        Image Banana = new Bitmap(Path.Combine(Environment.CurrentDirectory, "Banana.png"));
-        Image Mushroom = new Bitmap(Path.Combine(Environment.CurrentDirectory, "Mushroom.png"));
-        Image Fuel = new Bitmap(Path.Combine(Environment.CurrentDirectory, "fuel.png"));
         public float angle = 0;
-        public bool isLoaded = false;
         Graphics g;
         Player p1;
         Player p2;
-        Form main;
+        MainMenu main;
         SoundPlayer player;
+        public Game game;
 
-        public Racegame(Form main, SoundPlayer player)
+        public Racegame(MainMenu main)
         {
             InitializeComponent();
             this.main = main;
             this.player = player;
             GameTimer.Enabled = true;
-            //        Player(Graphics g, System.Drawing.Color color, Keys up, Keys down, Keys right, Keys left, int x, int y, int width, int height) {
+            
             g = this.CreateGraphics();
+<<<<<<< HEAD
             p2 = new Player(Character.David, g, this, null, Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.RShiftKey, 600, 400, 64, 64);
             p1 = new Player(Character.Nynke, g, this, null, Keys.W, Keys.S, Keys.D, Keys.A, Keys.LShiftKey, 200, 500, 64, 64);
 
+=======
+            p2 = new Player(Character.David, g, this, null, Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.RShiftKey, 600, 400, 64, 64, FuelBox2, HealthBox, Groen, ItemBox, ItemFrame, Fueladder2, Speed2, Ronde2);
+            p1 = new Player(Character.Nynke, g, this, null, Keys.W, Keys.S, Keys.D, Keys.A, Keys.LShiftKey, 200, 500, 64, 64, FuelBox, HealthBox1, Groen, ItemBox, ItemFrame, Fueladder, Speed1, Ronde1);
+            Game game = new Game(main, this, p1, p2, Map.Standard, "THEMESONG.wav", Finish, FinishMessage, Checkpoint);
+            this.game = game;
+>>>>>>> f27e1051844d211b776a8e8bea2a34c52251f2c9
             //this.KeyDown += p1.ControlHandler;
-
 
         }
 
         private void GameTimer_Tick(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             FuelHandler();
             BorderHandler();
             p2.Move(this);
@@ -214,85 +215,15 @@ namespace Racegame
         {
             await WaitMethod();
             b.Visible = true;
+=======
+            game.Execute();
+>>>>>>> f27e1051844d211b776a8e8bea2a34c52251f2c9
         }
 
-        public async void boost(Player a)
-        {
-            if (a == p1)
-            {
-                Fueladder.Enabled = true;
-            }
-            else
-            {
-                Fueladder2.Enabled = true;
-            }
-            a.Speed = 20;
-            a.MaxSpeed *= 2;
-            await WaitMethod2();
-            a.Speed = 14;
-            a.MaxSpeed /= 2;
-            if (a == p1)
-            {
-                Fueladder.Enabled = false;
-            }
-            else
-            {
-                Fueladder2.Enabled = false;
-            }
+        private void Racegame_Paint(object sender, PaintEventArgs e) {
+            game.Racegame_Paint(sender, e);
         }
-
-        async System.Threading.Tasks.Task WaitMethod()
-        {
-            await System.Threading.Tasks.Task.Delay(10000);
-        }
-        async System.Threading.Tasks.Task WaitMethod2()
-        {
-            await System.Threading.Tasks.Task.Delay(2000);
-        }
-        async System.Threading.Tasks.Task WaitMethod3()
-        {
-            await System.Threading.Tasks.Task.Delay(50);
-        }
-
-        public void SpeedMeter()
-        {
-            Speed(p1, Speed1);
-            Speed(p2, Speed2);
-        }
-
-        public void Speed(Player a, Label b)
-        {
-            double speed = Math.Sqrt(Math.Pow(a.SpeedX, 2) + Math.Pow(a.SpeedY, 2));
-            b.Text = "Speed: " + Math.Round(speed, 0);
-        }
-
-        public bool Checkpoints(Player a, PictureBox b)
-        {
-            ///Moet nog even naar gekeken worden want dit moet er wel zijn!
-
-            if (a.X + a.MaxSize >= b.Location.X &&
-                a.X <= b.Location.X + b.Size.Width &&
-                a.Y + a.MaxSize >= b.Location.Y &&
-                a.Y <= b.Location.Y + b.Size.Height &&
-                a.CheckpointPassed == false)
-            {
-                a.CheckpointPassed = true;
-            }
-            return a.CheckpointPassed;
-
-        }
-
-        public void Checkpointhandler()
-        {
-            p1.CheckpointPassed = Checkpoints(p1, Checkpoint);
-            p2.CheckpointPassed = Checkpoints(p2, Checkpoint);
-        }
-
-        public void RondeTeller()
-        {
-            p1.CheckpointPassed = Rondes(p1, Ronde1);
-            p2.CheckpointPassed = Rondes(p2, Ronde2);
-        }
+<<<<<<< HEAD
 
         public bool Rondes(Player a, Label b)
         {
@@ -376,6 +307,8 @@ namespace Racegame
         }
      
 
+=======
+>>>>>>> f27e1051844d211b776a8e8bea2a34c52251f2c9
     }
 }
     

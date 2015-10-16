@@ -13,7 +13,6 @@ using System.Windows.Forms;
 
 namespace RaceGame {
    public class Player {
-
         public bool CheckpointPassed = false;
         public bool FinishPassed = false;
         public int laps = 1;
@@ -38,10 +37,18 @@ namespace RaceGame {
         private bool LeftActive = false;
         public Graphics g;
         private Bitmap image;
-        public Character character;
-        private Form main;
+        public Character Character;
+        private Form Main;
+        public PictureBox FuelBox;
+        public PictureBox HealthBox;
+        public PictureBox Groen;
+        public PictureBox ItemBox;
+        public PictureBox ItemFrame;
+        public Label SpeedLabel;
+        public Label RondeLabel;
+        public System.Windows.Forms.Timer FuelTimer;
 
-        public Player(Character character, Graphics g, Form main, Bitmap imagew, Keys up, Keys down, Keys right, Keys left, Keys action, int x, int y, int width, int height) {
+        public Player(Character character, Graphics g, Form main, Bitmap imagew, Keys up, Keys down, Keys right, Keys left, Keys action, int x, int y, int width, int height, PictureBox fuel, PictureBox healthBox, PictureBox groen, PictureBox itembox, PictureBox itemframe, System.Windows.Forms.Timer fuelTimer, Label speedLabel, Label rondeLabel) {
             this.X = x;
             this.Y = y;
             this.up = up;
@@ -53,8 +60,16 @@ namespace RaceGame {
             this.Height = height;
             this.g = g;
             this.MaxSize = width;
-            this.character = character;
-            this.main = main;
+            this.Character = character;
+            this.Main = main;
+            this.FuelBox = fuel;
+            this.Groen = groen;
+            this.ItemBox = itembox;
+            this.ItemFrame = itemframe;
+            this.FuelTimer = fuelTimer;
+            this.SpeedLabel = speedLabel;
+            this.RondeLabel = rondeLabel;
+            this.HealthBox = healthBox;
 
             main.KeyDown += ControlDownHandler;
             main.KeyUp += new System.Windows.Forms.KeyEventHandler(ControlUpHandler);
