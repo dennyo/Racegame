@@ -93,20 +93,16 @@ namespace Racegame {
             RondeTeller();
             PlayerCollision();
             FinishHandler();
-<<<<<<< HEAD
             p1.rect.X = Convert.ToInt32(p1.X);
             p1.rect.Y = Convert.ToInt32(p1.Y);
             p2.rect.X = Convert.ToInt32(p2.X);
             p2.rect.Y = Convert.ToInt32(p2.Y);
-
-=======
             ColorHandler();
         }
 
         public void ColorHandler() {
             p1.HandleColor(colormap);
             p2.HandleColor(colormap);
->>>>>>> 7f2aa1557af21f0734c663e8366d975c11155bc2
         }
 
         public void FuelHandler()
@@ -149,7 +145,7 @@ namespace Racegame {
                 a.Speed = 0;
                 a.X += 10;
             }
-            if (a.Y >= form.ClientSize.Height - 2 * a.Height && a.SpeedY >= 0)
+            if (a.Y >= form.ClientSize.Height - a.Height && a.SpeedY >= 0)
             {
                 a.Health -= Math.Abs(Convert.ToInt16(a.Speed));
                 a.Speed = 0;
