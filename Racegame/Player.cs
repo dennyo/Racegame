@@ -149,12 +149,9 @@ namespace RaceGame {
                 //Outline box
                 /*Pen pen = new Pen(Color.Black, 2);
                 pen.Alignment = PenAlignment.Inset; //<-- this
-<<<<<<< HEAD
                 g.DrawRectangle(pen, new Rectangle(0, 0, Width, Width));
                 g.DrawEllipse(pen, new Rectangle(0 , 0, Width, Width));
-=======
                 g.DrawRectangle(pen, new Rectangle(0, 0, Width, Width));*/
->>>>>>> 44d128ab63bef140d3b0466ab22584c468a4b31a
 
                 //Center red dot.
                 //g.FillRectangle(new SolidBrush(Color.Red), tempx, tempy, 1, 1);
@@ -210,11 +207,7 @@ namespace RaceGame {
 
             if(Gas) {
                 if(SpeedX <= MaxSpeed && SpeedY <= MaxSpeed && Speed < MaxSpeed) {
-<<<<<<< HEAD
-                    Speed += 0.5f;
-=======
                     Speed += 0.2f;
->>>>>>> 44d128ab63bef140d3b0466ab22584c468a4b31a
                 }
             }
 
