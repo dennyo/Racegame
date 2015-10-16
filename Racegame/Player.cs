@@ -76,15 +76,11 @@ namespace RaceGame {
             this.HealthBox = healthBox;
             this.rect = new Rectangle(0, 0, Width, Width);
 
-<<<<<<< HEAD
-
         main.KeyDown += ControlDownHandler;
-=======
             kleuren.Add(new int[3] {255, 150, 0}, ColorHandler.Pitstop);
             kleuren.Add(new int[3] {0, 255, 0}, ColorHandler.Gras);
 
             main.KeyDown += ControlDownHandler;
->>>>>>> 7f2aa1557af21f0734c663e8366d975c11155bc2
             main.KeyUp += new System.Windows.Forms.KeyEventHandler(ControlUpHandler);
 
             //Temporary code for a rectangle player.
