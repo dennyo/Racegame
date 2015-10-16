@@ -116,9 +116,9 @@
             // 
             this.Groen.BackColor = System.Drawing.Color.DarkOrange;
             this.Groen.ErrorImage = ((System.Drawing.Image)(resources.GetObject("Groen.ErrorImage")));
-            this.Groen.Location = new System.Drawing.Point(722, 171);
+            this.Groen.Location = new System.Drawing.Point(650, 200);
             this.Groen.Name = "Groen";
-            this.Groen.Size = new System.Drawing.Size(154, 150);
+            this.Groen.Size = new System.Drawing.Size(150, 150);
             this.Groen.TabIndex = 6;
             this.Groen.TabStop = false;
             // 
@@ -220,7 +220,6 @@
             this.MainMenu.Location = new System.Drawing.Point(401, 434);
             this.MainMenu.Name = "MainMenu";
             this.MainMenu.Size = new System.Drawing.Size(288, 56);
-            this.MainMenu.Size = new System.Drawing.Size(246, 49);
             this.MainMenu.TabIndex = 14;
             this.MainMenu.Text = "Back To Menu";
             this.MainMenu.UseVisualStyleBackColor = true;
@@ -232,7 +231,7 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1006, 721);
+            this.ClientSize = new System.Drawing.Size(1002, 712);
             this.Controls.Add(this.MainMenu);
             this.Controls.Add(this.HealthBox1);
             this.Controls.Add(this.ItemBox);
@@ -250,8 +249,6 @@
             this.Controls.Add(this.FinishMessage);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximumSize = new System.Drawing.Size(1920, 1080);
-            this.MinimumSize = new System.Drawing.Size(1024, 736);
             this.MaximumSize = new System.Drawing.Size(1024, 768);
             this.MinimumSize = new System.Drawing.Size(1024, 768);
             this.Name = "Racegame";

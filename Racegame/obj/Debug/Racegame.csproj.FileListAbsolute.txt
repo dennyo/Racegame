@@ -60,12 +60,11 @@ C:\Users\Denny\School\P1P Racegame\ProjectRacegame\Racegame\obj\Debug\Racegame.F
 C:\Users\alexh_000\Documents\Visual Studio 2015\Projects\Negers\Racegame\obj\Debug\Racegame.Form2.resources
 C:\Users\Mark\Documents\school\Project Racegame\Racegame\obj\Debug\Racegame.Form2.resources
 C:\Users\Mark\Documents\school\Project Racegame\Racegame\obj\Debug\Racegame.MainMenu.resources
-<<<<<<< HEAD
 >>>>>>> 2ce289947dce4dbb3dcb933d241aa105b6f9b424
 C:\Users\alexh_000\Documents\Visual Studio 2015\Projects\Negers\Racegame\obj\Debug\Racegame.MainMenu.resources
-=======
 C:\Users\Denny\School\P1P Racegame\ProjectRacegame\Racegame\obj\Debug\Racegame.MainMenu.resources
 C:\Users\Denny\School\P1P Racegame\ProjectRacegame\Racegame\obj\Debug\Racegame.Form3.resources
 C:\Users\Denny\School\P1P Racegame\ProjectRacegame\Racegame\obj\Debug\Racegame.CharacterSelect.resources
 C:\Users\Mark\Documents\school\Project Racegame\Racegame\obj\Debug\Racegame.CharacterSelect.resources
 >>>>>>> f27e1051844d211b776a8e8bea2a34c52251f2c9
+C:\Users\alexh_000\Documents\Visual Studio 2015\Projects\Negers\Racegame\obj\Debug\Racegame.CharacterSelect.resources

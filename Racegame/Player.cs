@@ -21,6 +21,7 @@ namespace RaceGame {
         public int MaxSize;
         public int Height;
         public int Width;
+        public Rectangle rect;
         public float SpeedX = 0;
         public float SpeedY = 0;
         public int MaxSpeed = 14;
@@ -70,8 +71,10 @@ namespace RaceGame {
             this.SpeedLabel = speedLabel;
             this.RondeLabel = rondeLabel;
             this.HealthBox = healthBox;
+            this.rect = new Rectangle(0, 0, Width, Width);
 
-            main.KeyDown += ControlDownHandler;
+
+        main.KeyDown += ControlDownHandler;
             main.KeyUp += new System.Windows.Forms.KeyEventHandler(ControlUpHandler);
 
             //Temporary code for a rectangle player.
@@ -102,6 +105,7 @@ namespace RaceGame {
                 Pen pen = new Pen(Color.Black, 2);
                 pen.Alignment = PenAlignment.Inset; //<-- this
                 g.DrawRectangle(pen, new Rectangle(0, 0, Width, Width));
+                g.DrawEllipse(pen, new Rectangle(0 , 0, Width, Width));
 
                 //Center red dot.
                 //g.FillRectangle(new SolidBrush(Color.Red), tempx, tempy, 1, 1);
@@ -118,7 +122,7 @@ namespace RaceGame {
 
             if(Gas) {
                 if(SpeedX <= MaxSpeed && SpeedY <= MaxSpeed && Speed < MaxSpeed) {
-                    Speed += 0.1f;
+                    Speed += 0.5f;
                 }
             }
 
@@ -154,6 +158,7 @@ namespace RaceGame {
                 Angle += Math.Abs(2 * Math.Abs(Speed) / 7 + 1);
             }
         }
+
 
         public void ControlDownHandler(object sender, System.Windows.Forms.KeyEventArgs e) {
             if(e.KeyCode == up) {
