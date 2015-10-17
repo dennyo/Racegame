@@ -37,7 +37,6 @@
             this.Speed2 = new System.Windows.Forms.Label();
             this.Ronde1 = new System.Windows.Forms.Label();
             this.Groen = new System.Windows.Forms.PictureBox();
-            this.Finish = new System.Windows.Forms.PictureBox();
             this.Fueladder = new System.Windows.Forms.Timer(this.components);
             this.ItemFrame = new System.Windows.Forms.PictureBox();
             this.FuelBox2 = new System.Windows.Forms.PictureBox();
@@ -53,7 +52,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.HealthBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Groen)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Finish)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemFrame)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.HealthBox1)).BeginInit();
@@ -116,20 +114,11 @@
             // 
             this.Groen.BackColor = System.Drawing.Color.DarkOrange;
             this.Groen.ErrorImage = ((System.Drawing.Image)(resources.GetObject("Groen.ErrorImage")));
-            this.Groen.Location = new System.Drawing.Point(644, 173);
+            this.Groen.Location = new System.Drawing.Point(379, 278);
             this.Groen.Name = "Groen";
             this.Groen.Size = new System.Drawing.Size(150, 150);
             this.Groen.TabIndex = 6;
             this.Groen.TabStop = false;
-            // 
-            // Finish
-            // 
-            this.Finish.Location = new System.Drawing.Point(457, 309);
-            this.Finish.Name = "Finish";
-            this.Finish.Size = new System.Drawing.Size(45, 180);
-            this.Finish.TabIndex = 8;
-            this.Finish.TabStop = false;
-            this.Finish.Visible = false;
             // 
             // ItemFrame
             // 
@@ -246,7 +235,6 @@
             this.Controls.Add(this.Ronde1);
             this.Controls.Add(this.Speed2);
             this.Controls.Add(this.FuelBox);
-            this.Controls.Add(this.Finish);
             this.Controls.Add(this.Interface);
             this.Controls.Add(this.FinishMessage);
             this.DoubleBuffered = true;
@@ -262,7 +250,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.HealthBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Groen)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Finish)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemFrame)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.HealthBox1)).EndInit();
@@ -282,7 +269,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox Groen;
-        private System.Windows.Forms.PictureBox Finish;
         private System.Windows.Forms.Timer Fueladder;
         private System.Windows.Forms.PictureBox ItemFrame;
         private System.Windows.Forms.PictureBox FuelBox2;

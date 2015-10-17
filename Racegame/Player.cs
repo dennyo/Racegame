@@ -158,7 +158,7 @@ namespace RaceGame {
                 g.DrawRectangle(pen, new Rectangle(0, 0, Width, Width));*/
 
                 //Center red dot.
-                g.FillRectangle(new SolidBrush(Color.Purple), Width /2 , Height /2, 10, 10);
+                //g.FillRectangle(new SolidBrush(Color.Red), tempx, tempy, 1, 1);
 
                 g.Dispose();
             }

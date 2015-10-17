@@ -12,7 +12,6 @@ using System.Windows.Input;
 using System.Windows.Forms;
 using RaceGame;
 using System.Media;
-using System.Drawing.Imaging;
 
 namespace Racegame
 {
@@ -29,7 +28,6 @@ namespace Racegame
         public Racegame(MainMenu main)
         {
             InitializeComponent();
-            this.ClientSize = new Size(1024, 768);
             
             this.main = main;
             this.player = main.player;
@@ -38,7 +36,7 @@ namespace Racegame
             g = this.CreateGraphics();
             p2 = new Player(Character.Jos, g, this, null, Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.ControlKey, 500, 140, 64, 64, FuelBox2, HealthBox, Groen, ItemBox, ItemFrame, Fueladder2, Speed2, Ronde2);
             p1 = new Player(Character.David, g, this, null, Keys.W, Keys.S, Keys.D, Keys.A, Keys.ShiftKey, 520, 80, 64, 64, FuelBox, HealthBox1, Groen, ItemBox, ItemFrame, Fueladder, Speed1, Ronde1);
-            Game game = new Game(main, this, p1, p2, Map.Standard, "Standard.wav", Finish, FinishMessage);
+            Game game = new Game(main, this, p1, p2, Map.Standard, "Standard.wav", FinishMessage);
             this.game = game;
 
         }
