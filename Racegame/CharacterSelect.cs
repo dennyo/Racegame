@@ -43,8 +43,8 @@ namespace Racegame
         public bool LeftArrowActive = false;
         public bool RightArrowActive = false;
         public bool EnterPressed = false;
-        public string p1choice;
-        public string p2choice;
+        public Character p1choice;
+        public Character p2choice;
         Image Selector1 = new Bitmap(Path.Combine(Environment.CurrentDirectory, "Character Select icon 1P.png"));
         Image Selector2 = new Bitmap(Path.Combine(Environment.CurrentDirectory, "Character Select icon 2P.png"));
         public CharacterSelect(MainMenu main, SoundPlayer player)
@@ -86,7 +86,7 @@ namespace Racegame
                         {
                         player.Stop();
                         this.Hide();
-                        Racegame frm = new Racegame(main);
+                        Racegame frm = new Racegame(main, ChoosingP1(), ChoosingP2());
                         frm.ShowDialog();
                         this.Close();
                         }
@@ -358,13 +358,13 @@ namespace Racegame
             }
         }
 
-        public string ChoosingP1()
+        public Character ChoosingP1()
         {
             if(DavidSelected == true && EnterPressed == true)
             {
                 DavidChosen = true;
                 p1Chosen = true;
-                p1choice = "David";
+                p1choice = Character.David;
                 EnterPressed = false;
                 DavidSelected = false;
                 JosSelected = true;
@@ -373,7 +373,7 @@ namespace Racegame
             {
                 JosChosen = true;
                 p1Chosen = true;
-                p1choice = "Jos";
+                p1choice = Character.Jos;
                 EnterPressed = false;
                 JosSelected = false;
                 DavidSelected = true;
@@ -383,7 +383,7 @@ namespace Racegame
             {
                 FionaChosen = true;
                 p1Chosen = true;
-                p1choice = "Fiona";
+                p1choice = Character.Fiona;
                 EnterPressed = false;
                 FionaSelected = false;
                 DavidSelected = true;
@@ -393,7 +393,7 @@ namespace Racegame
             {
                 JopChosen = true;
                 p1Chosen = true;
-                p1choice = "Jop";
+                p1choice = Character.Jop;
                 EnterPressed = false;
                 JopSelected = false;
                 DavidSelected = true;
@@ -403,7 +403,7 @@ namespace Racegame
             {
                 SibbeleChosen = true;
                 p1Chosen = true;
-                p1choice = "Sibbele";
+                p1choice = Character.Sibbele;
                 EnterPressed = false;
                 SibbeleSelected = false;
                 DavidSelected = true;
@@ -413,7 +413,7 @@ namespace Racegame
             {
                 JorisChosen = true;
                 p1Chosen = true;
-                p1choice = "Joris";
+                p1choice = Character.Joris;
                 EnterPressed = false;
                 JorisSelected = false;
                 DavidSelected = true;
@@ -423,7 +423,7 @@ namespace Racegame
             {
                 NynkeChosen = true;
                 p1Chosen = true;
-                p1choice = "Nynke";
+                p1choice = Character.Nynke;
                 EnterPressed = false;
                 NynkeSelected = false;
                 DavidSelected = true;
@@ -433,7 +433,7 @@ namespace Racegame
             {
                 DickChosen = true;
                 p1Chosen = true;
-                p1choice = "Dick";
+                p1choice = Character.Dick;
                 EnterPressed = false;
                 DickSelected = false;
                 DavidSelected = true;
@@ -441,62 +441,62 @@ namespace Racegame
             return p1choice;
         }
 
-        public string ChoosingP2()
+        public Character ChoosingP2()
         {
          if (DavidSelected == true && EnterPressed == true)
             {
                 DavidChosen = true;
                 p2Chosen = true;
-                p2choice = "David";
+                p2choice = Character.David;
                 EnterPressed = false;
             }
             if (JosSelected == true && EnterPressed == true)
             {
                 JosChosen = true;
                 p2Chosen = true;
-                p2choice = "Jos";
+                p2choice = Character.Jos;
                 EnterPressed = false;
             }
             if (FionaSelected == true && EnterPressed == true)
             {
                 FionaChosen = true;
                 p2Chosen = true;
-                p2choice = "Fiona";
+                p2choice = Character.Fiona;
                 EnterPressed = false;
             }
             if (JopSelected == true && EnterPressed == true)
             {
                 JopChosen = true;
                 p2Chosen = true;
-                p2choice = "Jop";
+                p2choice = Character.Jop;
                 EnterPressed = false;
             }
             if (SibbeleSelected == true && EnterPressed == true)
             {
                 SibbeleChosen = true;
                 p2Chosen = true;
-                p2choice = "Sibbele";
+                p2choice = Character.Sibbele;
                 EnterPressed = false;
             }
             if (JorisSelected == true && EnterPressed == true)
             {
                 JorisChosen = true;
                 p2Chosen = true;
-                p2choice = "Joris";
+                p2choice = Character.Joris;
                 EnterPressed = false;
             }
             if (NynkeSelected == true && EnterPressed == true)
             {
                 NynkeChosen = true;
                 p2Chosen = true;
-                p2choice = "Nynke";
+                p2choice = Character.Nynke;
                 EnterPressed = false;
             }
             if (DickSelected == true && EnterPressed == true)
             {
                 DickChosen = true;
                 p2Chosen = true;
-                p2choice = "Dick";
+                p2choice = Character.Dick;
                 EnterPressed = false;
             }
             return p2choice;
@@ -642,7 +642,7 @@ namespace Racegame
         {
             player.Stop();
             this.Hide();
-            Racegame frm = new Racegame(main);
+            Racegame frm = new Racegame(main, ChoosingP1(), ChoosingP2());
             frm.ShowDialog();
             this.Close();
         }

@@ -40,9 +40,6 @@ namespace RaceGame {
         private bool LeftActive = false;
         private bool horn = false;
         private string name;
-        //wat
-        public string p1char;
-        public string p2char;
         public Graphics g;
         private Bitmap image;
         public Character Character;
@@ -116,10 +113,10 @@ namespace RaceGame {
                     return "cars/Jos" + number + ".png";
 
                 case Character.Fiona:
-                    return "cars/fiona" + number + ".png";
+                    return "cars/F" + number + ".png";
 
                 case Character.Jop:
-                    return "cars/jop" + number + ".png";
+                    return "cars/Jop" + number + ".png";
 
                 case Character.Sibbele:
                     return "cars/sibbele" + number + ".png";
