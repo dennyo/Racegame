@@ -40,6 +40,9 @@ namespace RaceGame {
         private bool LeftActive = false;
         private bool horn = false;
         private string name;
+        //wat
+        public string p1char;
+        public string p2char;
         public Graphics g;
         private Bitmap image;
         public Character Character;
@@ -100,31 +103,32 @@ namespace RaceGame {
             image = new Bitmap(temp);
             temp.Save(Path.Combine(Environment.CurrentDirectory, "test.jpg"));
             t.Dispose();
-
         }
-        
-        public string getCharacterUrl(Character ch, int number) {
-            switch(ch) {
+
+        public string getCharacterUrl(Character ch, int number)
+        {
+            switch (ch)
+            {
+                case Character.David:
+                    return "cars/david" + number + ".png";
+
                 case Character.Jos:
-                    return "cars/Jos" + number + ".png";
+                    return "cars/jos" + number + ".png";
 
                 case Character.Fiona:
                     return "cars/fiona" + number + ".png";
 
-                case Character.David:
-                    return "cars/D" + number + ".png";
-
                 case Character.Jop:
                     return "cars/jop" + number + ".png";
-
-                case Character.Nynke:
-                    return "cars/nynke" + number + ".png";
 
                 case Character.Sibbele:
                     return "cars/sibbele" + number + ".png";
 
                 case Character.Joris:
                     return "cars/joris" + number + ".png";
+
+                case Character.Nynke:
+                    return "cars/nynke" + number + ".png";
 
                 case Character.Dick:
                     return "cars/dick" + number + ".png";
