@@ -13,8 +13,8 @@ using System.Windows.Forms;
 
 namespace RaceGame {
    public class Player {
-        public bool CheckpointPassed = false;
         public bool FinishPassed = false;
+        private int totalCheckpoints;
         public int laps = 1;
         public float X;
         public float Y;
@@ -30,6 +30,8 @@ namespace RaceGame {
         public int Fuel = 10000;
         public float Angle = 0f;
         public Keys up, down, right, left, action;
+        public bool Finished = false;
+        public bool GameEnded = false;
         public bool Brake = false;
         public bool Gas = false;
         private bool UpActive = false;
@@ -37,6 +39,7 @@ namespace RaceGame {
         private bool RightActive = false;
         private bool LeftActive = false;
         private bool horn = false;
+        private string name;
         public Graphics g;
         private Bitmap image;
         public Character Character;
@@ -51,8 +54,11 @@ namespace RaceGame {
         public System.Windows.Forms.Timer FuelTimer;
         double[] angles = new double[23] {8.65, 23.35, 35.45, 47.55, 59.65, 71.75, 83.85, 96.15, 108.25, 120.35, 132.45, 144.55, 156.65, 171.35, 191.25, 213.75, 236.25, 258.75, 281.25, 303.75, 326.25, 348.75, 368.65};
         Dictionary<int[], ColorHandler> kleuren = new Dictionary<int[], ColorHandler>();
+        List<int> checkpointsPassed = new List<int>();
+        Location lastCheckpoint;
 
-        public Player(Character character, Graphics g, Form main, Bitmap imagew, Keys up, Keys down, Keys right, Keys left, Keys action, int x, int y, int width, int height, PictureBox fuel, PictureBox healthBox, PictureBox groen, PictureBox itembox, PictureBox itemframe, System.Windows.Forms.Timer fuelTimer, Label speedLabel, Label rondeLabel) {
+
+        public Player(string name, Character character, Graphics g, Form main, Bitmap imagew, Keys up, Keys down, Keys right, Keys left, Keys action, int x, int y, int width, int height, PictureBox fuel, PictureBox healthBox, PictureBox groen, PictureBox itembox, PictureBox itemframe, System.Windows.Forms.Timer fuelTimer, Label speedLabel, Label rondeLabel, int totalCheckpoints) {
             this.X = x;
             this.Y = y;
             this.up = up;
@@ -73,12 +79,15 @@ namespace RaceGame {
             this.FuelTimer = fuelTimer;
             this.SpeedLabel = speedLabel;
             this.RondeLabel = rondeLabel;
+            this.name = name;
             this.HealthBox = healthBox;
             this.rect = new Rectangle(0, 0, Width, Width);
+            this.totalCheckpoints = totalCheckpoints;
 
-        main.KeyDown += ControlDownHandler;
+            main.KeyDown += ControlDownHandler;
             kleuren.Add(new int[3] {255, 150, 0}, ColorHandler.Pitstop);
             kleuren.Add(new int[3] {0, 255, 0}, ColorHandler.Gras);
+            kleuren.Add(new int[3] {255, 255, 0 }, ColorHandler.Finish);
 
             main.KeyDown += ControlDownHandler;
             main.KeyUp += new System.Windows.Forms.KeyEventHandler(ControlUpHandler);
@@ -204,7 +213,6 @@ namespace RaceGame {
 
             return 1;
         }
-	
 
         public void Move(Form form) {
             form.Invalidate();
@@ -246,8 +254,53 @@ namespace RaceGame {
             if((RightActive) || (LeftActive && DownActive)) {
                 Angle += Math.Abs(2 * Math.Abs(Speed) / 7 + 1);
             }
-            MaxSpeed = 9;
+            Console.WriteLine(GameEnded);
+            if(!GameEnded) {
+                MaxSpeed = 9;
+            }
 
+        }
+
+        public void FinishHandler(Label message, Bitmap image) {
+            int xCenter = (int) (X + Width / 2);
+            int yCenter = (int) (Y + Height / 2);
+            Color col = image.GetPixel(xCenter, yCenter);
+
+            if(checkpointsPassed.Count == totalCheckpoints && getColor(col.R, col.G, col.B) == ColorHandler.Finish) {
+                laps++;
+                Console.WriteLine("Lap: " + laps);
+                checkpointsPassed.Clear();
+                if (laps >= 4) {
+                    Finished = true;
+                    message.Visible = true;
+                    message.Text = name + " wins!";
+                }
+            }
+        }
+        	
+        public void CheckpointChecker(Bitmap image) {
+            
+            int xCenter = (int) (X + Width / 2);
+            int yCenter = (int) (Y + Height / 2);
+            Color col = image.GetPixel(xCenter, yCenter);
+            if(col.R % 5 == 0 && col.G == 0 && col.B == 0 && col.R >= 255 - totalCheckpoints * 10) {
+                if(!checkpointsPassed.Contains(col.R)){
+                    checkpointsPassed.Add(col.R);
+                    lastCheckpoint = new Location(X, Y, Angle);
+                    Console.WriteLine("Check: " + checkpointsPassed.Count);
+                }
+            }
+
+
+        }
+
+        public ColorHandler getColor(int R, int G, int B) {
+            foreach(int[] color in kleuren.Keys) {
+                if(color[0] == R && color[1] == G && color[2] == B) {
+                    return kleuren[color];
+                }
+            }
+            return ColorHandler.None;
         }
 
         public void HandleColor(Bitmap image) {
@@ -265,43 +318,41 @@ namespace RaceGame {
             
             int xCenter = (int) (X + Width / 2);
             int yCenter = (int) (Y + Height / 2);
-            foreach(int[] col in kleuren.Keys) {
-                if(image.GetPixel(xCenter, yCenter).R == col[0] && image.GetPixel(xCenter, yCenter).G == col[1] && image.GetPixel(xCenter, yCenter).B == col[2]) {
-                    switch(kleuren[col]) {
+            Color col = image.GetPixel(xCenter, yCenter);
 
-                        case ColorHandler.Gat:
+            switch(getColor(col.R, col.G, col.B)) {
 
-                            break;
+                case ColorHandler.Gat:
 
-                        case ColorHandler.Gras:
-                            MaxSpeed = 5;
-                            break;
+                    break;
 
-                        case ColorHandler.Water:
+                case ColorHandler.Gras:
+                    MaxSpeed = 5;
+                    break;
 
-                            break;
+                case ColorHandler.Water:
 
-                        case ColorHandler.Pitstop:
-                            MaxSpeed = 3;
-                            if(Health > 90) {
-                                Health = 100;
-                            }else if(Health < 100) {
-                                Health += 10;
-                            }
+                    break;
 
-                            if(Fuel > 9900) {
-                                Fuel = 10000;
-                            }else if(Fuel < 10000) {
-                                Fuel += 100;
-                            }
-                            break;
-
-                        default:
-                            MaxSpeed = 9;
-                            break;
+                case ColorHandler.Pitstop:
+                    MaxSpeed = 3;
+                    if(Health > 90) {
+                        Health = 100;
+                    }else if(Health < 100) {
+                        Health += 10;
                     }
-                }
-            }
+
+                    if(Fuel > 9900) {
+                        Fuel = 10000;
+                    }else if(Fuel < 10000) {
+                        Fuel += 100;
+                    }
+                    break;
+
+                default:
+
+                    break;
+            }   
 
         }
 
@@ -340,10 +391,23 @@ namespace RaceGame {
                     sound = "r2d2.wav";
                 }
 
-                PlaySound(sound);
+                //PlaySound(sound);
             }
 
         }
+
+        /*
+        Kleiner maken van plaatje
+                
+                if(Width > 0) {
+                    Width--;
+                    X++;
+                }
+                if(Height > 0) {
+                    Height--;
+                    Y++;
+                }
+                */
         
         public void PlaySound(string sound) {
             new System.Threading.Thread(() => {

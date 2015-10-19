@@ -174,7 +174,7 @@
             this.FinishMessage.BackColor = System.Drawing.Color.Transparent;
             this.FinishMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FinishMessage.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.FinishMessage.Location = new System.Drawing.Point(143, 58);
+            this.FinishMessage.Location = new System.Drawing.Point(143, 103);
             this.FinishMessage.Name = "FinishMessage";
             this.FinishMessage.Size = new System.Drawing.Size(781, 387);
             this.FinishMessage.TabIndex = 13;

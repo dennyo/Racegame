@@ -54,6 +54,7 @@
     <Compile Include="CharacterSelect.designer.cs">
       <DependentUpon>CharacterSelect.cs</DependentUpon>
     </Compile>
+    <Compile Include="Location.cs" />
     <Compile Include="RaceGame.cs">
       <SubType>Form</SubType>
     </Compile>

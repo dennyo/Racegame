@@ -13,7 +13,7 @@ namespace Racegame {
 
     public enum Character {Jos, Fiona, David, Jop, Nynke, Sibbele, Joris, Dick };
     public enum Map {Standard, Koopa_Beach, Rainbow_Road, Zelda };
-    public enum ColorHandler {Gras, Water, Pitstop, Gat };
+    public enum ColorHandler {Gras, Water, Pitstop, Gat, Finish, None };
 
     public class Game {
 
@@ -36,22 +36,24 @@ namespace Racegame {
         Form form;
         Label FinishMessage;
         MainMenu main;
-        List<PictureBox> ControlPoints = new List<PictureBox>();
+        int checkpointPoints;
 
-        public Game(MainMenu main, Form form, Player p1, Player p2, Map map, string soundtrack, Label FinishMessage, params PictureBox[] ControlPoints) {
+        public Game(MainMenu main, Form form, Player p1, Player p2, Map map, string soundtrack, Label FinishMessage, int checkpointAmount) {
             this.p1 = p1;
             this.p2 = p2;
             this.map = map;
             this.form = form;
             this.main = main;
+            this.FinishMessage = FinishMessage;
+            this.mainMenuSound = main.player;
 
             SoundPlayer soundplayer = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, soundtrack));
             this.soundtrack = soundplayer;
             main.player.Stop();
             soundplayer.PlayLooping();
 
-            foreach(PictureBox pb in ControlPoints) {
-                this.ControlPoints.Add(pb);
+            for(int i = 0; i < checkpointAmount; i++) {
+                checkpointPoints += 255 - i * 10;
             }
 
             p1.FuelTimer.Interval = 17;
@@ -471,59 +473,24 @@ namespace Racegame {
             b.Text = "Speed: " + Math.Round(speed, 0);
         }
 
-        public bool Checkpoints(Player a, PictureBox b)
-        {
-            ///Moet nog even naar gekeken worden want dit moet er wel zijn!
-
-            if (a.X + a.MaxSize >= b.Location.X &&
-                a.X <= b.Location.X + b.Size.Width &&
-                a.Y + a.MaxSize >= b.Location.Y &&
-                a.Y <= b.Location.Y + b.Size.Height &&
-                a.CheckpointPassed == false)
-            {
-                a.CheckpointPassed = true;
-            }
-            return a.CheckpointPassed;
-
-        }
-
         public void Checkpointhandler()
         {
-            /*bool passed1 = false;
-            bool passed2 = false;
-            foreach(PictureBox pb in )
-            p1.CheckpointPassed = Checkpoints(p1, Checkpoint);
-            p2.CheckpointPassed = Checkpoints(p2, Checkpoint);*/
+            p1.CheckpointChecker(checkpoints);
+            p2.CheckpointChecker(checkpoints);
         }
 
         public void FinishHandler()
         {
-            p1.FinishPassed = Finishing(p1, FinishMessage);
-            p2.FinishPassed = Finishing(p2, FinishMessage);
-            if (FinishPassed == true)
-            {
-                p1.Speed = 0;
-                p2.Speed = 0;
-            }
-        }
-        public bool Finishing(Player a, Label b)
-        {
-            if (a.laps >= 4 && FinishPassed == false)
-            {
-                this.FinishMessage.Visible = true;
-                main.Visible = true;
-                if (a == p1)
-                {
-                    this.FinishMessage.Text = "Player 1 wins!";
-                }
-                else if (a == p2)
-                {
-                    this.FinishMessage.Text = "Player 2 wins!";
-                }
-                FinishPassed = true;
-            }
-            return FinishPassed;
+            p1.FinishHandler(FinishMessage, checkpoints);
+            p2.FinishHandler(FinishMessage, checkpoints);
+            
+            if(p1.Finished || p2.Finished) {
+                p1.MaxSpeed = 0;
+                p1.GameEnded = true;
+                p2.MaxSpeed = 0;
+                p2.GameEnded = true;
 
+            }
         }
 
         private void Fueladder_Tick(object sender, EventArgs e)
