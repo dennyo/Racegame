@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace Racegame {
 
-    public enum Character {Jos, Fiona, David, Jop, Nynke, Sibbele, Joris, Dick };
+    public enum Character { David, Jos, Fiona, Jop, Sibbele, Joris, Nynke, Dick };
     public enum Map {Standard, Koopa_Beach, Rainbow_Road, Zelda };
     public enum ColorHandler {Gras, Water, Pitstop, Gat };
 
