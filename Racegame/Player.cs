@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media;
 
 namespace RaceGame {
    public class Player {
@@ -39,6 +40,7 @@ namespace RaceGame {
         private bool RightActive = false;
         private bool LeftActive = false;
         private bool horn = false;
+        private bool Horn = false;
         private string name;
         public Graphics g;
         private Bitmap image;
@@ -56,7 +58,9 @@ namespace RaceGame {
         Dictionary<int[], ColorHandler> kleuren = new Dictionary<int[], ColorHandler>();
         List<int> checkpointsPassed = new List<int>();
         Location lastCheckpoint;
-
+        private string HornSound;
+        private MediaPlayer HornPlayer;
+        private bool HornEnded = true;
 
         public Player(string name, Character character, Graphics g, Form main, Bitmap imagew, Keys up, Keys down, Keys right, Keys left, Keys action, int x, int y, int width, int height, PictureBox fuel, PictureBox healthBox, PictureBox groen, PictureBox itembox, PictureBox itemframe, System.Windows.Forms.Timer fuelTimer, Label speedLabel, Label rondeLabel, int totalCheckpoints) {
             this.X = x;
@@ -218,6 +222,9 @@ namespace RaceGame {
         public void Move(Form form) {
             form.Invalidate();
 
+            if(Horn) {
+                PlaySound(HornSound);
+            }
 
             if(Gas) {
                 if(SpeedX <= MaxSpeed && SpeedY <= MaxSpeed && Speed < MaxSpeed) {
@@ -265,7 +272,7 @@ namespace RaceGame {
         public void FinishHandler(Label message, Bitmap image) {
             int xCenter = (int) (X + Width / 2);
             int yCenter = (int) (Y + Height / 2);
-            Color col = image.GetPixel(xCenter, yCenter);
+            System.Drawing.Color col = image.GetPixel(xCenter, yCenter);
 
             if(checkpointsPassed.Count == totalCheckpoints && getColor(col.R, col.G, col.B) == ColorHandler.Finish) {
                 laps++;
@@ -283,7 +290,7 @@ namespace RaceGame {
             
             int xCenter = (int) (X + Width / 2);
             int yCenter = (int) (Y + Height / 2);
-            Color col = image.GetPixel(xCenter, yCenter);
+            System.Drawing.Color col = image.GetPixel(xCenter, yCenter);
             if(col.R % 5 == 0 && col.G == 0 && col.B == 0 && col.R >= 255 - totalCheckpoints * 10) {
                 if(!checkpointsPassed.Contains(col.R)){
                     checkpointsPassed.Add(col.R);
@@ -319,7 +326,7 @@ namespace RaceGame {
             
             int xCenter = (int) (X + Width / 2);
             int yCenter = (int) (Y + Height / 2);
-            Color col = image.GetPixel(xCenter, yCenter);
+            System.Drawing.Color col = image.GetPixel(xCenter, yCenter);
 
             switch(getColor(col.R, col.G, col.B)) {
 
@@ -392,31 +399,39 @@ namespace RaceGame {
                     sound = "r2d2.wav";
                 }
 
-                //PlaySound(sound);
+                HornSound = sound;
+                if(HornEnded) Horn = true;
+
             }
 
         }
 
         /*
-        Kleiner maken van plaatje
+            Kleiner maken van plaatje
                 
-                if(Width > 0) {
-                    Width--;
-                    X++;
-                }
-                if(Height > 0) {
-                    Height--;
-                    Y++;
-                }
-                */
+            if(Width > 0) {
+                Width--;
+                X++;
+            }
+            if(Height > 0) {
+                Height--;
+                Y++;
+            }
+        */
         
         public void PlaySound(string sound) {
-            new System.Threading.Thread(() => {
-                var c = new System.Windows.Media.MediaPlayer();
-                c.Open(new System.Uri(Path.Combine(Environment.CurrentDirectory, sound)));
-                c.Play();
+                HornEnded = false;
 
-            }).Start();
+                HornPlayer = new System.Windows.Media.MediaPlayer();
+                HornPlayer.Open(new System.Uri(Path.Combine(Environment.CurrentDirectory, sound)));
+                HornPlayer.MediaEnded +=  HornPlayer_Ended;
+                HornPlayer.Play();
+                Horn = false;
+
+        }
+
+        private void HornPlayer_Ended(object sender, EventArgs e) {
+            HornEnded = true;
         }
 
         public void ControlUpHandler(object sender, System.Windows.Forms.KeyEventArgs e) {
