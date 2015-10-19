@@ -110,10 +110,10 @@ namespace RaceGame {
             switch (ch)
             {
                 case Character.David:
-                    return "cars/david" + number + ".png";
+                    return "cars/D" + number + ".png";
 
                 case Character.Jos:
-                    return "cars/jos" + number + ".png";
+                    return "cars/Jos" + number + ".png";
 
                 case Character.Fiona:
                     return "cars/fiona" + number + ".png";
