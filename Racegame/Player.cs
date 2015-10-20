@@ -109,16 +109,16 @@ namespace RaceGame {
             switch (ch)
             {
                 case Character.David:
-                    return "cars/D" + number + ".png";
+                    return "cars/david/D" + number + ".png";
 
                 case Character.Jos:
-                    return "cars/Jos" + number + ".png";
+                    return "cars/jos/Jos" + number + ".png";
 
                 case Character.Fiona:
-                    return "cars/F" + number + ".png";
+                    return "cars/fiona/F" + number + ".png";
 
                 case Character.Jop:
-                    return "cars/Jop" + number + ".png";
+                    return "cars/jop/Jop" + number + ".png";
 
                 case Character.Sibbele:
                     return "cars/sibbele" + number + ".png";
@@ -130,7 +130,7 @@ namespace RaceGame {
                     return "cars/nynke" + number + ".png";
 
                 case Character.Dick:
-                    return "cars/dick" + number + ".png";
+                    return "cars/dick/D" + number + ".png";
 
                 default:
                     return "";
