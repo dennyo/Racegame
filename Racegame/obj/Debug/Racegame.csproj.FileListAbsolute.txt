@@ -68,3 +68,14 @@ C:\Users\Denny\School\P1P Racegame\ProjectRacegame\Racegame\obj\Debug\Racegame.C
 C:\Users\Mark\Documents\school\Project Racegame\Racegame\obj\Debug\Racegame.CharacterSelect.resources
 >>>>>>> f27e1051844d211b776a8e8bea2a34c52251f2c9
 C:\Users\alexh_000\Documents\Visual Studio 2015\Projects\Negers\Racegame\obj\Debug\Racegame.CharacterSelect.resources
+C:\Users\User\Desktop\Nieuwe map\Racegame\bin\Debug\Racegame.exe.config
+C:\Users\User\Desktop\Nieuwe map\Racegame\obj\Debug\Racegame.exe
+C:\Users\User\Desktop\Nieuwe map\Racegame\obj\Debug\Racegame.pdb
+C:\Users\User\Desktop\Nieuwe map\Racegame\bin\Debug\Racegame.exe
+C:\Users\User\Desktop\Nieuwe map\Racegame\bin\Debug\Racegame.pdb
+C:\Users\User\Desktop\Nieuwe map\Racegame\obj\Debug\Racegame.csprojResolveAssemblyReference.cache
+C:\Users\User\Desktop\Nieuwe map\Racegame\obj\Debug\Racegame.CharacterSelect.resources
+C:\Users\User\Desktop\Nieuwe map\Racegame\obj\Debug\Racegame.Racegame.resources
+C:\Users\User\Desktop\Nieuwe map\Racegame\obj\Debug\Racegame.MainMenu.resources
+C:\Users\User\Desktop\Nieuwe map\Racegame\obj\Debug\Racegame.Properties.Resources.resources
+C:\Users\User\Desktop\Nieuwe map\Racegame\obj\Debug\Racegame.csproj.GenerateResource.Cache
