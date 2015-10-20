@@ -108,6 +108,8 @@ namespace Racegame {
             p2.rect.X = Convert.ToInt32(p2.X);
             p2.rect.Y = Convert.ToInt32(p2.Y);
             ColorHandler();
+            pw.Collision(p1);
+            pw.Collision(p2);
         }
 
         public void ColorHandler() {
@@ -535,7 +537,7 @@ namespace Racegame {
 
         
 
-        private bool CircleCollision(Rectangle Circle1, Rectangle Circle2)
+        public bool CircleCollision(Rectangle Circle1, Rectangle Circle2)
         {
 
             int R1 = Circle1.Width / 2;
@@ -553,7 +555,7 @@ namespace Racegame {
 
         }
 
-        private bool CollisionDetection(Rectangle circle, Rectangle rectangle)
+        public bool CollisionDetection(Rectangle circle, Rectangle rectangle)
         {
 
             // clamp(value, min, max) - limits value to the range min..max
