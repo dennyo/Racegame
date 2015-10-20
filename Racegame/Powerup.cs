@@ -22,9 +22,10 @@ namespace Racegame {
         private int CurrentImage = 1;
         private Dictionary<int, Image> ImageSequence = new Dictionary<int, Image>();
         private Image Banana, Mushroom, Shell;
-        private PictureBox pb;
+       // private PictureBox pb;
         public Rectangle rect;
         private PowerupItem current;
+        public Image image;
         private bool Disabled = false;
         private bool Hit = false;
 
@@ -34,12 +35,12 @@ namespace Racegame {
             this.Y = Y;
             rand = new Random();
             this.rect = new Rectangle(0, 0, 42, 42);
-            pb = new PictureBox();
+            /*pb = new PictureBox();
             pb.Width = 42;
             pb.Height = 42;
             pb.BackColor = Color.Transparent;
             pb.Location = new Point(X, Y);
-            g.form.Controls.Add(pb);
+            g.form.Controls.Add(pb);*/
 
             for(int i = 1; i <= 8; i++) {
                 ImageSequence.Add(i, Image.FromFile(Path.Combine(Environment.CurrentDirectory, "powerup/Box" + i + ".png")));
@@ -60,10 +61,11 @@ namespace Racegame {
         public void Rotate() {
             Thread t = new Thread(() => {
                 while(true) {
+                    if(Hit || Disabled) continue;
                     Bitmap image = new Bitmap(42, 42);
                     Graphics g = Graphics.FromImage(image);
                     g.DrawImage(ImageSequence[CurrentImage], new Rectangle(new Point(0, 0), new Size(42, 42)));
-                    pb.Image = image;
+                    this.image = image;
                     g.Dispose();
                     if(CurrentImage < 8) {
                         CurrentImage++;
@@ -76,6 +78,12 @@ namespace Racegame {
             t.IsBackground = true;
             t.Start();
                
+        }
+
+        public void Draw(Graphics g) {
+            if(Hit || Disabled) return;
+            g.DrawImage(image,  new Rectangle(new Point(X, Y), new Size(42, 42)));
+
         }
 
         public void SpinItemBox(Player p) {
@@ -110,7 +118,7 @@ namespace Racegame {
                 case PowerupItem.Banana:
                     //als banaan etc...
                     break;
-
+                    
                 case PowerupItem.Shell:
 
                     break;
@@ -128,7 +136,7 @@ namespace Racegame {
             if(game.CircleCollision(p.rect, rect) && !Hit && !Disabled) {
                 Hit = true;
                 Disabled = true;
-                pb.Visible = false;
+                //pb.Visible = false;
                 Enable();
                 SpinItemBox(p);
             }
@@ -138,7 +146,7 @@ namespace Racegame {
             await Task.Delay(10000);
             Hit = false;
             Disabled = false;
-            pb.Visible = true;
+            //pb.Visible = true;
             Console.WriteLine("done");
         }
 

@@ -182,6 +182,7 @@ namespace Racegame {
             e.Graphics.ResetTransform();
             p2.DrawPlayer(e.Graphics);
             e.Graphics.ResetTransform();
+            pw.Draw(e.Graphics);
 
             //e.Graphics.Dispose();
         }
