@@ -55,6 +55,12 @@
       <DependentUpon>CharacterSelect.cs</DependentUpon>
     </Compile>
     <Compile Include="Location.cs" />
+    <Compile Include="MapSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MapSelect.designer.cs">
+      <DependentUpon>MapSelect.cs</DependentUpon>
+    </Compile>
     <Compile Include="Powerup.cs" />
     <Compile Include="RaceGame.cs">
       <SubType>Form</SubType>
@@ -74,6 +80,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CharacterSelect.resx">
       <DependentUpon>CharacterSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapSelect.resx">
+      <DependentUpon>MapSelect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RaceGame.resx">
       <DependentUpon>RaceGame.cs</DependentUpon>

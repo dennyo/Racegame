@@ -122,7 +122,6 @@ namespace Racegame {
                     float py = p.Y;
                     float pr = p.Angle;
                     // diff
-                    draw(current);
                     break;
                     
                 case PowerupItem.Shell:
