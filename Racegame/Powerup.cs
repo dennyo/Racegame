@@ -22,12 +22,19 @@ namespace Racegame {
         private int CurrentImage = 1;
         private static Dictionary<int, Image> ImageSequence = new Dictionary<int, Image>();
         private static Image Banana, Mushroom, Shell;
+        private PictureBox pb;
 
         public Powerup(Game g, int X, int Y) {
             this.game = game;
             this.X = X;
             this.Y = Y;
             rand = new Random();
+            pb = new PictureBox();
+            pb.Width = 42;
+            pb.Height = 42;
+            pb.BackColor = Color.Transparent;
+            pb.Location = new Point(X, Y);
+            g.form.Controls.Add(pb);
 
             for(int i = 1; i <= 8; i++) {
                 ImageSequence.Add(i, Image.FromFile(Path.Combine(Environment.CurrentDirectory, "powerup/Box" + i + ".png")));
@@ -45,18 +52,26 @@ namespace Racegame {
                 */
         }
 
-        public void Rotate(Graphics gr) {
-
-            Bitmap image = new Bitmap(42, 42);
-            Graphics g = Graphics.FromImage(image);
-            g.DrawImage(ImageSequence[CurrentImage], new Rectangle(new Point(0, 0), new Size(42, 42)));
-            gr.DrawImage(image, X, Y);
-            if(CurrentImage < 8) {
-                CurrentImage++;
-            } else {
-                CurrentImage = 1;
-            }
-
+        public void Rotate() {
+            Thread t = new Thread(() => {
+                while(true) {
+                    Console.WriteLine(CurrentImage);
+                    Bitmap image = new Bitmap(42, 42);
+                    Graphics g = Graphics.FromImage(image);
+                    g.DrawImage(ImageSequence[CurrentImage], new Rectangle(new Point(0, 0), new Size(42, 42)));
+                    pb.Image = image;
+                    g.Dispose();
+                    if(CurrentImage < 8) {
+                        CurrentImage++;
+                    } else {
+                        CurrentImage = 1;
+                    }   
+                    Thread.Sleep(100);
+                }
+            });
+            t.IsBackground = true;
+            t.Start();
+               
         }
 
         public async void SpinItemBox(Player p) {
@@ -79,18 +94,18 @@ namespace Racegame {
                         current = PowerupItem.Shell;
                         break;
                 }
+                Console.WriteLine("WEWEW");
                 await Wait();
             }
 
         }
         
         public void Collision(Player p) {
-            
+            game.CheckCollision(p, pb);
         }
 
-
         private async Task Wait() {
-            await Task.Delay(50);
+            await Task.Delay(500);
         }
 
 
