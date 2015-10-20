@@ -38,7 +38,7 @@
             this.Ronde1 = new System.Windows.Forms.Label();
             this.Groen = new System.Windows.Forms.PictureBox();
             this.Fueladder = new System.Windows.Forms.Timer(this.components);
-            this.ItemFrame = new System.Windows.Forms.PictureBox();
+            this.Player1Box = new System.Windows.Forms.PictureBox();
             this.FuelBox2 = new System.Windows.Forms.PictureBox();
             this.Speed1 = new System.Windows.Forms.Label();
             this.Ronde2 = new System.Windows.Forms.Label();
@@ -48,14 +48,16 @@
             this.PlayAgain = new System.Windows.Forms.Button();
             this.MainMenu = new System.Windows.Forms.Button();
             this.Interface = new System.Windows.Forms.PictureBox();
+            this.Player2Box = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.HealthBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Groen)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemFrame)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Player1Box)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.HealthBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Interface)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Player2Box)).BeginInit();
             this.SuspendLayout();
             // 
             // GameTimer
@@ -120,16 +122,15 @@
             this.Groen.TabIndex = 6;
             this.Groen.TabStop = false;
             // 
-            // ItemFrame
+            // Player1Box
             // 
-            this.ItemFrame.BackColor = System.Drawing.Color.Transparent;
-            this.ItemFrame.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ItemFrame.Location = new System.Drawing.Point(24, 140);
-            this.ItemFrame.Name = "ItemFrame";
-            this.ItemFrame.Size = new System.Drawing.Size(64, 64);
-            this.ItemFrame.TabIndex = 8;
-            this.ItemFrame.TabStop = false;
-            this.ItemFrame.Visible = false;
+            this.Player1Box.BackColor = System.Drawing.Color.Transparent;
+            this.Player1Box.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Player1Box.Location = new System.Drawing.Point(24, 140);
+            this.Player1Box.Name = "Player1Box";
+            this.Player1Box.Size = new System.Drawing.Size(64, 64);
+            this.Player1Box.TabIndex = 8;
+            this.Player1Box.TabStop = false;
             // 
             // FuelBox2
             // 
@@ -216,6 +217,16 @@
             this.Interface.TabIndex = 15;
             this.Interface.TabStop = false;
             // 
+            // Player2Box
+            // 
+            this.Player2Box.BackColor = System.Drawing.Color.Transparent;
+            this.Player2Box.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Player2Box.Location = new System.Drawing.Point(920, 130);
+            this.Player2Box.Name = "Player2Box";
+            this.Player2Box.Size = new System.Drawing.Size(64, 64);
+            this.Player2Box.TabIndex = 16;
+            this.Player2Box.TabStop = false;
+            // 
             // Racegame
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -223,6 +234,8 @@
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1024, 768);
+            this.Controls.Add(this.Player2Box);
+            this.Controls.Add(this.Player1Box);
             this.Controls.Add(this.MainMenu);
             this.Controls.Add(this.HealthBox1);
             this.Controls.Add(this.ItemBox);
@@ -230,7 +243,6 @@
             this.Controls.Add(this.Ronde2);
             this.Controls.Add(this.Speed1);
             this.Controls.Add(this.FuelBox2);
-            this.Controls.Add(this.ItemFrame);
             this.Controls.Add(this.Groen);
             this.Controls.Add(this.Ronde1);
             this.Controls.Add(this.Speed2);
@@ -250,10 +262,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.HealthBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Groen)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemFrame)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Player1Box)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.HealthBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Interface)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Player2Box)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -270,7 +283,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox Groen;
         private System.Windows.Forms.Timer Fueladder;
-        private System.Windows.Forms.PictureBox ItemFrame;
+        private System.Windows.Forms.PictureBox Player1Box;
         private System.Windows.Forms.PictureBox FuelBox2;
         private System.Windows.Forms.Label Speed1;
         private System.Windows.Forms.Label Ronde2;
@@ -280,5 +293,6 @@
         private System.Windows.Forms.Button PlayAgain;
         private System.Windows.Forms.Button MainMenu;
         private System.Windows.Forms.PictureBox Interface;
+        private System.Windows.Forms.PictureBox Player2Box;
     }
 }

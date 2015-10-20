@@ -27,13 +27,14 @@ namespace Racegame {
         Image Fuel = new Bitmap(Path.Combine(Environment.CurrentDirectory, "fuel.png"));
         Bitmap colormap;
         Bitmap checkpoints;
+        Powerup pw;
 
         SoundPlayer soundtrack;
         SoundPlayer mainMenuSound;
         Player p1;
         Player p2;
         Map map;
-        Form form;
+        public Form form;
         Label FinishMessage;
         MainMenu main;
         int checkpointPoints;
@@ -46,6 +47,7 @@ namespace Racegame {
             this.main = main;
             this.FinishMessage = FinishMessage;
             this.mainMenuSound = main.player;
+            pw = new Powerup(this, 300, 200);
 
             SoundPlayer soundplayer = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, soundtrack));
             this.soundtrack = soundplayer;
@@ -82,6 +84,10 @@ namespace Racegame {
                     break;
 
             }
+
+            //pw.SpinItemBox(p1);
+            pw.Rotate();
+
         }
 
         public void Execute() {
@@ -356,8 +362,8 @@ namespace Racegame {
 
         public void ItemHandler()
         {
-            CheckItems(p1, p1.ItemBox);
-            CheckItems(p2, p2.ItemBox);
+            //CheckItems(p1, p1.ItemBox);
+            //CheckItems(p2, p2.ItemBox);
         }
 
         public void CheckItems(Player a, PictureBox b)
@@ -405,10 +411,10 @@ namespace Racegame {
 
         public void RespawnHandler()
         {
-            if (p1.ItemBox.Visible == false)
+            /*if (p1.ItemBox.Visible == false)
             {
                 RespawnItems(p1.ItemBox);
-            }
+            }*/
         }
 
         public async void RespawnItems(PictureBox b)

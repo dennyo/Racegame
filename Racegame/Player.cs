@@ -49,7 +49,6 @@ namespace RaceGame {
         public PictureBox FuelBox;
         public PictureBox HealthBox;
         public PictureBox Groen;
-        public PictureBox ItemBox;
         public PictureBox ItemFrame;
         public Label SpeedLabel;
         public Label RondeLabel;
@@ -62,7 +61,7 @@ namespace RaceGame {
         private MediaPlayer HornPlayer;
         private bool HornEnded = true;
 
-        public Player(string name, Character character, Graphics g, Form main, Bitmap imagew, Keys up, Keys down, Keys right, Keys left, Keys action, int x, int y, int width, int height, PictureBox fuel, PictureBox healthBox, PictureBox groen, PictureBox itembox, PictureBox itemframe, System.Windows.Forms.Timer fuelTimer, Label speedLabel, Label rondeLabel, int totalCheckpoints) {
+        public Player(string name, Character character, Graphics g, Form main, Bitmap imagew, Keys up, Keys down, Keys right, Keys left, Keys action, int x, int y, int width, int height, PictureBox fuel, PictureBox healthBox, PictureBox groen, PictureBox itemframe, System.Windows.Forms.Timer fuelTimer, Label speedLabel, Label rondeLabel, int totalCheckpoints) {
             this.X = x;
             this.Y = y;
             this.up = up;
@@ -78,7 +77,6 @@ namespace RaceGame {
             this.Main = main;
             this.FuelBox = fuel;
             this.Groen = groen;
-            this.ItemBox = itembox;
             this.ItemFrame = itemframe;
             this.FuelTimer = fuelTimer;
             this.SpeedLabel = speedLabel;
@@ -262,7 +260,6 @@ namespace RaceGame {
             if((RightActive) || (LeftActive && DownActive)) {
                 Angle += Math.Abs(2 * Math.Abs(Speed) / 7 + 1);
             }
-            Console.WriteLine(GameEnded);
             if(!GameEnded) {
                 MaxSpeed = 9;
             }
@@ -276,12 +273,10 @@ namespace RaceGame {
 
             if(checkpointsPassed.Count == totalCheckpoints && getColor(col.R, col.G, col.B) == ColorHandler.Finish) {
                 laps++;
-                Console.WriteLine("Lap: " + laps);
                 checkpointsPassed.Clear();
                 if (laps >= 4) {
                     Finished = true;
                     message.Visible = true;
-                    message.Text = name + " wins!";
                 }
             }
         }
@@ -295,7 +290,6 @@ namespace RaceGame {
                 if(!checkpointsPassed.Contains(col.R)){
                     checkpointsPassed.Add(col.R);
                     lastCheckpoint = new Location(X, Y, Angle);
-                    Console.WriteLine("Check: " + checkpointsPassed.Count);
                 }
             }
 
