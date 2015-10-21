@@ -54,6 +54,7 @@ namespace Racegame
             this.main = main;
             player = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, "THEMESONG.wav"));
             player.PlayLooping();
+            timer1.Enabled = true;
         }
 
         private void Form3_Load(object sender, EventArgs e)
@@ -63,49 +64,49 @@ namespace Racegame
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-                if (keyData == Keys.Left)
-                    {
-                    LeftArrowActive = true;
-                    }
-                if (keyData == Keys.Right)
-                    {
-                    RightArrowActive = true;
-                    }
-                if (keyData == Keys.Up)
-                    {
-                    UpArrowActive = true;
-                    }
-                  if (keyData == Keys.Down)
-                    {
-                    DownArrowActive = true;
-                    }
-                  if (keyData == Keys.Return)
-                    {
-                    EnterPressed = true;
-                    if (button9.Visible == true)
-                        {
-                        player.Stop();
-                        this.Hide();
-                        Racegame frm = new Racegame(main, ChoosingP1(), ChoosingP2());
-                        frm.ShowDialog();
-                        this.Close();
-                        }
-                    }
-                  if (keyData == Keys.Escape)
-                    {
+            if (keyData == Keys.Left)
+            {
+                LeftArrowActive = true;
+            }
+            if (keyData == Keys.Right)
+            {
+                RightArrowActive = true;
+            }
+            if (keyData == Keys.Up)
+            {
+                UpArrowActive = true;
+            }
+            if (keyData == Keys.Down)
+            {
+                DownArrowActive = true;
+            }
+            if (keyData == Keys.Return)
+            {
+                EnterPressed = true;
+                if (button9.Visible == true)
+                {
                     player.Stop();
                     this.Hide();
-                    MainMenu frm = new MainMenu();
+                    MapSelect frm = new MapSelect(main, player, p1choice, p2choice);
                     frm.ShowDialog();
                     this.Close();
-                    }
-            
+                }
+            }
+            if (keyData == Keys.Escape)
+            {
+                player.Stop();
+                this.Hide();
+                MainMenu frm = new MainMenu();
+                frm.ShowDialog();
+                this.Close();
+            }
+
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            SelectionHandler();          
+            SelectionHandler();
             ChoosingHandler();
         }
 
@@ -167,27 +168,27 @@ namespace Racegame
                     RightArrowActive = false;
                 }
             }
-            if(JosSelected == true)
+            if (JosSelected == true)
             {
-                if(UpArrowActive == true)
+                if (UpArrowActive == true)
                 {
                     JosSelected = false;
                     JorisSelected = true;
                     UpArrowActive = false;
                 }
-                if(DownArrowActive == true)
+                if (DownArrowActive == true)
                 {
                     JosSelected = false;
                     JorisSelected = true;
                     DownArrowActive = false;
                 }
-                if(LeftArrowActive == true)
+                if (LeftArrowActive == true)
                 {
                     JosSelected = false;
                     DavidSelected = true;
                     LeftArrowActive = false;
                 }
-                if(RightArrowActive == true)
+                if (RightArrowActive == true)
                 {
                     JosSelected = false;
                     FionaSelected = true;
@@ -265,7 +266,7 @@ namespace Racegame
                 if (LeftArrowActive == true)
                 {
                     SibbeleSelected = false;
-                   DickSelected = true;
+                    DickSelected = true;
                     LeftArrowActive = false;
                 }
                 if (RightArrowActive == true)
@@ -360,7 +361,7 @@ namespace Racegame
 
         public Character ChoosingP1()
         {
-            if(DavidSelected == true && EnterPressed == true)
+            if (DavidSelected == true && EnterPressed == true)
             {
                 DavidChosen = true;
                 p1Chosen = true;
@@ -379,7 +380,7 @@ namespace Racegame
                 DavidSelected = true;
 
             }
-            if (FionaSelected == true &&  EnterPressed == true)
+            if (FionaSelected == true && EnterPressed == true)
             {
                 FionaChosen = true;
                 p1Chosen = true;
@@ -389,7 +390,7 @@ namespace Racegame
                 DavidSelected = true;
 
             }
-            if (JopSelected == true &&  EnterPressed == true)
+            if (JopSelected == true && EnterPressed == true)
             {
                 JopChosen = true;
                 p1Chosen = true;
@@ -443,7 +444,7 @@ namespace Racegame
 
         public Character ChoosingP2()
         {
-         if (DavidSelected == true && EnterPressed == true)
+            if (DavidSelected == true && EnterPressed == true)
             {
                 DavidChosen = true;
                 p2Chosen = true;
@@ -504,7 +505,7 @@ namespace Racegame
 
         public void Selector1Position()
         {
-            if(DavidSelected == true)
+            if (DavidSelected == true)
             {
                 PictureBox1.BackgroundImage = Selector1;
             }
@@ -512,11 +513,11 @@ namespace Racegame
             {
                 PictureBox1.BackgroundImage = null;
             }
-            if(JosSelected == true)
+            if (JosSelected == true)
             {
                 PictureBox2.BackgroundImage = Selector1;
             }
-            if(JosSelected == false)
+            if (JosSelected == false)
             {
                 PictureBox2.BackgroundImage = null;
             }
@@ -640,9 +641,8 @@ namespace Racegame
 
         private void button9_Click(object sender, EventArgs e)
         {
-            player.Stop();
             this.Hide();
-            Racegame frm = new Racegame(main, ChoosingP1(), ChoosingP2());
+            MapSelect frm = new MapSelect(main, player, p1choice, p2choice);
             frm.ShowDialog();
             this.Close();
         }

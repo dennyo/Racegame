@@ -1,6 +1,7 @@
 ﻿using RaceGame;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -12,7 +13,7 @@ using System.Windows.Forms;
 namespace Racegame {
 
     public enum Character { David, Jos, Fiona, Jop, Sibbele, Joris, Nynke, Dick };
-    public enum Map {Standard, Koopa_Beach, Rainbow_Road, Zelda };
+    public enum Map {Standard, Koopa_Beach, Rainbow_Road, Donut_Plains, Ghost_Valley, Bowser_Castle, Choco_Island, Vanilla_Lake };
     public enum ColorHandler {Gras, Water, Pitstop, Gat, Finish, None };
 
     public class Game {
@@ -86,11 +87,12 @@ namespace Racegame {
             }
 
             //pw.SpinItemBox(p1);
-            pw.Rotate();
+            //pw.Rotate();
 
         }
 
         public void Execute() {
+
             FuelHandler();
             BorderHandler();
             p2.Move(form);
@@ -110,6 +112,8 @@ namespace Racegame {
             ColorHandler();
             pw.Collision(p1);
             pw.Collision(p2);
+
+            pw.AddCount();
         }
 
         public void ColorHandler() {
@@ -183,6 +187,7 @@ namespace Racegame {
             p2.DrawPlayer(e.Graphics);
             e.Graphics.ResetTransform();
             pw.Draw(e.Graphics);
+
 
             //e.Graphics.Dispose();
         }

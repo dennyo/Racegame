@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace Racegame {
 
@@ -19,8 +20,8 @@ namespace Racegame {
         private int Y;
         private Game game;
         private static Random rand;
-        private int CurrentImage = 1;
-        private Dictionary<int, Image> ImageSequence = new Dictionary<int, Image>();
+        private int CurrentImage = 0;
+        private List<Image> ImageSequence = new List<Image>();
         private Image Banana, Mushroom, Shell;
        // private PictureBox pb;
         public Rectangle rect;
@@ -43,7 +44,7 @@ namespace Racegame {
             g.form.Controls.Add(pb);*/
 
             for(int i = 1; i <= 8; i++) {
-                ImageSequence.Add(i, Image.FromFile(Path.Combine(Environment.CurrentDirectory, "powerup/Box" + i + ".png")));
+                ImageSequence.Add(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "powerup/Box" + i + ".png")));
             }
             
             Mushroom = Image.FromFile(Path.Combine(Environment.CurrentDirectory, "powerup/MushroomIcon.png"));
@@ -58,32 +59,21 @@ namespace Racegame {
                 */
         }
 
-        public void Rotate() {
-            Thread t = new Thread(() => {
-                while(true) {
-                    if(Hit || Disabled) continue;
-                    Bitmap image = new Bitmap(42, 42);
-                    Graphics g = Graphics.FromImage(image);
-                    g.DrawImage(ImageSequence[CurrentImage], new Rectangle(new Point(0, 0), new Size(42, 42)));
-                    this.image = image;
-                    g.Dispose();
-                    if(CurrentImage < 8) {
-                        CurrentImage++;
-                    } else {
-                        CurrentImage = 1;
-                    }   
-                    Thread.Sleep(100);
-                }
-            });
-            t.IsBackground = true;
-            t.Start();
-               
+        public void AddCount() {
+            if(CurrentImage < 7) {
+                CurrentImage++;
+            } else {
+                CurrentImage = 0;
+            }   
         }
 
         public void Draw(Graphics g) {
             if(Hit || Disabled) return;
-            g.DrawImage(image,  new Rectangle(new Point(X, Y), new Size(42, 42)));
-
+            Stopwatch w = new Stopwatch();
+            w.Start();
+            Console.WriteLine(CurrentImage);
+            g.DrawImage(ImageSequence[CurrentImage],  rect);
+            Console.WriteLine(w.ElapsedMilliseconds);
         }
 
         public void DrawBanana(Graphics g) {
@@ -97,7 +87,7 @@ namespace Racegame {
                             p.ItemFrame.Image = Banana;
                             current = PowerupItem.Banana;
                             break;
-
+                            
                         case 1:
                             p.ItemFrame.Image = Mushroom;
                             current = PowerupItem.Mushroom;

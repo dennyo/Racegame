@@ -254,10 +254,11 @@ namespace RaceGame {
             if(Angle <= -356 || Angle >= 356) {
                 Angle = 0;
             }
-            if((LeftActive) || (RightActive && DownActive)) {
+            Console.WriteLine(RightActive && DownActive);
+            if((LeftActive && !DownActive) || (RightActive && DownActive)) {
                 Angle -= Math.Abs(2 * Math.Abs(Speed) / 7 + 1);
             }
-            if((RightActive) || (LeftActive && DownActive)) {
+            if ((RightActive && !DownActive) || (LeftActive && DownActive)) {
                 Angle += Math.Abs(2 * Math.Abs(Speed) / 7 + 1);
             }
             if(!GameEnded) {

@@ -234,6 +234,7 @@
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1024, 768);
+            this.Controls.Add(this.FinishMessage);
             this.Controls.Add(this.Player2Box);
             this.Controls.Add(this.Player1Box);
             this.Controls.Add(this.MainMenu);
@@ -248,7 +249,6 @@
             this.Controls.Add(this.Speed2);
             this.Controls.Add(this.FuelBox);
             this.Controls.Add(this.Interface);
-            this.Controls.Add(this.FinishMessage);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximumSize = new System.Drawing.Size(1042, 815);

@@ -263,6 +263,7 @@
             // Jop
             // 
             this.Jop.BackColor = System.Drawing.Color.Green;
+            this.Jop.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Jop.BackgroundImage")));
             this.Jop.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.Jop.ForeColor = System.Drawing.Color.Green;
             this.Jop.Location = new System.Drawing.Point(959, 244);
@@ -412,7 +413,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1344, 895);
+            this.ClientSize = new System.Drawing.Size(1344, 894);
             this.Controls.Add(this.pictureBox16);
             this.Controls.Add(this.pictureBox15);
             this.Controls.Add(this.pictureBox14);
@@ -442,8 +443,8 @@
             this.Controls.Add(this.P2prompt);
             this.DoubleBuffered = true;
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.MaximumSize = new System.Drawing.Size(1362, 942);
-            this.MinimumSize = new System.Drawing.Size(1362, 942);
+            this.MaximumSize = new System.Drawing.Size(1362, 941);
+            this.MinimumSize = new System.Drawing.Size(1362, 941);
             this.Name = "CharacterSelect";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Character Selector";

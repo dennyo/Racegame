@@ -30,7 +30,7 @@ namespace Racegame
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {        
+        {
             CharacterSelect frm = new CharacterSelect(this, player);
             frm.ShowDialog();
             this.Close();
