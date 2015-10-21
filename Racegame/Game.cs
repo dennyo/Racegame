@@ -80,7 +80,7 @@ namespace Racegame {
 
                     break;
 
-                case Map.Zelda:
+                case Map.Bowser_Castle:
 
                     break;
 
