@@ -71,9 +71,7 @@ namespace Racegame {
             if(Hit || Disabled) return;
             Stopwatch w = new Stopwatch();
             w.Start();
-            Console.WriteLine(CurrentImage);
             g.DrawImage(ImageSequence[CurrentImage],  rect);
-            Console.WriteLine(w.ElapsedMilliseconds);
         }
 
         public void DrawBanana(Graphics g) {
@@ -147,7 +145,6 @@ namespace Racegame {
             Hit = false;
             Disabled = false;
             //pb.Visible = true;
-            Console.WriteLine("done");
         }
 
     }

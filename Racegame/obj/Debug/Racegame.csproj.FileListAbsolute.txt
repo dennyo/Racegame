@@ -26,3 +26,4 @@ C:\Users\Mark\Documents\school\Project Racegame\Racegame\bin\Debug\Racegame.exe.
 C:\Users\Mark\Documents\school\Project Racegame\Racegame\bin\Debug\Racegame.exe
 C:\Users\Mark\Documents\school\Project Racegame\Racegame\bin\Debug\Racegame.pdb
 C:\Users\Denny\School\P1P Racegame\Racegame\obj\Debug\Racegame.Super_InformatiKart.resources
+C:\Users\Mark\Documents\school\Project Racegame\Racegame\obj\Debug\Racegame.Super_InformatiKart.resources
