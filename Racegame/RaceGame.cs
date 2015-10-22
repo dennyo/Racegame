@@ -27,12 +27,9 @@ namespace Racegame
 
         public Racegame(MainMenu main, Character c1, Character c2)
         {
-            InitializeComponent();
-            
+            InitializeComponent();         
             this.main = main;
-            this.player = main.player;
             GameTimer.Enabled = true;
-
             g = this.CreateGraphics();
             p2 = new Player("Player 2", c2, g, this, null, Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.ControlKey, 500, 140, 64, 64, FuelBox2, HealthBox, Groen, Player2Box, Fueladder2, Speed2, Ronde2, 3);
             p1 = new Player("Player 1", c1, g, this, null, Keys.W, Keys.S, Keys.D, Keys.A, Keys.ShiftKey, 520, 80, 64, 64, FuelBox, HealthBox1, Groen, Player1Box, Fueladder, Speed1, Ronde1, 3);
@@ -54,6 +51,7 @@ namespace Racegame
 
             //e.Graphics.Dispose();
         }
+
     }
 }
 

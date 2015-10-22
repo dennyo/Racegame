@@ -48,19 +48,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CharacterSelect.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CharacterSelect.designer.cs">
-      <DependentUpon>CharacterSelect.cs</DependentUpon>
-    </Compile>
     <Compile Include="Location.cs" />
-    <Compile Include="MapSelect.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MapSelect.designer.cs">
-      <DependentUpon>MapSelect.cs</DependentUpon>
-    </Compile>
     <Compile Include="Powerup.cs" />
     <Compile Include="RaceGame.cs">
       <SubType>Form</SubType>
@@ -69,26 +57,17 @@
       <DependentUpon>RaceGame.cs</DependentUpon>
     </Compile>
     <Compile Include="Game.cs" />
-    <Compile Include="MainMenu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainMenu.designer.cs">
-      <DependentUpon>MainMenu.cs</DependentUpon>
-    </Compile>
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="CharacterSelect.resx">
-      <DependentUpon>CharacterSelect.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MapSelect.resx">
-      <DependentUpon>MapSelect.cs</DependentUpon>
-    </EmbeddedResource>
+    <Compile Include="MainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainMenu.Designer.cs">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="RaceGame.resx">
       <DependentUpon>RaceGame.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainMenu.resx">
-      <DependentUpon>MainMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -99,6 +78,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="MainMenu.resx">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -115,7 +115,7 @@
             // Groen
             // 
             this.Groen.BackColor = System.Drawing.Color.DarkOrange;
-            this.Groen.ErrorImage = ((System.Drawing.Image)(resources.GetObject("Groen.ErrorImage")));
+            this.Groen.ErrorImage = null;
             this.Groen.Location = new System.Drawing.Point(379, 278);
             this.Groen.Name = "Groen";
             this.Groen.Size = new System.Drawing.Size(150, 150);
@@ -230,10 +230,9 @@
             // Racegame
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1024, 768);
+            this.ClientSize = new System.Drawing.Size(1026, 729);
             this.Controls.Add(this.FinishMessage);
             this.Controls.Add(this.Player2Box);
             this.Controls.Add(this.Player1Box);
@@ -252,9 +251,8 @@
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximumSize = new System.Drawing.Size(1042, 815);
-            this.MinimumSize = new System.Drawing.Size(1042, 815);
+            this.MinimumSize = new System.Drawing.Size(1042, 726);
             this.Name = "Racegame";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Racegame";
             this.TransparencyKey = System.Drawing.Color.Maroon;
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Racegame_Paint);

@@ -47,12 +47,10 @@ namespace Racegame {
             this.form = form;
             this.main = main;
             this.FinishMessage = FinishMessage;
-            this.mainMenuSound = main.player;
             pw = new Powerup(this, 300, 200);
 
             SoundPlayer soundplayer = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, soundtrack));
             this.soundtrack = soundplayer;
-            main.player.Stop();
             soundplayer.PlayLooping();
 
             for(int i = 0; i < checkpointAmount; i++) {
@@ -605,10 +603,7 @@ namespace Racegame {
             }
         }
 
-        private void Racegame_FormClosing(object sender, FormClosingEventArgs e) {
-            main.Show();
-            main.player.PlayLooping();
         }
 
     }
-}
+
