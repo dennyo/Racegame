@@ -42,7 +42,6 @@ namespace RaceGame {
         private bool horn = false;
         private bool Horn = false;
         private string name;
-        public Graphics g;
         private Bitmap image;
         public Character Character;
         private Form Main;
@@ -61,7 +60,7 @@ namespace RaceGame {
         private MediaPlayer HornPlayer;
         private bool HornEnded = true;
 
-        public Player(string name, Character character, Graphics g, Form main, Bitmap imagew, Keys up, Keys down, Keys right, Keys left, Keys action, int x, int y, int width, int height, PictureBox fuel, PictureBox healthBox, PictureBox groen, PictureBox itemframe, System.Windows.Forms.Timer fuelTimer, Label speedLabel, Label rondeLabel, int totalCheckpoints) {
+        public Player(string name, Character character, Form main, Bitmap imagew, Keys up, Keys down, Keys right, Keys left, Keys action, int x, int y, int width, int height, PictureBox fuel, PictureBox healthBox, PictureBox groen, PictureBox itemframe, System.Windows.Forms.Timer fuelTimer, Label speedLabel, Label rondeLabel, int totalCheckpoints) {
             this.X = x;
             this.Y = y;
             this.up = up;
@@ -71,7 +70,6 @@ namespace RaceGame {
             this.action = action;
             this.Width = width;
             this.Height = height;
-            this.g = g;
             this.MaxSize = width;
             this.Character = character;
             this.Main = main;
@@ -254,7 +252,6 @@ namespace RaceGame {
             if(Angle <= -356 || Angle >= 356) {
                 Angle = 0;
             }
-            Console.WriteLine(RightActive && DownActive);
             if((LeftActive && !DownActive) || (RightActive && DownActive)) {
                 Angle -= Math.Abs(2 * Math.Abs(Speed) / 7 + 1);
             }
