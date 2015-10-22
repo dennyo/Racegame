@@ -182,10 +182,18 @@ namespace Racegame {
 
         public void Racegame_Paint(object sender, PaintEventArgs e)
         {
-            p1.DrawPlayer(e.Graphics);
-            e.Graphics.ResetTransform();
-            p2.DrawPlayer(e.Graphics);
-            e.Graphics.ResetTransform();
+            if(p1.Y < p2.Y) {
+                p2.DrawPlayer(e.Graphics);
+                e.Graphics.ResetTransform();
+                p1.DrawPlayer(e.Graphics);
+                e.Graphics.ResetTransform();
+            } else {
+                p1.DrawPlayer(e.Graphics);
+                e.Graphics.ResetTransform();
+                p2.DrawPlayer(e.Graphics);
+                e.Graphics.ResetTransform();
+            }
+
             pw.Draw(e.Graphics);
 
 
