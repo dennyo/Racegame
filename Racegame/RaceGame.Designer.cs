@@ -92,13 +92,16 @@
             // 
             // Speed2
             // 
-            this.Speed2.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.Speed2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(72)))), ((int)(((byte)(56)))));
+            this.Speed2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Speed2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Speed2.Location = new System.Drawing.Point(773, 540);
+            this.Speed2.Image = ((System.Drawing.Image)(resources.GetObject("Speed2.Image")));
+            this.Speed2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Speed2.Location = new System.Drawing.Point(658, 7);
             this.Speed2.Name = "Speed2";
-            this.Speed2.Size = new System.Drawing.Size(200, 50);
+            this.Speed2.Size = new System.Drawing.Size(149, 21);
             this.Speed2.TabIndex = 4;
-            this.Speed2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Speed2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Ronde1
             // 
@@ -131,13 +134,16 @@
             // 
             // Speed1
             // 
-            this.Speed1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.Speed1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(72)))), ((int)(((byte)(56)))));
+            this.Speed1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Speed1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Speed1.Location = new System.Drawing.Point(773, 481);
+            this.Speed1.Image = ((System.Drawing.Image)(resources.GetObject("Speed1.Image")));
+            this.Speed1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Speed1.Location = new System.Drawing.Point(193, 7);
             this.Speed1.Name = "Speed1";
-            this.Speed1.Size = new System.Drawing.Size(200, 50);
+            this.Speed1.Size = new System.Drawing.Size(149, 21);
             this.Speed1.TabIndex = 10;
-            this.Speed1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Speed1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Ronde2
             // 
@@ -220,7 +226,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1024, 768);
+            this.ClientSize = new System.Drawing.Size(1026, 741);
             this.Controls.Add(this.Player2Box);
             this.Controls.Add(this.Player1Box);
             this.Controls.Add(this.MainMenu);
@@ -238,7 +244,7 @@
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximumSize = new System.Drawing.Size(1042, 815);
-            this.MinimumSize = new System.Drawing.Size(1042, 815);
+            this.MinimumSize = new System.Drawing.Size(1042, 726);
             this.Name = "Racegame";
             this.Text = "Racegame";
             this.TransparencyKey = System.Drawing.Color.Maroon;

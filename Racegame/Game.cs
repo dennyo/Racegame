@@ -513,7 +513,7 @@ namespace Racegame {
         public void Speed(Player a, Label b)
         {
             double speed = Math.Sqrt(Math.Pow(a.SpeedX, 2) + Math.Pow(a.SpeedY, 2));
-            b.Text = "Speed: " + Math.Round(speed, 0);
+            b.Width = 10 * Convert.ToInt32(speed);
         }
 
         public void Checkpointhandler()
