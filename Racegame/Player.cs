@@ -47,7 +47,6 @@ namespace RaceGame {
         private Form Main;
         public PictureBox FuelBox;
         public PictureBox HealthBox;
-        public PictureBox Groen;
         public PictureBox ItemFrame;
         public Label SpeedLabel;
         public Label RondeLabel;
@@ -60,7 +59,7 @@ namespace RaceGame {
         private MediaPlayer HornPlayer;
         private bool HornEnded = true;
 
-        public Player(string name, Character character, Form main, Bitmap imagew, Keys up, Keys down, Keys right, Keys left, Keys action, int x, int y, int width, int height, PictureBox fuel, PictureBox healthBox, PictureBox groen, PictureBox itemframe, System.Windows.Forms.Timer fuelTimer, Label speedLabel, Label rondeLabel, int totalCheckpoints) {
+        public Player(string name, Character character, Form main, Bitmap imagew, Keys up, Keys down, Keys right, Keys left, Keys action, int x, int y, int width, int height, PictureBox fuel, PictureBox healthBox, PictureBox itemframe, System.Windows.Forms.Timer fuelTimer, Label speedLabel, Label rondeLabel, int totalCheckpoints) {
             this.X = x;
             this.Y = y;
             this.up = up;
@@ -74,7 +73,6 @@ namespace RaceGame {
             this.Character = character;
             this.Main = main;
             this.FuelBox = fuel;
-            this.Groen = groen;
             this.ItemFrame = itemframe;
             this.FuelTimer = fuelTimer;
             this.SpeedLabel = speedLabel;
@@ -88,6 +86,11 @@ namespace RaceGame {
             kleuren.Add(new int[3] {255, 150, 0}, ColorHandler.Pitstop);
             kleuren.Add(new int[3] {0, 255, 0}, ColorHandler.Gras);
             kleuren.Add(new int[3] {255, 255, 0 }, ColorHandler.Finish);
+
+            kleuren.Add(new int[3] {255, 0, 150 }, ColorHandler.Wall_Red);
+            kleuren.Add(new int[3] {0, 255, 150 }, ColorHandler.Wall_Green);
+            kleuren.Add(new int[3] {150, 0, 255 }, ColorHandler.Wall_Blue);
+            kleuren.Add(new int[3] {0, 255, 255 }, ColorHandler.Wall_Light_Blue);
 
             main.KeyDown += ControlDownHandler;
             main.KeyUp += new System.Windows.Forms.KeyEventHandler(ControlUpHandler);
@@ -274,6 +277,7 @@ namespace RaceGame {
                 checkpointsPassed.Clear();
                 if (laps >= 4) {
                     Finished = true;
+                    message.Text = name + " wins!";
                     message.Visible = true;
                 }
             }
@@ -301,6 +305,35 @@ namespace RaceGame {
                 }
             }
             return ColorHandler.None;
+        }
+
+        public void HandleWalls(Bitmap image) {
+            int xCenter = (int) (X + Width / 2);
+            int yCenter = (int) (Y + (Height /3 * 2));
+            System.Drawing.Color col = image.GetPixel(xCenter, yCenter);
+
+            switch(getColor(col.R, col.G, col.B)) {
+                
+                case ColorHandler.Wall_Red:
+                    X -= Speed + 10;
+                    break;
+
+                case ColorHandler.Wall_Green:
+                    X += Speed + 10;
+                    break;
+                    
+                case ColorHandler.Wall_Blue:
+                    Y += Speed + 10;
+
+                    break;
+
+                case ColorHandler.Wall_Light_Blue:
+                    Y -= Speed + 10;
+                    break;
+
+            }
+
+
         }
 
         public void HandleColor(Bitmap image) {
@@ -331,7 +364,7 @@ namespace RaceGame {
                     break;
 
                 case ColorHandler.Water:
-
+                    
                     break;
 
                 case ColorHandler.Pitstop:

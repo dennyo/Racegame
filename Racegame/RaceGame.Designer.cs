@@ -36,7 +36,6 @@
             this.ItemBox = new System.Windows.Forms.PictureBox();
             this.Speed2 = new System.Windows.Forms.Label();
             this.Ronde1 = new System.Windows.Forms.Label();
-            this.Groen = new System.Windows.Forms.PictureBox();
             this.Fueladder = new System.Windows.Forms.Timer(this.components);
             this.Player1Box = new System.Windows.Forms.PictureBox();
             this.FuelBox2 = new System.Windows.Forms.PictureBox();
@@ -52,7 +51,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.HealthBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Groen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Player1Box)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.HealthBox1)).BeginInit();
@@ -111,16 +109,6 @@
             this.Ronde1.Size = new System.Drawing.Size(200, 50);
             this.Ronde1.TabIndex = 5;
             this.Ronde1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // Groen
-            // 
-            this.Groen.BackColor = System.Drawing.Color.DarkOrange;
-            this.Groen.ErrorImage = null;
-            this.Groen.Location = new System.Drawing.Point(379, 278);
-            this.Groen.Name = "Groen";
-            this.Groen.Size = new System.Drawing.Size(150, 150);
-            this.Groen.TabIndex = 6;
-            this.Groen.TabStop = false;
             // 
             // Player1Box
             // 
@@ -232,8 +220,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1026, 729);
-            this.Controls.Add(this.FinishMessage);
+            this.ClientSize = new System.Drawing.Size(1024, 768);
             this.Controls.Add(this.Player2Box);
             this.Controls.Add(this.Player1Box);
             this.Controls.Add(this.MainMenu);
@@ -243,15 +230,15 @@
             this.Controls.Add(this.Ronde2);
             this.Controls.Add(this.Speed1);
             this.Controls.Add(this.FuelBox2);
-            this.Controls.Add(this.Groen);
             this.Controls.Add(this.Ronde1);
             this.Controls.Add(this.Speed2);
             this.Controls.Add(this.FuelBox);
             this.Controls.Add(this.Interface);
+            this.Controls.Add(this.FinishMessage);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximumSize = new System.Drawing.Size(1042, 815);
-            this.MinimumSize = new System.Drawing.Size(1042, 726);
+            this.MinimumSize = new System.Drawing.Size(1042, 815);
             this.Name = "Racegame";
             this.Text = "Racegame";
             this.TransparencyKey = System.Drawing.Color.Maroon;
@@ -259,7 +246,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.HealthBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Groen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Player1Box)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.HealthBox1)).EndInit();
@@ -279,7 +265,6 @@
         private System.Windows.Forms.Label Ronde1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.PictureBox Groen;
         private System.Windows.Forms.Timer Fueladder;
         private System.Windows.Forms.PictureBox Player1Box;
         private System.Windows.Forms.PictureBox FuelBox2;

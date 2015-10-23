@@ -14,20 +14,22 @@ namespace Racegame {
 
     public enum Character { David, Jos, Fiona, Jop, Sibbele, Joris, Nynke, Dick };
     public enum Map {Standard, Koopa_Beach, Rainbow_Road, Donut_Plains, Ghost_Valley, Bowser_Castle, Choco_Island, Vanilla_Lake };
-    public enum ColorHandler {Gras, Water, Pitstop, Gat, Finish, None };
+    public enum ColorHandler {Gras, Water, Pitstop, Gat, Finish, None, Wall_Red, Wall_Green, Wall_Blue, Wall_Light_Blue };
+    public enum ColorHandler_Walls {Red, Green, Blue, Light_Blue };
 
     public class Game {
 
         public bool isLoaded = false;
         public bool CheckpointPassed = false;
         public bool FinishPassed = false;
-        public Rectangle muur = new Rectangle(650 ,200 , 150, 150);
+        //public Rectangle muur = new Rectangle(650 ,200 , 150, 150);
 
         Image Banana = new Bitmap(Path.Combine(Environment.CurrentDirectory, "Banana.png"));
         Image Mushroom = new Bitmap(Path.Combine(Environment.CurrentDirectory, "Mushroom.png"));
         Image Fuel = new Bitmap(Path.Combine(Environment.CurrentDirectory, "fuel.png"));
         Bitmap colormap;
         Bitmap checkpoints;
+        Bitmap wallmap;
         Powerup pw;
 
         SoundPlayer soundtrack;
@@ -75,7 +77,7 @@ namespace Racegame {
                 case Map.Standard:
                     colormap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Standard/colormap.png")));
                     checkpoints = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Standard/checkpoints.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
-
+                    wallmap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Standard/wallmap.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
                     break;
 
                 case Map.Bowser_Castle:
@@ -96,8 +98,6 @@ namespace Racegame {
             p2.Move(form);
             p1.Move(form);
             CollisionHandler();
-            CollisionHandler(p1, muur);
-            CollisionHandler(p2, muur);
             ItemHandler();
             SpeedMeter();
             Checkpointhandler();
@@ -117,8 +117,10 @@ namespace Racegame {
         public void ColorHandler() {
             p1.HandleColor(colormap);
             p2.HandleColor(colormap);
+            p1.HandleWalls(wallmap);
+            p2.HandleWalls(wallmap);
         }
-
+        
         public void FuelHandler()
         {
             Fueling(p1, p1.FuelBox, p1.HealthBox);
@@ -180,10 +182,18 @@ namespace Racegame {
 
         public void Racegame_Paint(object sender, PaintEventArgs e)
         {
-            p1.DrawPlayer(e.Graphics);
-            e.Graphics.ResetTransform();
-            p2.DrawPlayer(e.Graphics);
-            e.Graphics.ResetTransform();
+            if(p1.Y < p2.Y) {
+                p2.DrawPlayer(e.Graphics);
+                e.Graphics.ResetTransform();
+                p1.DrawPlayer(e.Graphics);
+                e.Graphics.ResetTransform();
+            } else {
+                p1.DrawPlayer(e.Graphics);
+                e.Graphics.ResetTransform();
+                p2.DrawPlayer(e.Graphics);
+                e.Graphics.ResetTransform();
+            }
+
             pw.Draw(e.Graphics);
 
 
@@ -192,8 +202,7 @@ namespace Racegame {
 
         public void CollisionHandler()
         {
-            CheckCollision(p1, p1.Groen);
-            CheckCollision(p2, p2.Groen);
+
         }
 
         public void CheckCollision(Player a, PictureBox b)
