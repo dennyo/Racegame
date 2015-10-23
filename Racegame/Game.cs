@@ -117,8 +117,10 @@ namespace Racegame {
         public void ColorHandler() {
             p1.HandleColor(colormap);
             p2.HandleColor(colormap);
-            p1.HandleWalls(wallmap);
-            p2.HandleWalls(wallmap);
+            if(map != Map.Koopa_Beach && map != Map.Rainbow_Road) {
+                p1.HandleWalls(wallmap);
+                p2.HandleWalls(wallmap);
+            }
         }
         
         public void FuelHandler()
