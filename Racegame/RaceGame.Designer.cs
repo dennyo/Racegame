@@ -32,28 +32,22 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Racegame));
             this.GameTimer = new System.Windows.Forms.Timer(this.components);
             this.FuelBox = new System.Windows.Forms.PictureBox();
-            this.HealthBox = new System.Windows.Forms.PictureBox();
             this.ItemBox = new System.Windows.Forms.PictureBox();
             this.Speed2 = new System.Windows.Forms.Label();
-            this.Ronde1 = new System.Windows.Forms.Label();
             this.Fueladder = new System.Windows.Forms.Timer(this.components);
             this.Player1Box = new System.Windows.Forms.PictureBox();
             this.FuelBox2 = new System.Windows.Forms.PictureBox();
             this.Speed1 = new System.Windows.Forms.Label();
-            this.Ronde2 = new System.Windows.Forms.Label();
             this.Fueladder2 = new System.Windows.Forms.Timer(this.components);
-            this.HealthBox1 = new System.Windows.Forms.PictureBox();
             this.FinishMessage = new System.Windows.Forms.Label();
             this.PlayAgain = new System.Windows.Forms.Button();
             this.MainMenu = new System.Windows.Forms.Button();
             this.Interface = new System.Windows.Forms.PictureBox();
             this.Player2Box = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.HealthBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Player1Box)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.HealthBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Interface)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Player2Box)).BeginInit();
             this.SuspendLayout();
@@ -71,15 +65,6 @@
             this.FuelBox.Size = new System.Drawing.Size(200, 10);
             this.FuelBox.TabIndex = 1;
             this.FuelBox.TabStop = false;
-            // 
-            // HealthBox
-            // 
-            this.HealthBox.BackColor = System.Drawing.Color.Red;
-            this.HealthBox.Location = new System.Drawing.Point(193, 44);
-            this.HealthBox.Name = "HealthBox";
-            this.HealthBox.Size = new System.Drawing.Size(200, 10);
-            this.HealthBox.TabIndex = 2;
-            this.HealthBox.TabStop = false;
             // 
             // ItemBox
             // 
@@ -99,19 +84,10 @@
             this.Speed2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Speed2.Location = new System.Drawing.Point(658, 7);
             this.Speed2.Name = "Speed2";
+            this.Speed2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Speed2.Size = new System.Drawing.Size(149, 21);
             this.Speed2.TabIndex = 4;
             this.Speed2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // Ronde1
-            // 
-            this.Ronde1.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.Ronde1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Ronde1.Location = new System.Drawing.Point(773, 600);
-            this.Ronde1.Name = "Ronde1";
-            this.Ronde1.Size = new System.Drawing.Size(200, 50);
-            this.Ronde1.TabIndex = 5;
-            this.Ronde1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Player1Box
             // 
@@ -141,28 +117,10 @@
             this.Speed1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Speed1.Location = new System.Drawing.Point(193, 7);
             this.Speed1.Name = "Speed1";
+            this.Speed1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Speed1.Size = new System.Drawing.Size(149, 21);
             this.Speed1.TabIndex = 10;
             this.Speed1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // Ronde2
-            // 
-            this.Ronde2.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.Ronde2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Ronde2.Location = new System.Drawing.Point(773, 663);
-            this.Ronde2.Name = "Ronde2";
-            this.Ronde2.Size = new System.Drawing.Size(200, 50);
-            this.Ronde2.TabIndex = 11;
-            this.Ronde2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // HealthBox1
-            // 
-            this.HealthBox1.BackColor = System.Drawing.Color.Red;
-            this.HealthBox1.Location = new System.Drawing.Point(616, 44);
-            this.HealthBox1.Name = "HealthBox1";
-            this.HealthBox1.Size = new System.Drawing.Size(200, 10);
-            this.HealthBox1.TabIndex = 12;
-            this.HealthBox1.TabStop = false;
             // 
             // FinishMessage
             // 
@@ -226,17 +184,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1026, 741);
+            this.ClientSize = new System.Drawing.Size(1024, 741);
             this.Controls.Add(this.Player2Box);
             this.Controls.Add(this.Player1Box);
             this.Controls.Add(this.MainMenu);
-            this.Controls.Add(this.HealthBox1);
             this.Controls.Add(this.ItemBox);
-            this.Controls.Add(this.HealthBox);
-            this.Controls.Add(this.Ronde2);
             this.Controls.Add(this.Speed1);
             this.Controls.Add(this.FuelBox2);
-            this.Controls.Add(this.Ronde1);
             this.Controls.Add(this.Speed2);
             this.Controls.Add(this.FuelBox);
             this.Controls.Add(this.Interface);
@@ -250,11 +204,9 @@
             this.TransparencyKey = System.Drawing.Color.Maroon;
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Racegame_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.HealthBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Player1Box)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.HealthBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Interface)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Player2Box)).EndInit();
             this.ResumeLayout(false);
@@ -265,19 +217,15 @@
         #endregion
         private System.Windows.Forms.Timer GameTimer;
         private System.Windows.Forms.PictureBox FuelBox;
-        private System.Windows.Forms.PictureBox HealthBox;
         private System.Windows.Forms.PictureBox ItemBox;
         private System.Windows.Forms.Label Speed2;
-        private System.Windows.Forms.Label Ronde1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Timer Fueladder;
         private System.Windows.Forms.PictureBox Player1Box;
         private System.Windows.Forms.PictureBox FuelBox2;
         private System.Windows.Forms.Label Speed1;
-        private System.Windows.Forms.Label Ronde2;
         private System.Windows.Forms.Timer Fueladder2;
-        private System.Windows.Forms.PictureBox HealthBox1;
         private System.Windows.Forms.Label FinishMessage;
         private System.Windows.Forms.Button PlayAgain;
         private System.Windows.Forms.Button MainMenu;

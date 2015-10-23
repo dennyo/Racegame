@@ -31,10 +31,11 @@ namespace Racegame
             this.main = main;
             GameTimer.Enabled = true;
             g = this.CreateGraphics();
-            p2 = new Player("Player 2", c2, this, null, Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.ControlKey, 500, 140, 64, 64, FuelBox2, HealthBox, Player2Box, Fueladder2, Speed2, Ronde2, 3);
-            p1 = new Player("Player 1", c1, this, null, Keys.W, Keys.S, Keys.D, Keys.A, Keys.ShiftKey, 520, 80, 64, 64, FuelBox, HealthBox1, Player1Box, Fueladder, Speed1, Ronde1, 3);
+            p2 = new Player("Player 2", c2, this, null, Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.ControlKey, 500, 140, 64, 64, FuelBox2, Player2Box, Fueladder2, Speed2, 3);
+            p1 = new Player("Player 1", c1, this, null, Keys.W, Keys.S, Keys.D, Keys.A, Keys.ShiftKey, 520, 80, 64, 64, FuelBox, Player1Box, Fueladder, Speed1, 3);
             Game game = new Game(main, this, p1, p2, map1, "Standard.wav", FinishMessage, 3);
             this.game = game;
+            this.BackgroundImage = game.circuit;
 
         }
 
