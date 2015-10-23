@@ -25,7 +25,7 @@ namespace Racegame
         SoundPlayer player;
         public Game game;
 
-        public Racegame(MainMenu main, Character c1, Character c2)
+        public Racegame(MainMenu main, Character c1, Character c2, Map map1)
         {
             InitializeComponent();         
             this.main = main;
@@ -33,7 +33,7 @@ namespace Racegame
             g = this.CreateGraphics();
             p2 = new Player("Player 2", c2, this, null, Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.ControlKey, 500, 140, 64, 64, FuelBox2, HealthBox, Player2Box, Fueladder2, Speed2, Ronde2, 3);
             p1 = new Player("Player 1", c1, this, null, Keys.W, Keys.S, Keys.D, Keys.A, Keys.ShiftKey, 520, 80, 64, 64, FuelBox, HealthBox1, Player1Box, Fueladder, Speed1, Ronde1, 3);
-            Game game = new Game(main, this, p1, p2, Map.Standard, "Standard.wav", FinishMessage, 3);
+            Game game = new Game(main, this, p1, p2, map1, "Standard.wav", FinishMessage, 3);
             this.game = game;
 
         }

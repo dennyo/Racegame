@@ -13,7 +13,7 @@ using System.Windows.Forms;
 namespace Racegame {
 
     public enum Character { David, Jos, Fiona, Jop, Sibbele, Joris, Nynke, Dick };
-    public enum Map {Standard, Koopa_Beach, Rainbow_Road, Donut_Plains, Ghost_Valley, Bowser_Castle, Choco_Island, Vanilla_Lake };
+    public enum Map {Standard, Donut_Plains, Ghost_Valley, Bowser_Castle, Choco_Island, Koopa_Beach, Vanilla_Lake, Rainbow_Road};
     public enum ColorHandler {Gras, Water, Pitstop, Gat, Finish, None, Wall_Red, Wall_Green, Wall_Blue, Wall_Light_Blue };
     public enum ColorHandler_Walls {Red, Green, Blue, Light_Blue };
 
@@ -66,24 +66,46 @@ namespace Racegame {
             p2.FuelTimer.Tick += new System.EventHandler(this.Fueladder2_Tick);
 
             switch(map) {
-                case Map.Koopa_Beach:
-
-                    break;
-
-                case Map.Rainbow_Road:
-                    
-                    break;
-
                 case Map.Standard:
                     colormap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Standard/colormap.png")));
                     checkpoints = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Standard/checkpoints.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
                     wallmap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Standard/wallmap.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
                     break;
-
-                case Map.Bowser_Castle:
-
+                case Map.Donut_Plains:
+                    colormap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Donut Plains/colormap.png")));
+                    checkpoints = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Donut Plains/checkpoints.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
+                    wallmap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Donut Plains/wallmap.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
                     break;
-
+                case Map.Ghost_Valley:
+                    colormap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Ghost Valley/colormap.png")));
+                    checkpoints = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Ghost Valley/checkpoints.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
+                    wallmap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Ghost Valley/wallmap.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
+                    break;
+                case Map.Bowser_Castle:
+                    colormap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Bowser Castle/colormap.png")));
+                    checkpoints = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Bowser Castle/checkpoints.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
+                    wallmap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Bowser Castle/wallmap.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
+                    break;
+                case Map.Choco_Island:
+                    colormap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Choco Island/colormap.png")));
+                    checkpoints = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Choco Island/checkpoints.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
+                    wallmap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Choco Island/wallmap.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
+                    break;
+                case Map.Koopa_Beach:
+                    colormap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Koopa Beach/colormap.png")));
+                    checkpoints = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Koopa Beach/checkpoints.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
+                    wallmap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Koopa Beach/wallmap.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
+                    break;
+                case Map.Vanilla_Lake:
+                    colormap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Vanilla Lake/colormap.png")));
+                    checkpoints = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Vanilla Lake/checkpoints.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
+                    wallmap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Vanilla Lake/wallmap.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
+                    break;
+                case Map.Rainbow_Road:
+                    colormap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Rainbow Road/colormap.png")));
+                    checkpoints = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Rainbow Road/checkpoints.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
+                    wallmap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Rainbow Road/wallmap.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
+                    break; 
             }
 
             //pw.SpinItemBox(p1);
@@ -493,7 +515,7 @@ namespace Racegame {
         public void Speed(Player a, Label b)
         {
             double speed = Math.Sqrt(Math.Pow(a.SpeedX, 2) + Math.Pow(a.SpeedY, 2));
-            b.Text = "Speed: " + Math.Round(speed, 0);
+            b.Width = 10 * Convert.ToInt32(speed);
         }
 
         public void Checkpointhandler()

@@ -109,7 +109,7 @@ namespace Racegame
                     {
                         player.Stop();
                         this.Hide();                  
-                        Racegame frm = new Racegame(main, p1choice, p2choice);
+                        Racegame frm = new Racegame(main, p1choice, p2choice, MapChoice);
                         frm.ShowDialog();
                         this.Close();
                     }
@@ -958,43 +958,43 @@ namespace Racegame
             if (Map2Selected == true && EnterPressed == true)
             {
                 MapChosen = true;
-                MapChoice = Map.Standard;
+                MapChoice = Map.Donut_Plains;
                 EnterPressed = false;
             }
             if (Map3Selected == true && EnterPressed == true)
             {
                 MapChosen = true;
-                MapChoice = Map.Standard;
+                MapChoice = Map.Ghost_Valley;
                 EnterPressed = false;
             }
             if (Map4Selected == true && EnterPressed == true)
             {
                 MapChosen = true;
-                MapChoice = Map.Standard;
+                MapChoice = Map.Bowser_Castle;
                 EnterPressed = false;
             }
             if (Map5Selected == true && EnterPressed == true)
             {
                 MapChosen = true;
-                MapChoice = Map.Standard;
+                MapChoice = Map.Choco_Island;
                 EnterPressed = false;
             }
             if (Map6Selected == true && EnterPressed == true)
             {
                 MapChosen = true;
-                MapChoice = Map.Standard;
+                MapChoice = Map.Koopa_Beach;
                 EnterPressed = false;
             }
             if (Map7Selected == true && EnterPressed == true)
             {
                 MapChosen = true;
-                MapChoice = Map.Standard;
+                MapChoice = Map.Vanilla_Lake;
                 EnterPressed = false;
             }
             if (Map8Selected == true && EnterPressed == true)
             {
                 MapChosen = true;
-                MapChoice = Map.Standard;
+                MapChoice = Map.Rainbow_Road;
                 EnterPressed = false;
             }
             return MapChoice;
