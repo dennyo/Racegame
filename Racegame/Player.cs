@@ -46,10 +46,8 @@ namespace RaceGame {
         public Character Character;
         private Form Main;
         public PictureBox FuelBox;
-        public PictureBox HealthBox;
         public PictureBox ItemFrame;
         public Label SpeedLabel;
-        public Label RondeLabel;
         public System.Windows.Forms.Timer FuelTimer;
         double[] angles = new double[23] {8.65, 23.35, 35.45, 47.55, 59.65, 71.75, 83.85, 96.15, 108.25, 120.35, 132.45, 144.55, 156.65, 171.35, 191.25, 213.75, 236.25, 258.75, 281.25, 303.75, 326.25, 348.75, 368.65};
         Dictionary<int[], ColorHandler> kleuren = new Dictionary<int[], ColorHandler>();
@@ -59,7 +57,7 @@ namespace RaceGame {
         private MediaPlayer HornPlayer;
         private bool HornEnded = true;
 
-        public Player(string name, Character character, Form main, Bitmap imagew, Keys up, Keys down, Keys right, Keys left, Keys action, int x, int y, int width, int height, PictureBox fuel, PictureBox healthBox, PictureBox itemframe, System.Windows.Forms.Timer fuelTimer, Label speedLabel, Label rondeLabel, int totalCheckpoints) {
+        public Player(string name, Character character, Form main, Bitmap imagew, Keys up, Keys down, Keys right, Keys left, Keys action, int x, int y, int width, int height, PictureBox fuel, PictureBox itemframe, System.Windows.Forms.Timer fuelTimer, Label speedLabel, int totalCheckpoints) {
             this.X = x;
             this.Y = y;
             this.up = up;
@@ -76,9 +74,7 @@ namespace RaceGame {
             this.ItemFrame = itemframe;
             this.FuelTimer = fuelTimer;
             this.SpeedLabel = speedLabel;
-            this.RondeLabel = rondeLabel;
             this.name = name;
-            this.HealthBox = healthBox;
             this.rect = new Rectangle(0, 0, Width, Width);
             this.totalCheckpoints = totalCheckpoints;
 
