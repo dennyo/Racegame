@@ -31,14 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Super_InformatiKart));
             this.Main = new System.Windows.Forms.Panel();
-            this.ExitSelect = new System.Windows.Forms.PictureBox();
-            this.PlaySelect = new System.Windows.Forms.PictureBox();
-            this.ExitButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.PlayButton1 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.CharacterSelection = new System.Windows.Forms.Panel();
-            this.EnterMessage = new System.Windows.Forms.Label();
             this.pictureBox16 = new System.Windows.Forms.PictureBox();
             this.pictureBox15 = new System.Windows.Forms.PictureBox();
             this.pictureBox14 = new System.Windows.Forms.PictureBox();
@@ -55,7 +49,6 @@
             this.Fiona = new System.Windows.Forms.PictureBox();
             this.David = new System.Windows.Forms.PictureBox();
             this.Jos = new System.Windows.Forms.PictureBox();
-            this.P1prompt = new System.Windows.Forms.Label();
             this.PictureBox8 = new System.Windows.Forms.PictureBox();
             this.PictureBox2 = new System.Windows.Forms.PictureBox();
             this.PictureBox3 = new System.Windows.Forms.PictureBox();
@@ -64,9 +57,9 @@
             this.PictureBox6 = new System.Windows.Forms.PictureBox();
             this.PictureBox7 = new System.Windows.Forms.PictureBox();
             this.PictureBox1 = new System.Windows.Forms.PictureBox();
-            this.P2prompt = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.MapSelection = new System.Windows.Forms.Panel();
+            this.mapName = new System.Windows.Forms.PictureBox();
             this.pictureBox17 = new System.Windows.Forms.PictureBox();
             this.pictureBox18 = new System.Windows.Forms.PictureBox();
             this.pictureBox19 = new System.Windows.Forms.PictureBox();
@@ -77,10 +70,8 @@
             this.pictureBox24 = new System.Windows.Forms.PictureBox();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
-            this.mapName = new System.Windows.Forms.PictureBox();
+            this.PlayQuit = new System.Windows.Forms.PictureBox();
             this.Main.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ExitSelect)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PlaySelect)).BeginInit();
             this.CharacterSelection.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
@@ -107,6 +98,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
             this.MapSelection.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mapName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).BeginInit();
@@ -115,60 +107,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mapName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PlayQuit)).BeginInit();
             this.SuspendLayout();
             // 
             // Main
             // 
             this.Main.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Main.BackgroundImage")));
             this.Main.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Main.Controls.Add(this.ExitSelect);
-            this.Main.Controls.Add(this.PlaySelect);
-            this.Main.Controls.Add(this.ExitButton);
+            this.Main.Controls.Add(this.PlayQuit);
             this.Main.Controls.Add(this.label1);
-            this.Main.Controls.Add(this.PlayButton1);
-            this.Main.Controls.Add(this.label2);
             this.Main.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Main.Location = new System.Drawing.Point(0, 0);
             this.Main.Name = "Main";
             this.Main.Size = new System.Drawing.Size(1026, 741);
             this.Main.TabIndex = 0;
-            // 
-            // ExitSelect
-            // 
-            this.ExitSelect.BackColor = System.Drawing.Color.Black;
-            this.ExitSelect.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ExitSelect.BackgroundImage")));
-            this.ExitSelect.Location = new System.Drawing.Point(387, 533);
-            this.ExitSelect.Name = "ExitSelect";
-            this.ExitSelect.Size = new System.Drawing.Size(50, 50);
-            this.ExitSelect.TabIndex = 10;
-            this.ExitSelect.TabStop = false;
-            this.ExitSelect.Visible = false;
-            // 
-            // PlaySelect
-            // 
-            this.PlaySelect.BackColor = System.Drawing.Color.Black;
-            this.PlaySelect.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PlaySelect.BackgroundImage")));
-            this.PlaySelect.Location = new System.Drawing.Point(387, 443);
-            this.PlaySelect.Name = "PlaySelect";
-            this.PlaySelect.Size = new System.Drawing.Size(50, 50);
-            this.PlaySelect.TabIndex = 9;
-            this.PlaySelect.TabStop = false;
-            // 
-            // ExitButton
-            // 
-            this.ExitButton.BackColor = System.Drawing.Color.Black;
-            this.ExitButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ExitButton.BackgroundImage")));
-            this.ExitButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ExitButton.FlatAppearance.BorderSize = 0;
-            this.ExitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ExitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExitButton.Location = new System.Drawing.Point(462, 541);
-            this.ExitButton.Name = "ExitButton";
-            this.ExitButton.Size = new System.Drawing.Size(215, 36);
-            this.ExitButton.TabIndex = 7;
-            this.ExitButton.UseVisualStyleBackColor = false;
-            this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
             // label1
             // 
@@ -183,35 +135,10 @@
             this.label1.TabIndex = 6;
             this.label1.Text = " ";
             // 
-            // PlayButton1
-            // 
-            this.PlayButton1.BackColor = System.Drawing.Color.Black;
-            this.PlayButton1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PlayButton1.BackgroundImage")));
-            this.PlayButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.PlayButton1.FlatAppearance.BorderSize = 0;
-            this.PlayButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PlayButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PlayButton1.Location = new System.Drawing.Point(489, 443);
-            this.PlayButton1.Margin = new System.Windows.Forms.Padding(4);
-            this.PlayButton1.Name = "PlayButton1";
-            this.PlayButton1.Size = new System.Drawing.Size(167, 53);
-            this.PlayButton1.TabIndex = 5;
-            this.PlayButton1.UseVisualStyleBackColor = false;
-            this.PlayButton1.Click += new System.EventHandler(this.PlayButton1_Click);
-            // 
-            // label2
-            // 
-            this.label2.BackColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(356, 414);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(353, 212);
-            this.label2.TabIndex = 8;
-            // 
             // CharacterSelection
             // 
             this.CharacterSelection.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("CharacterSelection.BackgroundImage")));
             this.CharacterSelection.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.CharacterSelection.Controls.Add(this.EnterMessage);
             this.CharacterSelection.Controls.Add(this.pictureBox16);
             this.CharacterSelection.Controls.Add(this.pictureBox15);
             this.CharacterSelection.Controls.Add(this.pictureBox14);
@@ -228,7 +155,6 @@
             this.CharacterSelection.Controls.Add(this.Fiona);
             this.CharacterSelection.Controls.Add(this.David);
             this.CharacterSelection.Controls.Add(this.Jos);
-            this.CharacterSelection.Controls.Add(this.P1prompt);
             this.CharacterSelection.Controls.Add(this.PictureBox8);
             this.CharacterSelection.Controls.Add(this.PictureBox2);
             this.CharacterSelection.Controls.Add(this.PictureBox3);
@@ -237,23 +163,12 @@
             this.CharacterSelection.Controls.Add(this.PictureBox6);
             this.CharacterSelection.Controls.Add(this.PictureBox7);
             this.CharacterSelection.Controls.Add(this.PictureBox1);
-            this.CharacterSelection.Controls.Add(this.P2prompt);
             this.CharacterSelection.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CharacterSelection.Location = new System.Drawing.Point(0, 0);
             this.CharacterSelection.Name = "CharacterSelection";
             this.CharacterSelection.Size = new System.Drawing.Size(1026, 741);
             this.CharacterSelection.TabIndex = 8;
             this.CharacterSelection.Visible = false;
-            // 
-            // EnterMessage
-            // 
-            this.EnterMessage.BackColor = System.Drawing.Color.Transparent;
-            this.EnterMessage.Image = ((System.Drawing.Image)(resources.GetObject("EnterMessage.Image")));
-            this.EnterMessage.Location = new System.Drawing.Point(159, 45);
-            this.EnterMessage.Name = "EnterMessage";
-            this.EnterMessage.Size = new System.Drawing.Size(691, 30);
-            this.EnterMessage.TabIndex = 92;
-            this.EnterMessage.Visible = false;
             // 
             // pictureBox16
             // 
@@ -430,18 +345,6 @@
             this.Jos.TabIndex = 66;
             this.Jos.TabStop = false;
             // 
-            // P1prompt
-            // 
-            this.P1prompt.BackColor = System.Drawing.Color.Transparent;
-            this.P1prompt.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.P1prompt.ForeColor = System.Drawing.SystemColors.Window;
-            this.P1prompt.Image = ((System.Drawing.Image)(resources.GetObject("P1prompt.Image")));
-            this.P1prompt.Location = new System.Drawing.Point(159, 24);
-            this.P1prompt.Name = "P1prompt";
-            this.P1prompt.Size = new System.Drawing.Size(691, 87);
-            this.P1prompt.TabIndex = 81;
-            this.P1prompt.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
             // PictureBox8
             // 
             this.PictureBox8.BackColor = System.Drawing.Color.Transparent;
@@ -522,18 +425,6 @@
             this.PictureBox1.TabIndex = 73;
             this.PictureBox1.TabStop = false;
             // 
-            // P2prompt
-            // 
-            this.P2prompt.BackColor = System.Drawing.Color.Transparent;
-            this.P2prompt.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.P2prompt.ForeColor = System.Drawing.SystemColors.Window;
-            this.P2prompt.Image = ((System.Drawing.Image)(resources.GetObject("P2prompt.Image")));
-            this.P2prompt.Location = new System.Drawing.Point(189, 43);
-            this.P2prompt.Name = "P2prompt";
-            this.P2prompt.Size = new System.Drawing.Size(635, 44);
-            this.P2prompt.TabIndex = 82;
-            this.P2prompt.Visible = false;
-            // 
             // timer1
             // 
             this.timer1.Enabled = true;
@@ -559,6 +450,16 @@
             this.MapSelection.Size = new System.Drawing.Size(1026, 741);
             this.MapSelection.TabIndex = 1;
             this.MapSelection.Visible = false;
+            // 
+            // mapName
+            // 
+            this.mapName.BackColor = System.Drawing.Color.Black;
+            this.mapName.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.mapName.Location = new System.Drawing.Point(215, 610);
+            this.mapName.Name = "mapName";
+            this.mapName.Size = new System.Drawing.Size(596, 62);
+            this.mapName.TabIndex = 28;
+            this.mapName.TabStop = false;
             // 
             // pictureBox17
             // 
@@ -640,15 +541,16 @@
             this.pictureBox24.TabIndex = 20;
             this.pictureBox24.TabStop = false;
             // 
-            // mapName
+            // PlayQuit
             // 
-            this.mapName.BackColor = System.Drawing.Color.Black;
-            this.mapName.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.mapName.Location = new System.Drawing.Point(215, 610);
-            this.mapName.Name = "mapName";
-            this.mapName.Size = new System.Drawing.Size(596, 62);
-            this.mapName.TabIndex = 28;
-            this.mapName.TabStop = false;
+            this.PlayQuit.BackColor = System.Drawing.Color.Black;
+            this.PlayQuit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PlayQuit.BackgroundImage")));
+            this.PlayQuit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.PlayQuit.Location = new System.Drawing.Point(273, 460);
+            this.PlayQuit.Name = "PlayQuit";
+            this.PlayQuit.Size = new System.Drawing.Size(485, 188);
+            this.PlayQuit.TabIndex = 7;
+            this.PlayQuit.TabStop = false;
             // 
             // Super_InformatiKart
             // 
@@ -656,17 +558,15 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1026, 741);
+            this.Controls.Add(this.Main);
             this.Controls.Add(this.MapSelection);
             this.Controls.Add(this.CharacterSelection);
-            this.Controls.Add(this.Main);
             this.MaximumSize = new System.Drawing.Size(1042, 815);
             this.MinimumSize = new System.Drawing.Size(1042, 726);
             this.Name = "Super_InformatiKart";
             this.Text = "Super_InformatiKart";
             this.Main.ResumeLayout(false);
             this.Main.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ExitSelect)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PlaySelect)).EndInit();
             this.CharacterSelection.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
@@ -693,6 +593,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).EndInit();
             this.MapSelection.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.mapName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).EndInit();
@@ -701,7 +602,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mapName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PlayQuit)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -709,7 +610,6 @@
         #endregion
 
         private System.Windows.Forms.Panel Main;
-        private System.Windows.Forms.Button ExitButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel CharacterSelection;
         private System.Windows.Forms.PictureBox pictureBox16;
@@ -727,7 +627,6 @@
         private System.Windows.Forms.PictureBox Jop;
         private System.Windows.Forms.PictureBox Fiona;
         private System.Windows.Forms.PictureBox Jos;
-        private System.Windows.Forms.Label P1prompt;
         private System.Windows.Forms.PictureBox PictureBox8;
         private System.Windows.Forms.PictureBox PictureBox2;
         private System.Windows.Forms.PictureBox PictureBox3;
@@ -736,7 +635,6 @@
         private System.Windows.Forms.PictureBox PictureBox6;
         private System.Windows.Forms.PictureBox PictureBox7;
         private System.Windows.Forms.PictureBox PictureBox1;
-        private System.Windows.Forms.Label P2prompt;
         private System.Windows.Forms.Panel MapSelection;
         public System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;
@@ -750,11 +648,7 @@
         private System.Windows.Forms.PictureBox pictureBox24;
         private System.Windows.Forms.Timer timer3;
         private System.Windows.Forms.PictureBox David;
-        private System.Windows.Forms.PictureBox PlaySelect;
-        private System.Windows.Forms.Button PlayButton1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.PictureBox ExitSelect;
-        private System.Windows.Forms.Label EnterMessage;
         private System.Windows.Forms.PictureBox mapName;
+        private System.Windows.Forms.PictureBox PlayQuit;
     }
 }

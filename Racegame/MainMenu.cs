@@ -24,6 +24,8 @@ namespace Racegame
         MainMenu main;
         SoundPlayer player;
         public Game game;
+        public bool PlaySelected = true;
+        public bool QuitSelected = false;
         public bool DavidSelected = true;
         public bool JosSelected = false;
         public bool FionaSelected = false;
@@ -91,6 +93,11 @@ namespace Racegame
                 {
                     RightArrowActive = true;
                 }
+
+                if (keyData == Keys.Return)
+                {
+                    EnterPressed = true;
+                }
             }
             if (MapSelection.Visible == true ||
                CharacterSelection.Visible == true)
@@ -131,6 +138,7 @@ namespace Racegame
             if (Main.Visible == true)
             {
                 PlayExitSelect();
+                MainSelection();
             }
             if (CharacterSelection.Visible == true)
             {
@@ -149,20 +157,43 @@ namespace Racegame
         // Main Menu
         //
         //
+        private void MainSelection()
+        {
+            if (PlaySelected == true)
+            {
+                PlayQuit.BackgroundImage = new Bitmap(Path.Combine(Environment.CurrentDirectory, "textboxes/Play.png")); }
 
+                if( PlaySelected == true &&
+                    EnterPressed == true)
+                {
+                    Main.Visible = false;
+                    CharacterSelection.Visible = true;
+                    EnterPressed = false;
+                }
+            
+            if(QuitSelected == true)
+            {
+                PlayQuit.BackgroundImage = new Bitmap(Path.Combine(Environment.CurrentDirectory, "textboxes/Quit.png"));
+            }
+            if (QuitSelected == true &&
+                    EnterPressed == true)
+            {
+                Application.Exit();
+            }
+
+        }
         private void PlayExitSelect()
         {
             if (DownArrowActive == true)
             {
-                PlaySelect.Visible = false;
-                ExitSelect.Visible = true;
+                PlaySelected = false;
+                QuitSelected = true;
                 DownArrowActive = false;
-
             }
             if (UpArrowActive == true)
             {
-                ExitSelect.Visible = false;
-                PlaySelect.Visible = true;
+                QuitSelected = false;
+                PlaySelected = true;
                 UpArrowActive = false;
             }
 
@@ -195,12 +226,9 @@ namespace Racegame
             if (p1Chosen == true)
             {
                 ChoosingP2();
-                P1prompt.Visible = false;
-                P2prompt.Visible = true;
             }
             if (p1Chosen == true && p2Chosen == true)
             {
-                P2prompt.Visible = false;
                 CharacterSelection.Visible = false;
                 MapSelection.Visible = true;
                 EnterPressed = false;
