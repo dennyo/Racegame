@@ -122,7 +122,6 @@ namespace Racegame {
         }
 
         public void Execute() {
-
             FuelHandler();
             BorderHandler();
             p2.Move(form);

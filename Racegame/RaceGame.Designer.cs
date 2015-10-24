@@ -44,12 +44,17 @@
             this.MainMenu = new System.Windows.Forms.Button();
             this.Interface = new System.Windows.Forms.PictureBox();
             this.Player2Box = new System.Windows.Forms.PictureBox();
+            this.StartTimer = new System.Windows.Forms.Timer(this.components);
+            this.PlayerControls = new System.Windows.Forms.PictureBox();
+            this.Lakitu = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Player1Box)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Interface)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Player2Box)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PlayerControls)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Lakitu)).BeginInit();
             this.SuspendLayout();
             // 
             // GameTimer
@@ -178,12 +183,41 @@
             this.Player2Box.TabIndex = 16;
             this.Player2Box.TabStop = false;
             // 
+            // StartTimer
+            // 
+            this.StartTimer.Enabled = true;
+            this.StartTimer.Interval = 1000;
+            this.StartTimer.Tick += new System.EventHandler(this.StartTimer_Tick);
+            // 
+            // PlayerControls
+            // 
+            this.PlayerControls.BackColor = System.Drawing.Color.Black;
+            this.PlayerControls.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PlayerControls.BackgroundImage")));
+            this.PlayerControls.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.PlayerControls.Location = new System.Drawing.Point(187, 234);
+            this.PlayerControls.Name = "PlayerControls";
+            this.PlayerControls.Size = new System.Drawing.Size(650, 336);
+            this.PlayerControls.TabIndex = 17;
+            this.PlayerControls.TabStop = false;
+            // 
+            // Lakitu
+            // 
+            this.Lakitu.BackColor = System.Drawing.Color.Transparent;
+            this.Lakitu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.Lakitu.Location = new System.Drawing.Point(434, 330);
+            this.Lakitu.Name = "Lakitu";
+            this.Lakitu.Size = new System.Drawing.Size(160, 160);
+            this.Lakitu.TabIndex = 18;
+            this.Lakitu.TabStop = false;
+            // 
             // Racegame
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1026, 741);
+            this.Controls.Add(this.PlayerControls);
+            this.Controls.Add(this.Lakitu);
             this.Controls.Add(this.Player2Box);
             this.Controls.Add(this.Player1Box);
             this.Controls.Add(this.MainMenu);
@@ -208,6 +242,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Interface)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Player2Box)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PlayerControls)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Lakitu)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -230,5 +266,8 @@
         private System.Windows.Forms.Button MainMenu;
         private System.Windows.Forms.PictureBox Interface;
         private System.Windows.Forms.PictureBox Player2Box;
+        private System.Windows.Forms.Timer StartTimer;
+        private System.Windows.Forms.PictureBox PlayerControls;
+        private System.Windows.Forms.PictureBox Lakitu;
     }
 }
