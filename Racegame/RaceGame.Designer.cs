@@ -59,10 +59,10 @@
             // 
             // FuelBox
             // 
-            this.FuelBox.BackColor = System.Drawing.Color.Blue;
-            this.FuelBox.Location = new System.Drawing.Point(616, 58);
+            this.FuelBox.BackColor = System.Drawing.Color.Red;
+            this.FuelBox.Location = new System.Drawing.Point(726, 31);
             this.FuelBox.Name = "FuelBox";
-            this.FuelBox.Size = new System.Drawing.Size(200, 10);
+            this.FuelBox.Size = new System.Drawing.Size(76, 18);
             this.FuelBox.TabIndex = 1;
             this.FuelBox.TabStop = false;
             // 
@@ -77,7 +77,7 @@
             // 
             // Speed2
             // 
-            this.Speed2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(72)))), ((int)(((byte)(56)))));
+            this.Speed2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(19)))), ((int)(((byte)(127)))));
             this.Speed2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Speed2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Speed2.Image = ((System.Drawing.Image)(resources.GetObject("Speed2.Image")));
@@ -91,31 +91,31 @@
             // 
             // Player1Box
             // 
-            this.Player1Box.BackColor = System.Drawing.Color.Transparent;
-            this.Player1Box.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Player1Box.Location = new System.Drawing.Point(24, 140);
+            this.Player1Box.BackColor = System.Drawing.Color.Black;
+            this.Player1Box.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Player1Box.Location = new System.Drawing.Point(106, 12);
             this.Player1Box.Name = "Player1Box";
-            this.Player1Box.Size = new System.Drawing.Size(64, 64);
+            this.Player1Box.Size = new System.Drawing.Size(56, 56);
             this.Player1Box.TabIndex = 8;
             this.Player1Box.TabStop = false;
             // 
             // FuelBox2
             // 
-            this.FuelBox2.BackColor = System.Drawing.Color.Blue;
-            this.FuelBox2.Location = new System.Drawing.Point(193, 60);
+            this.FuelBox2.BackColor = System.Drawing.Color.Red;
+            this.FuelBox2.Location = new System.Drawing.Point(202, 31);
             this.FuelBox2.Name = "FuelBox2";
-            this.FuelBox2.Size = new System.Drawing.Size(200, 10);
+            this.FuelBox2.Size = new System.Drawing.Size(75, 18);
             this.FuelBox2.TabIndex = 9;
             this.FuelBox2.TabStop = false;
             // 
             // Speed1
             // 
-            this.Speed1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(72)))), ((int)(((byte)(56)))));
+            this.Speed1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(19)))), ((int)(((byte)(127)))));
             this.Speed1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Speed1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Speed1.Image = ((System.Drawing.Image)(resources.GetObject("Speed1.Image")));
             this.Speed1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Speed1.Location = new System.Drawing.Point(193, 7);
+            this.Speed1.Location = new System.Drawing.Point(202, 7);
             this.Speed1.Name = "Speed1";
             this.Speed1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Speed1.Size = new System.Drawing.Size(149, 21);
@@ -171,11 +171,10 @@
             // 
             // Player2Box
             // 
-            this.Player2Box.BackColor = System.Drawing.Color.Transparent;
-            this.Player2Box.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Player2Box.Location = new System.Drawing.Point(920, 130);
+            this.Player2Box.BackColor = System.Drawing.Color.Black;
+            this.Player2Box.Location = new System.Drawing.Point(842, 12);
             this.Player2Box.Name = "Player2Box";
-            this.Player2Box.Size = new System.Drawing.Size(64, 64);
+            this.Player2Box.Size = new System.Drawing.Size(56, 56);
             this.Player2Box.TabIndex = 16;
             this.Player2Box.TabStop = false;
             // 
@@ -184,7 +183,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1024, 741);
+            this.ClientSize = new System.Drawing.Size(1026, 741);
             this.Controls.Add(this.Player2Box);
             this.Controls.Add(this.Player1Box);
             this.Controls.Add(this.MainMenu);

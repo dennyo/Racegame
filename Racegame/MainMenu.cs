@@ -73,6 +73,25 @@ namespace Racegame
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
+            if (Main.Visible == true)
+            {
+                if (keyData == Keys.Down)
+                {
+                    DownArrowActive = true;
+                }
+                if(keyData == Keys.Up)
+                {
+                    UpArrowActive = true;
+                }
+                if (keyData == Keys.Left)
+                {
+                    LeftArrowActive = true;
+                }
+                if (keyData == Keys.Right)
+                {
+                    RightArrowActive = true;
+                }
+            }
             if (MapSelection.Visible == true ||
                CharacterSelection.Visible == true)
             {
@@ -127,6 +146,10 @@ namespace Racegame
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            if (Main.Visible == true)
+            {
+                PlayExitSelect();
+            }
             if (CharacterSelection.Visible == true)
             {
                 SelectionHandler();
@@ -144,6 +167,25 @@ namespace Racegame
         // Main Menu
         //
         //
+
+        private void PlayExitSelect()
+        {
+            if (DownArrowActive == true)
+            {
+                PlaySelect.Visible = false;
+                ExitSelect.Visible = true;
+                DownArrowActive = false;
+
+            }
+            if (UpArrowActive == true)
+            {
+                ExitSelect.Visible = false;
+                PlaySelect.Visible = true;
+                UpArrowActive = false;
+            }
+
+        }
+
 
         private void PlayButton1_Click(object sender, EventArgs e)
         {
@@ -171,10 +213,13 @@ namespace Racegame
             if (p1Chosen == true)
             {
                 ChoosingP2();
+                P1prompt.Visible = false;
+                P2prompt.Visible = true;
             }
             if (p1Chosen == true && p2Chosen == true)
             {
                 PlayButton2.Visible = true;
+                P2prompt.Image = null;
             }
         }
 

@@ -33,7 +33,6 @@
             this.Main = new System.Windows.Forms.Panel();
             this.ExitButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.PlayButton1 = new System.Windows.Forms.Button();
             this.CharacterSelection = new System.Windows.Forms.Panel();
             this.MainmenuButton = new System.Windows.Forms.Button();
             this.pictureBox16 = new System.Windows.Forms.PictureBox();
@@ -77,6 +76,10 @@
             this.pictureBox24 = new System.Windows.Forms.PictureBox();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
+            this.PlayButton1 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.PlaySelect = new System.Windows.Forms.PictureBox();
+            this.ExitSelect = new System.Windows.Forms.PictureBox();
             this.Main.SuspendLayout();
             this.CharacterSelection.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
@@ -112,15 +115,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PlaySelect)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ExitSelect)).BeginInit();
             this.SuspendLayout();
             // 
             // Main
             // 
             this.Main.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Main.BackgroundImage")));
             this.Main.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Main.Controls.Add(this.ExitSelect);
+            this.Main.Controls.Add(this.PlaySelect);
             this.Main.Controls.Add(this.ExitButton);
             this.Main.Controls.Add(this.label1);
             this.Main.Controls.Add(this.PlayButton1);
+            this.Main.Controls.Add(this.label2);
             this.Main.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Main.Location = new System.Drawing.Point(0, 0);
             this.Main.Name = "Main";
@@ -129,13 +137,17 @@
             // 
             // ExitButton
             // 
+            this.ExitButton.BackColor = System.Drawing.Color.Black;
+            this.ExitButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ExitButton.BackgroundImage")));
+            this.ExitButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ExitButton.FlatAppearance.BorderSize = 0;
+            this.ExitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ExitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExitButton.Location = new System.Drawing.Point(329, 556);
+            this.ExitButton.Location = new System.Drawing.Point(462, 536);
             this.ExitButton.Name = "ExitButton";
-            this.ExitButton.Size = new System.Drawing.Size(351, 92);
+            this.ExitButton.Size = new System.Drawing.Size(215, 36);
             this.ExitButton.TabIndex = 7;
-            this.ExitButton.Text = "Exit";
-            this.ExitButton.UseVisualStyleBackColor = true;
+            this.ExitButton.UseVisualStyleBackColor = false;
             this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
             // label1
@@ -150,18 +162,6 @@
             this.label1.Size = new System.Drawing.Size(27, 39);
             this.label1.TabIndex = 6;
             this.label1.Text = " ";
-            // 
-            // PlayButton1
-            // 
-            this.PlayButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PlayButton1.Location = new System.Drawing.Point(329, 371);
-            this.PlayButton1.Margin = new System.Windows.Forms.Padding(4);
-            this.PlayButton1.Name = "PlayButton1";
-            this.PlayButton1.Size = new System.Drawing.Size(351, 123);
-            this.PlayButton1.TabIndex = 5;
-            this.PlayButton1.Text = "Play";
-            this.PlayButton1.UseVisualStyleBackColor = true;
-            this.PlayButton1.Click += new System.EventHandler(this.PlayButton1_Click);
             // 
             // CharacterSelection
             // 
@@ -395,11 +395,11 @@
             this.P1prompt.BackColor = System.Drawing.Color.Transparent;
             this.P1prompt.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.P1prompt.ForeColor = System.Drawing.SystemColors.Window;
-            this.P1prompt.Location = new System.Drawing.Point(167, 26);
+            this.P1prompt.Image = ((System.Drawing.Image)(resources.GetObject("P1prompt.Image")));
+            this.P1prompt.Location = new System.Drawing.Point(159, 19);
             this.P1prompt.Name = "P1prompt";
             this.P1prompt.Size = new System.Drawing.Size(691, 87);
             this.P1prompt.TabIndex = 81;
-            this.P1prompt.Text = "Player 1, please choose a character.";
             this.P1prompt.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // PictureBox8
@@ -498,15 +498,14 @@
             // 
             // P2prompt
             // 
-            this.P2prompt.AutoSize = true;
             this.P2prompt.BackColor = System.Drawing.Color.Transparent;
             this.P2prompt.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.P2prompt.ForeColor = System.Drawing.SystemColors.Window;
-            this.P2prompt.Location = new System.Drawing.Point(191, 26);
+            this.P2prompt.Image = ((System.Drawing.Image)(resources.GetObject("P2prompt.Image")));
+            this.P2prompt.Location = new System.Drawing.Point(189, 38);
             this.P2prompt.Name = "P2prompt";
             this.P2prompt.Size = new System.Drawing.Size(635, 44);
             this.P2prompt.TabIndex = 82;
-            this.P2prompt.Text = "Player 2, please choose a character.";
             this.P2prompt.Visible = false;
             // 
             // timer1
@@ -650,14 +649,59 @@
             // 
             this.timer3.Interval = 20;
             // 
+            // PlayButton1
+            // 
+            this.PlayButton1.BackColor = System.Drawing.Color.Black;
+            this.PlayButton1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PlayButton1.BackgroundImage")));
+            this.PlayButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.PlayButton1.FlatAppearance.BorderSize = 0;
+            this.PlayButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PlayButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PlayButton1.Location = new System.Drawing.Point(489, 438);
+            this.PlayButton1.Margin = new System.Windows.Forms.Padding(4);
+            this.PlayButton1.Name = "PlayButton1";
+            this.PlayButton1.Size = new System.Drawing.Size(167, 53);
+            this.PlayButton1.TabIndex = 5;
+            this.PlayButton1.UseVisualStyleBackColor = false;
+            this.PlayButton1.Click += new System.EventHandler(this.PlayButton1_Click);
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(356, 409);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(353, 212);
+            this.label2.TabIndex = 8;
+            // 
+            // PlaySelect
+            // 
+            this.PlaySelect.BackColor = System.Drawing.Color.Black;
+            this.PlaySelect.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PlaySelect.BackgroundImage")));
+            this.PlaySelect.Location = new System.Drawing.Point(387, 438);
+            this.PlaySelect.Name = "PlaySelect";
+            this.PlaySelect.Size = new System.Drawing.Size(50, 50);
+            this.PlaySelect.TabIndex = 9;
+            this.PlaySelect.TabStop = false;
+            // 
+            // ExitSelect
+            // 
+            this.ExitSelect.BackColor = System.Drawing.Color.Black;
+            this.ExitSelect.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ExitSelect.BackgroundImage")));
+            this.ExitSelect.Location = new System.Drawing.Point(387, 528);
+            this.ExitSelect.Name = "ExitSelect";
+            this.ExitSelect.Size = new System.Drawing.Size(50, 50);
+            this.ExitSelect.TabIndex = 10;
+            this.ExitSelect.TabStop = false;
+            this.ExitSelect.Visible = false;
+            // 
             // Super_InformatiKart
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1026, 741);
-            this.Controls.Add(this.CharacterSelection);
             this.Controls.Add(this.Main);
             this.Controls.Add(this.MapSelection);
+            this.Controls.Add(this.CharacterSelection);
             this.MaximumSize = new System.Drawing.Size(1042, 815);
             this.MinimumSize = new System.Drawing.Size(1042, 726);
             this.Name = "Super_InformatiKart";
@@ -665,7 +709,6 @@
             this.Main.ResumeLayout(false);
             this.Main.PerformLayout();
             this.CharacterSelection.ResumeLayout(false);
-            this.CharacterSelection.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
@@ -699,6 +742,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PlaySelect)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ExitSelect)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -708,7 +753,6 @@
         private System.Windows.Forms.Panel Main;
         private System.Windows.Forms.Button ExitButton;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button PlayButton1;
         private System.Windows.Forms.Panel CharacterSelection;
         private System.Windows.Forms.PictureBox pictureBox16;
         private System.Windows.Forms.PictureBox pictureBox15;
@@ -752,5 +796,9 @@
         private System.Windows.Forms.Timer timer3;
         private System.Windows.Forms.PictureBox David;
         private System.Windows.Forms.Button MainmenuButton;
+        private System.Windows.Forms.PictureBox PlaySelect;
+        private System.Windows.Forms.Button PlayButton1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PictureBox ExitSelect;
     }
 }
