@@ -16,7 +16,11 @@ namespace Racegame
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Super_InformatiKart());
+            black form1 = new black();
+            Super_InformatiKart form2 = new Super_InformatiKart();
+            form1.Show();
+            form2.Show();
+            Application.Run();
         }
     }
 }

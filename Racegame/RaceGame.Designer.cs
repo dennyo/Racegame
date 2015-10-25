@@ -70,8 +70,8 @@
             // 
             // FuelBox
             // 
-            this.FuelBox.BackColor = System.Drawing.Color.Lime;
-            this.FuelBox.Location = new System.Drawing.Point(726, 31);
+            this.FuelBox.BackColor = System.Drawing.Color.Red;
+            this.FuelBox.Location = new System.Drawing.Point(202, 31);
             this.FuelBox.Name = "FuelBox";
             this.FuelBox.Size = new System.Drawing.Size(76, 18);
             this.FuelBox.TabIndex = 1;
@@ -112,8 +112,8 @@
             // 
             // FuelBox2
             // 
-            this.FuelBox2.BackColor = System.Drawing.Color.Lime;
-            this.FuelBox2.Location = new System.Drawing.Point(202, 31);
+            this.FuelBox2.BackColor = System.Drawing.Color.Red;
+            this.FuelBox2.Location = new System.Drawing.Point(727, 31);
             this.FuelBox2.Name = "FuelBox2";
             this.FuelBox2.Size = new System.Drawing.Size(75, 18);
             this.FuelBox2.TabIndex = 9;
@@ -255,10 +255,12 @@
             // FadeInTimer
             // 
             this.FadeInTimer.Enabled = true;
+            this.FadeInTimer.Interval = 50;
             this.FadeInTimer.Tick += new System.EventHandler(this.FadeInTimer_Tick);
             // 
             // FadeOutTimer
             // 
+            this.FadeOutTimer.Interval = 50;
             this.FadeOutTimer.Tick += new System.EventHandler(this.FadeOutTimer_Tick);
             // 
             // Racegame
@@ -266,7 +268,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1024, 768);
+            this.ClientSize = new System.Drawing.Size(1008, 729);
             this.Controls.Add(this.PlayerControls);
             this.Controls.Add(this.Lakitu);
             this.Controls.Add(this.lapCounter2);
@@ -285,9 +287,11 @@
             this.Controls.Add(this.FinishMessage);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Location = new System.Drawing.Point(300, 0);
             this.MaximumSize = new System.Drawing.Size(1042, 815);
-            this.MinimumSize = new System.Drawing.Size(1042, 815);
+            this.MinimumSize = new System.Drawing.Size(1024, 726);
             this.Name = "Racegame";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Super InformatiKart";
             this.TransparencyKey = System.Drawing.Color.Maroon;
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Racegame_Paint);
