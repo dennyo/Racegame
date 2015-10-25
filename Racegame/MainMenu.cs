@@ -64,6 +64,7 @@ namespace Racegame
         public Character p2choice;
         Image Selector1 = new Bitmap(Path.Combine(Environment.CurrentDirectory, "Character Select icon 1P.png"));
         Image Selector2 = new Bitmap(Path.Combine(Environment.CurrentDirectory, "Character Select icon 2P.png"));
+        Image Background = new Bitmap(Path.Combine(Environment.CurrentDirectory, "Black.png"));
 
         public Super_InformatiKart()
         {
@@ -71,6 +72,7 @@ namespace Racegame
             player = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, "THEMESONG.wav"));
             player.PlayLooping();
             timer1.Enabled = true;
+            this.Opacity = 0;
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -124,14 +126,21 @@ namespace Racegame
                 }
                 if (keyData == Keys.Escape)
                 {
-                    CharacterSelection.Visible = false;
-                    MapSelection.Visible = false;
-                    Main.Visible = true;
+                    Application.Restart();
                 }
             }
             
             return base.ProcessCmdKey(ref msg, keyData);
         }
+
+        private void FadeTimer_Tick(object sender, EventArgs e)
+        {
+            if (this.Opacity < 1)
+            {
+                this.Opacity += 0.2;
+            }
+        }
+
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -166,8 +175,7 @@ namespace Racegame
                 if( PlaySelected == true &&
                     EnterPressed == true)
                 {
-                    Main.Visible = false;
-                    CharacterSelection.Visible = true;
+                    FadeOut.Enabled = true;
                     EnterPressed = false;
                 }
             
@@ -198,19 +206,6 @@ namespace Racegame
             }
 
         }
-
-
-        private void PlayButton1_Click(object sender, EventArgs e)
-        {
-            Main.Visible = false;
-            CharacterSelection.Visible = true;
-        }
-
-        private void ExitButton_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
         //
         //
         // Character Selection
@@ -229,8 +224,7 @@ namespace Racegame
             }
             if (p1Chosen == true && p2Chosen == true)
             {
-                CharacterSelection.Visible = false;
-                MapSelection.Visible = true;
+                FadeOut.Enabled = true;
                 EnterPressed = false;
             }
         }
@@ -759,11 +753,7 @@ namespace Racegame
                 Choosing();
             if (MapChosen == true)
             {
-                player.Stop();
-                this.Hide();
-                Racegame frm = new Racegame(main, p1choice, p2choice, MapChoice);
-                frm.ShowDialog();
-                this.Close();
+                FadeOut.Enabled = true;
             }
         }
 
@@ -1119,6 +1109,76 @@ namespace Racegame
             if (Map8Selected == false)
             {
                 pictureBox24.BackgroundImage = null;
+            }
+        }
+
+        private void FadeIn_Tick(object sender, EventArgs e)
+        {
+            if (FadeOut.Enabled == false)
+            {
+                if (Main.Visible == true)
+                {
+                    if (this.Opacity == 1)
+                    {
+                        FadeIn.Enabled = false;
+                    }
+                    this.Opacity += 0.1;
+                }
+                if (CharacterSelection.Visible == true)
+                {
+                    if (this.Opacity == 1)
+                    {
+                        FadeIn.Enabled = false;
+                    }
+                    this.Opacity += 0.2;
+                }
+                if(MapSelection.Visible == true)
+                {
+                    if(this.Opacity == 1)
+                    {
+                        FadeIn.Enabled = false;
+                    }
+                    this.Opacity += 0.2;
+                }
+            }
+        }
+
+        private void FadeOut_Tick(object sender, EventArgs e)
+        {
+            if (Main.Visible == true)
+            {
+                if (this.Opacity == 0)
+                {
+                    Main.Visible = false;
+                    CharacterSelection.Visible = true;
+                    FadeOut.Enabled = false;
+                    FadeIn.Enabled = true;
+                }
+                this.Opacity -= 0.2;
+            }
+            if(CharacterSelection.Visible == true)
+            {
+                if(this.Opacity == 0 && p2Chosen == true)
+                {
+                    FadeOut.Enabled = false;
+                    CharacterSelection.Visible = false;
+                    MapSelection.Visible = true;
+                    FadeIn.Enabled = true;
+                }
+                    this.Opacity -= 0.2;
+            }
+            if(MapSelection.Visible == true)
+            {
+                if(this.Opacity == 0 && MapChosen == true)
+                {
+                    FadeOut.Enabled = false;
+                    player.Stop();
+                    this.Hide();
+                    Racegame frm = new Racegame(main, p1choice, p2choice, MapChoice);
+                    frm.ShowDialog();
+                    this.Close();
+                }
+                this.Opacity -= 0.2;
             }
         }
     }

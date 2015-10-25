@@ -32,11 +32,12 @@ namespace Racegame
             this.main = main;
             StartTimer.Enabled = true;
             g = this.CreateGraphics();
-            p2 = new Player("Player 2", c2, this, null, Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.ControlKey, 500, 140, 64, 64, FuelBox2, Player2Box, Fueladder2, Speed2, 3);
-            p1 = new Player("Player 1", c1, this, null, Keys.W, Keys.S, Keys.D, Keys.A, Keys.ShiftKey, 520, 80, 64, 64, FuelBox, Player1Box, Fueladder, Speed1, 3);
+            p2 = new Player("Player 2", c2, this, null, Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.ControlKey, 500, 140, 64, 64, FuelBox2, Player2Box, Fueladder2, Speed2, 3, lapCounter1);
+            p1 = new Player("Player 1", c1, this, null, Keys.W, Keys.S, Keys.D, Keys.A, Keys.ShiftKey, 520, 80, 64, 64, FuelBox, Player1Box, Fueladder, Speed1, 3, lapCounter2);
             Game game = new Game(main, this, p1, p2, map1, "Standard.wav", FinishMessage, 3);
             this.game = game;
             this.BackgroundImage = game.circuit;
+            this.Opacity = 0;
 
         }
 
@@ -65,6 +66,10 @@ namespace Racegame
                 PlayerControls.Visible == true)
             {
                 countDown = 4;
+            }
+            if (keyData == Keys.Escape)
+            {
+                FadeOutTimer.Enabled = true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
@@ -96,6 +101,39 @@ namespace Racegame
                 Lakitu.Visible = false;
                 StartTimer.Enabled = false;
             }
+        }
+
+        private void FadeInTimer_Tick(object sender, EventArgs e)
+        {
+            if(this.Opacity == 1)
+            {
+                FadeInTimer.Enabled = false;
+            }
+            else
+            {
+                this.Opacity += 0.1;
+            }
+        }
+
+        private void FadeOutTimer_Tick(object sender, EventArgs e)
+        {
+            if(this.Opacity == 0)
+            {
+                FadeOutTimer.Enabled = false;
+                this.Hide();
+                Super_InformatiKart frm = new Super_InformatiKart();
+                frm.ShowDialog();
+                this.Close();
+            }
+            else
+            {
+                this.Opacity -= 0.1;
+            }
+        }
+
+        private void MainMenu_Click(object sender, EventArgs e)
+        {
+            FadeOutTimer.Enabled = true;
         }
     }
 }

@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Super_InformatiKart));
             this.Main = new System.Windows.Forms.Panel();
+            this.PlayQuit = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.CharacterSelection = new System.Windows.Forms.Panel();
             this.pictureBox16 = new System.Windows.Forms.PictureBox();
@@ -68,10 +69,10 @@
             this.pictureBox22 = new System.Windows.Forms.PictureBox();
             this.pictureBox23 = new System.Windows.Forms.PictureBox();
             this.pictureBox24 = new System.Windows.Forms.PictureBox();
-            this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.timer3 = new System.Windows.Forms.Timer(this.components);
-            this.PlayQuit = new System.Windows.Forms.PictureBox();
+            this.FadeIn = new System.Windows.Forms.Timer(this.components);
+            this.FadeOut = new System.Windows.Forms.Timer(this.components);
             this.Main.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PlayQuit)).BeginInit();
             this.CharacterSelection.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
@@ -107,7 +108,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PlayQuit)).BeginInit();
             this.SuspendLayout();
             // 
             // Main
@@ -121,6 +121,17 @@
             this.Main.Name = "Main";
             this.Main.Size = new System.Drawing.Size(1026, 741);
             this.Main.TabIndex = 0;
+            // 
+            // PlayQuit
+            // 
+            this.PlayQuit.BackColor = System.Drawing.Color.Black;
+            this.PlayQuit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PlayQuit.BackgroundImage")));
+            this.PlayQuit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.PlayQuit.Location = new System.Drawing.Point(292, 396);
+            this.PlayQuit.Name = "PlayQuit";
+            this.PlayQuit.Size = new System.Drawing.Size(485, 188);
+            this.PlayQuit.TabIndex = 7;
+            this.PlayQuit.TabStop = false;
             // 
             // label1
             // 
@@ -541,32 +552,31 @@
             this.pictureBox24.TabIndex = 20;
             this.pictureBox24.TabStop = false;
             // 
-            // PlayQuit
+            // FadeIn
             // 
-            this.PlayQuit.BackColor = System.Drawing.Color.Black;
-            this.PlayQuit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PlayQuit.BackgroundImage")));
-            this.PlayQuit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PlayQuit.Location = new System.Drawing.Point(273, 460);
-            this.PlayQuit.Name = "PlayQuit";
-            this.PlayQuit.Size = new System.Drawing.Size(485, 188);
-            this.PlayQuit.TabIndex = 7;
-            this.PlayQuit.TabStop = false;
+            this.FadeIn.Enabled = true;
+            this.FadeIn.Tick += new System.EventHandler(this.FadeIn_Tick);
+            // 
+            // FadeOut
+            // 
+            this.FadeOut.Tick += new System.EventHandler(this.FadeOut_Tick);
             // 
             // Super_InformatiKart
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSize = true;
-            this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1026, 741);
-            this.Controls.Add(this.Main);
             this.Controls.Add(this.MapSelection);
             this.Controls.Add(this.CharacterSelection);
+            this.Controls.Add(this.Main);
             this.MaximumSize = new System.Drawing.Size(1042, 815);
             this.MinimumSize = new System.Drawing.Size(1042, 726);
             this.Name = "Super_InformatiKart";
-            this.Text = "Super_InformatiKart";
+            this.Text = "Super InformatiKart";
             this.Main.ResumeLayout(false);
             this.Main.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PlayQuit)).EndInit();
             this.CharacterSelection.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
@@ -602,7 +612,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PlayQuit)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -637,7 +646,6 @@
         private System.Windows.Forms.PictureBox PictureBox1;
         private System.Windows.Forms.Panel MapSelection;
         public System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.PictureBox pictureBox17;
         private System.Windows.Forms.PictureBox pictureBox18;
         private System.Windows.Forms.PictureBox pictureBox19;
@@ -646,9 +654,10 @@
         private System.Windows.Forms.PictureBox pictureBox22;
         private System.Windows.Forms.PictureBox pictureBox23;
         private System.Windows.Forms.PictureBox pictureBox24;
-        private System.Windows.Forms.Timer timer3;
         private System.Windows.Forms.PictureBox David;
         private System.Windows.Forms.PictureBox mapName;
         private System.Windows.Forms.PictureBox PlayQuit;
+        private System.Windows.Forms.Timer FadeIn;
+        private System.Windows.Forms.Timer FadeOut;
     }
 }
