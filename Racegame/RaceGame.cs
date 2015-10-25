@@ -24,12 +24,13 @@ namespace Racegame
         MainMenu main;
         SoundPlayer player;
         public Game game;
+        int countDown = 7;
 
         public Racegame(MainMenu main, Character c1, Character c2, Map map1)
         {
             InitializeComponent();         
             this.main = main;
-            GameTimer.Enabled = true;
+            StartTimer.Enabled = true;
             g = this.CreateGraphics();
             p2 = new Player("Player 2", c2, this, null, Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.ControlKey, 500, 140, 64, 64, FuelBox2, Player2Box, Fueladder2, Speed2, 3);
             p1 = new Player("Player 1", c1, this, null, Keys.W, Keys.S, Keys.D, Keys.A, Keys.ShiftKey, 520, 80, 64, 64, FuelBox, Player1Box, Fueladder, Speed1, 3);
@@ -53,6 +54,49 @@ namespace Racegame
             //e.Graphics.Dispose();
         }
 
+        private void StartTimer_Tick(object sender, EventArgs e)
+        {
+            countDown--;
+            countDownHandler();         
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Return &&
+                PlayerControls.Visible == true)
+            {
+                countDown = 4;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+        public void countDownHandler()
+        {
+            if (countDown <= 4)
+            {
+                PlayerControls.Visible = false;
+            }
+            if(countDown == 4)
+            {
+                Lakitu.BackgroundImage = new Bitmap(Path.Combine(Environment.CurrentDirectory, "Lakitu1.png"));
+            }
+            if(countDown == 3)
+            {
+                Lakitu.BackgroundImage = new Bitmap(Path.Combine(Environment.CurrentDirectory, "Lakitu2.png"));
+            }
+            if(countDown == 2)
+            {
+                Lakitu.BackgroundImage = new Bitmap(Path.Combine(Environment.CurrentDirectory, "Lakitu3.png"));
+            }
+            if(countDown == 1)
+            {
+                Lakitu.BackgroundImage = new Bitmap(Path.Combine(Environment.CurrentDirectory, "Lakitu4.png"));
+                GameTimer.Enabled = true;
+            }
+            if(countDown == 0)
+            {
+                Lakitu.Visible = false;
+                StartTimer.Enabled = false;
+            }
+        }
     }
 }
 

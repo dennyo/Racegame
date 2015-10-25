@@ -24,6 +24,8 @@ namespace Racegame
         MainMenu main;
         SoundPlayer player;
         public Game game;
+        public bool PlaySelected = true;
+        public bool QuitSelected = false;
         public bool DavidSelected = true;
         public bool JosSelected = false;
         public bool FionaSelected = false;
@@ -73,6 +75,30 @@ namespace Racegame
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
+            if (Main.Visible == true)
+            {
+                if (keyData == Keys.Down)
+                {
+                    DownArrowActive = true;
+                }
+                if(keyData == Keys.Up)
+                {
+                    UpArrowActive = true;
+                }
+                if (keyData == Keys.Left)
+                {
+                    LeftArrowActive = true;
+                }
+                if (keyData == Keys.Right)
+                {
+                    RightArrowActive = true;
+                }
+
+                if (keyData == Keys.Return)
+                {
+                    EnterPressed = true;
+                }
+            }
             if (MapSelection.Visible == true ||
                CharacterSelection.Visible == true)
             {
@@ -95,24 +121,6 @@ namespace Racegame
                 if (keyData == Keys.Return)
                 {
                     EnterPressed = true;
-                    if(CharacterSelection.Visible == true)
-                    { 
-                        if (PlayButton2.Visible == true)
-                        {
-                            CharacterSelection.Visible = false;
-                            MapSelection.Visible = true;
-                            EnterPressed = false;
-                        }
-                    }
-                    if(MapSelection.Visible == true &&
-                        PlayButton3.Visible == true)
-                    {
-                        player.Stop();
-                        this.Hide();                  
-                        Racegame frm = new Racegame(main, p1choice, p2choice, MapChoice);
-                        frm.ShowDialog();
-                        this.Close();
-                    }
                 }
                 if (keyData == Keys.Escape)
                 {
@@ -127,6 +135,11 @@ namespace Racegame
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            if (Main.Visible == true)
+            {
+                PlayExitSelect();
+                MainSelection();
+            }
             if (CharacterSelection.Visible == true)
             {
                 SelectionHandler();
@@ -144,6 +157,48 @@ namespace Racegame
         // Main Menu
         //
         //
+        private void MainSelection()
+        {
+            if (PlaySelected == true)
+            {
+                PlayQuit.BackgroundImage = new Bitmap(Path.Combine(Environment.CurrentDirectory, "textboxes/Play.png")); }
+
+                if( PlaySelected == true &&
+                    EnterPressed == true)
+                {
+                    Main.Visible = false;
+                    CharacterSelection.Visible = true;
+                    EnterPressed = false;
+                }
+            
+            if(QuitSelected == true)
+            {
+                PlayQuit.BackgroundImage = new Bitmap(Path.Combine(Environment.CurrentDirectory, "textboxes/Quit.png"));
+            }
+            if (QuitSelected == true &&
+                    EnterPressed == true)
+            {
+                Application.Exit();
+            }
+
+        }
+        private void PlayExitSelect()
+        {
+            if (DownArrowActive == true)
+            {
+                PlaySelected = false;
+                QuitSelected = true;
+                DownArrowActive = false;
+            }
+            if (UpArrowActive == true)
+            {
+                QuitSelected = false;
+                PlaySelected = true;
+                UpArrowActive = false;
+            }
+
+        }
+
 
         private void PlayButton1_Click(object sender, EventArgs e)
         {
@@ -174,7 +229,9 @@ namespace Racegame
             }
             if (p1Chosen == true && p2Chosen == true)
             {
-                PlayButton2.Visible = true;
+                CharacterSelection.Visible = false;
+                MapSelection.Visible = true;
+                EnterPressed = false;
             }
         }
 
@@ -691,18 +748,6 @@ namespace Racegame
             }
         }
 
-        private void MainmenuButton_Click(object sender, EventArgs e)
-        {
-            CharacterSelection.Visible = false;
-            Main.Visible = true;
-        }
-
-        private void PlayButton2_Click(object sender, EventArgs e)
-        {
-            CharacterSelection.Visible = false;
-            MapSelection.Visible = true;
-        }
-
         //
         //
         // Map Selection
@@ -711,13 +756,14 @@ namespace Racegame
 
         public void MapChoosingHandler()
         {
-            if (MapChosen == false)
-            {
                 Choosing();
-            }
             if (MapChosen == true)
             {
-                PlayButton3.Visible = true;
+                player.Stop();
+                this.Hide();
+                Racegame frm = new Racegame(main, p1choice, p2choice, MapChoice);
+                frm.ShowDialog();
+                this.Close();
             }
         }
 
@@ -731,6 +777,7 @@ namespace Racegame
         {
             if (Map1Selected == true)
             {
+                mapName.BackgroundImage = new Bitmap(Path.Combine(Environment.CurrentDirectory, "titles/Mario Circuit title.png"));
                 if (UpArrowActive == true)
                 {
                     Map1Selected = false;
@@ -758,6 +805,7 @@ namespace Racegame
             }
             if (Map2Selected == true)
             {
+                mapName.BackgroundImage = new Bitmap(Path.Combine(Environment.CurrentDirectory, "titles/Donut Plains title.png"));
                 if (UpArrowActive == true)
                 {
                     Map2Selected = false;
@@ -785,6 +833,7 @@ namespace Racegame
             }
             if (Map3Selected == true)
             {
+                mapName.BackgroundImage = new Bitmap(Path.Combine(Environment.CurrentDirectory, "titles/Ghost Valley title.png"));
                 if (UpArrowActive == true)
                 {
                     Map3Selected = false;
@@ -812,6 +861,7 @@ namespace Racegame
             }
             if (Map4Selected == true)
             {
+                mapName.BackgroundImage = new Bitmap(Path.Combine(Environment.CurrentDirectory, "titles/Bowser Castle title.png"));
                 if (UpArrowActive == true)
                 {
                     Map4Selected = false;
@@ -839,6 +889,7 @@ namespace Racegame
             }
             if (Map5Selected == true)
             {
+                mapName.BackgroundImage = new Bitmap(Path.Combine(Environment.CurrentDirectory, "titles/Choco Island title.png"));
                 if (UpArrowActive == true)
                 {
                     Map5Selected = false;
@@ -866,6 +917,7 @@ namespace Racegame
             }
             if (Map6Selected == true)
             {
+                mapName.BackgroundImage = new Bitmap(Path.Combine(Environment.CurrentDirectory, "titles/Koopa Beach title.png"));
                 if (UpArrowActive == true)
                 {
                     Map6Selected = false;
@@ -893,6 +945,7 @@ namespace Racegame
             }
             if (Map7Selected == true)
             {
+                mapName.BackgroundImage = new Bitmap(Path.Combine(Environment.CurrentDirectory, "titles/Vanilla Lake title.png"));
                 if (UpArrowActive == true)
                 {
                     Map7Selected = false;
@@ -920,6 +973,7 @@ namespace Racegame
             }
             if (Map8Selected == true)
             {
+                mapName.BackgroundImage = new Bitmap(Path.Combine(Environment.CurrentDirectory, "titles/Rainbow Road title.png"));
                 if (UpArrowActive == true)
                 {
                     Map8Selected = false;

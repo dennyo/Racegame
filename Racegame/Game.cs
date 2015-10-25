@@ -102,7 +102,6 @@ namespace Racegame {
                     circuit = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Koopa_Beach/circuit.png")));
                     colormap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Koopa_Beach/colormap.png")));
                     checkpoints = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Koopa_Beach/checkpoints.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
-                    wallmap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Koopa_Beach/wallmap.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
                     break;
                 case Map.Vanilla_Lake:
                     circuit = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Vanilla_Lake/circuit.png")));
@@ -114,7 +113,6 @@ namespace Racegame {
                     circuit = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Rainbow_Road/circuit.png")));
                     colormap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Rainbow_Road/colormap.png")));
                     checkpoints = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Rainbow_Road/checkpoints.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
-                    wallmap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Rainbow_Road/wallmap.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
                     break; 
             }
 
@@ -124,7 +122,6 @@ namespace Racegame {
         }
 
         public void Execute() {
-
             FuelHandler();
             BorderHandler();
             p2.Move(form);
@@ -164,10 +161,8 @@ namespace Racegame {
         public void Fueling(Player a, PictureBox b)
         {
             a.Fuel -= Math.Abs(Convert.ToInt16(a.Speed));
-            Size fuelboxsize = new Size(a.Fuel / 250 * 10, 10);
+            Size fuelboxsize = new Size(a.Fuel / 250 * 19 / 10, 18);
             b.Size = fuelboxsize;
-            Size healthboxsize = new Size(a.Health * 4, 10);
-
             if (a.Fuel <= 0)
             {
                 a.Speed = 0;
