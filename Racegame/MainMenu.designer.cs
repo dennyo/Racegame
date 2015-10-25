@@ -71,6 +71,7 @@
             this.pictureBox24 = new System.Windows.Forms.PictureBox();
             this.FadeIn = new System.Windows.Forms.Timer(this.components);
             this.FadeOut = new System.Windows.Forms.Timer(this.components);
+            this.SoundTimer = new System.Windows.Forms.Timer(this.components);
             this.Main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PlayQuit)).BeginInit();
             this.CharacterSelection.SuspendLayout();
@@ -563,6 +564,11 @@
             this.FadeOut.Interval = 50;
             this.FadeOut.Tick += new System.EventHandler(this.FadeOut_Tick);
             // 
+            // SoundTimer
+            // 
+            this.SoundTimer.Interval = 1000;
+            this.SoundTimer.Tick += new System.EventHandler(this.SoundTimer_Tick);
+            // 
             // Super_InformatiKart
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -661,5 +667,6 @@
         private System.Windows.Forms.PictureBox PlayQuit;
         private System.Windows.Forms.Timer FadeIn;
         private System.Windows.Forms.Timer FadeOut;
+        private System.Windows.Forms.Timer SoundTimer;
     }
 }

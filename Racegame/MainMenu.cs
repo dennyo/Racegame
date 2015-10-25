@@ -74,7 +74,8 @@ namespace Racegame
             InitializeComponent();
             timer1.Enabled = true;
             this.Opacity = 0;
-            for (int i = 1; i <= 44; i++) {
+            for (int i = 1; i <= 44; i++)
+            {
                 BackgroundImages.Add(new Bitmap(Path.Combine(Environment.CurrentDirectory, "Main/T" + i + ".png")));
             }
 
@@ -83,64 +84,33 @@ namespace Racegame
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
 
-                if (keyData == Keys.Down)
-                {
-                    DownArrowActive = true;
-                }
-                if(keyData == Keys.Up)
-                {
-                    UpArrowActive = true;
-                }
-                if (keyData == Keys.Left)
-                {
-                    LeftArrowActive = true;
-                }
-                if (keyData == Keys.Right)
-                {
-                    RightArrowActive = true;
-                }
-                if (keyData == Keys.Return)
-                {
-                    EnterPressed = true;
-                }
-                if (keyData == Keys.Escape)
-                {
-                    Application.Restart();
-                }                    
+            if (keyData == Keys.Down)
+            {
+                DownArrowActive = true;
+            }
+            if (keyData == Keys.Up)
+            {
+                UpArrowActive = true;
+            }
+            if (keyData == Keys.Left)
+            {
+                LeftArrowActive = true;
+            }
+            if (keyData == Keys.Right)
+            {
+                RightArrowActive = true;
+            }
+            if (keyData == Keys.Return)
+            {
+                EnterPressed = true;
+            }
+            if (keyData == Keys.Escape)
+            {
+                Application.Restart();
+            }
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        private void SoundTimer_Tick(object sender, EventArgs e)
-        {
-            if (Main.Visible == true)
-            {
-                if (counter < 4)
-                {
-                    counter++;
-                }
-                if (counter == 4)
-                {
-                    player = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, "sounds/Title screen.wav"));
-                    player.PlayLooping();
-                    SoundTimer.Enabled = false;
-                    counter = 0;
-                }
-            }
-            if (CharacterSelection.Visible == true ||
-                MapSelection.Visible == true)
-            {
-                if (counter < 11)
-                {
-                    counter++;
-                }
-                if(counter == 11)
-                {
-                    player = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, "sounds/Selection screen.wav"));
-                    player.PlayLooping();
-                    SoundTimer.Enabled = false;
-                }
-            }
-        }
 
         private void FadeTimer_Tick(object sender, EventArgs e)
         {
@@ -179,17 +149,18 @@ namespace Racegame
         {
             if (PlaySelected == true)
             {
-                PlayQuit.BackgroundImage = new Bitmap(Path.Combine(Environment.CurrentDirectory, "textboxes/Play.png")); }
+                PlayQuit.BackgroundImage = new Bitmap(Path.Combine(Environment.CurrentDirectory, "textboxes/Play.png"));
+            }
 
-                if( PlaySelected == true &&
-                    EnterPressed == true)
-                {
-                    player.Stop();
-                    FadeOut.Enabled = true;
-                    EnterPressed = false;
-                }
-            
-            if(QuitSelected == true)
+            if (PlaySelected == true &&
+                EnterPressed == true)
+            {
+                player.Stop();
+                FadeOut.Enabled = true;
+                EnterPressed = false;
+            }
+
+            if (QuitSelected == true)
             {
                 PlayQuit.BackgroundImage = new Bitmap(Path.Combine(Environment.CurrentDirectory, "textboxes/Quit.png"));
             }
@@ -760,7 +731,7 @@ namespace Racegame
 
         public void MapChoosingHandler()
         {
-                Choosing();
+            Choosing();
             if (MapChosen == true)
             {
                 FadeOut.Enabled = true;
@@ -1149,9 +1120,9 @@ namespace Racegame
                     }
                     this.Opacity += 0.2;
                 }
-                if(MapSelection.Visible == true)
+                if (MapSelection.Visible == true)
                 {
-                    if(this.Opacity == 1)
+                    if (this.Opacity == 1)
                     {
                         FadeIn.Enabled = false;
                     }
@@ -1173,20 +1144,20 @@ namespace Racegame
                 }
                 this.Opacity -= 0.2;
             }
-            if(CharacterSelection.Visible == true)
+            if (CharacterSelection.Visible == true)
             {
-                if(this.Opacity == 0 && p2Chosen == true)
+                if (this.Opacity == 0 && p2Chosen == true)
                 {
                     FadeOut.Enabled = false;
                     CharacterSelection.Visible = false;
                     MapSelection.Visible = true;
                     FadeIn.Enabled = true;
                 }
-                    this.Opacity -= 0.2;
+                this.Opacity -= 0.2;
             }
-            if(MapSelection.Visible == true)
+            if (MapSelection.Visible == true)
             {
-                if(this.Opacity == 0 && MapChosen == true)
+                if (this.Opacity == 0 && MapChosen == true)
                 {
                     FadeOut.Enabled = false;
                     player.Stop();
@@ -1199,10 +1170,14 @@ namespace Racegame
             }
         }
 
-        private void timer2_Tick(object sender, EventArgs e) {
-            if(CurrentImage < 44) {
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            if (CurrentImage < 44)
+            {
                 CurrentImage++;
-            }else {
+            }
+            else
+            {
                 CurrentImage = 1;
             }
             Main.BackgroundImage = BackgroundImages[CurrentImage - 1];
@@ -1211,6 +1186,39 @@ namespace Racegame
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void SoundTimer_Tick(object sender, EventArgs e)
+        {
+            if (Main.Visible == true)
+            {
+                if (counter < 4)
+                {
+                    counter++;
+                }
+                if (counter == 4)
+                {
+                    player = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, "sounds/Title screen.wav"));
+                    player.PlayLooping();
+                    SoundTimer.Enabled = false;
+                    counter = 0;
+                }
+            }
+            if (CharacterSelection.Visible == true ||
+                MapSelection.Visible == true)
+            {
+                if (counter < 11)
+                {
+                    counter++;
+                }
+                if (counter == 11)
+                {
+                    player = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, "sounds/Selection screen.wav"));
+                    player.PlayLooping();
+                    SoundTimer.Enabled = false;
+
+                }
+            }
         }
     }
 }
