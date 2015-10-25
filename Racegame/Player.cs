@@ -41,12 +41,16 @@ namespace RaceGame {
         private bool LeftActive = false;
         private bool horn = false;
         private bool Horn = false;
+        private bool ActivatePowerup = false;
+        private bool SpeedBoost = false;
+        public bool Immune = false;
+        public bool Hit = false;
         private string name;
         private Bitmap image;
         public Character Character;
         private Form Main;
         public PictureBox FuelBox;
-        public PowerupItem currentPowerup;
+        public PowerupItem currentPowerup = PowerupItem.Shell;
         public PictureBox ItemFrame;
         public Label SpeedLabel;
         public System.Windows.Forms.Timer FuelTimer;
@@ -222,13 +226,17 @@ namespace RaceGame {
                 PlaySound(HornSound);
             }
 
-            if(Gas) {
+            if(Gas && !Hit) {
                 if(SpeedX <= MaxSpeed && SpeedY <= MaxSpeed && Speed < MaxSpeed) {
-                    Speed += 0.2f;
+                    if(SpeedBoost) {
+                        Speed += 0.4f;
+                    }else {
+                        Speed += 0.2f;
+                    }
                 }
             }
 
-            if((!Gas && !Brake) || Speed > MaxSpeed) {
+            if(((!Gas && !Brake) || Speed > MaxSpeed) && !Hit) {
                 if(Speed > -1 && Speed < 1) {
                     Speed = 0;
                 }
@@ -239,7 +247,7 @@ namespace RaceGame {
                 }
             }
 
-            if(Brake && Speed > - MaxSpeed) {
+            if((Brake || Hit) && Speed > - MaxSpeed) {
                 Speed -= 0.2f;
             }
 
@@ -252,13 +260,13 @@ namespace RaceGame {
             if(Angle <= -356 || Angle >= 356) {
                 Angle = 0;
             }
-            if((LeftActive && !DownActive) || (RightActive && DownActive)) {
+            if(((LeftActive && !DownActive) || (RightActive && DownActive)) && Speed != 0 && !Hit) {
                 Angle -= Math.Abs(2 * Math.Abs(Speed) / 7 + 1);
             }
-            if ((RightActive && !DownActive) || (LeftActive && DownActive)) {
+            if (((RightActive && !DownActive) || (LeftActive && DownActive)) && Speed != 0 && !Hit) {
                 Angle += Math.Abs(2 * Math.Abs(Speed) / 7 + 1);
             }
-            if(!GameEnded) {
+            if(!GameEnded && !SpeedBoost) {
                 MaxSpeed = 9;
             }
 
@@ -404,32 +412,9 @@ namespace RaceGame {
             }
             if(e.KeyCode == action) {
                 //Code voor actions hier
+                if(currentPowerup != PowerupItem.None) ActivatePowerup = true;
 
-                
-                switch(currentPowerup) {
-                    //Doe dingen hier met het geselecteerde item
-                    case PowerupItem.Banana:
-                        //als banaan etc...
-                        //Location(player)-3==Banana.jpg
-                        float px = X;
-                        float py = Y;
-                        float pr = Angle;
-                        // diff
-                        //draw(current);
-                        break;
-                    
-                    case PowerupItem.Shell:
-                        //Location(player)+1==Shell.jpg
-                        //
-                        break;
-
-                    case PowerupItem.Mushroom:
-
-                        break;
-
-                }
-
-                string sound = "";
+                /*string sound = "";
                 Random rand = new Random();
 
                 switch(rand.Next(2)) {
@@ -447,7 +432,7 @@ namespace RaceGame {
                 }
 
                 HornSound = sound;
-                if(HornEnded) Horn = true;
+                if(HornEnded) Horn = true;*/
 
             }
 
@@ -465,6 +450,54 @@ namespace RaceGame {
                 Y++;
             }
         */
+
+        public async void PowerupHandler(Game g) {
+            if(!ActivatePowerup) return; 
+            ActivatePowerup = false;
+            int XTemp = (int) (X - Speed * ((float)Math.Cos(Math.PI / 180 * Angle)));
+            int YTemp = (int) (Y - Speed * ((float)Math.Sin(Math.PI / 180 * Angle)));
+
+            switch(currentPowerup) {
+                //Doe dingen hier met het geselecteerde item
+                case PowerupItem.Banana:
+                    //als banaan etc...
+                    //Location(player)-3==Banana.jpg
+                    float px = X;
+                    float py = Y;
+                    float pr = Angle;
+                    // diff
+                    //draw(current);
+                    Console.WriteLine("wew");
+                    Immune = true;
+                    Banana banana = new Banana(g, XTemp, YTemp);
+                    g.BananaItems.Add(banana);
+                    await Task.Delay(2000);
+                    Immune = false;
+                    break;
+                    
+                case PowerupItem.Shell:
+                    //Location(player)+1==Shell.jpg
+                    //
+                    Immune = true;
+                    Shell shell = new Shell(g, X, Y, Angle);
+                    g.ShellItems.Add(shell);
+                    await Task.Delay(2000);
+                    Immune = false;
+
+                    break;
+
+                case PowerupItem.Mushroom:
+                    SpeedBoost = true;
+                    MaxSpeed = 14;
+                    await Task.Delay(1000);
+                    SpeedBoost = false;
+                    break;
+
+            }
+
+            currentPowerup = PowerupItem.None;
+            ItemFrame.Image = null;
+        }
         
         public void PlaySound(string sound) {
                 HornEnded = false;

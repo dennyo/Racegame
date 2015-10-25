@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Super_InformatiKart));
             this.Main = new System.Windows.Forms.Panel();
+            this.PlayQuit = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.CharacterSelection = new System.Windows.Forms.Panel();
             this.pictureBox16 = new System.Windows.Forms.PictureBox();
@@ -70,8 +71,8 @@
             this.pictureBox24 = new System.Windows.Forms.PictureBox();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
-            this.PlayQuit = new System.Windows.Forms.PictureBox();
             this.Main.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PlayQuit)).BeginInit();
             this.CharacterSelection.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
@@ -107,7 +108,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PlayQuit)).BeginInit();
             this.SuspendLayout();
             // 
             // Main
@@ -119,8 +119,19 @@
             this.Main.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Main.Location = new System.Drawing.Point(0, 0);
             this.Main.Name = "Main";
-            this.Main.Size = new System.Drawing.Size(1026, 741);
+            this.Main.Size = new System.Drawing.Size(1024, 768);
             this.Main.TabIndex = 0;
+            // 
+            // PlayQuit
+            // 
+            this.PlayQuit.BackColor = System.Drawing.Color.Black;
+            this.PlayQuit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PlayQuit.BackgroundImage")));
+            this.PlayQuit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.PlayQuit.Location = new System.Drawing.Point(273, 460);
+            this.PlayQuit.Name = "PlayQuit";
+            this.PlayQuit.Size = new System.Drawing.Size(485, 188);
+            this.PlayQuit.TabIndex = 7;
+            this.PlayQuit.TabStop = false;
             // 
             // label1
             // 
@@ -131,7 +142,7 @@
             this.label1.Location = new System.Drawing.Point(418, 86);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(27, 39);
+            this.label1.Size = new System.Drawing.Size(36, 52);
             this.label1.TabIndex = 6;
             this.label1.Text = " ";
             // 
@@ -166,7 +177,7 @@
             this.CharacterSelection.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CharacterSelection.Location = new System.Drawing.Point(0, 0);
             this.CharacterSelection.Name = "CharacterSelection";
-            this.CharacterSelection.Size = new System.Drawing.Size(1026, 741);
+            this.CharacterSelection.Size = new System.Drawing.Size(1024, 768);
             this.CharacterSelection.TabIndex = 8;
             this.CharacterSelection.Visible = false;
             // 
@@ -447,7 +458,7 @@
             this.MapSelection.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MapSelection.Location = new System.Drawing.Point(0, 0);
             this.MapSelection.Name = "MapSelection";
-            this.MapSelection.Size = new System.Drawing.Size(1026, 741);
+            this.MapSelection.Size = new System.Drawing.Size(1024, 768);
             this.MapSelection.TabIndex = 1;
             this.MapSelection.Visible = false;
             // 
@@ -541,32 +552,22 @@
             this.pictureBox24.TabIndex = 20;
             this.pictureBox24.TabStop = false;
             // 
-            // PlayQuit
-            // 
-            this.PlayQuit.BackColor = System.Drawing.Color.Black;
-            this.PlayQuit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PlayQuit.BackgroundImage")));
-            this.PlayQuit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PlayQuit.Location = new System.Drawing.Point(273, 460);
-            this.PlayQuit.Name = "PlayQuit";
-            this.PlayQuit.Size = new System.Drawing.Size(485, 188);
-            this.PlayQuit.TabIndex = 7;
-            this.PlayQuit.TabStop = false;
-            // 
             // Super_InformatiKart
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1026, 741);
+            this.ClientSize = new System.Drawing.Size(1024, 768);
             this.Controls.Add(this.Main);
             this.Controls.Add(this.MapSelection);
             this.Controls.Add(this.CharacterSelection);
             this.MaximumSize = new System.Drawing.Size(1042, 815);
-            this.MinimumSize = new System.Drawing.Size(1042, 726);
+            this.MinimumSize = new System.Drawing.Size(1042, 815);
             this.Name = "Super_InformatiKart";
             this.Text = "Super_InformatiKart";
             this.Main.ResumeLayout(false);
             this.Main.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PlayQuit)).EndInit();
             this.CharacterSelection.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
@@ -602,7 +603,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PlayQuit)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -48,6 +48,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Banana.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="Powerup.cs" />
     <Compile Include="RaceGame.cs">
@@ -66,6 +67,7 @@
     <Compile Include="MainMenu.Designer.cs">
       <DependentUpon>MainMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Shell.cs" />
     <EmbeddedResource Include="RaceGame.resx">
       <DependentUpon>RaceGame.cs</DependentUpon>
     </EmbeddedResource>

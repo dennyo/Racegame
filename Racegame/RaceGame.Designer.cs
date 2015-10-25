@@ -64,7 +64,7 @@
             // 
             // FuelBox
             // 
-            this.FuelBox.BackColor = System.Drawing.Color.Red;
+            this.FuelBox.BackColor = System.Drawing.Color.Lime;
             this.FuelBox.Location = new System.Drawing.Point(726, 31);
             this.FuelBox.Name = "FuelBox";
             this.FuelBox.Size = new System.Drawing.Size(76, 18);
@@ -106,7 +106,7 @@
             // 
             // FuelBox2
             // 
-            this.FuelBox2.BackColor = System.Drawing.Color.Red;
+            this.FuelBox2.BackColor = System.Drawing.Color.Lime;
             this.FuelBox2.Location = new System.Drawing.Point(202, 31);
             this.FuelBox2.Name = "FuelBox2";
             this.FuelBox2.Size = new System.Drawing.Size(75, 18);
@@ -215,7 +215,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1026, 741);
+            this.ClientSize = new System.Drawing.Size(1024, 768);
             this.Controls.Add(this.PlayerControls);
             this.Controls.Add(this.Lakitu);
             this.Controls.Add(this.Player2Box);
@@ -231,7 +231,7 @@
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximumSize = new System.Drawing.Size(1042, 815);
-            this.MinimumSize = new System.Drawing.Size(1042, 726);
+            this.MinimumSize = new System.Drawing.Size(1042, 815);
             this.Name = "Racegame";
             this.Text = "Racegame";
             this.TransparencyKey = System.Drawing.Color.Maroon;

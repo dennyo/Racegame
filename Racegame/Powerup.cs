@@ -12,7 +12,7 @@ using System.Diagnostics;
 
 namespace Racegame {
 
-    public enum PowerupItem {Banana, Mushroom, Shell };
+    public enum PowerupItem {Banana, Mushroom, Shell, None };
 
     class Powerup {
 
@@ -69,8 +69,6 @@ namespace Racegame {
 
         public void Draw(Graphics g) {
             if(Hit || Disabled) return;
-            Stopwatch w = new Stopwatch();
-            w.Start();
             g.DrawImage(ImageSequence[CurrentImage],  rect);
         }
 
@@ -99,12 +97,12 @@ namespace Racegame {
                     Thread.Sleep(50);
 
                 }
+                p.currentPowerup = current;
+
             });
 
             t.IsBackground = true;
             t.Start();
-            
-            p.currentPowerup = current;
 
 
         }

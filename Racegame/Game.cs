@@ -24,6 +24,9 @@ namespace Racegame {
         public bool FinishPassed = false;
         //public Rectangle muur = new Rectangle(650 ,200 , 150, 150);
 
+        public List<Banana> BananaItems = new List<Banana>();
+        public List<Shell> ShellItems = new List<Shell>();
+
         Image Banana = new Bitmap(Path.Combine(Environment.CurrentDirectory, "Banana.png"));
         Image Mushroom = new Bitmap(Path.Combine(Environment.CurrentDirectory, "Mushroom.png"));
         Image Fuel = new Bitmap(Path.Combine(Environment.CurrentDirectory, "fuel.png"));
@@ -137,10 +140,24 @@ namespace Racegame {
             p2.rect.X = Convert.ToInt32(p2.X);
             p2.rect.Y = Convert.ToInt32(p2.Y);
             ColorHandler();
+
+            p1.PowerupHandler(this);
+            p2.PowerupHandler(this);
+
             pw.Collision(p1);
             pw.Collision(p2);
 
             pw.AddCount();
+
+            foreach(Banana ban in BananaItems) {
+                if(!p1.Hit) ban.Collision(p1);
+                if(!p2.Hit) ban.Collision(p2);
+            }
+
+            foreach(Shell she in ShellItems) {
+                if(!p1.Hit) she.Collision(p1);
+                if(!p2.Hit) she.Collision(p2);
+            }
         }
 
         public void ColorHandler() {
@@ -223,8 +240,13 @@ namespace Racegame {
             }
 
             pw.Draw(e.Graphics);
+            foreach(Banana ban in BananaItems) {
+                ban.Draw(e.Graphics);
+            }
 
-
+            foreach(Shell she in ShellItems) {
+                she.Draw(e.Graphics, wallmap);
+            }
             //e.Graphics.Dispose();
         }
 
@@ -521,7 +543,6 @@ namespace Racegame {
             
             //double speed = Math.Sqrt(Math.Pow(a.SpeedX, 2) + Math.Pow(a.SpeedY, 2));
             double speed =  (149 / 14) * a.Speed;
-            Console.WriteLine(b.MaximumSize.Width);
             b.Width = Convert.ToInt32(speed);
         }
 
