@@ -46,6 +46,7 @@ namespace RaceGame {
         public Character Character;
         private Form Main;
         public PictureBox FuelBox;
+        public PowerupItem currentPowerup;
         public PictureBox ItemFrame;
         public Label SpeedLabel;
         public System.Windows.Forms.Timer FuelTimer;
@@ -403,6 +404,31 @@ namespace RaceGame {
             }
             if(e.KeyCode == action) {
                 //Code voor actions hier
+
+                
+                switch(currentPowerup) {
+                    //Doe dingen hier met het geselecteerde item
+                    case PowerupItem.Banana:
+                        //als banaan etc...
+                        //Location(player)-3==Banana.jpg
+                        float px = X;
+                        float py = Y;
+                        float pr = Angle;
+                        // diff
+                        //draw(current);
+                        break;
+                    
+                    case PowerupItem.Shell:
+                        //Location(player)+1==Shell.jpg
+                        //
+                        break;
+
+                    case PowerupItem.Mushroom:
+
+                        break;
+
+                }
+
                 string sound = "";
                 Random rand = new Random();
 

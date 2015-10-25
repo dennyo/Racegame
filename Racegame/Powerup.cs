@@ -103,29 +103,9 @@ namespace Racegame {
 
             t.IsBackground = true;
             t.Start();
+            
+            p.currentPowerup = current;
 
-            switch(current) {
-                //Doe dingen hier met het geselecteerde item
-                case PowerupItem.Banana:
-                    //als banaan etc...
-                    //Location(player)-3==Banana.jpg
-                    float px = p.X;
-                    float py = p.Y;
-                    float pr = p.Angle;
-                    // diff
-                    //draw(current);
-                    break;
-                    
-                case PowerupItem.Shell:
-                    //Location(player)+1==Shell.jpg
-                    //
-                    break;
-
-                case PowerupItem.Mushroom:
-
-                    break;
-
-            }
 
         }
         
