@@ -337,11 +337,11 @@ namespace RaceGame {
             if(col.R % 5 == 0 && col.G == 0 && col.B == 0 && col.R >= 255 - totalCheckpoints * 10) {
                 if(!checkpointsPassed.Contains(col.R)){
                     checkpointsPassed.Add(col.R);
-                    lastCheckpoint = new Location(X, Y, Angle);
                     Console.WriteLine(checkpointsPassed.Count);
                 }
-            }
+                lastCheckpoint = new Location(X, Y, Angle);
 
+            }
 
         }
 
