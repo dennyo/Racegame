@@ -26,15 +26,53 @@ namespace Racegame
         public Game game;
         int countDown = 7;
 
-        public Racegame(MainMenu main, Character c1, Character c2, Map map1)
+        public Racegame(MainMenu main, Character c1, Character c2, Map map)
         {
-            InitializeComponent();         
+            InitializeComponent();
             this.main = main;
             StartTimer.Enabled = true;
-            g = this.CreateGraphics();
-            p2 = new Player("Player 2", c2, this, null, Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.ControlKey, 500, 140, 64, 64, FuelBox, Player2Box, Fueladder2, Speed2, 3, lapCounter1);
-            p1 = new Player("Player 1", c1, this, null, Keys.W, Keys.S, Keys.D, Keys.A, Keys.ShiftKey, 520, 80, 64, 64, FuelBox2, Player1Box, Fueladder, Speed1, 3, lapCounter2);
-            Game game = new Game(main, this, p1, p2, map1, "Standard.wav", FinishMessage, 3);
+            int checkpointCounter = 0;
+
+            switch(map) {
+
+                case Map.Bowser_Castle:
+                    checkpointCounter = 10;
+                    break;
+
+                case Map.Choco_Island:
+                    checkpointCounter = 10;
+                    break;
+
+                case Map.Donut_Plains:
+                    checkpointCounter = 10;
+                    break;
+
+                case Map.Ghost_Valley:
+                    checkpointCounter = 10;
+                    break;
+
+                case Map.Koopa_Beach:
+                    checkpointCounter = 10;
+                    break;
+
+                case Map.Rainbow_Road:
+                    checkpointCounter = 10;
+                    break;
+
+                case Map.Standard:
+                    checkpointCounter = 3;
+                    break;
+
+                case Map.Vanilla_Lake:
+                    checkpointCounter = 10;
+                    break;
+
+            }
+
+
+            p2 = new Player("Player 2", c2, this, null, Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.ControlKey, 500, 140, 64, 64, FuelBox2, Player2Box, Fueladder2, Speed2, checkpointCounter, lapCounter1);
+            p1 = new Player("Player 1", c1, this, null, Keys.W, Keys.S, Keys.D, Keys.A, Keys.ShiftKey, 520, 80, 64, 64, FuelBox, Player1Box, Fueladder, Speed1, checkpointCounter, lapCounter2);
+            Game game = new Game(main, this, p1, p2, map, "Standard.wav", FinishMessage, 3);
             this.game = game;
             this.BackgroundImage = game.circuit;
             this.Opacity = 0;
@@ -58,7 +96,7 @@ namespace Racegame
         private void StartTimer_Tick(object sender, EventArgs e)
         {
             countDown--;
-            countDownHandler();         
+            countDownHandler();
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -79,24 +117,24 @@ namespace Racegame
             {
                 PlayerControls.Visible = false;
             }
-            if(countDown == 4)
+            if (countDown == 4)
             {
                 Lakitu.BackgroundImage = new Bitmap(Path.Combine(Environment.CurrentDirectory, "Lakitu1.png"));
             }
-            if(countDown == 3)
+            if (countDown == 3)
             {
                 Lakitu.BackgroundImage = new Bitmap(Path.Combine(Environment.CurrentDirectory, "Lakitu2.png"));
             }
-            if(countDown == 2)
+            if (countDown == 2)
             {
                 Lakitu.BackgroundImage = new Bitmap(Path.Combine(Environment.CurrentDirectory, "Lakitu3.png"));
             }
-            if(countDown == 1)
+            if (countDown == 1)
             {
                 Lakitu.BackgroundImage = new Bitmap(Path.Combine(Environment.CurrentDirectory, "Lakitu4.png"));
                 GameTimer.Enabled = true;
             }
-            if(countDown == 0)
+            if (countDown == 0)
             {
                 Lakitu.Visible = false;
                 StartTimer.Enabled = false;
@@ -105,29 +143,26 @@ namespace Racegame
 
         private void FadeInTimer_Tick(object sender, EventArgs e)
         {
-            if(this.Opacity == 1)
+            if (this.Opacity == 1)
             {
                 FadeInTimer.Enabled = false;
             }
             else
             {
-                this.Opacity += 0.1;
+                this.Opacity += 0.05;
             }
         }
 
         private void FadeOutTimer_Tick(object sender, EventArgs e)
         {
-            if(this.Opacity == 0)
+            if (this.Opacity == 0)
             {
                 FadeOutTimer.Enabled = false;
-                this.Hide();
-                Super_InformatiKart frm = new Super_InformatiKart();
-                frm.ShowDialog();
-                this.Close();
+                Application.Restart();
             }
             else
             {
-                this.Opacity -= 0.1;
+                this.Opacity -= 0.05;
             }
         }
 
@@ -135,7 +170,11 @@ namespace Racegame
         {
             FadeOutTimer.Enabled = true;
         }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
 
-       

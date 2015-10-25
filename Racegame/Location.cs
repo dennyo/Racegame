@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace Racegame {
     class Location {
 
-        float X;
-        float Y;
-        float Angle;
+        public float X;
+        public float Y;
+        public float Angle;
 
         public Location(float X, float Y, float Angle) {
             this.X = X;

@@ -49,6 +49,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Banana.cs" />
+    <Compile Include="black.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="black.designer.cs">
+      <DependentUpon>black.cs</DependentUpon>
+    </Compile>
     <Compile Include="Location.cs" />
     <Compile Include="Powerup.cs" />
     <Compile Include="RaceGame.cs">
@@ -68,6 +74,9 @@
       <DependentUpon>MainMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Shell.cs" />
+    <EmbeddedResource Include="black.resx">
+      <DependentUpon>black.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RaceGame.resx">
       <DependentUpon>RaceGame.cs</DependentUpon>
     </EmbeddedResource>

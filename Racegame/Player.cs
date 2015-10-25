@@ -89,6 +89,8 @@ namespace RaceGame {
             kleuren.Add(new int[3] {255, 150, 0}, ColorHandler.Pitstop);
             kleuren.Add(new int[3] {0, 255, 0}, ColorHandler.Gras);
             kleuren.Add(new int[3] {255, 255, 0 }, ColorHandler.Finish);
+            kleuren.Add(new int[3] {255, 0, 255 }, ColorHandler.Gat);
+
 
             kleuren.Add(new int[3] {255, 0, 150 }, ColorHandler.Wall_Red);
             kleuren.Add(new int[3] {0, 255, 150 }, ColorHandler.Wall_Green);
@@ -238,18 +240,18 @@ namespace RaceGame {
                 }
             }
 
-            if(((!Gas && !Brake) || Speed > MaxSpeed) && !Hit) {
+            if(((!Gas && !Brake) || Speed > MaxSpeed)) {
                 if(Speed > -1 && Speed < 1) {
                     Speed = 0;
                 }
-                if(Speed < 0) {
+                if(Speed < 0 || Hit) {
                     Speed += 0.5f;
-                }else if(Speed > 0) {
+                }else if(Speed > 0 || Hit) {
                     Speed -= 0.5f;
                 }
             }
 
-            if((Brake || Hit) && Speed > - MaxSpeed) {
+            if((Brake || (Hit && Speed > 0)) && Speed > - MaxSpeed) {
                 Speed -= 0.2f;
             }
 
@@ -268,7 +270,7 @@ namespace RaceGame {
             if (((RightActive && !DownActive) || (LeftActive && DownActive)) && Speed != 0 && !Hit) {
                 Angle += Math.Abs(2 * Math.Abs(Speed) / 7 + 1);
             }
-            if(!GameEnded && !SpeedBoost) {
+            if(!GameEnded && !SpeedBoost && !Hit) {
                 MaxSpeed = 9;
             }
 
@@ -285,26 +287,8 @@ namespace RaceGame {
                 laps++;
                 checkpointsPassed.Clear();
 
-                if (laps == 1)
-                {
-                    lapCounter.Image = new Bitmap(Path.Combine(Environment.CurrentDirectory, "laps/1.png"));
-                }
-                if (laps == 2)
-                {
-                    lapCounter.Image = new Bitmap(Path.Combine(Environment.CurrentDirectory, "laps/2.png"));
-                }
-                if (laps == 3)
-                {
-                    lapCounter.Image = new Bitmap(Path.Combine(Environment.CurrentDirectory, "laps/3.png"));
-                }
-                if (laps == 4)
-                {
-                    lapCounter.Image = new Bitmap(Path.Combine(Environment.CurrentDirectory, "laps/4.png"));
-                }
-                if (laps >= 5)
-                {
-                    lapCounter.Image = new Bitmap(Path.Combine(Environment.CurrentDirectory, "laps/5.png"));
-                }
+                if(laps != 0 && laps < 6) lapCounter.Image = new Bitmap(Path.Combine(Environment.CurrentDirectory, "laps/" + laps + ".png"));
+                
                 if (laps >= 6)
                 {
                     Finished = true;
@@ -354,6 +338,7 @@ namespace RaceGame {
                 if(!checkpointsPassed.Contains(col.R)){
                     checkpointsPassed.Add(col.R);
                     lastCheckpoint = new Location(X, Y, Angle);
+                    Console.WriteLine(checkpointsPassed.Count);
                 }
             }
 
@@ -398,7 +383,7 @@ namespace RaceGame {
 
         }
 
-        public void HandleColor(Bitmap image) {
+        public async void HandleColor(Bitmap image) {
 
 
             //Oranje
@@ -414,11 +399,38 @@ namespace RaceGame {
             int xCenter = (int) (X + Width / 2);
             int yCenter = (int) (Y + Height / 2);
             System.Drawing.Color col = image.GetPixel(xCenter, yCenter);
-
+            //Console.WriteLine(temp);
             switch(getColor(col.R, col.G, col.B)) {
 
                 case ColorHandler.Gat:
+                    if(!Hit) {
+                        Hit = true;
+                        MaxSpeed = 0;
+                        Speed = 0;
 
+
+                        Thread t = new Thread(() => {
+                            while(Width > 2 || Height > 2) {
+                                Width--;
+                                X++;
+                                Height--;
+                                Y++;
+                                Thread.Sleep(20);
+                            }
+                        });
+                        t.IsBackground = true;
+                        t.Start();
+
+                        await Task.Delay(1500);
+
+                        X = lastCheckpoint.X;
+                        Y = lastCheckpoint.Y;
+                        Angle = lastCheckpoint.Angle;
+                        Width = 64;
+                        Height = 64;
+                        Hit = false;
+                        await Task.Delay(100);
+                    }   
                     break;
 
                 case ColorHandler.Gras:
@@ -426,7 +438,7 @@ namespace RaceGame {
                     break;
 
                 case ColorHandler.Water:
-                    
+                    MaxSpeed = 5;
                     break;
 
                 case ColorHandler.Pitstop:
@@ -444,8 +456,7 @@ namespace RaceGame {
                     }
                     break;
 
-                default:
-
+                case ColorHandler.None:
                     break;
             }   
 
@@ -469,7 +480,7 @@ namespace RaceGame {
             }
             if(e.KeyCode == action) {
                 //Code voor actions hier
-                if(currentPowerup != PowerupItem.None) ActivatePowerup = true;
+                if(currentPowerup != PowerupItem.None && !Hit) ActivatePowerup = true;
 
                 /*string sound = "";
                 Random rand = new Random();
