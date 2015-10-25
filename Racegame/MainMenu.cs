@@ -59,6 +59,7 @@ namespace Racegame
         public bool Map6Selected = false;
         public bool Map7Selected = false;
         public bool Map8Selected = false;
+        public int counter = 0;
         public Map MapChoice;
         Image Selector = new Bitmap(Path.Combine(Environment.CurrentDirectory, "Map select icon.png"));
         public Character p1choice;
@@ -71,12 +72,9 @@ namespace Racegame
         public Super_InformatiKart()
         {
             InitializeComponent();
-            player = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, "THEMESONG.wav"));
-            player.PlayLooping();
             timer1.Enabled = true;
             this.Opacity = 0;
-
-            for(int i = 1; i <= 44; i++) {
+            for (int i = 1; i <= 44; i++) {
                 BackgroundImages.Add(new Bitmap(Path.Combine(Environment.CurrentDirectory, "Main/T" + i + ".png")));
             }
 
@@ -84,8 +82,7 @@ namespace Racegame
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            if (Main.Visible == true)
-            {
+
                 if (keyData == Keys.Down)
                 {
                     DownArrowActive = true;
@@ -102,31 +99,6 @@ namespace Racegame
                 {
                     RightArrowActive = true;
                 }
-
-                if (keyData == Keys.Return)
-                {
-                    EnterPressed = true;
-                }
-            }
-            if (MapSelection.Visible == true ||
-               CharacterSelection.Visible == true)
-            {
-                if (keyData == Keys.Left)
-                {
-                    LeftArrowActive = true;
-                }
-                if (keyData == Keys.Right)
-                {
-                    RightArrowActive = true;
-                }
-                if (keyData == Keys.Up)
-                {
-                    UpArrowActive = true;
-                }
-                if (keyData == Keys.Down)
-                {
-                    DownArrowActive = true;
-                }
                 if (keyData == Keys.Return)
                 {
                     EnterPressed = true;
@@ -134,10 +106,40 @@ namespace Racegame
                 if (keyData == Keys.Escape)
                 {
                     Application.Restart();
+                }                    
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void SoundTimer_Tick(object sender, EventArgs e)
+        {
+            if (Main.Visible == true)
+            {
+                if (counter < 4)
+                {
+                    counter++;
+                }
+                if (counter == 4)
+                {
+                    player = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, "sounds/Title screen.wav"));
+                    player.PlayLooping();
+                    SoundTimer.Enabled = false;
+                    counter = 0;
                 }
             }
-            
-            return base.ProcessCmdKey(ref msg, keyData);
+            if (CharacterSelection.Visible == true ||
+                MapSelection.Visible == true)
+            {
+                if (counter < 11)
+                {
+                    counter++;
+                }
+                if(counter == 11)
+                {
+                    player = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, "sounds/Selection screen.wav"));
+                    player.PlayLooping();
+                    SoundTimer.Enabled = false;
+                }
+            }
         }
 
         private void FadeTimer_Tick(object sender, EventArgs e)
@@ -182,6 +184,7 @@ namespace Racegame
                 if( PlaySelected == true &&
                     EnterPressed == true)
                 {
+                    player.Stop();
                     FadeOut.Enabled = true;
                     EnterPressed = false;
                 }
@@ -761,6 +764,7 @@ namespace Racegame
             if (MapChosen == true)
             {
                 FadeOut.Enabled = true;
+                player.Stop();
             }
         }
 
@@ -1128,6 +1132,9 @@ namespace Racegame
                     if (this.Opacity == 1)
                     {
                         FadeIn.Enabled = false;
+                        SoundTimer.Enabled = true;
+                        player = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, "sounds/Title screen intro.wav"));
+                        player.Play();
                     }
                     this.Opacity += 0.1;
                 }
@@ -1135,6 +1142,9 @@ namespace Racegame
                 {
                     if (this.Opacity == 1)
                     {
+                        SoundTimer.Enabled = true;
+                        player = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, "sounds/Selection Screen intro.wav"));
+                        player.Play();
                         FadeIn.Enabled = false;
                     }
                     this.Opacity += 0.2;
@@ -1197,6 +1207,10 @@ namespace Racegame
             }
             Main.BackgroundImage = BackgroundImages[CurrentImage - 1];
 
+        }
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
