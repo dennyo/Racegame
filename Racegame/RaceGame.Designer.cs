@@ -47,6 +47,12 @@
             this.StartTimer = new System.Windows.Forms.Timer(this.components);
             this.PlayerControls = new System.Windows.Forms.PictureBox();
             this.Lakitu = new System.Windows.Forms.PictureBox();
+            this.of5P1 = new System.Windows.Forms.Label();
+            this.of5P2 = new System.Windows.Forms.Label();
+            this.lapCounter1 = new System.Windows.Forms.Label();
+            this.lapCounter2 = new System.Windows.Forms.Label();
+            this.FadeInTimer = new System.Windows.Forms.Timer(this.components);
+            this.FadeOutTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Player1Box)).BeginInit();
@@ -98,7 +104,7 @@
             // 
             this.Player1Box.BackColor = System.Drawing.Color.Black;
             this.Player1Box.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Player1Box.Location = new System.Drawing.Point(106, 12);
+            this.Player1Box.Location = new System.Drawing.Point(112, 12);
             this.Player1Box.Name = "Player1Box";
             this.Player1Box.Size = new System.Drawing.Size(56, 56);
             this.Player1Box.TabIndex = 8;
@@ -132,9 +138,9 @@
             this.FinishMessage.BackColor = System.Drawing.Color.Transparent;
             this.FinishMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FinishMessage.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.FinishMessage.Location = new System.Drawing.Point(143, 103);
+            this.FinishMessage.Location = new System.Drawing.Point(224, 288);
             this.FinishMessage.Name = "FinishMessage";
-            this.FinishMessage.Size = new System.Drawing.Size(781, 387);
+            this.FinishMessage.Size = new System.Drawing.Size(576, 192);
             this.FinishMessage.TabIndex = 13;
             this.FinishMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.FinishMessage.Visible = false;
@@ -162,6 +168,7 @@
             this.MainMenu.Text = "Back To Menu";
             this.MainMenu.UseVisualStyleBackColor = true;
             this.MainMenu.Visible = false;
+            this.MainMenu.Click += new System.EventHandler(this.MainMenu_Click);
             // 
             // Interface
             // 
@@ -177,7 +184,7 @@
             // Player2Box
             // 
             this.Player2Box.BackColor = System.Drawing.Color.Black;
-            this.Player2Box.Location = new System.Drawing.Point(842, 12);
+            this.Player2Box.Location = new System.Drawing.Point(848, 12);
             this.Player2Box.Name = "Player2Box";
             this.Player2Box.Size = new System.Drawing.Size(56, 56);
             this.Player2Box.TabIndex = 16;
@@ -194,9 +201,9 @@
             this.PlayerControls.BackColor = System.Drawing.Color.Black;
             this.PlayerControls.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PlayerControls.BackgroundImage")));
             this.PlayerControls.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.PlayerControls.Location = new System.Drawing.Point(187, 234);
+            this.PlayerControls.Location = new System.Drawing.Point(192, 416);
             this.PlayerControls.Name = "PlayerControls";
-            this.PlayerControls.Size = new System.Drawing.Size(650, 336);
+            this.PlayerControls.Size = new System.Drawing.Size(640, 304);
             this.PlayerControls.TabIndex = 17;
             this.PlayerControls.TabStop = false;
             // 
@@ -204,11 +211,55 @@
             // 
             this.Lakitu.BackColor = System.Drawing.Color.Transparent;
             this.Lakitu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.Lakitu.Location = new System.Drawing.Point(434, 330);
+            this.Lakitu.Location = new System.Drawing.Point(432, 304);
             this.Lakitu.Name = "Lakitu";
             this.Lakitu.Size = new System.Drawing.Size(160, 160);
             this.Lakitu.TabIndex = 18;
             this.Lakitu.TabStop = false;
+            // 
+            // of5P1
+            // 
+            this.of5P1.BackColor = System.Drawing.SystemColors.Window;
+            this.of5P1.Image = ((System.Drawing.Image)(resources.GetObject("of5P1.Image")));
+            this.of5P1.Location = new System.Drawing.Point(236, 70);
+            this.of5P1.Name = "of5P1";
+            this.of5P1.Size = new System.Drawing.Size(54, 38);
+            this.of5P1.TabIndex = 23;
+            // 
+            // of5P2
+            // 
+            this.of5P2.BackColor = System.Drawing.SystemColors.Window;
+            this.of5P2.Image = ((System.Drawing.Image)(resources.GetObject("of5P2.Image")));
+            this.of5P2.Location = new System.Drawing.Point(777, 70);
+            this.of5P2.Name = "of5P2";
+            this.of5P2.Size = new System.Drawing.Size(54, 38);
+            this.of5P2.TabIndex = 24;
+            // 
+            // lapCounter1
+            // 
+            this.lapCounter1.BackColor = System.Drawing.SystemColors.Window;
+            this.lapCounter1.Image = ((System.Drawing.Image)(resources.GetObject("lapCounter1.Image")));
+            this.lapCounter1.Location = new System.Drawing.Point(189, 54);
+            this.lapCounter1.Name = "lapCounter1";
+            this.lapCounter1.Size = new System.Drawing.Size(48, 54);
+            this.lapCounter1.TabIndex = 25;
+            // 
+            // lapCounter2
+            // 
+            this.lapCounter2.Image = ((System.Drawing.Image)(resources.GetObject("lapCounter2.Image")));
+            this.lapCounter2.Location = new System.Drawing.Point(729, 54);
+            this.lapCounter2.Name = "lapCounter2";
+            this.lapCounter2.Size = new System.Drawing.Size(48, 54);
+            this.lapCounter2.TabIndex = 26;
+            // 
+            // FadeInTimer
+            // 
+            this.FadeInTimer.Enabled = true;
+            this.FadeInTimer.Tick += new System.EventHandler(this.FadeInTimer_Tick);
+            // 
+            // FadeOutTimer
+            // 
+            this.FadeOutTimer.Tick += new System.EventHandler(this.FadeOutTimer_Tick);
             // 
             // Racegame
             // 
@@ -218,14 +269,18 @@
             this.ClientSize = new System.Drawing.Size(1024, 768);
             this.Controls.Add(this.PlayerControls);
             this.Controls.Add(this.Lakitu);
+            this.Controls.Add(this.lapCounter2);
+            this.Controls.Add(this.lapCounter1);
+            this.Controls.Add(this.of5P2);
+            this.Controls.Add(this.of5P1);
+            this.Controls.Add(this.FuelBox2);
+            this.Controls.Add(this.FuelBox);
             this.Controls.Add(this.Player2Box);
             this.Controls.Add(this.Player1Box);
             this.Controls.Add(this.MainMenu);
             this.Controls.Add(this.ItemBox);
             this.Controls.Add(this.Speed1);
-            this.Controls.Add(this.FuelBox2);
             this.Controls.Add(this.Speed2);
-            this.Controls.Add(this.FuelBox);
             this.Controls.Add(this.Interface);
             this.Controls.Add(this.FinishMessage);
             this.DoubleBuffered = true;
@@ -233,7 +288,7 @@
             this.MaximumSize = new System.Drawing.Size(1042, 815);
             this.MinimumSize = new System.Drawing.Size(1042, 815);
             this.Name = "Racegame";
-            this.Text = "Racegame";
+            this.Text = "Super InformatiKart";
             this.TransparencyKey = System.Drawing.Color.Maroon;
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Racegame_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox)).EndInit();
@@ -269,5 +324,11 @@
         private System.Windows.Forms.Timer StartTimer;
         private System.Windows.Forms.PictureBox PlayerControls;
         private System.Windows.Forms.PictureBox Lakitu;
+        private System.Windows.Forms.Label of5P1;
+        private System.Windows.Forms.Label of5P2;
+        private System.Windows.Forms.Label lapCounter1;
+        private System.Windows.Forms.Label lapCounter2;
+        private System.Windows.Forms.Timer FadeInTimer;
+        private System.Windows.Forms.Timer FadeOutTimer;
     }
 }

@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace Racegame {
     public class Shell {
@@ -20,6 +21,7 @@ namespace Racegame {
         public Image image;
         public bool Active = true;
         Dictionary<int[], ColorHandler> kleuren = new Dictionary<int[], ColorHandler>();
+        private Stopwatch sw;
 
         public Shell(Game g, float X, float Y, float Angle) {
             this.game = g;
@@ -33,22 +35,24 @@ namespace Racegame {
             kleuren.Add(new int[3] {0, 255, 150 }, ColorHandler.Wall_Green);
             kleuren.Add(new int[3] {150, 0, 255 }, ColorHandler.Wall_Blue);
             kleuren.Add(new int[3] {0, 255, 255 }, ColorHandler.Wall_Light_Blue);
+            sw = new Stopwatch();
+            sw.Start();
         }
 
         public void Draw(Graphics g, Bitmap image) {
             if(!Active) return;
-            Move(image);
             rect = new Rectangle((int)X, (int)Y, 42, 42);
             g.DrawImage(Shell_Image,  rect);
             Console.WriteLine(X + " "+  Y);
+            Move(image);
+
         }
 
-        public void Move(Bitmap image) {
+        public async void Move(Bitmap image) {
             
             int xCenter = (int) (X + 42 / 2);
             int yCenter = (int) (Y + (42 /3 * 2));
             System.Drawing.Color col = image.GetPixel(xCenter, yCenter);
-
             switch(getColor(col.R, col.G, col.B)) {
                 
                 case ColorHandler.Wall_Red:
@@ -74,10 +78,10 @@ namespace Racegame {
                 case ColorHandler.Wall_Blue:
                     if((Angle < 0 && Angle > -180) || (Angle > 0 && Angle < 180)) {
                         //up
-                        Angle = -80;
+                        Angle = 10;
                     }else {
                         //down
-                        Angle = 80;
+                        Angle = -190;
                     }
                     break;
 
@@ -95,8 +99,11 @@ namespace Racegame {
 
             X += (float) Speed * ((float)Math.Cos(Math.PI / 180 * Angle));
             Y += (float) Speed * ((float)Math.Sin(Math.PI / 180 * Angle));
-
-
+            
+            if(sw.ElapsedMilliseconds >= 5000) {
+                Active = false;
+                game.ShellItems.Remove(this);
+            }
         }
 
         public ColorHandler getColor(int R, int G, int B) {

@@ -50,7 +50,7 @@ namespace RaceGame {
         public Character Character;
         private Form Main;
         public PictureBox FuelBox;
-        public PowerupItem currentPowerup = PowerupItem.Shell;
+        public PowerupItem currentPowerup = PowerupItem.None;
         public PictureBox ItemFrame;
         public Label SpeedLabel;
         public System.Windows.Forms.Timer FuelTimer;
@@ -61,8 +61,9 @@ namespace RaceGame {
         private string HornSound;
         private MediaPlayer HornPlayer;
         private bool HornEnded = true;
+        public Label lapCounter;
 
-        public Player(string name, Character character, Form main, Bitmap imagew, Keys up, Keys down, Keys right, Keys left, Keys action, int x, int y, int width, int height, PictureBox fuel, PictureBox itemframe, System.Windows.Forms.Timer fuelTimer, Label speedLabel, int totalCheckpoints) {
+        public Player(string name, Character character, Form main, Bitmap imagew, Keys up, Keys down, Keys right, Keys left, Keys action, int x, int y, int width, int height, PictureBox fuel, PictureBox itemframe, System.Windows.Forms.Timer fuelTimer, Label speedLabel, int totalCheckpoints, Label lapcounter) {
             this.X = x;
             this.Y = y;
             this.up = up;
@@ -79,6 +80,7 @@ namespace RaceGame {
             this.ItemFrame = itemframe;
             this.FuelTimer = fuelTimer;
             this.SpeedLabel = speedLabel;
+            this.lapCounter = lapcounter;
             this.name = name;
             this.rect = new Rectangle(0, 0, Width, Width);
             this.totalCheckpoints = totalCheckpoints;
@@ -123,13 +125,13 @@ namespace RaceGame {
                     return "cars/jop/Jop" + number + ".png";
 
                 case Character.Sibbele:
-                    return "cars/sibbele" + number + ".png";
+                    return "cars/sibbele/Sib" + number + ".png";
 
                 case Character.Joris:
-                    return "cars/joris" + number + ".png";
+                    return "cars/joris/Joris" + number + ".png";
 
                 case Character.Nynke:
-                    return "cars/nynke" + number + ".png";
+                    return "cars/nynke/F" + number + ".png";
 
                 case Character.Dick:
                     return "cars/dick/D" + number + ".png";
@@ -272,18 +274,73 @@ namespace RaceGame {
 
         }
 
-        public void FinishHandler(Label message, Bitmap image) {
-            int xCenter = (int) (X + Width / 2);
-            int yCenter = (int) (Y + Height / 2);
+        public void FinishHandler(Label message, Bitmap image)
+        {
+            int xCenter = (int)(X + Width / 2);
+            int yCenter = (int)(Y + Height / 2);
             System.Drawing.Color col = image.GetPixel(xCenter, yCenter);
 
-            if(checkpointsPassed.Count == totalCheckpoints && getColor(col.R, col.G, col.B) == ColorHandler.Finish) {
+            if (checkpointsPassed.Count == totalCheckpoints && getColor(col.R, col.G, col.B) == ColorHandler.Finish)
+            {
                 laps++;
                 checkpointsPassed.Clear();
-                if (laps >= 4) {
+
+                if (laps == 1)
+                {
+                    lapCounter.Image = new Bitmap(Path.Combine(Environment.CurrentDirectory, "laps/1.png"));
+                }
+                if (laps == 2)
+                {
+                    lapCounter.Image = new Bitmap(Path.Combine(Environment.CurrentDirectory, "laps/2.png"));
+                }
+                if (laps == 3)
+                {
+                    lapCounter.Image = new Bitmap(Path.Combine(Environment.CurrentDirectory, "laps/3.png"));
+                }
+                if (laps == 4)
+                {
+                    lapCounter.Image = new Bitmap(Path.Combine(Environment.CurrentDirectory, "laps/4.png"));
+                }
+                if (laps >= 5)
+                {
+                    lapCounter.Image = new Bitmap(Path.Combine(Environment.CurrentDirectory, "laps/5.png"));
+                }
+                if (laps >= 6)
+                {
                     Finished = true;
-                    message.Text = name + " wins!";
                     message.Visible = true;
+                    if (Character == Character.David)
+                    {
+                        message.Image = new Bitmap(Path.Combine(Environment.CurrentDirectory, "textboxes/DavidWins.png"));
+                    }
+                    if (Character == Character.Jos)
+                    {
+                        message.Image = new Bitmap(Path.Combine(Environment.CurrentDirectory, "textboxes/JosWins.png"));
+                    }
+                    if (Character == Character.Fiona)
+                    {
+                        message.Image = new Bitmap(Path.Combine(Environment.CurrentDirectory, "textboxes/FionaWins.png"));
+                    }
+                    if (Character == Character.Jop)
+                    {
+                        message.Image = new Bitmap(Path.Combine(Environment.CurrentDirectory, "textboxes/JopWins.png"));
+                    }
+                    if (Character == Character.Sibbele)
+                    {
+                        message.Image = new Bitmap(Path.Combine(Environment.CurrentDirectory, "textboxes/SibbeleWins.png"));
+                    }
+                    if (Character == Character.Joris)
+                    {
+                        message.Image = new Bitmap(Path.Combine(Environment.CurrentDirectory, "textboxes/JorisWins.png"));
+                    }
+                    if (Character == Character.Nynke)
+                    {
+                        message.Image = new Bitmap(Path.Combine(Environment.CurrentDirectory, "textboxes/NynkeWins.png"));
+                    }
+                    if (Character == Character.Dick)
+                    {
+                        message.Image = new Bitmap(Path.Combine(Environment.CurrentDirectory, "textboxes/DickWins.png"));
+                    }
                 }
             }
         }

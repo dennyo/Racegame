@@ -240,13 +240,16 @@ namespace Racegame {
             }
 
             pw.Draw(e.Graphics);
+
             foreach(Banana ban in BananaItems) {
                 ban.Draw(e.Graphics);
             }
 
-            foreach(Shell she in ShellItems) {
-                she.Draw(e.Graphics, wallmap);
-            }
+            try {
+                foreach(Shell she in ShellItems) {
+                    she.Draw(e.Graphics, wallmap);
+                }
+            }catch(Exception) { }
             //e.Graphics.Dispose();
         }
 
