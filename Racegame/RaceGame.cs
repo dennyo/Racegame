@@ -32,6 +32,14 @@ namespace Racegame
             this.main = main;
             StartTimer.Enabled = true;
             int checkpointCounter = 0;
+            /*player2Head.Parent = Interface;
+            player1Head.Parent = Interface;*/
+            player1Head.BackColor = Color.FromArgb(64, 72, 56);
+            player2Head.BackColor = Color.FromArgb(64, 72, 56);
+
+            player1Head.Image = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "heads/" + c1 + "R.png")));
+            player2Head.Image = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "heads/" + c2 + "L.png")));
+
 
             switch(map) {
 
@@ -78,6 +86,8 @@ namespace Racegame
             this.Opacity = 0;
 
         }
+
+
 
         private void GameTimer_Tick(object sender, EventArgs e)
         {

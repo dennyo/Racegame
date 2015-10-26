@@ -48,7 +48,7 @@ namespace Racegame {
 
         }
 
-        public async void Move(Bitmap image) {
+        public void Move(Bitmap image) {
             
             int xCenter = (int) (X + 42 / 2);
             int yCenter = (int) (Y + (42 /3 * 2));

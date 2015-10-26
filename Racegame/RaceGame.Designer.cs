@@ -53,6 +53,8 @@
             this.lapCounter2 = new System.Windows.Forms.Label();
             this.FadeInTimer = new System.Windows.Forms.Timer(this.components);
             this.FadeOutTimer = new System.Windows.Forms.Timer(this.components);
+            this.player2Head = new System.Windows.Forms.PictureBox();
+            this.player1Head = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Player1Box)).BeginInit();
@@ -61,6 +63,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.Player2Box)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PlayerControls)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Lakitu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.player2Head)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.player1Head)).BeginInit();
             this.SuspendLayout();
             // 
             // GameTimer
@@ -71,7 +75,7 @@
             // FuelBox
             // 
             this.FuelBox.BackColor = System.Drawing.Color.Red;
-            this.FuelBox.Location = new System.Drawing.Point(202, 31);
+            this.FuelBox.Location = new System.Drawing.Point(204, 35);
             this.FuelBox.Name = "FuelBox";
             this.FuelBox.Size = new System.Drawing.Size(76, 18);
             this.FuelBox.TabIndex = 1;
@@ -93,7 +97,7 @@
             this.Speed2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Speed2.Image = ((System.Drawing.Image)(resources.GetObject("Speed2.Image")));
             this.Speed2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Speed2.Location = new System.Drawing.Point(658, 7);
+            this.Speed2.Location = new System.Drawing.Point(669, 7);
             this.Speed2.Name = "Speed2";
             this.Speed2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Speed2.Size = new System.Drawing.Size(149, 21);
@@ -113,7 +117,7 @@
             // FuelBox2
             // 
             this.FuelBox2.BackColor = System.Drawing.Color.Red;
-            this.FuelBox2.Location = new System.Drawing.Point(727, 31);
+            this.FuelBox2.Location = new System.Drawing.Point(744, 36);
             this.FuelBox2.Name = "FuelBox2";
             this.FuelBox2.Size = new System.Drawing.Size(75, 18);
             this.FuelBox2.TabIndex = 9;
@@ -126,7 +130,7 @@
             this.Speed1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Speed1.Image = ((System.Drawing.Image)(resources.GetObject("Speed1.Image")));
             this.Speed1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Speed1.Location = new System.Drawing.Point(202, 7);
+            this.Speed1.Location = new System.Drawing.Point(210, 7);
             this.Speed1.Name = "Speed1";
             this.Speed1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Speed1.Size = new System.Drawing.Size(149, 21);
@@ -177,7 +181,7 @@
             this.Interface.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.Interface.Location = new System.Drawing.Point(-1, 0);
             this.Interface.Name = "Interface";
-            this.Interface.Size = new System.Drawing.Size(1024, 168);
+            this.Interface.Size = new System.Drawing.Size(1024, 97);
             this.Interface.TabIndex = 15;
             this.Interface.TabStop = false;
             // 
@@ -263,12 +267,32 @@
             this.FadeOutTimer.Interval = 50;
             this.FadeOutTimer.Tick += new System.EventHandler(this.FadeOutTimer_Tick);
             // 
+            // player2Head
+            // 
+            this.player2Head.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.player2Head.Location = new System.Drawing.Point(929, 4);
+            this.player2Head.Name = "player2Head";
+            this.player2Head.Size = new System.Drawing.Size(72, 72);
+            this.player2Head.TabIndex = 27;
+            this.player2Head.TabStop = false;
+            // 
+            // player1Head
+            // 
+            this.player1Head.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.player1Head.Location = new System.Drawing.Point(20, 4);
+            this.player1Head.Name = "player1Head";
+            this.player1Head.Size = new System.Drawing.Size(72, 72);
+            this.player1Head.TabIndex = 28;
+            this.player1Head.TabStop = false;
+            // 
             // Racegame
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1024, 768);
+            this.Controls.Add(this.player1Head);
+            this.Controls.Add(this.player2Head);
             this.Controls.Add(this.PlayerControls);
             this.Controls.Add(this.Lakitu);
             this.Controls.Add(this.lapCounter2);
@@ -283,8 +307,8 @@
             this.Controls.Add(this.ItemBox);
             this.Controls.Add(this.Speed1);
             this.Controls.Add(this.Speed2);
-            this.Controls.Add(this.Interface);
             this.Controls.Add(this.FinishMessage);
+            this.Controls.Add(this.Interface);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Location = new System.Drawing.Point(300, 0);
@@ -303,6 +327,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.Player2Box)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PlayerControls)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Lakitu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.player2Head)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.player1Head)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -334,5 +360,7 @@
         private System.Windows.Forms.Label lapCounter2;
         private System.Windows.Forms.Timer FadeInTimer;
         private System.Windows.Forms.Timer FadeOutTimer;
+        private System.Windows.Forms.PictureBox player2Head;
+        private System.Windows.Forms.PictureBox player1Head;
     }
 }

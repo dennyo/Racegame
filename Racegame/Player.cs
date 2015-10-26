@@ -265,10 +265,10 @@ namespace RaceGame {
                 Angle = 0;
             }
             if(((LeftActive && !DownActive) || (RightActive && DownActive)) && Speed != 0 && !Hit) {
-                Angle -= Math.Abs(2 * Math.Abs(Speed) / 7 + 1);
+                Angle -= Math.Abs(3 * Math.Abs(Speed) / 7 + 1);
             }
             if (((RightActive && !DownActive) || (LeftActive && DownActive)) && Speed != 0 && !Hit) {
-                Angle += Math.Abs(2 * Math.Abs(Speed) / 7 + 1);
+                Angle += Math.Abs(3 * Math.Abs(Speed) / 7 + 1);
             }
             if(!GameEnded && !SpeedBoost && !Hit) {
                 MaxSpeed = 9;
@@ -362,20 +362,20 @@ namespace RaceGame {
             switch(getColor(col.R, col.G, col.B)) {
                 
                 case ColorHandler.Wall_Red:
-                    X -= Speed + 10;
+                    X -= Math.Abs(Speed) + 10;
                     break;
 
                 case ColorHandler.Wall_Green:
-                    X += Speed + 10;
+                    X += Math.Abs(Speed) + 10;
                     break;
                     
                 case ColorHandler.Wall_Blue:
-                    Y += Speed + 10;
+                    Y += Math.Abs(Speed) + 10;
 
                     break;
 
                 case ColorHandler.Wall_Light_Blue:
-                    Y -= Speed + 10;
+                    Y -= Math.Abs(Speed) + 10;
                     break;
 
             }
@@ -411,9 +411,9 @@ namespace RaceGame {
 
                         Thread t = new Thread(() => {
                             while(Width > 2 || Height > 2) {
-                                Width--;
+                                Width -= 2;
                                 X++;
-                                Height--;
+                                Height -= 2;
                                 Y++;
                                 Thread.Sleep(20);
                             }
@@ -522,10 +522,14 @@ namespace RaceGame {
         public async void PowerupHandler(Game g) {
             if(!ActivatePowerup) return; 
             ActivatePowerup = false;
+            PowerupItem temp = currentPowerup;
+            currentPowerup = PowerupItem.None;
+            ItemFrame.Image = null;
+
             int XTemp = (int) (X - Speed * ((float)Math.Cos(Math.PI / 180 * Angle)));
             int YTemp = (int) (Y - Speed * ((float)Math.Sin(Math.PI / 180 * Angle)));
 
-            switch(currentPowerup) {
+            switch(temp) {
                 //Doe dingen hier met het geselecteerde item
                 case PowerupItem.Banana:
                     //als banaan etc...
@@ -563,8 +567,6 @@ namespace RaceGame {
 
             }
 
-            currentPowerup = PowerupItem.None;
-            ItemFrame.Image = null;
         }
         
         public void PlaySound(string sound) {
