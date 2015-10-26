@@ -10,11 +10,12 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media;
 
 namespace RaceGame {
    public class Player {
-        public bool CheckpointPassed = false;
         public bool FinishPassed = false;
+        private int totalCheckpoints;
         public int laps = 1;
         public float X;
         public float Y;
@@ -30,6 +31,8 @@ namespace RaceGame {
         public int Fuel = 10000;
         public float Angle = 0f;
         public Keys up, down, right, left, action;
+        public bool Finished = false;
+        public bool GameEnded = false;
         public bool Brake = false;
         public bool Gas = false;
         private bool UpActive = false;
@@ -37,22 +40,30 @@ namespace RaceGame {
         private bool RightActive = false;
         private bool LeftActive = false;
         private bool horn = false;
-        public Graphics g;
+        private bool Horn = false;
+        private bool ActivatePowerup = false;
+        private bool SpeedBoost = false;
+        public bool Immune = false;
+        public bool Hit = false;
+        private string name;
         private Bitmap image;
         public Character Character;
         private Form Main;
         public PictureBox FuelBox;
-        public PictureBox HealthBox;
-        public PictureBox Groen;
-        public PictureBox ItemBox;
+        public PowerupItem currentPowerup = PowerupItem.None;
         public PictureBox ItemFrame;
         public Label SpeedLabel;
-        public Label RondeLabel;
         public System.Windows.Forms.Timer FuelTimer;
         double[] angles = new double[23] {8.65, 23.35, 35.45, 47.55, 59.65, 71.75, 83.85, 96.15, 108.25, 120.35, 132.45, 144.55, 156.65, 171.35, 191.25, 213.75, 236.25, 258.75, 281.25, 303.75, 326.25, 348.75, 368.65};
         Dictionary<int[], ColorHandler> kleuren = new Dictionary<int[], ColorHandler>();
+        List<int> checkpointsPassed = new List<int>();
+        Location lastCheckpoint;
+        private string HornSound;
+        private MediaPlayer HornPlayer;
+        private bool HornEnded = true;
+        public Label lapCounter;
 
-        public Player(Character character, Graphics g, Form main, Bitmap imagew, Keys up, Keys down, Keys right, Keys left, Keys action, int x, int y, int width, int height, PictureBox fuel, PictureBox healthBox, PictureBox groen, PictureBox itembox, PictureBox itemframe, System.Windows.Forms.Timer fuelTimer, Label speedLabel, Label rondeLabel) {
+        public Player(string name, Character character, Form main, Bitmap imagew, Keys up, Keys down, Keys right, Keys left, Keys action, int x, int y, int width, int height, PictureBox fuel, PictureBox itemframe, System.Windows.Forms.Timer fuelTimer, Label speedLabel, int totalCheckpoints, Label lapcounter) {
             this.X = x;
             this.Y = y;
             this.up = up;
@@ -62,23 +73,29 @@ namespace RaceGame {
             this.action = action;
             this.Width = width;
             this.Height = height;
-            this.g = g;
             this.MaxSize = width;
             this.Character = character;
             this.Main = main;
             this.FuelBox = fuel;
-            this.Groen = groen;
-            this.ItemBox = itembox;
             this.ItemFrame = itemframe;
             this.FuelTimer = fuelTimer;
             this.SpeedLabel = speedLabel;
-            this.RondeLabel = rondeLabel;
-            this.HealthBox = healthBox;
+            this.lapCounter = lapcounter;
+            this.name = name;
             this.rect = new Rectangle(0, 0, Width, Width);
+            this.totalCheckpoints = totalCheckpoints;
 
-        main.KeyDown += ControlDownHandler;
+            main.KeyDown += ControlDownHandler;
             kleuren.Add(new int[3] {255, 150, 0}, ColorHandler.Pitstop);
             kleuren.Add(new int[3] {0, 255, 0}, ColorHandler.Gras);
+            kleuren.Add(new int[3] {255, 255, 0 }, ColorHandler.Finish);
+            kleuren.Add(new int[3] {255, 0, 255 }, ColorHandler.Gat);
+
+
+            kleuren.Add(new int[3] {255, 0, 150 }, ColorHandler.Wall_Red);
+            kleuren.Add(new int[3] {0, 255, 150 }, ColorHandler.Wall_Green);
+            kleuren.Add(new int[3] {150, 0, 255 }, ColorHandler.Wall_Blue);
+            kleuren.Add(new int[3] {0, 255, 255 }, ColorHandler.Wall_Light_Blue);
 
             main.KeyDown += ControlDownHandler;
             main.KeyUp += new System.Windows.Forms.KeyEventHandler(ControlUpHandler);
@@ -91,34 +108,35 @@ namespace RaceGame {
             image = new Bitmap(temp);
             temp.Save(Path.Combine(Environment.CurrentDirectory, "test.jpg"));
             t.Dispose();
-
         }
-        
-        public string getCharacterUrl(Character ch, int number) {
-            switch(ch) {
+
+        public string getCharacterUrl(Character ch, int number)
+        {
+            switch (ch)
+            {
+                case Character.David:
+                    return "cars/david/D" + number + ".png";
+
                 case Character.Jos:
-                    return "cars/jos" + number + ".png";
+                    return "cars/jos/Jos" + number + ".png";
 
                 case Character.Fiona:
-                    return "cars/fiona" + number + ".png";
-
-                case Character.David:
-                    return "cars/D" + number + ".png";
+                    return "cars/fiona/F" + number + ".png";
 
                 case Character.Jop:
-                    return "cars/jop" + number + ".png";
-
-                case Character.Nynke:
-                    return "cars/nynke" + number + ".png";
+                    return "cars/jop/Jop" + number + ".png";
 
                 case Character.Sibbele:
-                    return "cars/sibbele" + number + ".png";
+                    return "cars/sibbele/Sib" + number + ".png";
 
                 case Character.Joris:
-                    return "cars/joris" + number + ".png";
+                    return "cars/joris/Joris" + number + ".png";
+
+                case Character.Nynke:
+                    return "cars/nynke/F" + number + ".png";
 
                 case Character.Dick:
-                    return "cars/dick" + number + ".png";
+                    return "cars/dick/D" + number + ".png";
 
                 default:
                     return "";
@@ -204,30 +222,36 @@ namespace RaceGame {
 
             return 1;
         }
-	
 
         public void Move(Form form) {
             form.Invalidate();
 
+            if(Horn) {
+                PlaySound(HornSound);
+            }
 
-            if(Gas) {
+            if(Gas && !Hit) {
                 if(SpeedX <= MaxSpeed && SpeedY <= MaxSpeed && Speed < MaxSpeed) {
-                    Speed += 0.2f;
+                    if(SpeedBoost) {
+                        Speed += 0.4f;
+                    }else {
+                        Speed += 0.2f;
+                    }
                 }
             }
 
-            if((!Gas && !Brake) || Speed > MaxSpeed) {
+            if(((!Gas && !Brake) || Speed > MaxSpeed)) {
                 if(Speed > -1 && Speed < 1) {
                     Speed = 0;
                 }
-                if(Speed < 0) {
+                if(Speed < 0 || Hit) {
                     Speed += 0.5f;
-                }else if(Speed > 0) {
+                }else if(Speed > 0 || Hit) {
                     Speed -= 0.5f;
                 }
             }
 
-            if(Brake && Speed > - MaxSpeed) {
+            if((Brake || (Hit && Speed > 0)) && Speed > - MaxSpeed) {
                 Speed -= 0.2f;
             }
 
@@ -240,17 +264,126 @@ namespace RaceGame {
             if(Angle <= -356 || Angle >= 356) {
                 Angle = 0;
             }
-            if((LeftActive) || (RightActive && DownActive)) {
+            if(((LeftActive && !DownActive) || (RightActive && DownActive)) && Speed != 0 && !Hit) {
                 Angle -= Math.Abs(2 * Math.Abs(Speed) / 7 + 1);
             }
-            if((RightActive) || (LeftActive && DownActive)) {
+            if (((RightActive && !DownActive) || (LeftActive && DownActive)) && Speed != 0 && !Hit) {
                 Angle += Math.Abs(2 * Math.Abs(Speed) / 7 + 1);
+            }
+            if(!GameEnded && !SpeedBoost && !Hit) {
+                MaxSpeed = 9;
+            }
+
+        }
+
+        public void FinishHandler(Label message, Bitmap image)
+        {
+            int xCenter = (int)(X + Width / 2);
+            int yCenter = (int)(Y + Height / 2);
+            System.Drawing.Color col = image.GetPixel(xCenter, yCenter);
+
+            if (checkpointsPassed.Count == totalCheckpoints && getColor(col.R, col.G, col.B) == ColorHandler.Finish)
+            {
+                laps++;
+                checkpointsPassed.Clear();
+
+                if(laps != 0 && laps < 6) lapCounter.Image = new Bitmap(Path.Combine(Environment.CurrentDirectory, "laps/" + laps + ".png"));
+                
+                if (laps >= 6)
+                {
+                    Finished = true;
+                    message.Visible = true;
+                    if (Character == Character.David)
+                    {
+                        message.Image = new Bitmap(Path.Combine(Environment.CurrentDirectory, "textboxes/DavidWins.png"));
+                    }
+                    if (Character == Character.Jos)
+                    {
+                        message.Image = new Bitmap(Path.Combine(Environment.CurrentDirectory, "textboxes/JosWins.png"));
+                    }
+                    if (Character == Character.Fiona)
+                    {
+                        message.Image = new Bitmap(Path.Combine(Environment.CurrentDirectory, "textboxes/FionaWins.png"));
+                    }
+                    if (Character == Character.Jop)
+                    {
+                        message.Image = new Bitmap(Path.Combine(Environment.CurrentDirectory, "textboxes/JopWins.png"));
+                    }
+                    if (Character == Character.Sibbele)
+                    {
+                        message.Image = new Bitmap(Path.Combine(Environment.CurrentDirectory, "textboxes/SibbeleWins.png"));
+                    }
+                    if (Character == Character.Joris)
+                    {
+                        message.Image = new Bitmap(Path.Combine(Environment.CurrentDirectory, "textboxes/JorisWins.png"));
+                    }
+                    if (Character == Character.Nynke)
+                    {
+                        message.Image = new Bitmap(Path.Combine(Environment.CurrentDirectory, "textboxes/NynkeWins.png"));
+                    }
+                    if (Character == Character.Dick)
+                    {
+                        message.Image = new Bitmap(Path.Combine(Environment.CurrentDirectory, "textboxes/DickWins.png"));
+                    }
+                }
+            }
+        }
+        	
+        public void CheckpointChecker(Bitmap image) {
+            
+            int xCenter = (int) (X + Width / 2);
+            int yCenter = (int) (Y + Height / 2);
+            System.Drawing.Color col = image.GetPixel(xCenter, yCenter);
+            if(col.R % 5 == 0 && col.G == 0 && col.B == 0 && col.R >= 255 - totalCheckpoints * 10) {
+                if(!checkpointsPassed.Contains(col.R)){
+                    checkpointsPassed.Add(col.R);
+                    Console.WriteLine(checkpointsPassed.Count);
+                }
+                lastCheckpoint = new Location(X, Y, Angle);
+
+            }
+
+        }
+
+        public ColorHandler getColor(int R, int G, int B) {
+            foreach(int[] color in kleuren.Keys) {
+                if(color[0] == R && color[1] == G && color[2] == B) {
+                    return kleuren[color];
+                }
+            }
+            return ColorHandler.None;
+        }
+
+        public void HandleWalls(Bitmap image) {
+            int xCenter = (int) (X + Width / 2);
+            int yCenter = (int) (Y + (Height /3 * 2));
+            System.Drawing.Color col = image.GetPixel(xCenter, yCenter);
+
+            switch(getColor(col.R, col.G, col.B)) {
+                
+                case ColorHandler.Wall_Red:
+                    X -= Speed + 10;
+                    break;
+
+                case ColorHandler.Wall_Green:
+                    X += Speed + 10;
+                    break;
+                    
+                case ColorHandler.Wall_Blue:
+                    Y += Speed + 10;
+
+                    break;
+
+                case ColorHandler.Wall_Light_Blue:
+                    Y -= Speed + 10;
+                    break;
+
             }
 
 
         }
 
-        public void HandleColor(Bitmap image) {
+        public async void HandleColor(Bitmap image) {
 
 
             //Oranje
@@ -265,43 +398,67 @@ namespace RaceGame {
             
             int xCenter = (int) (X + Width / 2);
             int yCenter = (int) (Y + Height / 2);
-            foreach(int[] col in kleuren.Keys) {
-                if(image.GetPixel(xCenter, yCenter).R == col[0] && image.GetPixel(xCenter, yCenter).G == col[1] && image.GetPixel(xCenter, yCenter).B == col[2]) {
-                    switch(kleuren[col]) {
+            System.Drawing.Color col = image.GetPixel(xCenter, yCenter);
+            //Console.WriteLine(temp);
+            switch(getColor(col.R, col.G, col.B)) {
 
-                        case ColorHandler.Gat:
+                case ColorHandler.Gat:
+                    if(!Hit) {
+                        Hit = true;
+                        MaxSpeed = 0;
+                        Speed = 0;
 
-                            break;
 
-                        case ColorHandler.Gras:
-                            MaxSpeed = 5;
-                            break;
-
-                        case ColorHandler.Water:
-
-                            break;
-
-                        case ColorHandler.Pitstop:
-                            MaxSpeed = 3;
-                            if(Health > 90) {
-                                Health = 100;
-                            }else if(Health < 100) {
-                                Health += 10;
+                        Thread t = new Thread(() => {
+                            while(Width > 2 || Height > 2) {
+                                Width--;
+                                X++;
+                                Height--;
+                                Y++;
+                                Thread.Sleep(20);
                             }
+                        });
+                        t.IsBackground = true;
+                        t.Start();
 
-                            if(Fuel > 9900) {
-                                Fuel = 10000;
-                            }else if(Fuel < 10000) {
-                                Fuel += 100;
-                            }
-                            break;
+                        await Task.Delay(1500);
 
-                        default:
-                            MaxSpeed = 9;
-                            break;
+                        X = lastCheckpoint.X;
+                        Y = lastCheckpoint.Y;
+                        Angle = lastCheckpoint.Angle;
+                        Width = 64;
+                        Height = 64;
+                        Hit = false;
+                        await Task.Delay(100);
+                    }   
+                    break;
+
+                case ColorHandler.Gras:
+                    MaxSpeed = 5;
+                    break;
+
+                case ColorHandler.Water:
+                    MaxSpeed = 5;
+                    break;
+
+                case ColorHandler.Pitstop:
+                    MaxSpeed = 3;
+                    if(Health > 90) {
+                        Health = 100;
+                    }else if(Health < 100) {
+                        Health += 10;
                     }
-                }
-            }
+
+                    if(Fuel > 9900) {
+                        Fuel = 10000;
+                    }else if(Fuel < 10000) {
+                        Fuel += 100;
+                    }
+                    break;
+
+                case ColorHandler.None:
+                    break;
+            }   
 
         }
 
@@ -323,7 +480,9 @@ namespace RaceGame {
             }
             if(e.KeyCode == action) {
                 //Code voor actions hier
-                string sound = "";
+                if(currentPowerup != PowerupItem.None && !Hit) ActivatePowerup = true;
+
+                /*string sound = "";
                 Random rand = new Random();
 
                 switch(rand.Next(2)) {
@@ -336,22 +495,91 @@ namespace RaceGame {
                         break;
                 }
 
-                if (Character == Character.David) {
-                    //sound = "r2d2.wav";
+                if (Character == Character.Jos) {
+                    sound = "r2d2.wav";
                 }
 
-                PlaySound(sound);
+                HornSound = sound;
+                if(HornEnded) Horn = true;*/
+
             }
 
         }
+
+        /*
+            Kleiner maken van plaatje
+                
+            if(Width > 0) {
+                Width--;
+                X++;
+            }
+            if(Height > 0) {
+                Height--;
+                Y++;
+            }
+        */
+
+        public async void PowerupHandler(Game g) {
+            if(!ActivatePowerup) return; 
+            ActivatePowerup = false;
+            int XTemp = (int) (X - Speed * ((float)Math.Cos(Math.PI / 180 * Angle)));
+            int YTemp = (int) (Y - Speed * ((float)Math.Sin(Math.PI / 180 * Angle)));
+
+            switch(currentPowerup) {
+                //Doe dingen hier met het geselecteerde item
+                case PowerupItem.Banana:
+                    //als banaan etc...
+                    //Location(player)-3==Banana.jpg
+                    float px = X;
+                    float py = Y;
+                    float pr = Angle;
+                    // diff
+                    //draw(current);
+                    Console.WriteLine("wew");
+                    Immune = true;
+                    Banana banana = new Banana(g, XTemp, YTemp);
+                    g.BananaItems.Add(banana);
+                    await Task.Delay(2000);
+                    Immune = false;
+                    break;
+                    
+                case PowerupItem.Shell:
+                    //Location(player)+1==Shell.jpg
+                    //
+                    Immune = true;
+                    Shell shell = new Shell(g, X, Y, Angle);
+                    g.ShellItems.Add(shell);
+                    await Task.Delay(2000);
+                    Immune = false;
+
+                    break;
+
+                case PowerupItem.Mushroom:
+                    SpeedBoost = true;
+                    MaxSpeed = 14;
+                    await Task.Delay(1000);
+                    SpeedBoost = false;
+                    break;
+
+            }
+
+            currentPowerup = PowerupItem.None;
+            ItemFrame.Image = null;
+        }
         
         public void PlaySound(string sound) {
-            new System.Threading.Thread(() => {
-                var c = new System.Windows.Media.MediaPlayer();
-                c.Open(new System.Uri(Path.Combine(Environment.CurrentDirectory, sound)));
-                c.Play();
+                HornEnded = false;
 
-            }).Start();
+                HornPlayer = new System.Windows.Media.MediaPlayer();
+                HornPlayer.Open(new System.Uri(Path.Combine(Environment.CurrentDirectory, sound)));
+                HornPlayer.MediaEnded +=  HornPlayer_Ended;
+                HornPlayer.Play();
+                Horn = false;
+
+        }
+
+        private void HornPlayer_Ended(object sender, EventArgs e) {
+            HornEnded = true;
         }
 
         public void ControlUpHandler(object sender, System.Windows.Forms.KeyEventArgs e) {

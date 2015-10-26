@@ -1,6 +1,7 @@
 ﻿using RaceGame;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -11,47 +12,55 @@ using System.Windows.Forms;
 
 namespace Racegame {
 
-    public enum Character {Jos, Fiona, David, Jop, Nynke, Sibbele, Joris, Dick };
-    public enum Map {Standard, Koopa_Beach, Rainbow_Road, Zelda };
-    public enum ColorHandler {Gras, Water, Pitstop, Gat };
+    public enum Character { David, Jos, Fiona, Jop, Sibbele, Joris, Nynke, Dick };
+    public enum Map {Standard, Donut_Plains, Ghost_Valley, Bowser_Castle, Choco_Island, Koopa_Beach, Vanilla_Lake, Rainbow_Road};
+    public enum ColorHandler {Gras, Water, Pitstop, Gat, Finish, None, Wall_Red, Wall_Green, Wall_Blue, Wall_Light_Blue };
+    public enum ColorHandler_Walls {Red, Green, Blue, Light_Blue };
 
     public class Game {
 
         public bool isLoaded = false;
         public bool CheckpointPassed = false;
         public bool FinishPassed = false;
-        public Rectangle muur = new Rectangle(650 ,200 , 150, 150);
+        //public Rectangle muur = new Rectangle(650 ,200 , 150, 150);
+
+        public List<Banana> BananaItems = new List<Banana>();
+        public List<Shell> ShellItems = new List<Shell>();
 
         Image Banana = new Bitmap(Path.Combine(Environment.CurrentDirectory, "Banana.png"));
         Image Mushroom = new Bitmap(Path.Combine(Environment.CurrentDirectory, "Mushroom.png"));
         Image Fuel = new Bitmap(Path.Combine(Environment.CurrentDirectory, "fuel.png"));
-        Bitmap colormap;
+        public Bitmap colormap;
+        public Bitmap checkpoints;
+        public Bitmap wallmap;
+        public Bitmap circuit;
+        Powerup pw;
 
         SoundPlayer soundtrack;
         SoundPlayer mainMenuSound;
         Player p1;
         Player p2;
         Map map;
-        Form form;
-        PictureBox Finish;
+        public Form form;
         Label FinishMessage;
         MainMenu main;
-        List<PictureBox> ControlPoints = new List<PictureBox>();
+        int checkpointPoints;
 
-        public Game(MainMenu main, Form form, Player p1, Player p2, Map map, string soundtrack, PictureBox Finish, Label FinishMessage, params PictureBox[] ControlPoints) {
+        public Game(MainMenu main, Form form, Player p1, Player p2, Map map, string soundtrack, Label FinishMessage, int checkpointAmount) {
             this.p1 = p1;
             this.p2 = p2;
             this.map = map;
             this.form = form;
-            this.Finish = Finish;
             this.main = main;
+            this.FinishMessage = FinishMessage;
+            pw = new Powerup(this, 300, 200);
 
             SoundPlayer soundplayer = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, soundtrack));
             this.soundtrack = soundplayer;
-            main.player.Stop();
+            soundplayer.PlayLooping();
 
-            foreach(PictureBox pb in ControlPoints) {
-                this.ControlPoints.Add(pb);
+            for(int i = 0; i < checkpointAmount; i++) {
+                checkpointPoints += 255 - i * 10;
             }
 
             p1.FuelTimer.Interval = 17;
@@ -61,23 +70,58 @@ namespace Racegame {
             p2.FuelTimer.Tick += new System.EventHandler(this.Fueladder2_Tick);
 
             switch(map) {
-                case Map.Koopa_Beach:
-
-                    break;
-
-                case Map.Rainbow_Road:
-                    
-                    break;
 
                 case Map.Standard:
-                    colormap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Colormap1.png")));
+                    circuit = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Standard/circuit.png")));
+                    colormap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Standard/colormap.png")));
+                    checkpoints = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Standard/checkpoints.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
+                    wallmap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Standard/wallmap.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
                     break;
-
-                case Map.Zelda:
-
+                case Map.Donut_Plains:
+                    circuit = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Donut_Plains/circuit.png")));
+                    colormap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Donut_Plains/colormap.png")));
+                    checkpoints = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Donut_Plains/checkpoints.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
+                    wallmap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Donut_Plains/wallmap.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
                     break;
-
+                case Map.Ghost_Valley:
+                    circuit = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Ghost_Valley/circuit.png")));
+                    colormap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Ghost_Valley/colormap.png")));
+                    checkpoints = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Ghost_Valley/checkpoints.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
+                    wallmap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Ghost_Valley/wallmap.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
+                    break;
+                case Map.Bowser_Castle:
+                    circuit = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Bowsers_Castle/circuit.png")));
+                    colormap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Bowsers_Castle/colormap.png")));
+                    checkpoints = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Bowsers_Castle/checkpoints.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
+                    wallmap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Bowsers_Castle/wallmap.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
+                    break;
+                case Map.Choco_Island:
+                    circuit = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Choco_Island/circuit.png")));
+                    colormap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Choco_Island/colormap.png")));
+                    checkpoints = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Choco_Island/checkpoints.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
+                    wallmap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Choco_Island/wallmap.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
+                    break;
+                case Map.Koopa_Beach:
+                    circuit = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Koopa_Beach/circuit.png")));
+                    colormap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Koopa_Beach/colormap.png")));
+                    checkpoints = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Koopa_Beach/checkpoints.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
+                    break;
+                case Map.Vanilla_Lake:
+                    circuit = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Vanilla_Lake/circuit.png")));
+                    colormap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Vanilla_Lake/colormap.png")));
+                    checkpoints = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Vanilla_Lake/checkpoints.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
+                    wallmap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Vanilla_Lake/wallmap.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
+                    break;
+                case Map.Rainbow_Road:
+                    circuit = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Rainbow_Road/circuit.png")));
+                    colormap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Rainbow_Road/colormap.png")));
+                    checkpoints = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Rainbow_Road/checkpoints.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
+                    break; 
             }
+
+            //pw.SpinItemBox(p1);
+            //pw.Rotate();
+
         }
 
         public void Execute() {
@@ -85,12 +129,10 @@ namespace Racegame {
             BorderHandler();
             p2.Move(form);
             p1.Move(form);
-            CollisionHandler(p1, muur);
-            CollisionHandler(p2, muur);
+            CollisionHandler();
             ItemHandler();
             SpeedMeter();
             Checkpointhandler();
-            RondeTeller();
             PlayerCollision();
             FinishHandler();
             p1.rect.X = Convert.ToInt32(p1.X);
@@ -98,27 +140,49 @@ namespace Racegame {
             p2.rect.X = Convert.ToInt32(p2.X);
             p2.rect.Y = Convert.ToInt32(p2.Y);
             ColorHandler();
+
+            p1.PowerupHandler(this);
+            p2.PowerupHandler(this);
+
+            pw.Collision(p1);
+            pw.Collision(p2);
+
+            pw.AddCount();
+
+            foreach(Banana ban in BananaItems) {
+                if(!p1.Hit) ban.Collision(p1);
+                if(!p2.Hit) ban.Collision(p2);
+            }
+
+            foreach(Shell she in ShellItems) {
+                if(!p1.Hit) she.Collision(p1);
+                if(!p2.Hit) she.Collision(p2);
+            }
         }
 
         public void ColorHandler() {
             p1.HandleColor(colormap);
             p2.HandleColor(colormap);
+<<<<<<< HEAD
+=======
+            if(map != Map.Koopa_Beach && map != Map.Rainbow_Road) {
+                p1.HandleWalls(wallmap);
+                p2.HandleWalls(wallmap);
+            }
+>>>>>>> 7668b8f2446b470af17d1330fea1abecfdf5d52c
         }
-
+        
         public void FuelHandler()
         {
-            Fueling(p1, p1.FuelBox, p1.HealthBox);
-            Fueling(p2, p2.FuelBox, p2.HealthBox);
+            Fueling(p1, p1.FuelBox);
+            Fueling(p2, p2.FuelBox);
         }
 
-        public void Fueling(Player a, PictureBox b, PictureBox c)
+        public void Fueling(Player a, PictureBox b)
         {
             a.Fuel -= Math.Abs(Convert.ToInt16(a.Speed));
-            Size fuelboxsize = new Size(a.Fuel / 250 * 10, 10);
+            Size fuelboxsize = new Size(a.Fuel / 250 * 19 / 10, 18);
             b.Size = fuelboxsize;
-            Size healthboxsize = new Size(a.Health * 4, 10);
-            c.Size = healthboxsize;
-
             if (a.Fuel <= 0)
             {
                 a.Speed = 0;
@@ -145,7 +209,7 @@ namespace Racegame {
                 a.Speed = 0;
                 a.X += 10;
             }
-            if (a.Y >= form.ClientSize.Height - 2 * a.Height && a.SpeedY >= 0)
+            if (a.Y >= form.ClientSize.Height - a.Height && a.SpeedY >= 0)
             {
                 a.Health -= Math.Abs(Convert.ToInt16(a.Speed));
                 a.Speed = 0;
@@ -166,12 +230,48 @@ namespace Racegame {
 
         public void Racegame_Paint(object sender, PaintEventArgs e)
         {
-            p1.DrawPlayer(e.Graphics);
-            e.Graphics.ResetTransform();
-            p2.DrawPlayer(e.Graphics);
-            e.Graphics.ResetTransform();
+            if(p1.Y < p2.Y) {
+                p2.DrawPlayer(e.Graphics);
+                e.Graphics.ResetTransform();
+                p1.DrawPlayer(e.Graphics);
+                e.Graphics.ResetTransform();
+            } else {
+                p1.DrawPlayer(e.Graphics);
+                e.Graphics.ResetTransform();
+                p2.DrawPlayer(e.Graphics);
+                e.Graphics.ResetTransform();
+            }
 
+            pw.Draw(e.Graphics);
+
+            foreach(Banana ban in BananaItems) {
+                ban.Draw(e.Graphics);
+            }
+
+            try {
+                foreach(Shell she in ShellItems) {
+                    she.Draw(e.Graphics, wallmap);
+                }
+            }catch(Exception) { }
             //e.Graphics.Dispose();
+        }
+
+        public void CollisionHandler()
+        {
+
+        }
+
+        public void CheckCollision(Player a, PictureBox b)
+        {
+            ///Moet nog even naar gekeken worden want dit moet er wel zijn!
+            if (a.X + a.MaxSize >= b.Location.X &&
+                a.X <= b.Location.X + b.Size.Width &&
+                a.Y + a.MaxSize >= b.Location.Y &&
+                a.Y <= b.Location.Y + b.Size.Height)
+            {
+                a.Speed = 0;
+                a.Speed = 0;
+            }
         }
 
         public async void CollisionHandler(Player a, Rectangle muur)
@@ -333,8 +433,8 @@ namespace Racegame {
 
         public void ItemHandler()
         {
-            CheckItems(p1, p1.ItemBox);
-            CheckItems(p2, p2.ItemBox);
+            //CheckItems(p1, p1.ItemBox);
+            //CheckItems(p2, p2.ItemBox);
         }
 
         public void CheckItems(Player a, PictureBox b)
@@ -382,10 +482,10 @@ namespace Racegame {
 
         public void RespawnHandler()
         {
-            if (p1.ItemBox.Visible == false)
+            /*if (p1.ItemBox.Visible == false)
             {
                 RespawnItems(p1.ItemBox);
-            }
+            }*/
         }
 
         public async void RespawnItems(PictureBox b)
@@ -446,89 +546,30 @@ namespace Racegame {
 
         public void Speed(Player a, Label b)
         {
-            double speed = Math.Sqrt(Math.Pow(a.SpeedX, 2) + Math.Pow(a.SpeedY, 2));
-            b.Text = "Speed: " + Math.Round(speed, 0);
-        }
-
-        public bool Checkpoints(Player a, PictureBox b)
-        {
-            ///Moet nog even naar gekeken worden want dit moet er wel zijn!
-
-            if (a.X + a.MaxSize >= b.Location.X &&
-                a.X <= b.Location.X + b.Size.Width &&
-                a.Y + a.MaxSize >= b.Location.Y &&
-                a.Y <= b.Location.Y + b.Size.Height &&
-                a.CheckpointPassed == false)
-            {
-                a.CheckpointPassed = true;
-            }
-            return a.CheckpointPassed;
-
+            
+            //double speed = Math.Sqrt(Math.Pow(a.SpeedX, 2) + Math.Pow(a.SpeedY, 2));
+            double speed =  (149 / 14) * a.Speed;
+            b.Width = Convert.ToInt32(speed);
         }
 
         public void Checkpointhandler()
         {
-            /*bool passed1 = false;
-            bool passed2 = false;
-            foreach(PictureBox pb in )
-            p1.CheckpointPassed = Checkpoints(p1, Checkpoint);
-            p2.CheckpointPassed = Checkpoints(p2, Checkpoint);*/
-        }
-
-        public void RondeTeller()
-        {
-            p1.CheckpointPassed = Rondes(p1, p1.RondeLabel);
-            p2.CheckpointPassed = Rondes(p2, p2.RondeLabel);
-        }
-
-        public bool Rondes(Player a, Label b)
-        {
-            {
-                ///Moet nog even naar gekeken worden want dit moet er wel zijn!
-
-                if (a.X + a.Width >= Finish.Location.X &&
-                a.X <= Finish.Location.X + Finish.Size.Width &&
-                a.Y + a.Height >= Finish.Location.Y &&
-                a.Y <= Finish.Location.Y + Finish.Size.Height &&
-                a.CheckpointPassed == true)
-                {
-                    a.laps = a.laps + 1;
-                    a.CheckpointPassed = false;
-                }
-
-                b.Text = "Lap: " + a.laps;
-                return a.CheckpointPassed;
-            }
+            p1.CheckpointChecker(checkpoints);
+            p2.CheckpointChecker(checkpoints);
         }
 
         public void FinishHandler()
         {
-            p1.FinishPassed = Finishing(p1, FinishMessage);
-            p2.FinishPassed = Finishing(p2, FinishMessage);
-            if (FinishPassed == true)
-            {
-                p1.Speed = 0;
-                p2.Speed = 0;
-            }
-        }
-        public bool Finishing(Player a, Label b)
-        {
-            if (a.laps >= 4 && FinishPassed == false)
-            {
-                this.FinishMessage.Visible = true;
-                main.Visible = true;
-                if (a == p1)
-                {
-                    this.FinishMessage.Text = "Player 1 wins!";
-                }
-                else if (a == p2)
-                {
-                    this.FinishMessage.Text = "Player 2 wins!";
-                }
-                FinishPassed = true;
-            }
-            return FinishPassed;
+            p1.FinishHandler(FinishMessage, checkpoints);
+            p2.FinishHandler(FinishMessage, checkpoints);
+            
+            if(p1.Finished || p2.Finished) {
+                p1.MaxSpeed = 0;
+                p1.GameEnded = true;
+                p2.MaxSpeed = 0;
+                p2.GameEnded = true;
 
+            }
         }
 
         private void Fueladder_Tick(object sender, EventArgs e)
@@ -543,6 +584,19 @@ namespace Racegame {
 
         public void PlayerCollision()
         {
+            if (p1.X + p1.MaxSize - 18 >= p2.X + 18 &&
+               p1.X + 18 <= p2.X + p2.Width - 18 &&
+               p1.Y + p1.MaxSize - 18 >= p2.Y + 18 &&
+               p1.Y + 18 <= p2.Y + p2.Height - 18)
+            {
+                p1.Health -= Convert.ToInt16(p1.Speed + p2.Speed);
+                p2.Health -= Convert.ToInt16(p1.Speed + p2.Speed);
+                p1.Speed = 0;
+                p2.Speed = 0;
+            }
+
+
+
             bool iscolliding = CircleCollision(p1.rect, p2.rect);
             if(iscolliding == true)
             {
@@ -552,7 +606,7 @@ namespace Racegame {
 
         
 
-        private bool CircleCollision(Rectangle Circle1, Rectangle Circle2)
+        public bool CircleCollision(Rectangle Circle1, Rectangle Circle2)
         {
 
             int R1 = Circle1.Width / 2;
@@ -570,7 +624,7 @@ namespace Racegame {
 
         }
 
-        private bool CollisionDetection(Rectangle circle, Rectangle rectangle)
+        public bool CollisionDetection(Rectangle circle, Rectangle rectangle)
         {
 
             // clamp(value, min, max) - limits value to the range min..max
@@ -614,15 +668,7 @@ namespace Racegame {
             }
         }
 
-
-
-
-        private void Racegame_FormClosing(object sender, FormClosingEventArgs e) {
-            main.Show();
-            main.player.PlayLooping();
         }
 
-
-
     }
-}
+
