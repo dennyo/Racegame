@@ -44,15 +44,18 @@ namespace Racegame {
         public Form form;
         Label FinishMessage;
         MainMenu main;
+        Racegame rg;
         int checkpointPoints;
 
-        public Game(MainMenu main, Form form, Player p1, Player p2, Map map, string soundtrack, Label FinishMessage, int checkpointAmount) {
+        public Game(MainMenu main, Racegame rg, Form form, Player p1, Player p2, Map map, string soundtrack, Label FinishMessage, int checkpointAmount) {
             this.p1 = p1;
             this.p2 = p2;
             this.map = map;
             this.form = form;
             this.main = main;
             this.FinishMessage = FinishMessage;
+            this.rg = rg;
+            
             pw = new Powerup(this, 300, 200);
 
             SoundPlayer soundplayer = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, soundtrack));
@@ -240,6 +243,18 @@ namespace Racegame {
             }
 
             pw.Draw(e.Graphics);
+
+            Graphics graphics = Graphics.FromImage(rg.InterfaceBar.Image);
+
+
+            graphics.DrawImage(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "laps/" + (p1.laps >= 6 ? 5 : p1.laps) + ".png")), new Rectangle(201, 64, 48, 54));
+
+            graphics.DrawImage(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "laps/" + (p2.laps >= 6 ? 5 : p2.laps) + ".png")), new Rectangle(723, 64, 48, 54));
+
+            graphics.DrawImage(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "laps/of5.png")), new Rectangle(250, 82, 54, 38));
+        
+            graphics.DrawImage(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "laps/of5.png")), new Rectangle(772, 82, 54, 38));
+
 
             foreach(Banana ban in BananaItems) {
                 ban.Draw(e.Graphics);

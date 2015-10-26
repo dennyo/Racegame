@@ -63,7 +63,7 @@ namespace RaceGame {
         private bool HornEnded = true;
         public Label lapCounter;
 
-        public Player(string name, Character character, Form main, Bitmap imagew, Keys up, Keys down, Keys right, Keys left, Keys action, int x, int y, int width, int height, PictureBox fuel, PictureBox itemframe, System.Windows.Forms.Timer fuelTimer, Label speedLabel, int totalCheckpoints, Label lapcounter) {
+        public Player(string name, Character character, Form main, Bitmap imagew, Keys up, Keys down, Keys right, Keys left, Keys action, int x, int y, int width, int height, PictureBox fuel, PictureBox itemframe, System.Windows.Forms.Timer fuelTimer, Label speedLabel, int totalCheckpoints) {
             this.X = x;
             this.Y = y;
             this.up = up;
@@ -80,7 +80,6 @@ namespace RaceGame {
             this.ItemFrame = itemframe;
             this.FuelTimer = fuelTimer;
             this.SpeedLabel = speedLabel;
-            this.lapCounter = lapcounter;
             this.name = name;
             this.rect = new Rectangle(0, 0, Width, Width);
             this.totalCheckpoints = totalCheckpoints;
@@ -287,7 +286,7 @@ namespace RaceGame {
                 laps++;
                 checkpointsPassed.Clear();
 
-                if(laps != 0 && laps < 6) lapCounter.Image = new Bitmap(Path.Combine(Environment.CurrentDirectory, "laps/" + laps + ".png"));
+                //if(laps != 0 && laps < 6) lapCounter.Image = new Bitmap(Path.Combine(Environment.CurrentDirectory, "laps/" + laps + ".png"));
                 
                 if (laps >= 6)
                 {
@@ -362,20 +361,23 @@ namespace RaceGame {
             switch(getColor(col.R, col.G, col.B)) {
                 
                 case ColorHandler.Wall_Red:
-                    X -= Math.Abs(Speed) + 10;
+                    X -= Math.Abs(Speed);
+                    //X -= Math.Abs(Speed) + 10;
                     break;
 
                 case ColorHandler.Wall_Green:
-                    X += Math.Abs(Speed) + 10;
+                    //X += Math.Abs(Speed) + 10;
+                    X += Math.Abs(Speed);
                     break;
                     
                 case ColorHandler.Wall_Blue:
-                    Y += Math.Abs(Speed) + 10;
-
+                    //Y += Math.Abs(Speed) + 10;
+                    Y += Math.Abs(Speed);
                     break;
 
                 case ColorHandler.Wall_Light_Blue:
-                    Y -= Math.Abs(Speed) + 10;
+                    //Y -= Math.Abs(Speed) + 10;
+                    Y -= Math.Abs(Speed);
                     break;
 
             }

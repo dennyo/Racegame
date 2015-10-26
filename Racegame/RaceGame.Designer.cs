@@ -46,10 +46,6 @@
             this.StartTimer = new System.Windows.Forms.Timer(this.components);
             this.PlayerControls = new System.Windows.Forms.PictureBox();
             this.Lakitu = new System.Windows.Forms.PictureBox();
-            this.of5P1 = new System.Windows.Forms.Label();
-            this.of5P2 = new System.Windows.Forms.Label();
-            this.lapCounter1 = new System.Windows.Forms.Label();
-            this.lapCounter2 = new System.Windows.Forms.Label();
             this.FadeInTimer = new System.Windows.Forms.Timer(this.components);
             this.FadeOutTimer = new System.Windows.Forms.Timer(this.components);
             this.player2Head = new System.Windows.Forms.PictureBox();
@@ -73,7 +69,7 @@
             // FuelBox
             // 
             this.FuelBox.BackColor = System.Drawing.Color.Red;
-            this.FuelBox.Location = new System.Drawing.Point(204, 35);
+            this.FuelBox.Location = new System.Drawing.Point(212, 33);
             this.FuelBox.Name = "FuelBox";
             this.FuelBox.Size = new System.Drawing.Size(76, 21);
             this.FuelBox.TabIndex = 1;
@@ -97,7 +93,7 @@
             // 
             this.Player1Box.BackColor = System.Drawing.Color.Black;
             this.Player1Box.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Player1Box.Location = new System.Drawing.Point(116, 12);
+            this.Player1Box.Location = new System.Drawing.Point(112, 12);
             this.Player1Box.Name = "Player1Box";
             this.Player1Box.Size = new System.Drawing.Size(56, 56);
             this.Player1Box.TabIndex = 8;
@@ -106,7 +102,7 @@
             // FuelBox2
             // 
             this.FuelBox2.BackColor = System.Drawing.Color.Red;
-            this.FuelBox2.Location = new System.Drawing.Point(744, 36);
+            this.FuelBox2.Location = new System.Drawing.Point(738, 33);
             this.FuelBox2.Name = "FuelBox2";
             this.FuelBox2.Size = new System.Drawing.Size(72, 21);
             this.FuelBox2.TabIndex = 9;
@@ -167,18 +163,19 @@
             // Interface
             // 
             this.Interface.BackColor = System.Drawing.Color.Transparent;
-            this.Interface.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Interface.BackgroundImage")));
             this.Interface.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.Interface.Image = ((System.Drawing.Image)(resources.GetObject("Interface.Image")));
+            this.Interface.InitialImage = null;
             this.Interface.Location = new System.Drawing.Point(0, 0);
             this.Interface.Name = "Interface";
-            this.Interface.Size = new System.Drawing.Size(1024, 97);
+            this.Interface.Size = new System.Drawing.Size(1024, 157);
             this.Interface.TabIndex = 15;
             this.Interface.TabStop = false;
             // 
             // Player2Box
             // 
             this.Player2Box.BackColor = System.Drawing.Color.Black;
-            this.Player2Box.Location = new System.Drawing.Point(852, 12);
+            this.Player2Box.Location = new System.Drawing.Point(848, 12);
             this.Player2Box.Name = "Player2Box";
             this.Player2Box.Size = new System.Drawing.Size(56, 56);
             this.Player2Box.TabIndex = 16;
@@ -211,41 +208,6 @@
             this.Lakitu.TabIndex = 18;
             this.Lakitu.TabStop = false;
             // 
-            // of5P1
-            // 
-            this.of5P1.BackColor = System.Drawing.SystemColors.Window;
-            this.of5P1.Image = ((System.Drawing.Image)(resources.GetObject("of5P1.Image")));
-            this.of5P1.Location = new System.Drawing.Point(236, 70);
-            this.of5P1.Name = "of5P1";
-            this.of5P1.Size = new System.Drawing.Size(54, 38);
-            this.of5P1.TabIndex = 23;
-            // 
-            // of5P2
-            // 
-            this.of5P2.BackColor = System.Drawing.SystemColors.Window;
-            this.of5P2.Image = ((System.Drawing.Image)(resources.GetObject("of5P2.Image")));
-            this.of5P2.Location = new System.Drawing.Point(777, 70);
-            this.of5P2.Name = "of5P2";
-            this.of5P2.Size = new System.Drawing.Size(54, 38);
-            this.of5P2.TabIndex = 24;
-            // 
-            // lapCounter1
-            // 
-            this.lapCounter1.BackColor = System.Drawing.SystemColors.Window;
-            this.lapCounter1.Image = ((System.Drawing.Image)(resources.GetObject("lapCounter1.Image")));
-            this.lapCounter1.Location = new System.Drawing.Point(730, 54);
-            this.lapCounter1.Name = "lapCounter1";
-            this.lapCounter1.Size = new System.Drawing.Size(48, 54);
-            this.lapCounter1.TabIndex = 25;
-            // 
-            // lapCounter2
-            // 
-            this.lapCounter2.Image = ((System.Drawing.Image)(resources.GetObject("lapCounter2.Image")));
-            this.lapCounter2.Location = new System.Drawing.Point(189, 54);
-            this.lapCounter2.Name = "lapCounter2";
-            this.lapCounter2.Size = new System.Drawing.Size(48, 54);
-            this.lapCounter2.TabIndex = 26;
-            // 
             // FadeInTimer
             // 
             this.FadeInTimer.Enabled = true;
@@ -260,18 +222,18 @@
             // player2Head
             // 
             this.player2Head.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.player2Head.Location = new System.Drawing.Point(929, 4);
+            this.player2Head.Location = new System.Drawing.Point(936, 4);
             this.player2Head.Name = "player2Head";
-            this.player2Head.Size = new System.Drawing.Size(72, 72);
+            this.player2Head.Size = new System.Drawing.Size(76, 76);
             this.player2Head.TabIndex = 27;
             this.player2Head.TabStop = false;
             // 
             // player1Head
             // 
             this.player1Head.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.player1Head.Location = new System.Drawing.Point(20, 4);
+            this.player1Head.Location = new System.Drawing.Point(12, 4);
             this.player1Head.Name = "player1Head";
-            this.player1Head.Size = new System.Drawing.Size(72, 72);
+            this.player1Head.Size = new System.Drawing.Size(76, 76);
             this.player1Head.TabIndex = 28;
             this.player1Head.TabStop = false;
             // 
@@ -285,10 +247,6 @@
             this.Controls.Add(this.player2Head);
             this.Controls.Add(this.PlayerControls);
             this.Controls.Add(this.Lakitu);
-            this.Controls.Add(this.lapCounter2);
-            this.Controls.Add(this.lapCounter1);
-            this.Controls.Add(this.of5P2);
-            this.Controls.Add(this.of5P1);
             this.Controls.Add(this.FuelBox2);
             this.Controls.Add(this.FuelBox);
             this.Controls.Add(this.Player2Box);
@@ -307,6 +265,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Super InformatiKart";
             this.TransparencyKey = System.Drawing.Color.Maroon;
+            this.Load += new System.EventHandler(this.Racegame_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Racegame_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Player1Box)).EndInit();
@@ -341,10 +300,6 @@
         private System.Windows.Forms.Timer StartTimer;
         private System.Windows.Forms.PictureBox PlayerControls;
         private System.Windows.Forms.PictureBox Lakitu;
-        private System.Windows.Forms.Label of5P1;
-        private System.Windows.Forms.Label of5P2;
-        private System.Windows.Forms.Label lapCounter1;
-        private System.Windows.Forms.Label lapCounter2;
         private System.Windows.Forms.Timer FadeInTimer;
         private System.Windows.Forms.Timer FadeOutTimer;
         private System.Windows.Forms.PictureBox player2Head;
