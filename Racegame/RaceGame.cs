@@ -25,7 +25,12 @@ namespace Racegame
         private SoundPlayer player;
         public Game game;
         public PictureBox InterfaceBar;
-        int countDown = 7;
+        public string Soundtrack;
+        public string intro;
+        int countDown = 9;
+        public int soundCount = -2;
+        public int IntroLength;
+        public int soundtrackLength;
 
         public Racegame(MainMenu main, Character c1, Character c2, Map map)
         {
@@ -34,7 +39,6 @@ namespace Racegame
             StartTimer.Enabled = true;
             int checkpointCounter = 0;
             this.InterfaceBar = Interface;
-
             player1Head.BackColor = Color.FromArgb(64, 72, 56);
             player2Head.BackColor = Color.FromArgb(64, 72, 56);
 
@@ -42,38 +46,71 @@ namespace Racegame
             player2Head.Image = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "heads/" + c2 + "L.png")));
 
 
-            switch(map) {
+            switch (map)
+            {
 
                 case Map.Bowser_Castle:
                     checkpointCounter = 10;
+                    Soundtrack = "sounds/Bowser Castle.wav";
+                    intro = "sounds/Bowser Castle intro.wav";
+                    IntroLength = 4;
+                    soundtrackLength = 34000;
                     break;
 
                 case Map.Choco_Island:
                     checkpointCounter = 10;
+                    Soundtrack = "sounds/Choco Island.wav";
+                    intro = "sounds/Choco Island intro.wav";
+                    IntroLength = 2;
+                    soundtrackLength = 41000;
                     break;
 
                 case Map.Donut_Plains:
                     checkpointCounter = 10;
+                    Soundtrack = "sounds/Donut Plains.wav";
+                    intro = "sounds/Donut Plains intro.wav";
+                    IntroLength = 0;
+                    soundtrackLength = 31000;
                     break;
 
                 case Map.Ghost_Valley:
                     checkpointCounter = 10;
+                    Soundtrack = "sounds/Ghost Valley.wav";
+                    intro = "sounds/Ghost Valley intro.wav";
+                    IntroLength = 6;
+                    soundtrackLength = 34000;
                     break;
 
                 case Map.Koopa_Beach:
                     checkpointCounter = 10;
+                    Soundtrack = "sounds/Koopa Beach.wav";
+                    intro = "sounds/Koopa Beach intro.wav";
+                    IntroLength = 15;
+                    soundtrackLength = 39000;
                     break;
 
                 case Map.Rainbow_Road:
                     checkpointCounter = 10;
+                    Soundtrack = "sounds/Rainbow Road.wav";
+                    intro = "sounds/Rainbow Road intro.wav";
+                    IntroLength = 13;
+                    soundtrackLength = 49000;
                     break;
 
                 case Map.Standard:
                     checkpointCounter = 3;
+                    Soundtrack = "sounds/Mario Circuit.wav";
+                    intro = "sounds/Mario Circuit intro.wav";
+                    IntroLength = 10;
+                    soundtrackLength = 32000;
                     break;
 
                 case Map.Vanilla_Lake:
                     checkpointCounter = 10;
+                    Soundtrack = "sounds/Vanilla lake.wav";
+                    intro = "sounds/Vanilla lake intro.wav";
+                    IntroLength = 29;
+                    soundtrackLength = 29000;
                     break;
 
             }
@@ -81,11 +118,11 @@ namespace Racegame
 
             p2 = new Player("Player 2", c2, this, null, Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.ControlKey, 500, 140, 64, 64, FuelBox2, Player2Box, Fueladder2, Speed2, checkpointCounter);
             p1 = new Player("Player 1", c1, this, null, Keys.W, Keys.S, Keys.D, Keys.A, Keys.ShiftKey, 520, 80, 64, 64, FuelBox, Player1Box, Fueladder, Speed1, checkpointCounter);
-            Game game = new Game(main, this, this, p1, p2, map, "Standard.wav", FinishMessage, 3);
+            Game game = new Game(main, this, this, p1, p2, map, Soundtrack, intro, FinishMessage, 3);
             this.game = game;
             this.BackgroundImage = game.circuit;
             this.Opacity = 0;
-
+            SoundTrackTimer.Interval = soundtrackLength;
         }
 
 
@@ -192,6 +229,22 @@ namespace Racegame
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void IntroTimer_Tick(object sender, EventArgs e)
+        {
+            soundCount++;
+            game.Sounds(soundCount, IntroLength);
+            if (soundCount == (IntroLength + 8))
+            {
+                IntroTimer.Enabled = false;
+                SoundTrackTimer.Enabled = true;
+            }
+        }
+
+        private void SoundTrackTimer_Tick(object sender, EventArgs e)
+        {
+                game.PlaySoundTrack();
         }
     }
 }

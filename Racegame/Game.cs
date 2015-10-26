@@ -46,8 +46,10 @@ namespace Racegame {
         MainMenu main;
         Racegame rg;
         int checkpointPoints;
+        public string SoundTrack;
+        public string Intro;
 
-        public Game(MainMenu main, Racegame rg, Form form, Player p1, Player p2, Map map, string soundtrack, Label FinishMessage, int checkpointAmount) {
+        public Game(MainMenu main, Racegame rg, Form form, Player p1, Player p2, Map map, string soundtrack, string intro, Label FinishMessage, int checkpointAmount) {
             this.p1 = p1;
             this.p2 = p2;
             this.map = map;
@@ -55,13 +57,10 @@ namespace Racegame {
             this.main = main;
             this.FinishMessage = FinishMessage;
             this.rg = rg;
+            this.SoundTrack = soundtrack;
+            this.Intro = intro;
             
             pw = new Powerup(this, 300, 200);
-
-            SoundPlayer soundplayer = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, soundtrack));
-            this.soundtrack = soundplayer;
-            soundplayer.PlayLooping();
-
             for(int i = 0; i < checkpointAmount; i++) {
                 checkpointPoints += 255 - i * 10;
             }
@@ -126,7 +125,35 @@ namespace Racegame {
             //pw.Rotate();
 
         }
+        public void Sounds(int i, int l)
+        {
+            if (i == 0)
+            {
+                SoundPlayer soundplayer = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, "sounds/Race Fanfare.wav"));
+                soundplayer.Play();
+            }
+            if (i == 3)
+            {
+                SoundPlayer soundplayer = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, "sounds/Countdown.wav"));
+                soundplayer.Play();
+            }
+            if (i == 7)
+            {
+                SoundPlayer soundplayer = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, Intro));
+                soundplayer.Play();
+            }
+            if (i == (l + 8))
+            {
+                SoundPlayer soundtrackplayer = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, SoundTrack));
+                soundtrackplayer.Play();
+            }
+        }
 
+        public void PlaySoundTrack()
+        {
+            SoundPlayer soundtrackplayer = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, SoundTrack));
+            soundtrackplayer.Play();
+        }
         public void Execute() {
             FuelHandler();
             BorderHandler();
