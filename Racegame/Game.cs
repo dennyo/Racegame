@@ -93,20 +93,16 @@ namespace Racegame {
             RondeTeller();
             PlayerCollision();
             FinishHandler();
-<<<<<<< HEAD
             p1.rect.X = Convert.ToInt32(p1.X);
             p1.rect.Y = Convert.ToInt32(p1.Y);
             p2.rect.X = Convert.ToInt32(p2.X);
             p2.rect.Y = Convert.ToInt32(p2.Y);
-
-=======
             ColorHandler();
         }
 
         public void ColorHandler() {
             p1.HandleColor(colormap);
             p2.HandleColor(colormap);
->>>>>>> 7f2aa1557af21f0734c663e8366d975c11155bc2
         }
 
         public void FuelHandler()
@@ -550,8 +546,6 @@ namespace Racegame {
             bool iscolliding = CircleCollision(p1.rect, p2.rect);
             if(iscolliding == true)
             {
-                p1.Speed = 0;
-                p2.Speed = 0;
             }
             
         }
