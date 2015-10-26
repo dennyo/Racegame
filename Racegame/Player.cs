@@ -47,6 +47,7 @@ namespace RaceGame {
         public bool Hit = false;
         private string name;
         private Bitmap image;
+        public bool HasItem = false;
         public Character Character;
         private Form Main;
         public PictureBox FuelBox;
@@ -569,6 +570,7 @@ namespace RaceGame {
 
             }
 
+            HasItem = false;
         }
         
         public void PlaySound(string sound) {

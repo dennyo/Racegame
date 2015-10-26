@@ -230,18 +230,6 @@ namespace Racegame {
 
         public void Racegame_Paint(object sender, PaintEventArgs e)
         {
-            if(p1.Y < p2.Y) {
-                p2.DrawPlayer(e.Graphics);
-                e.Graphics.ResetTransform();
-                p1.DrawPlayer(e.Graphics);
-                e.Graphics.ResetTransform();
-            } else {
-                p1.DrawPlayer(e.Graphics);
-                e.Graphics.ResetTransform();
-                p2.DrawPlayer(e.Graphics);
-                e.Graphics.ResetTransform();
-            }
-
             pw.Draw(e.Graphics);
 
             Graphics graphics = Graphics.FromImage(rg.InterfaceBar.Image);
@@ -266,6 +254,20 @@ namespace Racegame {
                 }
             }catch(Exception) { }
             //e.Graphics.Dispose();
+
+
+            if(p1.Y < p2.Y) {
+                p2.DrawPlayer(e.Graphics);
+                e.Graphics.ResetTransform();
+                p1.DrawPlayer(e.Graphics);
+                e.Graphics.ResetTransform();
+            } else {
+                p1.DrawPlayer(e.Graphics);
+                e.Graphics.ResetTransform();
+                p2.DrawPlayer(e.Graphics);
+                e.Graphics.ResetTransform();
+            }
+
         }
 
         public void CollisionHandler()

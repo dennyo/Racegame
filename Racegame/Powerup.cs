@@ -76,6 +76,7 @@ namespace Racegame {
         }
 
         public void SpinItemBox(Player p) {
+            p.HasItem = true;
             Thread t = new Thread(() => {
                 for(int i = 0; i < 30; i++) {
                     switch(rand.Next(3)) {
@@ -109,7 +110,7 @@ namespace Racegame {
         
         public void Collision(Player p) {
             rect = new Rectangle(X, Y, 42, 42);
-            if(game.CircleCollision(p.rect, rect) && !Hit && !Disabled) {
+            if(game.CircleCollision(p.rect, rect) && !Hit && !Disabled && !p.HasItem) {
                 Hit = true;
                 Disabled = true;
                 //pb.Visible = false;

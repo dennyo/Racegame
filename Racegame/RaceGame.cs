@@ -24,7 +24,6 @@ namespace Racegame
         private MainMenu main;
         private SoundPlayer player;
         public Game game;
-        public Label p1Lap, p2Lap, p1Of, p2Of;
         public PictureBox InterfaceBar;
         int countDown = 7;
 
@@ -34,8 +33,6 @@ namespace Racegame
             this.main = main;
             StartTimer.Enabled = true;
             int checkpointCounter = 0;
-            /*player2Head.Parent = Interface;
-            player1Head.Parent = Interface;*/
             this.InterfaceBar = Interface;
 
             player1Head.BackColor = Color.FromArgb(64, 72, 56);
