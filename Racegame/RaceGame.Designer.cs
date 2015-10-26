@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Racegame));
             this.GameTimer = new System.Windows.Forms.Timer(this.components);
             this.FuelBox = new System.Windows.Forms.PictureBox();
-            this.ItemBox = new System.Windows.Forms.PictureBox();
             this.Speed2 = new System.Windows.Forms.Label();
             this.Fueladder = new System.Windows.Forms.Timer(this.components);
             this.Player1Box = new System.Windows.Forms.PictureBox();
@@ -56,7 +55,6 @@
             this.player2Head = new System.Windows.Forms.PictureBox();
             this.player1Head = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Player1Box)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Interface)).BeginInit();
@@ -80,15 +78,6 @@
             this.FuelBox.Size = new System.Drawing.Size(76, 21);
             this.FuelBox.TabIndex = 1;
             this.FuelBox.TabStop = false;
-            // 
-            // ItemBox
-            // 
-            this.ItemBox.BackColor = System.Drawing.Color.Yellow;
-            this.ItemBox.Location = new System.Drawing.Point(94, 153);
-            this.ItemBox.Name = "ItemBox";
-            this.ItemBox.Size = new System.Drawing.Size(43, 41);
-            this.ItemBox.TabIndex = 3;
-            this.ItemBox.TabStop = false;
             // 
             // Speed2
             // 
@@ -304,7 +293,6 @@
             this.Controls.Add(this.Player2Box);
             this.Controls.Add(this.Player1Box);
             this.Controls.Add(this.MainMenu);
-            this.Controls.Add(this.ItemBox);
             this.Controls.Add(this.Speed1);
             this.Controls.Add(this.Speed2);
             this.Controls.Add(this.FinishMessage);
@@ -320,7 +308,6 @@
             this.TransparencyKey = System.Drawing.Color.Maroon;
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Racegame_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Player1Box)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Interface)).EndInit();
@@ -337,7 +324,6 @@
         #endregion
         private System.Windows.Forms.Timer GameTimer;
         private System.Windows.Forms.PictureBox FuelBox;
-        private System.Windows.Forms.PictureBox ItemBox;
         private System.Windows.Forms.Label Speed2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
