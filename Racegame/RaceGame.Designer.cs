@@ -242,7 +242,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1026, 741);
+            this.ClientSize = new System.Drawing.Size(1024, 768);
             this.Controls.Add(this.player1Head);
             this.Controls.Add(this.player2Head);
             this.Controls.Add(this.PlayerControls);
@@ -259,7 +259,7 @@
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximumSize = new System.Drawing.Size(1042, 815);
-            this.MinimumSize = new System.Drawing.Size(1042, 726);
+            this.MinimumSize = new System.Drawing.Size(1042, 815);
             this.Name = "Racegame";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Super InformatiKart";

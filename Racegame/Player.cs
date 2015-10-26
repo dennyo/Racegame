@@ -19,7 +19,6 @@ namespace RaceGame {
         public int laps = 1;
         public float X;
         public float Y;
-        public int MaxSize;
         public int Height;
         public int Width;
         public Rectangle rect;
@@ -59,22 +58,15 @@ namespace RaceGame {
         Dictionary<int[], ColorHandler> kleuren = new Dictionary<int[], ColorHandler>();
         List<int> checkpointsPassed = new List<int>();
         Location lastCheckpoint;
-        private string HornSound;
         private MediaPlayer HornPlayer;
-        private bool HornEnded = true;
         public Label lapCounter;
 
-        public Player(string name, Character character, Form main, Bitmap imagew, Keys up, Keys down, Keys right, Keys left, Keys action, int x, int y, int width, int height, PictureBox fuel, PictureBox itemframe, System.Windows.Forms.Timer fuelTimer, Label speedLabel, int totalCheckpoints) {
-            this.X = x;
-            this.Y = y;
+        public Player(string name, Character character, Form main, Bitmap imagew, Keys up, Keys down, Keys right, Keys left, Keys action, PictureBox fuel, PictureBox itemframe, System.Windows.Forms.Timer fuelTimer, Label speedLabel, int totalCheckpoints, Location start) {
             this.up = up;
             this.down = down;
             this.right = right;
             this.left = left;
             this.action = action;
-            this.Width = width;
-            this.Height = height;
-            this.MaxSize = width;
             this.Character = character;
             this.Main = main;
             this.FuelBox = fuel;
@@ -82,8 +74,15 @@ namespace RaceGame {
             this.FuelTimer = fuelTimer;
             this.SpeedLabel = speedLabel;
             this.name = name;
+            this.Width = 64;
+            this.Height = 64;
             this.rect = new Rectangle(0, 0, Width, Width);
             this.totalCheckpoints = totalCheckpoints;
+            checkpointsPassed.Add(255);
+            this.X = start.X;
+            this.Y = start.Y;
+            this.Angle = start.Angle;
+            //lastCheckpoint zetten
 
             main.KeyDown += ControlDownHandler;
             kleuren.Add(new int[3] {255, 150, 0}, ColorHandler.Pitstop);
@@ -100,14 +99,6 @@ namespace RaceGame {
             main.KeyDown += ControlDownHandler;
             main.KeyUp += new System.Windows.Forms.KeyEventHandler(ControlUpHandler);
 
-            //Temporary code for a rectangle player.
-            Image temp = new Bitmap(MaxSize, MaxSize);
-            Graphics t = Graphics.FromImage(temp);
-            //t.FillRectangle(new SolidBrush(Color.Green), 0, 0, Width, Height);
-            t.DrawImage(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Schw1.png")), new Rectangle(new Point(0, 0), new Size(Width, Height)));
-            image = new Bitmap(temp);
-            temp.Save(Path.Combine(Environment.CurrentDirectory, "test.jpg"));
-            t.Dispose();
         }
 
         public string getCharacterUrl(Character ch, int number)
@@ -227,7 +218,6 @@ namespace RaceGame {
             form.Invalidate();
 
             if(Horn) {
-                PlaySound(HornSound);
             }
 
             if(Gas && !Hit) {
@@ -329,7 +319,7 @@ namespace RaceGame {
             }
         }
         	
-        public void CheckpointChecker(Bitmap image) {
+        public void CheckpointChecker(Game g, Bitmap image) {
             
             int xCenter = (int) (X + Width / 2);
             int yCenter = (int) (Y + Height / 2);
@@ -339,7 +329,7 @@ namespace RaceGame {
                     checkpointsPassed.Add(col.R);
                     Console.WriteLine(checkpointsPassed.Count);
                 }
-                lastCheckpoint = new Location(X, Y, Angle);
+                lastCheckpoint = g.RespawnPoints[checkpointsPassed.Count - 1];
 
             }
 
@@ -542,7 +532,6 @@ namespace RaceGame {
                     float pr = Angle;
                     // diff
                     //draw(current);
-                    Console.WriteLine("wew");
                     Immune = true;
                     Banana banana = new Banana(g, XTemp, YTemp);
                     g.BananaItems.Add(banana);
@@ -571,21 +560,6 @@ namespace RaceGame {
             }
 
             HasItem = false;
-        }
-        
-        public void PlaySound(string sound) {
-                HornEnded = false;
-
-                HornPlayer = new System.Windows.Media.MediaPlayer();
-                HornPlayer.Open(new System.Uri(Path.Combine(Environment.CurrentDirectory, sound)));
-                HornPlayer.MediaEnded +=  HornPlayer_Ended;
-                HornPlayer.Play();
-                Horn = false;
-
-        }
-
-        private void HornPlayer_Ended(object sender, EventArgs e) {
-            HornEnded = true;
         }
 
         public void ControlUpHandler(object sender, System.Windows.Forms.KeyEventArgs e) {

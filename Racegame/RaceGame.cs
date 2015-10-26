@@ -41,47 +41,149 @@ namespace Racegame
             player1Head.Image = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "heads/" + c1 + "R.png")));
             player2Head.Image = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "heads/" + c2 + "L.png")));
 
+            List<Powerup> Powerups = new List<Powerup>();
+            List<Location> RespawnPoints = new List<Location>();
+            Location p1Start = new Location(0, 0, 0);
+            Location p2Start = new Location(0, 0, 0);
 
             switch(map) {
 
                 case Map.Bowser_Castle:
                     checkpointCounter = 10;
+                    Powerups.Add(new Powerup(438, 326));
+                    Powerups.Add(new Powerup(418, 278));
+                    p1Start = new Location(931, 312, -270);
+                    p2Start = new Location(871, 264, -270);
+                    
+                    RespawnPoints.Add(new Location(348, 558, -90));
+                    RespawnPoints.Add(new Location(348, 558, -90));
+                    RespawnPoints.Add(new Location(348, 558, -90));
+                    RespawnPoints.Add(new Location(348, 558, -90));
+                    RespawnPoints.Add(new Location(284, 449, 0));
+                    RespawnPoints.Add(new Location(383, 642, -180));
+                    RespawnPoints.Add(new Location(348, 558, -90));
+                    RespawnPoints.Add(new Location(348, 558, -90));
+                    RespawnPoints.Add(new Location(348, 558, -90));
+                    RespawnPoints.Add(new Location(348, 558, -90));
                     break;
 
                 case Map.Choco_Island:
                     checkpointCounter = 10;
+                    Powerups.Add(new Powerup(724, 626));
+                    Powerups.Add(new Powerup(786, 596));
+                    p1Start = new Location(390, 274, -90);
+                    p2Start = new Location(458, 314, -90);
                     break;
 
                 case Map.Donut_Plains:
                     checkpointCounter = 10;
+                    Powerups.Add(new Powerup(586,258));
+                    Powerups.Add(new Powerup(928,244));
+                    p1Start = new Location(96, 456, -90);
+                    p2Start = new Location(169, 492, -90);
+
+                    RespawnPoints.Add(new Location(138, 375, -90));
+                    RespawnPoints.Add(new Location(195, 172, 0));
+                    RespawnPoints.Add(new Location(412, 161, 0));
+                    RespawnPoints.Add(new Location(701, 158, 0));
+                    RespawnPoints.Add(new Location(752, 321, -180));
+                    RespawnPoints.Add(new Location(449, 324, -180));
+                    RespawnPoints.Add(new Location(526, 452, -330));
+                    RespawnPoints.Add(new Location(800, 527, -315));
+                    RespawnPoints.Add(new Location(629, 648, -165));
+                    RespawnPoints.Add(new Location(359, 559, -180));
                     break;
 
                 case Map.Ghost_Valley:
                     checkpointCounter = 10;
+                    Powerups.Add(new Powerup(344, 224));
+                    Powerups.Add(new Powerup(418, 202));
+                    p1Start = new Location(338, 690, -180);
+                    p2Start = new Location(338, 620, -180);
+                    
+                    RespawnPoints.Add(new Location(205, 646, -180));
+                    RespawnPoints.Add(new Location(47, 450, -90));
+                    RespawnPoints.Add(new Location(98, 143, 0));
+                    RespawnPoints.Add(new Location(352, 281, -270));
+                    RespawnPoints.Add(new Location(356, 479, 0));
+                    RespawnPoints.Add(new Location(602, 474, -45));
+                    RespawnPoints.Add(new Location(743, 301, -90));
+                    RespawnPoints.Add(new Location(900, 301, -270));
+                    RespawnPoints.Add(new Location(760, 654, -180));
+                    RespawnPoints.Add(new Location(552, 627, -180));
                     break;
 
                 case Map.Koopa_Beach:
                     checkpointCounter = 10;
+                    Powerups.Add(new Powerup(796, 236));
+                    Powerups.Add(new Powerup(558, 216));
+                    p1Start = new Location(116, 254, -90);
+                    p2Start = new Location(183, 284, -90);
+                    
+                    RespawnPoints.Add(new Location(155, 179, -60));
+                    RespawnPoints.Add(new Location(279, 105, 0));
+                    RespawnPoints.Add(new Location(593, 121, -330));
+                    RespawnPoints.Add(new Location(508, 221, -300));
+                    RespawnPoints.Add(new Location(865, 420, -270));
+                    RespawnPoints.Add(new Location(760, 569, -180));
+                    RespawnPoints.Add(new Location(539, 508, -180));
+                    RespawnPoints.Add(new Location(296, 539, -180));
+                    RespawnPoints.Add(new Location(92, 567, 105));
+                    RespawnPoints.Add(new Location(116, 345, -90));
                     break;
 
                 case Map.Rainbow_Road:
                     checkpointCounter = 10;
+                    Powerups.Add(new Powerup(694, 217));
+                    Powerups.Add(new Powerup(767, 274));
+                    p1Start = new Location(23, 244, -90);
+                    p2Start = new Location(102, 392, -90);
+                    
+                    RespawnPoints.Add(new Location(66, 238, -90));
+                    RespawnPoints.Add(new Location(291, 115, 0));
+                    RespawnPoints.Add(new Location(718, 139, -270));
+                    RespawnPoints.Add(new Location(575, 325, -180));
+                    RespawnPoints.Add(new Location(293, 267, -270));
+                    RespawnPoints.Add(new Location(566, 481, 0));
+                    RespawnPoints.Add(new Location(879, 646, -180));
+                    RespawnPoints.Add(new Location(538, 615, -180));
+                    RespawnPoints.Add(new Location(255, 654, -180));
+                    RespawnPoints.Add(new Location(65, 550, -90));
                     break;
 
                 case Map.Standard:
                     checkpointCounter = 3;
+                    Powerups.Add(new Powerup(562, 380));
+                    Powerups.Add(new Powerup(614, 416));
+                    p1Start = new Location(532, 86, 0);
+                    p2Start = new Location(502, 156, 0);
                     break;
 
                 case Map.Vanilla_Lake:
                     checkpointCounter = 10;
+                    Powerups.Add(new Powerup(388, 134));
+                    Powerups.Add(new Powerup(426, 188));
+                    p1Start = new Location(806, 437, -90);
+                    p2Start = new Location(877, 406, -90);
+                    
+                    RespawnPoints.Add(new Location(821, 330, -90));
+                    RespawnPoints.Add(new Location(712, 135, -180));
+                    RespawnPoints.Add(new Location(485, 169, -180));
+                    RespawnPoints.Add(new Location(222, 198, -240));
+                    RespawnPoints.Add(new Location(171, 446, -270));
+                    RespawnPoints.Add(new Location(132, 634, 0));
+                    RespawnPoints.Add(new Location(389, 636, 0));
+                    RespawnPoints.Add(new Location(648, 636, -15));
+                    RespawnPoints.Add(new Location(760, 576, -45));
+                    RespawnPoints.Add(new Location(819, 432, -90));
                     break;
 
             }
 
 
-            p2 = new Player("Player 2", c2, this, null, Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.ControlKey, 500, 140, 64, 64, FuelBox2, Player2Box, Fueladder2, Speed2, checkpointCounter);
-            p1 = new Player("Player 1", c1, this, null, Keys.W, Keys.S, Keys.D, Keys.A, Keys.ShiftKey, 520, 80, 64, 64, FuelBox, Player1Box, Fueladder, Speed1, checkpointCounter);
-            Game game = new Game(main, this, this, p1, p2, map, "Standard.wav", FinishMessage, 3);
+            p2 = new Player("Player 2", c2, this, null, Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.ControlKey, FuelBox2, Player2Box, Fueladder2, Speed2, checkpointCounter, p2Start);
+            p1 = new Player("Player 1", c1, this, null, Keys.W, Keys.S, Keys.D, Keys.A, Keys.ShiftKey, FuelBox, Player1Box, Fueladder, Speed1, checkpointCounter, p1Start);
+            Game game = new Game(main, this, this, p1, p2, map, "Standard.wav", FinishMessage, 3, Powerups, RespawnPoints);
             this.game = game;
             this.BackgroundImage = game.circuit;
             this.Opacity = 0;

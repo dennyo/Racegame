@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Racegame {
-    class Location {
+    public class Location {
 
         public float X;
         public float Y;

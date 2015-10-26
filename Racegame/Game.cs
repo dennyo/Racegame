@@ -26,6 +26,8 @@ namespace Racegame {
 
         public List<Banana> BananaItems = new List<Banana>();
         public List<Shell> ShellItems = new List<Shell>();
+        public List<Powerup> Powerups = new List<Powerup>();
+        public List<Location> RespawnPoints = new List<Location>();
 
         Image Banana = new Bitmap(Path.Combine(Environment.CurrentDirectory, "Banana.png"));
         Image Mushroom = new Bitmap(Path.Combine(Environment.CurrentDirectory, "Mushroom.png"));
@@ -34,7 +36,6 @@ namespace Racegame {
         public Bitmap checkpoints;
         public Bitmap wallmap;
         public Bitmap circuit;
-        Powerup pw;
 
         SoundPlayer soundtrack;
         SoundPlayer mainMenuSound;
@@ -47,7 +48,7 @@ namespace Racegame {
         Racegame rg;
         int checkpointPoints;
 
-        public Game(MainMenu main, Racegame rg, Form form, Player p1, Player p2, Map map, string soundtrack, Label FinishMessage, int checkpointAmount) {
+        public Game(MainMenu main, Racegame rg, Form form, Player p1, Player p2, Map map, string soundtrack, Label FinishMessage, int checkpointAmount, List<Powerup> Powerups, List<Location> RespawnPoints) {
             this.p1 = p1;
             this.p2 = p2;
             this.map = map;
@@ -55,8 +56,8 @@ namespace Racegame {
             this.main = main;
             this.FinishMessage = FinishMessage;
             this.rg = rg;
-            
-            pw = new Powerup(this, 300, 200);
+            this.Powerups = Powerups;
+            this.RespawnPoints = RespawnPoints;
 
             SoundPlayer soundplayer = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, soundtrack));
             this.soundtrack = soundplayer;
@@ -132,7 +133,6 @@ namespace Racegame {
             BorderHandler();
             p2.Move(form);
             p1.Move(form);
-            CollisionHandler();
             ItemHandler();
             SpeedMeter();
             Checkpointhandler();
@@ -147,10 +147,11 @@ namespace Racegame {
             p1.PowerupHandler(this);
             p2.PowerupHandler(this);
 
-            pw.Collision(p1);
-            pw.Collision(p2);
-
-            pw.AddCount();
+            foreach(Powerup pw in Powerups) {
+                pw.Collision(this, p1);
+                pw.Collision(this, p2);
+                pw.AddCount();
+            }
 
             foreach(Banana ban in BananaItems) {
                 if(!p1.Hit) ban.Collision(p1);
@@ -230,7 +231,9 @@ namespace Racegame {
 
         public void Racegame_Paint(object sender, PaintEventArgs e)
         {
-            pw.Draw(e.Graphics);
+            foreach(Powerup pw in Powerups) {
+                pw.Draw(e.Graphics);
+            }
 
             Graphics graphics = Graphics.FromImage(rg.InterfaceBar.Image);
 
@@ -268,24 +271,6 @@ namespace Racegame {
                 e.Graphics.ResetTransform();
             }
 
-        }
-
-        public void CollisionHandler()
-        {
-
-        }
-
-        public void CheckCollision(Player a, PictureBox b)
-        {
-            ///Moet nog even naar gekeken worden want dit moet er wel zijn!
-            if (a.X + a.MaxSize >= b.Location.X &&
-                a.X <= b.Location.X + b.Size.Width &&
-                a.Y + a.MaxSize >= b.Location.Y &&
-                a.Y <= b.Location.Y + b.Size.Height)
-            {
-                a.Speed = 0;
-                a.Speed = 0;
-            }
         }
 
         public async void CollisionHandler(Player a, Rectangle muur)
@@ -568,8 +553,8 @@ namespace Racegame {
 
         public void Checkpointhandler()
         {
-            p1.CheckpointChecker(checkpoints);
-            p2.CheckpointChecker(checkpoints);
+            p1.CheckpointChecker(this, checkpoints);
+            p2.CheckpointChecker(this, checkpoints);
         }
 
         public void FinishHandler()

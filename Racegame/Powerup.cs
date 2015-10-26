@@ -14,11 +14,10 @@ namespace Racegame {
 
     public enum PowerupItem {Banana, Mushroom, Shell, None };
 
-    class Powerup {
+    public class Powerup {
 
         private int X;
         private int Y;
-        private Game game;
         private static Random rand;
         private int CurrentImage = 0;
         private List<Image> ImageSequence = new List<Image>();
@@ -30,8 +29,7 @@ namespace Racegame {
         private bool Disabled = false;
         private bool Hit = false;
 
-        public Powerup(Game g, int X, int Y) {
-            this.game = g;
+        public Powerup(int X, int Y) {
             this.X = X;
             this.Y = Y;
             rand = new Random();
@@ -108,7 +106,7 @@ namespace Racegame {
 
         }
         
-        public void Collision(Player p) {
+        public void Collision(Game game, Player p) {
             rect = new Rectangle(X, Y, 42, 42);
             if(game.CircleCollision(p.rect, rect) && !Hit && !Disabled && !p.HasItem) {
                 Hit = true;
