@@ -121,7 +121,7 @@
             this.Main.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Main.Location = new System.Drawing.Point(0, 0);
             this.Main.Name = "Main";
-            this.Main.Size = new System.Drawing.Size(1008, 729);
+            this.Main.Size = new System.Drawing.Size(1008, 741);
             this.Main.TabIndex = 0;
             // 
             // PlayQuit
@@ -134,6 +134,7 @@
             this.PlayQuit.Size = new System.Drawing.Size(485, 188);
             this.PlayQuit.TabIndex = 7;
             this.PlayQuit.TabStop = false;
+            this.PlayQuit.Visible = false;
             // 
             // label1
             // 
@@ -144,7 +145,7 @@
             this.label1.Location = new System.Drawing.Point(418, 86);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 52);
+            this.label1.Size = new System.Drawing.Size(27, 39);
             this.label1.TabIndex = 6;
             this.label1.Text = " ";
             // 
@@ -179,7 +180,7 @@
             this.CharacterSelection.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CharacterSelection.Location = new System.Drawing.Point(0, 0);
             this.CharacterSelection.Name = "CharacterSelection";
-            this.CharacterSelection.Size = new System.Drawing.Size(1008, 729);
+            this.CharacterSelection.Size = new System.Drawing.Size(1008, 741);
             this.CharacterSelection.TabIndex = 8;
             this.CharacterSelection.Visible = false;
             // 
@@ -187,7 +188,7 @@
             // 
             this.pictureBox16.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox16.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox16.Location = new System.Drawing.Point(795, 379);
+            this.pictureBox16.Location = new System.Drawing.Point(795, 385);
             this.pictureBox16.Name = "pictureBox16";
             this.pictureBox16.Size = new System.Drawing.Size(66, 32);
             this.pictureBox16.TabIndex = 91;
@@ -197,7 +198,7 @@
             // 
             this.pictureBox15.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox15.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox15.Location = new System.Drawing.Point(606, 379);
+            this.pictureBox15.Location = new System.Drawing.Point(606, 385);
             this.pictureBox15.Name = "pictureBox15";
             this.pictureBox15.Size = new System.Drawing.Size(64, 32);
             this.pictureBox15.TabIndex = 90;
@@ -207,7 +208,7 @@
             // 
             this.pictureBox14.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox14.Location = new System.Drawing.Point(417, 379);
+            this.pictureBox14.Location = new System.Drawing.Point(416, 385);
             this.pictureBox14.Name = "pictureBox14";
             this.pictureBox14.Size = new System.Drawing.Size(64, 32);
             this.pictureBox14.TabIndex = 89;
@@ -217,16 +218,16 @@
             // 
             this.pictureBox13.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox13.Location = new System.Drawing.Point(228, 378);
+            this.pictureBox13.Location = new System.Drawing.Point(228, 386);
             this.pictureBox13.Name = "pictureBox13";
-            this.pictureBox13.Size = new System.Drawing.Size(63, 33);
+            this.pictureBox13.Size = new System.Drawing.Size(63, 30);
             this.pictureBox13.TabIndex = 88;
             this.pictureBox13.TabStop = false;
             // 
             // pictureBox12
             // 
             this.pictureBox12.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox12.Location = new System.Drawing.Point(796, 136);
+            this.pictureBox12.Location = new System.Drawing.Point(795, 138);
             this.pictureBox12.Name = "pictureBox12";
             this.pictureBox12.Size = new System.Drawing.Size(64, 32);
             this.pictureBox12.TabIndex = 87;
@@ -236,9 +237,9 @@
             // 
             this.pictureBox11.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox11.Location = new System.Drawing.Point(606, 135);
+            this.pictureBox11.Location = new System.Drawing.Point(606, 138);
             this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(64, 33);
+            this.pictureBox11.Size = new System.Drawing.Size(64, 31);
             this.pictureBox11.TabIndex = 86;
             this.pictureBox11.TabStop = false;
             // 
@@ -246,7 +247,7 @@
             // 
             this.pictureBox10.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox10.Location = new System.Drawing.Point(417, 136);
+            this.pictureBox10.Location = new System.Drawing.Point(417, 138);
             this.pictureBox10.Name = "pictureBox10";
             this.pictureBox10.Size = new System.Drawing.Size(63, 32);
             this.pictureBox10.TabIndex = 85;
@@ -256,9 +257,9 @@
             // 
             this.pictureBox9.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox9.Location = new System.Drawing.Point(228, 135);
+            this.pictureBox9.Location = new System.Drawing.Point(228, 138);
             this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(63, 32);
+            this.pictureBox9.Size = new System.Drawing.Size(64, 32);
             this.pictureBox9.TabIndex = 84;
             this.pictureBox9.TabStop = false;
             // 
@@ -268,7 +269,7 @@
             this.Dick.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Dick.BackgroundImage")));
             this.Dick.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.Dick.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.Dick.Location = new System.Drawing.Point(714, 435);
+            this.Dick.Location = new System.Drawing.Point(714, 440);
             this.Dick.Name = "Dick";
             this.Dick.Size = new System.Drawing.Size(155, 128);
             this.Dick.TabIndex = 72;
@@ -280,7 +281,7 @@
             this.Nynke.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Nynke.BackgroundImage")));
             this.Nynke.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.Nynke.ForeColor = System.Drawing.Color.HotPink;
-            this.Nynke.Location = new System.Drawing.Point(523, 435);
+            this.Nynke.Location = new System.Drawing.Point(523, 439);
             this.Nynke.Name = "Nynke";
             this.Nynke.Size = new System.Drawing.Size(153, 128);
             this.Nynke.TabIndex = 69;
@@ -292,7 +293,7 @@
             this.Joris.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Joris.BackgroundImage")));
             this.Joris.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.Joris.ForeColor = System.Drawing.Color.Orange;
-            this.Joris.Location = new System.Drawing.Point(335, 438);
+            this.Joris.Location = new System.Drawing.Point(335, 442);
             this.Joris.Name = "Joris";
             this.Joris.Size = new System.Drawing.Size(155, 126);
             this.Joris.TabIndex = 71;
@@ -304,7 +305,7 @@
             this.Sibbele.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Sibbele.BackgroundImage")));
             this.Sibbele.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.Sibbele.ForeColor = System.Drawing.Color.DeepSkyBlue;
-            this.Sibbele.Location = new System.Drawing.Point(147, 438);
+            this.Sibbele.Location = new System.Drawing.Point(147, 442);
             this.Sibbele.Name = "Sibbele";
             this.Sibbele.Size = new System.Drawing.Size(150, 126);
             this.Sibbele.TabIndex = 70;
@@ -362,7 +363,7 @@
             // 
             this.PictureBox8.BackColor = System.Drawing.Color.Transparent;
             this.PictureBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PictureBox8.Location = new System.Drawing.Point(717, 378);
+            this.PictureBox8.Location = new System.Drawing.Point(716, 384);
             this.PictureBox8.Name = "PictureBox8";
             this.PictureBox8.Size = new System.Drawing.Size(64, 33);
             this.PictureBox8.TabIndex = 80;
@@ -372,9 +373,9 @@
             // 
             this.PictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.PictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PictureBox2.Location = new System.Drawing.Point(338, 136);
+            this.PictureBox2.Location = new System.Drawing.Point(338, 138);
             this.PictureBox2.Name = "PictureBox2";
-            this.PictureBox2.Size = new System.Drawing.Size(63, 32);
+            this.PictureBox2.Size = new System.Drawing.Size(64, 32);
             this.PictureBox2.TabIndex = 79;
             this.PictureBox2.TabStop = false;
             // 
@@ -382,7 +383,7 @@
             // 
             this.PictureBox3.BackColor = System.Drawing.Color.Transparent;
             this.PictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PictureBox3.Location = new System.Drawing.Point(528, 136);
+            this.PictureBox3.Location = new System.Drawing.Point(528, 138);
             this.PictureBox3.Name = "PictureBox3";
             this.PictureBox3.Size = new System.Drawing.Size(63, 32);
             this.PictureBox3.TabIndex = 78;
@@ -392,7 +393,7 @@
             // 
             this.PictureBox4.BackColor = System.Drawing.Color.Transparent;
             this.PictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PictureBox4.Location = new System.Drawing.Point(716, 136);
+            this.PictureBox4.Location = new System.Drawing.Point(716, 138);
             this.PictureBox4.Name = "PictureBox4";
             this.PictureBox4.Size = new System.Drawing.Size(63, 32);
             this.PictureBox4.TabIndex = 77;
@@ -402,9 +403,9 @@
             // 
             this.PictureBox5.BackColor = System.Drawing.Color.Transparent;
             this.PictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PictureBox5.Location = new System.Drawing.Point(150, 378);
+            this.PictureBox5.Location = new System.Drawing.Point(149, 384);
             this.PictureBox5.Name = "PictureBox5";
-            this.PictureBox5.Size = new System.Drawing.Size(62, 33);
+            this.PictureBox5.Size = new System.Drawing.Size(64, 32);
             this.PictureBox5.TabIndex = 76;
             this.PictureBox5.TabStop = false;
             // 
@@ -412,7 +413,7 @@
             // 
             this.PictureBox6.BackColor = System.Drawing.Color.Transparent;
             this.PictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PictureBox6.Location = new System.Drawing.Point(339, 378);
+            this.PictureBox6.Location = new System.Drawing.Point(338, 384);
             this.PictureBox6.Name = "PictureBox6";
             this.PictureBox6.Size = new System.Drawing.Size(65, 32);
             this.PictureBox6.TabIndex = 75;
@@ -422,7 +423,7 @@
             // 
             this.PictureBox7.BackColor = System.Drawing.Color.Transparent;
             this.PictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PictureBox7.Location = new System.Drawing.Point(527, 379);
+            this.PictureBox7.Location = new System.Drawing.Point(527, 384);
             this.PictureBox7.Name = "PictureBox7";
             this.PictureBox7.Size = new System.Drawing.Size(65, 33);
             this.PictureBox7.TabIndex = 74;
@@ -432,9 +433,9 @@
             // 
             this.PictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PictureBox1.Location = new System.Drawing.Point(150, 135);
+            this.PictureBox1.Location = new System.Drawing.Point(149, 138);
             this.PictureBox1.Name = "PictureBox1";
-            this.PictureBox1.Size = new System.Drawing.Size(62, 32);
+            this.PictureBox1.Size = new System.Drawing.Size(63, 32);
             this.PictureBox1.TabIndex = 73;
             this.PictureBox1.TabStop = false;
             // 
@@ -460,7 +461,7 @@
             this.MapSelection.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MapSelection.Location = new System.Drawing.Point(0, 0);
             this.MapSelection.Name = "MapSelection";
-            this.MapSelection.Size = new System.Drawing.Size(1008, 729);
+            this.MapSelection.Size = new System.Drawing.Size(1008, 741);
             this.MapSelection.TabIndex = 1;
             this.MapSelection.Visible = false;
             // 
@@ -478,7 +479,7 @@
             // 
             this.pictureBox17.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox17.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox17.Location = new System.Drawing.Point(189, 135);
+            this.pictureBox17.Location = new System.Drawing.Point(189, 138);
             this.pictureBox17.Name = "pictureBox17";
             this.pictureBox17.Size = new System.Drawing.Size(64, 32);
             this.pictureBox17.TabIndex = 27;
@@ -488,7 +489,7 @@
             // 
             this.pictureBox18.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox18.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox18.Location = new System.Drawing.Point(378, 136);
+            this.pictureBox18.Location = new System.Drawing.Point(378, 138);
             this.pictureBox18.Name = "pictureBox18";
             this.pictureBox18.Size = new System.Drawing.Size(64, 32);
             this.pictureBox18.TabIndex = 26;
@@ -498,7 +499,7 @@
             // 
             this.pictureBox19.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox19.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox19.Location = new System.Drawing.Point(567, 136);
+            this.pictureBox19.Location = new System.Drawing.Point(567, 138);
             this.pictureBox19.Name = "pictureBox19";
             this.pictureBox19.Size = new System.Drawing.Size(65, 32);
             this.pictureBox19.TabIndex = 25;
@@ -508,7 +509,7 @@
             // 
             this.pictureBox20.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox20.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox20.Location = new System.Drawing.Point(756, 135);
+            this.pictureBox20.Location = new System.Drawing.Point(756, 138);
             this.pictureBox20.Name = "pictureBox20";
             this.pictureBox20.Size = new System.Drawing.Size(66, 32);
             this.pictureBox20.TabIndex = 24;
@@ -518,7 +519,7 @@
             // 
             this.pictureBox21.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox21.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox21.Location = new System.Drawing.Point(189, 379);
+            this.pictureBox21.Location = new System.Drawing.Point(189, 385);
             this.pictureBox21.Name = "pictureBox21";
             this.pictureBox21.Size = new System.Drawing.Size(63, 32);
             this.pictureBox21.TabIndex = 23;
@@ -528,7 +529,7 @@
             // 
             this.pictureBox22.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox22.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox22.Location = new System.Drawing.Point(378, 380);
+            this.pictureBox22.Location = new System.Drawing.Point(378, 385);
             this.pictureBox22.Name = "pictureBox22";
             this.pictureBox22.Size = new System.Drawing.Size(64, 32);
             this.pictureBox22.TabIndex = 22;
@@ -538,7 +539,7 @@
             // 
             this.pictureBox23.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox23.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox23.Location = new System.Drawing.Point(567, 380);
+            this.pictureBox23.Location = new System.Drawing.Point(567, 385);
             this.pictureBox23.Name = "pictureBox23";
             this.pictureBox23.Size = new System.Drawing.Size(64, 32);
             this.pictureBox23.TabIndex = 21;
@@ -548,7 +549,7 @@
             // 
             this.pictureBox24.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox24.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox24.Location = new System.Drawing.Point(756, 380);
+            this.pictureBox24.Location = new System.Drawing.Point(756, 385);
             this.pictureBox24.Name = "pictureBox24";
             this.pictureBox24.Size = new System.Drawing.Size(64, 32);
             this.pictureBox24.TabIndex = 20;
@@ -572,21 +573,20 @@
             // 
             // BackgroundTimer
             // 
-            this.BackgroundTimer.Enabled = true;
-            this.BackgroundTimer.Tick += new System.EventHandler(this.timer2_Tick);
+            this.BackgroundTimer.Tick += new System.EventHandler(this.BackgroundTimer_Tick);
             // 
             // Super_InformatiKart
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.ClientSize = new System.Drawing.Size(1008, 741);
+            this.Controls.Add(this.Main);
             this.Controls.Add(this.MapSelection);
             this.Controls.Add(this.CharacterSelection);
-            this.Controls.Add(this.Main);
             this.MaximumSize = new System.Drawing.Size(1042, 815);
             this.MinimumSize = new System.Drawing.Size(1024, 726);
             this.Name = "Super_InformatiKart";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Super InformatiKart";
             this.Main.ResumeLayout(false);
             this.Main.PerformLayout();

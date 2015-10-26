@@ -51,3 +51,14 @@ C:\Users\alexh_000\Documents\Visual Studio 2015\Projects\Negers\Racegame\obj\Deb
 C:\Users\alexh_000\Documents\Visual Studio 2015\Projects\Negers\Racegame\obj\Debug\Racegame.csproj.GenerateResource.Cache
 C:\Users\alexh_000\Documents\Visual Studio 2015\Projects\Negers\Racegame\bin\Debug\Racegame.exe
 C:\Users\alexh_000\Documents\Visual Studio 2015\Projects\Negers\Racegame\bin\Debug\Racegame.pdb
+C:\Users\Denny\School\Racegame\bin\Debug\Racegame.exe.config
+C:\Users\Denny\School\Racegame\obj\Debug\Racegame.exe
+C:\Users\Denny\School\Racegame\obj\Debug\Racegame.pdb
+C:\Users\Denny\School\Racegame\bin\Debug\Racegame.exe
+C:\Users\Denny\School\Racegame\bin\Debug\Racegame.pdb
+C:\Users\Denny\School\Racegame\obj\Debug\Racegame.csprojResolveAssemblyReference.cache
+C:\Users\Denny\School\Racegame\obj\Debug\Racegame.black.resources
+C:\Users\Denny\School\Racegame\obj\Debug\Racegame.Racegame.resources
+C:\Users\Denny\School\Racegame\obj\Debug\Racegame.Properties.Resources.resources
+C:\Users\Denny\School\Racegame\obj\Debug\Racegame.Super_InformatiKart.resources
+C:\Users\Denny\School\Racegame\obj\Debug\Racegame.csproj.GenerateResource.Cache

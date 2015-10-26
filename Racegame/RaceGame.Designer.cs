@@ -71,7 +71,7 @@
             this.FuelBox.BackColor = System.Drawing.Color.Red;
             this.FuelBox.Location = new System.Drawing.Point(212, 33);
             this.FuelBox.Name = "FuelBox";
-            this.FuelBox.Size = new System.Drawing.Size(76, 21);
+            this.FuelBox.Size = new System.Drawing.Size(76, 18);
             this.FuelBox.TabIndex = 1;
             this.FuelBox.TabStop = false;
             // 
@@ -104,7 +104,7 @@
             this.FuelBox2.BackColor = System.Drawing.Color.Red;
             this.FuelBox2.Location = new System.Drawing.Point(738, 33);
             this.FuelBox2.Name = "FuelBox2";
-            this.FuelBox2.Size = new System.Drawing.Size(72, 21);
+            this.FuelBox2.Size = new System.Drawing.Size(72, 18);
             this.FuelBox2.TabIndex = 9;
             this.FuelBox2.TabStop = false;
             // 
@@ -242,7 +242,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1024, 768);
+            this.ClientSize = new System.Drawing.Size(1026, 741);
             this.Controls.Add(this.player1Head);
             this.Controls.Add(this.player2Head);
             this.Controls.Add(this.PlayerControls);
@@ -258,11 +258,10 @@
             this.Controls.Add(this.Interface);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Location = new System.Drawing.Point(300, 0);
             this.MaximumSize = new System.Drawing.Size(1042, 815);
             this.MinimumSize = new System.Drawing.Size(1042, 726);
             this.Name = "Racegame";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Super InformatiKart";
             this.TransparencyKey = System.Drawing.Color.Maroon;
             this.Load += new System.EventHandler(this.Racegame_Load);
