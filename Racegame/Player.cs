@@ -320,7 +320,7 @@ namespace RaceGame {
         }
         	
         public void CheckpointChecker(Game g, Bitmap image) {
-            
+            if(lastCheckpoint == null) lastCheckpoint = g.RespawnPoints[0];
             int xCenter = (int) (X + Width / 2);
             int yCenter = (int) (Y + Height / 2);
             System.Drawing.Color col = image.GetPixel(xCenter, yCenter);
