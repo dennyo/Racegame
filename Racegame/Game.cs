@@ -163,13 +163,10 @@ namespace Racegame {
         public void ColorHandler() {
             p1.HandleColor(colormap);
             p2.HandleColor(colormap);
-<<<<<<< HEAD
-=======
             if(map != Map.Koopa_Beach && map != Map.Rainbow_Road) {
                 p1.HandleWalls(wallmap);
                 p2.HandleWalls(wallmap);
             }
->>>>>>> 7668b8f2446b470af17d1330fea1abecfdf5d52c
         }
         
         public void FuelHandler()
@@ -584,22 +581,13 @@ namespace Racegame {
 
         public void PlayerCollision()
         {
-            if (p1.X + p1.MaxSize - 18 >= p2.X + 18 &&
-               p1.X + 18 <= p2.X + p2.Width - 18 &&
-               p1.Y + p1.MaxSize - 18 >= p2.Y + 18 &&
-               p1.Y + 18 <= p2.Y + p2.Height - 18)
-            {
-                p1.Health -= Convert.ToInt16(p1.Speed + p2.Speed);
-                p2.Health -= Convert.ToInt16(p1.Speed + p2.Speed);
-                p1.Speed = 0;
-                p2.Speed = 0;
-            }
-
-
-
             bool iscolliding = CircleCollision(p1.rect, p2.rect);
             if(iscolliding == true)
             {
+                p1.X += (p1.X - p2.X) * (Math.Abs(p2.Speed) / 9 + 0.4f) / 4;
+                p1.Y += (p1.Y - p2.Y) * (Math.Abs(p2.Speed) / 9 + 0.4f) / 4;
+                p2.X += (p2.X - p1.X) * (Math.Abs(p1.Speed) / 9 + 0.4f) / 4;
+                p2.Y += (p2.Y - p1.Y) * (Math.Abs(p1.Speed) / 9 + 0.4f) / 4;
             }
             
         }

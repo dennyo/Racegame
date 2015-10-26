@@ -93,11 +93,9 @@ namespace Racegame
             //e.Graphics.Dispose();
         }
 
-<<<<<<< HEAD
         private void FinishMessage_Click(object sender, EventArgs e)
         {
-
-=======
+        }
         private void StartTimer_Tick(object sender, EventArgs e)
         {
             countDown--;
@@ -179,7 +177,6 @@ namespace Racegame
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             Application.Exit();
->>>>>>> 7668b8f2446b470af17d1330fea1abecfdf5d52c
         }
     }
 }
