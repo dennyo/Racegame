@@ -18,11 +18,11 @@ namespace Racegame
     public partial class Racegame : Form
     {
         public float angle = 0;
-        Graphics g;
-        Player p1;
-        Player p2;
-        MainMenu main;
-        SoundPlayer player;
+        private Graphics g;
+        private Player p1;
+        private Player p2;
+        private MainMenu main;
+        private SoundPlayer player;
         public Game game;
         int countDown = 7;
 
@@ -103,6 +103,9 @@ namespace Racegame
             //e.Graphics.Dispose();
         }
 
+        private void FinishMessage_Click(object sender, EventArgs e)
+        {
+        }
         private void StartTimer_Tick(object sender, EventArgs e)
         {
             countDown--;

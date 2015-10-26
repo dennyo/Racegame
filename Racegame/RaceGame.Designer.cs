@@ -137,6 +137,7 @@
             this.FinishMessage.TabIndex = 13;
             this.FinishMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.FinishMessage.Visible = false;
+            this.FinishMessage.Click += new System.EventHandler(this.FinishMessage_Click);
             // 
             // PlayAgain
             // 
