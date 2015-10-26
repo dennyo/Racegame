@@ -77,7 +77,7 @@
             this.FuelBox.BackColor = System.Drawing.Color.Red;
             this.FuelBox.Location = new System.Drawing.Point(204, 35);
             this.FuelBox.Name = "FuelBox";
-            this.FuelBox.Size = new System.Drawing.Size(76, 18);
+            this.FuelBox.Size = new System.Drawing.Size(76, 21);
             this.FuelBox.TabIndex = 1;
             this.FuelBox.TabStop = false;
             // 
@@ -92,7 +92,7 @@
             // 
             // Speed2
             // 
-            this.Speed2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(19)))), ((int)(((byte)(127)))));
+            this.Speed2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(32)))), ((int)(((byte)(16)))));
             this.Speed2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Speed2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Speed2.Image = ((System.Drawing.Image)(resources.GetObject("Speed2.Image")));
@@ -100,7 +100,7 @@
             this.Speed2.Location = new System.Drawing.Point(669, 7);
             this.Speed2.Name = "Speed2";
             this.Speed2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Speed2.Size = new System.Drawing.Size(149, 21);
+            this.Speed2.Size = new System.Drawing.Size(139, 20);
             this.Speed2.TabIndex = 4;
             this.Speed2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -108,7 +108,7 @@
             // 
             this.Player1Box.BackColor = System.Drawing.Color.Black;
             this.Player1Box.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Player1Box.Location = new System.Drawing.Point(112, 12);
+            this.Player1Box.Location = new System.Drawing.Point(116, 12);
             this.Player1Box.Name = "Player1Box";
             this.Player1Box.Size = new System.Drawing.Size(56, 56);
             this.Player1Box.TabIndex = 8;
@@ -119,13 +119,13 @@
             this.FuelBox2.BackColor = System.Drawing.Color.Red;
             this.FuelBox2.Location = new System.Drawing.Point(744, 36);
             this.FuelBox2.Name = "FuelBox2";
-            this.FuelBox2.Size = new System.Drawing.Size(75, 18);
+            this.FuelBox2.Size = new System.Drawing.Size(72, 21);
             this.FuelBox2.TabIndex = 9;
             this.FuelBox2.TabStop = false;
             // 
             // Speed1
             // 
-            this.Speed1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(19)))), ((int)(((byte)(127)))));
+            this.Speed1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(32)))), ((int)(((byte)(16)))));
             this.Speed1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Speed1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Speed1.Image = ((System.Drawing.Image)(resources.GetObject("Speed1.Image")));
@@ -133,7 +133,7 @@
             this.Speed1.Location = new System.Drawing.Point(210, 7);
             this.Speed1.Name = "Speed1";
             this.Speed1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Speed1.Size = new System.Drawing.Size(149, 21);
+            this.Speed1.Size = new System.Drawing.Size(140, 20);
             this.Speed1.TabIndex = 10;
             this.Speed1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -179,7 +179,7 @@
             this.Interface.BackColor = System.Drawing.Color.Transparent;
             this.Interface.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Interface.BackgroundImage")));
             this.Interface.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.Interface.Location = new System.Drawing.Point(-1, 0);
+            this.Interface.Location = new System.Drawing.Point(0, 0);
             this.Interface.Name = "Interface";
             this.Interface.Size = new System.Drawing.Size(1024, 97);
             this.Interface.TabIndex = 15;
@@ -188,7 +188,7 @@
             // Player2Box
             // 
             this.Player2Box.BackColor = System.Drawing.Color.Black;
-            this.Player2Box.Location = new System.Drawing.Point(848, 12);
+            this.Player2Box.Location = new System.Drawing.Point(852, 12);
             this.Player2Box.Name = "Player2Box";
             this.Player2Box.Size = new System.Drawing.Size(56, 56);
             this.Player2Box.TabIndex = 16;
@@ -205,7 +205,7 @@
             this.PlayerControls.BackColor = System.Drawing.Color.Black;
             this.PlayerControls.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PlayerControls.BackgroundImage")));
             this.PlayerControls.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.PlayerControls.Location = new System.Drawing.Point(192, 416);
+            this.PlayerControls.Location = new System.Drawing.Point(192, 320);
             this.PlayerControls.Name = "PlayerControls";
             this.PlayerControls.Size = new System.Drawing.Size(640, 304);
             this.PlayerControls.TabIndex = 17;
@@ -243,7 +243,7 @@
             // 
             this.lapCounter1.BackColor = System.Drawing.SystemColors.Window;
             this.lapCounter1.Image = ((System.Drawing.Image)(resources.GetObject("lapCounter1.Image")));
-            this.lapCounter1.Location = new System.Drawing.Point(189, 54);
+            this.lapCounter1.Location = new System.Drawing.Point(730, 54);
             this.lapCounter1.Name = "lapCounter1";
             this.lapCounter1.Size = new System.Drawing.Size(48, 54);
             this.lapCounter1.TabIndex = 25;
@@ -251,7 +251,7 @@
             // lapCounter2
             // 
             this.lapCounter2.Image = ((System.Drawing.Image)(resources.GetObject("lapCounter2.Image")));
-            this.lapCounter2.Location = new System.Drawing.Point(729, 54);
+            this.lapCounter2.Location = new System.Drawing.Point(189, 54);
             this.lapCounter2.Name = "lapCounter2";
             this.lapCounter2.Size = new System.Drawing.Size(48, 54);
             this.lapCounter2.TabIndex = 26;
@@ -313,7 +313,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Location = new System.Drawing.Point(300, 0);
             this.MaximumSize = new System.Drawing.Size(1042, 815);
-            this.MinimumSize = new System.Drawing.Size(1042, 815);
+            this.MinimumSize = new System.Drawing.Size(1042, 726);
             this.Name = "Racegame";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Super InformatiKart";
