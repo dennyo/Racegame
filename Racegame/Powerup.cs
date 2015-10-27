@@ -118,7 +118,7 @@ namespace Racegame {
         }
 
         private async void Enable() {
-            await Task.Delay(10000);
+            await Task.Delay(6000);
             Hit = false;
             Disabled = false;
             //pb.Visible = true;

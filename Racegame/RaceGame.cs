@@ -87,7 +87,7 @@ namespace Racegame
 
                 case Map.Donut_Plains:
                     checkpointCounter = 10;
-                    Powerups.Add(new Powerup(586,258));
+                    Powerups.Add(new Powerup(786,258));
                     Powerups.Add(new Powerup(928,244));
                     p1Start = new Location(96, 456, -90);
                     p2Start = new Location(169, 492, -90);

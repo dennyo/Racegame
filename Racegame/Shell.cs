@@ -171,7 +171,7 @@ namespace Racegame {
                 Active = false;
                 p.Hit = true;
 
-                await Task.Delay(1000);
+                await Task.Delay(2000);
                 p.Hit = false;
                 game.ShellItems.Remove(this);
 

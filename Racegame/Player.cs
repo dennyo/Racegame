@@ -228,7 +228,7 @@ namespace RaceGame {
             if(Gas && !Hit) {
                 if(SpeedX <= MaxSpeed && SpeedY <= MaxSpeed && Speed < MaxSpeed) {
                     if(SpeedBoost) {
-                        Speed += 0.4f;
+                        Speed += 0.8f;
                     }else {
                         Speed += 0.2f;
                     }
@@ -259,10 +259,10 @@ namespace RaceGame {
             if(Angle <= -356 || Angle >= 356) {
                 Angle = 0;
             }
-            if(((LeftActive && !DownActive) || (RightActive && DownActive)) && Speed != 0 && !Hit) {
+            if(((LeftActive && !DownActive) || (RightActive && DownActive && Speed < 0)) && Speed != 0 && !Hit) {
                 Angle -= Math.Abs(3 * Math.Abs(Speed) / 7 + 1);
             }
-            if (((RightActive && !DownActive) || (LeftActive && DownActive)) && Speed != 0 && !Hit) {
+            if (((RightActive && !DownActive) || (LeftActive && DownActive && Speed < 0)) && Speed != 0 && !Hit) {
                 Angle += Math.Abs(3 * Math.Abs(Speed) / 7 + 1);
             }
             if(!GameEnded && !Hit && !Collision) {
