@@ -63,7 +63,8 @@ namespace RaceGame {
         private MediaPlayer HornPlayer;
         public Label lapCounter;
         private Location start;
-        
+        public string victory;
+
 
         public Player(string name, Character character, Form main, Bitmap imagew, Keys up, Keys down, Keys right, Keys left, Keys action, PictureBox fuel, PictureBox itemframe, System.Windows.Forms.Timer fuelTimer, Label speedLabel, int totalCheckpoints, Location start) {
             this.up = up;
@@ -102,7 +103,7 @@ namespace RaceGame {
 
             main.KeyDown += ControlDownHandler;
             main.KeyUp += new System.Windows.Forms.KeyEventHandler(ControlUpHandler);
-
+            VictoryTune(Character);
         }
 
         public string getCharacterUrl(Character ch, int number)
@@ -138,6 +139,38 @@ namespace RaceGame {
 
             }
         }
+
+        public void VictoryTune(Character ch)
+        {
+            switch (ch)
+            {
+                case Character.David:
+                    victory = "sounds/David_Victory.wav";
+                    break;
+                case Character.Jos:
+                    victory = "sounds/Jos_Victory.wav";
+                    break;
+                case Character.Fiona:
+                    victory = "sounds/Fiona_Victory.wav";
+                    break;
+                case Character.Jop:
+                    victory = "sounds/Jop_Victory.wav";
+                    break;
+                case Character.Sibbele:
+                    victory = "sounds/Sibbele_Victory.wav";
+                    break;
+                case Character.Joris:
+                    victory = "sounds/Joris_Victory.wav";
+                    break;
+                case Character.Nynke:
+                    victory = "sounds/Nynke_Victory.wav";
+                    break;
+                case Character.Dick:
+                    victory = "sounds/Dick_Victory.wav";
+                    break;
+            }
+        }
+
 
         public void DrawPlayer(Graphics g) {
             g.DrawImage(RotateImage(), X, Y);
@@ -271,6 +304,16 @@ namespace RaceGame {
 
         }
 
+
+
+
+
+
+
+
+
+
+
         public async void FinishHandler(Label message, Bitmap image)
         {
             int xCenter = (int)(X + Width / 2);
@@ -283,7 +326,7 @@ namespace RaceGame {
                 checkpointsPassed.Clear();
 
                 //if(laps != 0 && laps < 6) lapCounter.Image = new Bitmap(Path.Combine(Environment.CurrentDirectory, "laps/" + laps + ".png"));
-                
+
                 if (laps >= 6)
                 {
                     Finished = true;
@@ -322,12 +365,19 @@ namespace RaceGame {
                     {
                         message.Image = new Bitmap(Path.Combine(Environment.CurrentDirectory, "textboxes/DickWins.png"));
                     }
+                    await WaitMethod2();
+                    SoundPlayer Victory = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, victory));
+                    Victory.PlayLooping();
                 }
             }
         }
         async System.Threading.Tasks.Task WaitMethod()
         {
             await System.Threading.Tasks.Task.Delay(2000);
+        }
+        async System.Threading.Tasks.Task WaitMethod2()
+        {
+            await System.Threading.Tasks.Task.Delay(3000);
         }
         public void CheckpointChecker(Game g, Bitmap image) {
             if(lastCheckpoint == null) lastCheckpoint = (g.RespawnPoints.Count == 0 ? start : g.RespawnPoints[0]);
