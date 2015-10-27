@@ -84,7 +84,7 @@ namespace Racegame
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-
+            
             if (keyData == Keys.Down)
             {
                 DownArrowActive = true;
@@ -236,19 +236,19 @@ namespace Racegame
                     SibbeleSelected = true;
                     UpArrowActive = false;
                 }
-                if (DownArrowActive == true)
+                else if (DownArrowActive == true)
                 {
                     DavidSelected = false;
                     SibbeleSelected = true;
                     DownArrowActive = false;
                 }
-                if (LeftArrowActive == true)
+                else if (LeftArrowActive == true)
                 {
                     DavidSelected = false;
                     JopSelected = true;
                     LeftArrowActive = false;
                 }
-                if (RightArrowActive == true)
+                else if (RightArrowActive == true)
                 {
                     DavidSelected = false;
                     JosSelected = true;
@@ -263,19 +263,19 @@ namespace Racegame
                     JorisSelected = true;
                     UpArrowActive = false;
                 }
-                if (DownArrowActive == true)
+                else if (DownArrowActive == true)
                 {
                     JosSelected = false;
                     JorisSelected = true;
                     DownArrowActive = false;
                 }
-                if (LeftArrowActive == true)
+                else if (LeftArrowActive == true)
                 {
                     JosSelected = false;
                     DavidSelected = true;
                     LeftArrowActive = false;
                 }
-                if (RightArrowActive == true)
+                else if (RightArrowActive == true)
                 {
                     JosSelected = false;
                     FionaSelected = true;
@@ -290,19 +290,19 @@ namespace Racegame
                     NynkeSelected = true;
                     UpArrowActive = false;
                 }
-                if (DownArrowActive == true)
+                else if (DownArrowActive == true)
                 {
                     FionaSelected = false;
                     NynkeSelected = true;
                     DownArrowActive = false;
                 }
-                if (LeftArrowActive == true)
+                else if (LeftArrowActive == true)
                 {
                     FionaSelected = false;
                     JosSelected = true;
                     LeftArrowActive = false;
                 }
-                if (RightArrowActive == true)
+                else if (RightArrowActive == true)
                 {
                     FionaSelected = false;
                     JopSelected = true;
@@ -317,19 +317,19 @@ namespace Racegame
                     DickSelected = true;
                     UpArrowActive = false;
                 }
-                if (DownArrowActive == true)
+                else if (DownArrowActive == true)
                 {
                     JopSelected = false;
                     DickSelected = true;
                     DownArrowActive = false;
                 }
-                if (LeftArrowActive == true)
+                else if (LeftArrowActive == true)
                 {
                     JopSelected = false;
                     FionaSelected = true;
                     LeftArrowActive = false;
                 }
-                if (RightArrowActive == true)
+                else if (RightArrowActive == true)
                 {
                     JopSelected = false;
                     DavidSelected = true;
@@ -344,19 +344,19 @@ namespace Racegame
                     DavidSelected = true;
                     UpArrowActive = false;
                 }
-                if (DownArrowActive == true)
+                else if (DownArrowActive == true)
                 {
                     SibbeleSelected = false;
                     DavidSelected = true;
                     DownArrowActive = false;
                 }
-                if (LeftArrowActive == true)
+                else if (LeftArrowActive == true)
                 {
                     SibbeleSelected = false;
                     DickSelected = true;
                     LeftArrowActive = false;
                 }
-                if (RightArrowActive == true)
+                else if (RightArrowActive == true)
                 {
                     SibbeleSelected = false;
                     JorisSelected = true;
@@ -371,19 +371,19 @@ namespace Racegame
                     JosSelected = true;
                     UpArrowActive = false;
                 }
-                if (DownArrowActive == true)
+                else if (DownArrowActive == true)
                 {
                     JorisSelected = false;
                     JosSelected = true;
                     DownArrowActive = false;
                 }
-                if (LeftArrowActive == true)
+                else if (LeftArrowActive == true)
                 {
                     JorisSelected = false;
                     SibbeleSelected = true;
                     LeftArrowActive = false;
                 }
-                if (RightArrowActive == true)
+                else if (RightArrowActive == true)
                 {
                     JorisSelected = false;
                     NynkeSelected = true;
@@ -398,19 +398,19 @@ namespace Racegame
                     FionaSelected = true;
                     UpArrowActive = false;
                 }
-                if (DownArrowActive == true)
+                else if (DownArrowActive == true)
                 {
                     NynkeSelected = false;
                     FionaSelected = true;
                     DownArrowActive = false;
                 }
-                if (LeftArrowActive == true)
+                else if (LeftArrowActive == true)
                 {
                     NynkeSelected = false;
                     JorisSelected = true;
                     LeftArrowActive = false;
                 }
-                if (RightArrowActive == true)
+                else if (RightArrowActive == true)
                 {
                     NynkeSelected = false;
                     DickSelected = true;
@@ -425,19 +425,19 @@ namespace Racegame
                     JopSelected = true;
                     UpArrowActive = false;
                 }
-                if (DownArrowActive == true)
+                else if (DownArrowActive == true)
                 {
                     DickSelected = false;
                     JopSelected = true;
                     DownArrowActive = false;
                 }
-                if (LeftArrowActive == true)
+                else if (LeftArrowActive == true)
                 {
                     DickSelected = false;
                     NynkeSelected = true;
                     LeftArrowActive = false;
                 }
-                if (RightArrowActive == true)
+                else if (RightArrowActive == true)
                 {
                     DickSelected = false;
                     SibbeleSelected = true;
@@ -759,19 +759,19 @@ namespace Racegame
                     Map5Selected = true;
                     UpArrowActive = false;
                 }
-                if (DownArrowActive == true)
+                else if (DownArrowActive == true)
                 {
                     Map1Selected = false;
                     Map5Selected = true;
                     DownArrowActive = false;
                 }
-                if (LeftArrowActive == true)
+                else if (LeftArrowActive == true)
                 {
                     Map1Selected = false;
                     Map4Selected = true;
                     LeftArrowActive = false;
                 }
-                if (RightArrowActive == true)
+                else if (RightArrowActive == true)
                 {
                     Map1Selected = false;
                     Map2Selected = true;
@@ -787,19 +787,19 @@ namespace Racegame
                     Map6Selected = true;
                     UpArrowActive = false;
                 }
-                if (DownArrowActive == true)
+                else if (DownArrowActive == true)
                 {
                     Map2Selected = false;
                     Map6Selected = true;
                     DownArrowActive = false;
                 }
-                if (LeftArrowActive == true)
+                else if (LeftArrowActive == true)
                 {
                     Map2Selected = false;
                     Map1Selected = true;
                     LeftArrowActive = false;
                 }
-                if (RightArrowActive == true)
+                else if (RightArrowActive == true)
                 {
                     Map2Selected = false;
                     Map3Selected = true;
@@ -815,19 +815,19 @@ namespace Racegame
                     Map7Selected = true;
                     UpArrowActive = false;
                 }
-                if (DownArrowActive == true)
+                else if (DownArrowActive == true)
                 {
                     Map3Selected = false;
                     Map7Selected = true;
                     DownArrowActive = false;
                 }
-                if (LeftArrowActive == true)
+                else if (LeftArrowActive == true)
                 {
                     Map3Selected = false;
                     Map2Selected = true;
                     LeftArrowActive = false;
                 }
-                if (RightArrowActive == true)
+                else if (RightArrowActive == true)
                 {
                     Map3Selected = false;
                     Map4Selected = true;
@@ -843,19 +843,19 @@ namespace Racegame
                     Map8Selected = true;
                     UpArrowActive = false;
                 }
-                if (DownArrowActive == true)
+                else if (DownArrowActive == true)
                 {
                     Map4Selected = false;
                     Map8Selected = true;
                     DownArrowActive = false;
                 }
-                if (LeftArrowActive == true)
+                else if (LeftArrowActive == true)
                 {
                     Map4Selected = false;
                     Map3Selected = true;
                     LeftArrowActive = false;
                 }
-                if (RightArrowActive == true)
+                else if (RightArrowActive == true)
                 {
                     Map4Selected = false;
                     Map1Selected = true;
@@ -871,19 +871,19 @@ namespace Racegame
                     Map1Selected = true;
                     UpArrowActive = false;
                 }
-                if (DownArrowActive == true)
+                else if (DownArrowActive == true)
                 {
                     Map5Selected = false;
                     Map1Selected = true;
                     DownArrowActive = false;
                 }
-                if (LeftArrowActive == true)
+                else if (LeftArrowActive == true)
                 {
                     Map5Selected = false;
                     Map8Selected = true;
                     LeftArrowActive = false;
                 }
-                if (RightArrowActive == true)
+                else if (RightArrowActive == true)
                 {
                     Map5Selected = false;
                     Map6Selected = true;
@@ -899,19 +899,19 @@ namespace Racegame
                     Map2Selected = true;
                     UpArrowActive = false;
                 }
-                if (DownArrowActive == true)
+                else if (DownArrowActive == true)
                 {
                     Map6Selected = false;
                     Map2Selected = true;
                     DownArrowActive = false;
                 }
-                if (LeftArrowActive == true)
+                else if (LeftArrowActive == true)
                 {
                     Map6Selected = false;
                     Map5Selected = true;
                     LeftArrowActive = false;
                 }
-                if (RightArrowActive == true)
+                else if (RightArrowActive == true)
                 {
                     Map6Selected = false;
                     Map7Selected = true;
@@ -927,19 +927,19 @@ namespace Racegame
                     Map3Selected = true;
                     UpArrowActive = false;
                 }
-                if (DownArrowActive == true)
+                else if (DownArrowActive == true)
                 {
                     Map7Selected = false;
                     Map3Selected = true;
                     DownArrowActive = false;
                 }
-                if (LeftArrowActive == true)
+                else if (LeftArrowActive == true)
                 {
                     Map7Selected = false;
                     Map6Selected = true;
                     LeftArrowActive = false;
                 }
-                if (RightArrowActive == true)
+                else if (RightArrowActive == true)
                 {
                     Map7Selected = false;
                     Map8Selected = true;
@@ -955,19 +955,19 @@ namespace Racegame
                     Map4Selected = true;
                     UpArrowActive = false;
                 }
-                if (DownArrowActive == true)
+                else if (DownArrowActive == true)
                 {
                     Map8Selected = false;
                     Map4Selected = true;
                     DownArrowActive = false;
                 }
-                if (LeftArrowActive == true)
+                else if (LeftArrowActive == true)
                 {
                     Map8Selected = false;
                     Map7Selected = true;
                     LeftArrowActive = false;
                 }
-                if (RightArrowActive == true)
+                else if (RightArrowActive == true)
                 {
                     Map8Selected = false;
                     Map5Selected = true;
