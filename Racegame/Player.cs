@@ -56,11 +56,13 @@ namespace RaceGame {
         public System.Windows.Forms.Timer FuelTimer;
         double[] angles = new double[23] {8.65, 23.35, 35.45, 47.55, 59.65, 71.75, 83.85, 96.15, 108.25, 120.35, 132.45, 144.55, 156.65, 171.35, 191.25, 213.75, 236.25, 258.75, 281.25, 303.75, 326.25, 348.75, 368.65};
         Dictionary<int[], ColorHandler> kleuren = new Dictionary<int[], ColorHandler>();
+        SoundPlayer FinishPlayer = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, "sounds/Finish Tune.wav"));
         List<int> checkpointsPassed = new List<int>();
         Location lastCheckpoint;
         private MediaPlayer HornPlayer;
         public Label lapCounter;
         private Location start;
+        
 
         public Player(string name, Character character, Form main, Bitmap imagew, Keys up, Keys down, Keys right, Keys left, Keys action, PictureBox fuel, PictureBox itemframe, System.Windows.Forms.Timer fuelTimer, Label speedLabel, int totalCheckpoints, Location start) {
             this.up = up;
@@ -85,7 +87,6 @@ namespace RaceGame {
             this.Y = start.Y;
             this.Angle = start.Angle;
             //lastCheckpoint zetten
-
             main.KeyDown += ControlDownHandler;
             kleuren.Add(new int[3] {255, 150, 0}, ColorHandler.Pitstop);
             kleuren.Add(new int[3] {0, 255, 0}, ColorHandler.Gras);
@@ -269,7 +270,7 @@ namespace RaceGame {
 
         }
 
-        public void FinishHandler(Label message, Bitmap image)
+        public async void FinishHandler(Label message, Bitmap image)
         {
             int xCenter = (int)(X + Width / 2);
             int yCenter = (int)(Y + Height / 2);
@@ -285,6 +286,8 @@ namespace RaceGame {
                 if (laps >= 6)
                 {
                     Finished = true;
+                    FinishPlayer.Play();
+                    await WaitMethod();
                     message.Visible = true;
                     if (Character == Character.David)
                     {
@@ -321,7 +324,10 @@ namespace RaceGame {
                 }
             }
         }
-        	
+        async System.Threading.Tasks.Task WaitMethod()
+        {
+            await System.Threading.Tasks.Task.Delay(2000);
+        }
         public void CheckpointChecker(Game g, Bitmap image) {
             if(lastCheckpoint == null) lastCheckpoint = (g.RespawnPoints.Count == 0 ? start : g.RespawnPoints[0]);
             int xCenter = (int) (X + Width / 2);

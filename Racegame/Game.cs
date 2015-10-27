@@ -588,8 +588,7 @@ namespace Racegame {
                 p1.MaxSpeed = 0;
                 p1.GameEnded = true;
                 p2.MaxSpeed = 0;
-                p2.GameEnded = true;
-
+                p2.GameEnded = true;              
             }
         }
 

@@ -78,8 +78,6 @@ namespace Racegame
             {
                 BackgroundImages.Add(new Bitmap(Path.Combine(Environment.CurrentDirectory, "Main/T" + i + ".png")));
             }
-
-
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
