@@ -121,7 +121,7 @@
             this.Main.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Main.Location = new System.Drawing.Point(0, 0);
             this.Main.Name = "Main";
-            this.Main.Size = new System.Drawing.Size(1008, 741);
+            this.Main.Size = new System.Drawing.Size(1024, 768);
             this.Main.TabIndex = 0;
             // 
             // PlayQuit
@@ -145,7 +145,7 @@
             this.label1.Location = new System.Drawing.Point(418, 86);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(27, 39);
+            this.label1.Size = new System.Drawing.Size(36, 52);
             this.label1.TabIndex = 6;
             this.label1.Text = " ";
             // 
@@ -180,7 +180,7 @@
             this.CharacterSelection.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CharacterSelection.Location = new System.Drawing.Point(0, 0);
             this.CharacterSelection.Name = "CharacterSelection";
-            this.CharacterSelection.Size = new System.Drawing.Size(1008, 741);
+            this.CharacterSelection.Size = new System.Drawing.Size(1024, 768);
             this.CharacterSelection.TabIndex = 8;
             this.CharacterSelection.Visible = false;
             // 
@@ -461,7 +461,7 @@
             this.MapSelection.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MapSelection.Location = new System.Drawing.Point(0, 0);
             this.MapSelection.Name = "MapSelection";
-            this.MapSelection.Size = new System.Drawing.Size(1008, 741);
+            this.MapSelection.Size = new System.Drawing.Size(1024, 768);
             this.MapSelection.TabIndex = 1;
             this.MapSelection.Visible = false;
             // 
@@ -579,12 +579,12 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(1008, 741);
+            this.ClientSize = new System.Drawing.Size(1024, 768);
             this.Controls.Add(this.Main);
             this.Controls.Add(this.MapSelection);
             this.Controls.Add(this.CharacterSelection);
             this.MaximumSize = new System.Drawing.Size(1042, 815);
-            this.MinimumSize = new System.Drawing.Size(1024, 726);
+            this.MinimumSize = new System.Drawing.Size(1042, 815);
             this.Name = "Super_InformatiKart";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Super InformatiKart";

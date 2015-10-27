@@ -136,20 +136,20 @@ namespace Racegame
 
                 case Map.Koopa_Beach:
                     checkpointCounter = 10;
-                    Powerups.Add(new Powerup(796, 236));
-                    Powerups.Add(new Powerup(558, 216));
+                    Powerups.Add(new Powerup(846, 236));
+                    Powerups.Add(new Powerup(768, 216));
                     p1Start = new Location(116, 254, -90);
                     p2Start = new Location(183, 284, -90);
                     
                     RespawnPoints.Add(new Location(155, 179, -60));
                     RespawnPoints.Add(new Location(279, 105, 0));
                     RespawnPoints.Add(new Location(593, 121, -330));
-                    RespawnPoints.Add(new Location(508, 221, -300));
+                    RespawnPoints.Add(new Location(508, 121, -300));
                     RespawnPoints.Add(new Location(865, 420, -270));
                     RespawnPoints.Add(new Location(760, 569, -180));
                     RespawnPoints.Add(new Location(539, 508, -180));
                     RespawnPoints.Add(new Location(296, 539, -180));
-                    RespawnPoints.Add(new Location(92, 567, 105));
+                    RespawnPoints.Add(new Location(92, 567, -105));
                     RespawnPoints.Add(new Location(116, 345, -90));
                     Soundtrack = "sounds/Koopa Beach.wav";
                     intro = "sounds/Koopa Beach intro.wav";

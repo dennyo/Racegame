@@ -34,6 +34,7 @@ namespace RaceGame {
         public bool GameEnded = false;
         public bool Brake = false;
         public bool Gas = false;
+        public bool Collision = false;
         private bool UpActive = false;
         private bool DownActive = false;
         private bool RightActive = false;
@@ -263,7 +264,7 @@ namespace RaceGame {
             if (((RightActive && !DownActive) || (LeftActive && DownActive)) && Speed != 0 && !Hit) {
                 Angle += Math.Abs(3 * Math.Abs(Speed) / 7 + 1);
             }
-            if(!GameEnded && !SpeedBoost && !Hit) {
+            if(!GameEnded && !SpeedBoost && !Hit && !Collision) {
                 MaxSpeed = 9;
             }
 
@@ -326,14 +327,11 @@ namespace RaceGame {
             if(lastCheckpoint == null) lastCheckpoint = (g.RespawnPoints.Count == 0 ? start : g.RespawnPoints[0]);
             int xCenter = (int) (X + Width / 2);
             int yCenter = (int) (Y + Height / 2);
+
             System.Drawing.Color col = image.GetPixel(xCenter, yCenter);
             if(col.R % 5 == 0 && col.G == 0 && col.B == 0 && col.R >= 255 - totalCheckpoints * 10) {
-                if(!checkpointsPassed.Contains(col.R)){
-                    checkpointsPassed.Add(col.R);
-                    Console.WriteLine(checkpointsPassed.Count);
-                }
+                if(!checkpointsPassed.Contains(col.R)) checkpointsPassed.Add(col.R);
                 if(g.RespawnPoints.Count > 0) lastCheckpoint = g.RespawnPoints[checkpointsPassed.Count - 1];
-
             }
 
         }

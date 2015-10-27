@@ -216,7 +216,7 @@ namespace Racegame {
         public void Fueling(Player a, PictureBox b)
         {
             a.Fuel -= Math.Abs(Convert.ToInt16(a.Speed));
-            Size fuelboxsize = new Size(a.Fuel / 250 * 19 / 10, 18);
+            Size fuelboxsize = new Size(a.Fuel * 72 / 7500, 12);
             b.Size = fuelboxsize;
             if(a.Fuel <= 2500) {
                 b.BackColor = Color.Yellow;
@@ -225,7 +225,7 @@ namespace Racegame {
             }
             if (a.Fuel <= 0)
             {
-                a.Speed = 0;
+                a.MaxSpeed = 2;
             }
         }
 
@@ -280,7 +280,11 @@ namespace Racegame {
 
             try {
                 foreach(Shell she in ShellItems) {
-                    she.Draw(e.Graphics, wallmap);
+                    if(map != Map.Koopa_Beach && map != Map.Rainbow_Road) {
+                        she.Draw(e.Graphics, wallmap);
+                    } else {
+                        she.Draw(e.Graphics);
+                    }
                 }
             }catch(Exception) { }
             //e.Graphics.Dispose();
@@ -574,7 +578,7 @@ namespace Racegame {
         {
             
             //double speed = Math.Sqrt(Math.Pow(a.SpeedX, 2) + Math.Pow(a.SpeedY, 2));
-            double speed =  (149 / 14) * a.Speed;
+            double speed =  (149 / 14) * Math.Abs(a.Speed);
             b.Width = Convert.ToInt32(speed);
         }
 

@@ -41,10 +41,38 @@ namespace Racegame {
 
         public void Draw(Graphics g, Bitmap image) {
             if(!Active) return;
-            rect = new Rectangle((int)X, (int)Y, 42, 42);
-            g.DrawImage(Shell_Image,  rect);
-            Console.WriteLine(X + " "+  Y);
-            Move(image);
+            try { 
+                rect = new Rectangle((int)X, (int)Y, 42, 42);
+                g.DrawImage(Shell_Image,  rect);
+            Console.WriteLine(Shell_Image == null);
+                Console.WriteLine(X + " "+  Y);
+                Move(image);
+            }catch(Exception) {
+                Active = false;
+                game.ShellItems.Remove(this);
+            }
+
+        }
+
+        public void Draw(Graphics g) {
+            if(!Active) return;
+            try {             
+                X += (float) Speed * ((float)Math.Cos(Math.PI / 180 * Angle));
+                Y += (float) Speed * ((float)Math.Sin(Math.PI / 180 * Angle));
+            
+                rect = new Rectangle((int)X, (int)Y, 42, 42);
+                g.DrawImage(Shell_Image,  rect);
+
+            }catch(Exception) {
+                Active = false;
+                game.ShellItems.Remove(this);
+            }
+
+            
+            if(sw.ElapsedMilliseconds >= 5000) {
+                Active = false;
+                game.ShellItems.Remove(this);
+            }
 
         }
 

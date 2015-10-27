@@ -58,7 +58,7 @@ namespace Racegame {
         }
 
         public void AddCount() {
-            if(CurrentImage < 7) {
+            if(CurrentImage < 14) {
                 CurrentImage++;
             } else {
                 CurrentImage = 0;
@@ -67,7 +67,7 @@ namespace Racegame {
 
         public void Draw(Graphics g) {
             if(Hit || Disabled) return;
-            g.DrawImage(ImageSequence[CurrentImage],  rect);
+            g.DrawImage(ImageSequence[CurrentImage / 2],  rect);
         }
 
         public void DrawBanana(Graphics g) {
