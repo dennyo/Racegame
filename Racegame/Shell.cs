@@ -84,7 +84,13 @@ namespace Racegame {
             switch(getColor(col.R, col.G, col.B)) {
                 
                 case ColorHandler.Wall_Red:
-                    Angle = 180 - Angle;
+                    if((Angle < 0 && Angle > -180) || (Angle > 0 && Angle < 180)) {
+                        //up
+                        Angle = 110;
+                    }else {
+                        //down
+                        Angle = -110;
+                    }
                     break;
 
                 case ColorHandler.Wall_Green:
