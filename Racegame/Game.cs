@@ -268,9 +268,9 @@ namespace Racegame {
             try {
                 foreach(Shell she in ShellItems) {
                     if(map != Map.Koopa_Beach && map != Map.Rainbow_Road) {
-                        she.Draw(e.Graphics, wallmap);
+                        she.Draw(e.Graphics, wallmap, colormap);
                     } else {
-                        she.Draw(e.Graphics);
+                        she.Draw(e.Graphics, colormap);
                     }
                 }
             }catch(Exception) { }

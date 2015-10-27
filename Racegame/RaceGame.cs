@@ -162,7 +162,7 @@ namespace Racegame
                     RespawnPoints.Add(new Location(291, 115, 0));
                     RespawnPoints.Add(new Location(718, 139, -270));
                     RespawnPoints.Add(new Location(575, 325, -180));
-                    RespawnPoints.Add(new Location(293, 267, -270));
+                    RespawnPoints.Add(new Location(293, 367, -270));
                     RespawnPoints.Add(new Location(566, 481, 0));
                     RespawnPoints.Add(new Location(879, 646, -180));
                     RespawnPoints.Add(new Location(538, 615, -180));

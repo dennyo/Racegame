@@ -35,18 +35,18 @@ namespace Racegame {
             kleuren.Add(new int[3] {0, 255, 150 }, ColorHandler.Wall_Green);
             kleuren.Add(new int[3] {150, 0, 255 }, ColorHandler.Wall_Blue);
             kleuren.Add(new int[3] {0, 255, 255 }, ColorHandler.Wall_Light_Blue);
+            kleuren.Add(new int[3] {255, 0, 255 }, ColorHandler.Gat);
+
             sw = new Stopwatch();
             sw.Start();
         }
 
-        public void Draw(Graphics g, Bitmap image) {
+        public void Draw(Graphics g, Bitmap walls, Bitmap color) {
             if(!Active) return;
             try { 
                 rect = new Rectangle((int)X, (int)Y, 42, 42);
                 g.DrawImage(Shell_Image,  rect);
-            Console.WriteLine(Shell_Image == null);
-                Console.WriteLine(X + " "+  Y);
-                Move(image);
+                Move(walls, color);
             }catch(Exception) {
                 Active = false;
                 game.ShellItems.Remove(this);
@@ -54,7 +54,7 @@ namespace Racegame {
 
         }
 
-        public void Draw(Graphics g) {
+        public void Draw(Graphics g, Bitmap color) {
             if(!Active) return;
             try {             
                 X += (float) Speed * ((float)Math.Cos(Math.PI / 180 * Angle));
@@ -62,7 +62,7 @@ namespace Racegame {
             
                 rect = new Rectangle((int)X, (int)Y, 42, 42);
                 g.DrawImage(Shell_Image,  rect);
-
+                Move(color);
             }catch(Exception) {
                 Active = false;
                 game.ShellItems.Remove(this);
@@ -76,7 +76,30 @@ namespace Racegame {
 
         }
 
-        public void Move(Bitmap image) {
+        public void Move(Bitmap color) {
+            
+            int xCenter = (int) (X + 42 / 2);
+            int yCenter = (int) (Y + (42 /3 * 2));
+            System.Drawing.Color col = color.GetPixel(xCenter, yCenter);
+            switch(getColor(col.R, col.G, col.B)) {
+                
+                case ColorHandler.Gat:
+                    Active = false;
+                    game.ShellItems.Remove(this);
+                    break;
+
+            }
+
+            X += (float) Speed * ((float)Math.Cos(Math.PI / 180 * Angle));
+            Y += (float) Speed * ((float)Math.Sin(Math.PI / 180 * Angle));
+            
+            if(sw.ElapsedMilliseconds >= 5000) {
+                Active = false;
+                game.ShellItems.Remove(this);
+            }
+        }
+
+        public void Move(Bitmap image, Bitmap color) {
             
             int xCenter = (int) (X + 42 / 2);
             int yCenter = (int) (Y + (42 /3 * 2));

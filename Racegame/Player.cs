@@ -265,7 +265,7 @@ namespace RaceGame {
             if (((RightActive && !DownActive) || (LeftActive && DownActive)) && Speed != 0 && !Hit) {
                 Angle += Math.Abs(3 * Math.Abs(Speed) / 7 + 1);
             }
-            if(!GameEnded && !SpeedBoost && !Hit && !Collision) {
+            if(!GameEnded && !Hit && !Collision) {
                 MaxSpeed = 9;
             }
 
@@ -434,11 +434,11 @@ namespace RaceGame {
                     break;
 
                 case ColorHandler.Gras:
-                    MaxSpeed = 5;
+                    if(!SpeedBoost) MaxSpeed = 5;
                     break;
 
                 case ColorHandler.Water:
-                    MaxSpeed = 5;
+                    if(!SpeedBoost) MaxSpeed = 5;
                     break;
 
                 case ColorHandler.Pitstop:
