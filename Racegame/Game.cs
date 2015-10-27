@@ -47,10 +47,13 @@ namespace Racegame {
         MainMenu main;
         Racegame rg;
         int checkpointPoints;
-        public string SoundTrack;
-        public string Intro;
+        string Soundtrack;
+        string Intro;
+        int Introlength;
 
-        public Game(MainMenu main, Racegame rg, Form form, Player p1, Player p2, Map map, string soundtrack, string intro, Label FinishMessage, int checkpointAmount, List<Powerup> Powerups, List<Location> RespawnPoints) {
+
+        public Game(MainMenu main, Racegame rg, Form form, Player p1, Player p2, Map map, string soundtrack, string intro, int introlength, Label FinishMessage, int checkpointAmount, List<Powerup> Powerups, List<Location> RespawnPoints)
+        {
             this.p1 = p1;
             this.p2 = p2;
             this.map = map;
@@ -60,14 +63,9 @@ namespace Racegame {
             this.rg = rg;
             this.Powerups = Powerups;
             this.RespawnPoints = RespawnPoints;
-
-            SoundPlayer soundplayer = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, soundtrack));
-            this.soundtrack = soundplayer;
-            soundplayer.PlayLooping();
-
-            this.SoundTrack = soundtrack;
             this.Intro = intro;
-            
+            this.Introlength = introlength;
+            this.Soundtrack = soundtrack;
             for(int i = 0; i < checkpointAmount; i++) {
                 checkpointPoints += 255 - i * 10;
             }
@@ -132,35 +130,24 @@ namespace Racegame {
             //pw.Rotate();
 
         }
-        public void Sounds(int i, int l)
+
+
+
+        public async void Sounds()
         {
-            if (i == 0)
-            {
-                SoundPlayer soundplayer = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, "sounds/Race Fanfare.wav"));
-                soundplayer.Play();
-            }
-            if (i == 3)
-            {
-                SoundPlayer soundplayer = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, "sounds/Countdown.wav"));
-                soundplayer.Play();
-            }
-            if (i == 7)
-            {
-                SoundPlayer soundplayer = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, Intro));
-                soundplayer.Play();
-            }
-            if (i == (l + 8))
-            {
-                SoundPlayer soundtrackplayer = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, SoundTrack));
-                soundtrackplayer.Play();
-            }
+            SoundPlayer fanfare = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, "sounds/Race Fanfare.wav"));
+            SoundPlayer soundtrackplayer = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, Soundtrack));
+            SoundPlayer countdown = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, "sounds/Countdown.wav"));
+            SoundPlayer introplayer = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, Intro));
+            fanfare.Play();
+            await WaitMethod5();
+            countdown.Play();
+            await WaitMethod5();
+            introplayer.Play();
+            await WaitMethod6();
+            soundtrackplayer.PlayLooping();
         }
 
-        public void PlaySoundTrack()
-        {
-            SoundPlayer soundtrackplayer = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, SoundTrack));
-            soundtrackplayer.Play();
-        }
         public void Execute() {
             rg.Invalidate();
             FuelHandler();
@@ -567,6 +554,14 @@ namespace Racegame {
         {
             await System.Threading.Tasks.Task.Delay(200);
         }
+        async System.Threading.Tasks.Task WaitMethod5()
+        {
+            await System.Threading.Tasks.Task.Delay(3000);
+        }
+        async System.Threading.Tasks.Task WaitMethod6()
+        {
+            await System.Threading.Tasks.Task.Delay(Introlength);
+        }
 
         public void SpeedMeter()
         {
@@ -597,8 +592,7 @@ namespace Racegame {
                 p1.MaxSpeed = 0;
                 p1.GameEnded = true;
                 p2.MaxSpeed = 0;
-                p2.GameEnded = true;
-
+                p2.GameEnded = true;              
             }
         }
 
