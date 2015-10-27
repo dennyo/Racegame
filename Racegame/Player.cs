@@ -27,7 +27,7 @@ namespace RaceGame {
         public int MaxSpeed = 9;
         public float Speed = 0;
         public int Health = 100;
-        public int Fuel = 10000;
+        public int Fuel = 7500;
         public float Angle = 0f;
         public Keys up, down, right, left, action;
         public bool Finished = false;
@@ -60,6 +60,7 @@ namespace RaceGame {
         Location lastCheckpoint;
         private MediaPlayer HornPlayer;
         public Label lapCounter;
+        private Location start;
 
         public Player(string name, Character character, Form main, Bitmap imagew, Keys up, Keys down, Keys right, Keys left, Keys action, PictureBox fuel, PictureBox itemframe, System.Windows.Forms.Timer fuelTimer, Label speedLabel, int totalCheckpoints, Location start) {
             this.up = up;
@@ -76,6 +77,7 @@ namespace RaceGame {
             this.name = name;
             this.Width = 64;
             this.Height = 64;
+            this.start = start;
             this.rect = new Rectangle(0, 0, Width, Width);
             this.totalCheckpoints = totalCheckpoints;
             checkpointsPassed.Add(255);
@@ -217,6 +219,7 @@ namespace RaceGame {
         public void Move(Form form) {
             form.Invalidate();
 
+
             if(Horn) {
             }
 
@@ -320,7 +323,7 @@ namespace RaceGame {
         }
         	
         public void CheckpointChecker(Game g, Bitmap image) {
-            if(lastCheckpoint == null) lastCheckpoint = g.RespawnPoints[0];
+            if(lastCheckpoint == null) lastCheckpoint = (g.RespawnPoints.Count == 0 ? start : g.RespawnPoints[0]);
             int xCenter = (int) (X + Width / 2);
             int yCenter = (int) (Y + Height / 2);
             System.Drawing.Color col = image.GetPixel(xCenter, yCenter);
@@ -329,7 +332,7 @@ namespace RaceGame {
                     checkpointsPassed.Add(col.R);
                     Console.WriteLine(checkpointsPassed.Count);
                 }
-                lastCheckpoint = g.RespawnPoints[checkpointsPassed.Count - 1];
+                if(g.RespawnPoints.Count > 0) lastCheckpoint = g.RespawnPoints[checkpointsPassed.Count - 1];
 
             }
 
@@ -442,9 +445,9 @@ namespace RaceGame {
                         Health += 10;
                     }
 
-                    if(Fuel > 9900) {
-                        Fuel = 10000;
-                    }else if(Fuel < 10000) {
+                    if(Fuel > 7400) {
+                        Fuel = 7500;
+                    }else if(Fuel < 7500) {
                         Fuel += 100;
                     }
                     break;

@@ -348,6 +348,16 @@ namespace Racegame
         {
                 game.PlaySoundTrack();
         }
+
+        private void Interface_Paint(object sender, PaintEventArgs e) {
+            e.Graphics.DrawImage(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "laps/" + (p1.laps >= 6 ? 5 : p1.laps) + ".png")), new Rectangle(201, 64, 48, 54));
+
+            e.Graphics.DrawImage(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "laps/" + (p2.laps >= 6 ? 5 : p2.laps) + ".png")), new Rectangle(723, 64, 48, 54));
+
+            e.Graphics.DrawImage(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "laps/of5.png")), new Rectangle(250, 82, 54, 38));
+        
+            e.Graphics.DrawImage(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "laps/of5.png")), new Rectangle(772, 82, 54, 38));
+        }
     }
 }
 

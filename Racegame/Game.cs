@@ -162,6 +162,7 @@ namespace Racegame {
             soundtrackplayer.Play();
         }
         public void Execute() {
+            rg.Invalidate();
             FuelHandler();
             BorderHandler();
             p2.Move(form);
@@ -217,6 +218,11 @@ namespace Racegame {
             a.Fuel -= Math.Abs(Convert.ToInt16(a.Speed));
             Size fuelboxsize = new Size(a.Fuel / 250 * 19 / 10, 18);
             b.Size = fuelboxsize;
+            if(a.Fuel <= 2500) {
+                b.BackColor = Color.Yellow;
+            }else {
+                b.BackColor = Color.Red;
+            }
             if (a.Fuel <= 0)
             {
                 a.Speed = 0;
@@ -267,18 +273,6 @@ namespace Racegame {
             foreach(Powerup pw in Powerups) {
                 pw.Draw(e.Graphics);
             }
-
-            Graphics graphics = Graphics.FromImage(rg.InterfaceBar.Image);
-
-
-            graphics.DrawImage(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "laps/" + (p1.laps >= 6 ? 5 : p1.laps) + ".png")), new Rectangle(201, 64, 48, 54));
-
-            graphics.DrawImage(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "laps/" + (p2.laps >= 6 ? 5 : p2.laps) + ".png")), new Rectangle(723, 64, 48, 54));
-
-            graphics.DrawImage(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "laps/of5.png")), new Rectangle(250, 82, 54, 38));
-        
-            graphics.DrawImage(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "laps/of5.png")), new Rectangle(772, 82, 54, 38));
-
 
             foreach(Banana ban in BananaItems) {
                 ban.Draw(e.Graphics);

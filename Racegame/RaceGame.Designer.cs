@@ -173,6 +173,7 @@
             this.Interface.Size = new System.Drawing.Size(1024, 157);
             this.Interface.TabIndex = 15;
             this.Interface.TabStop = false;
+            this.Interface.Paint += new System.Windows.Forms.PaintEventHandler(this.Interface_Paint);
             // 
             // Player2Box
             // 
