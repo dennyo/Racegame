@@ -32,11 +32,12 @@
             // 
             // black
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(1344, 897);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ClientSize = new System.Drawing.Size(1026, 741);
+            this.MaximumSize = new System.Drawing.Size(1042, 815);
+            this.MinimumSize = new System.Drawing.Size(1042, 736);
             this.Name = "black";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Super InformatiKart";
