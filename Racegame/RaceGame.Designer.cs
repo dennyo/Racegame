@@ -158,7 +158,6 @@
             this.MainMenu.Text = "Back To Menu";
             this.MainMenu.UseVisualStyleBackColor = true;
             this.MainMenu.Visible = false;
-            this.MainMenu.Click += new System.EventHandler(this.MainMenu_Click);
             // 
             // Interface
             // 
