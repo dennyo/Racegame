@@ -556,7 +556,7 @@ namespace Racegame {
         }
         async System.Threading.Tasks.Task WaitMethod5()
         {
-            await System.Threading.Tasks.Task.Delay(3000);
+            await System.Threading.Tasks.Task.Delay(3100);
         }
         async System.Threading.Tasks.Task WaitMethod6()
         {
