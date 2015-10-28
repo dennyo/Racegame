@@ -29,6 +29,7 @@ namespace Racegame
         public string intro;
         int countDown = 9;
         public int IntroLength;
+        public bool racefinished = false;
 
 
         public Racegame(MainMenu main, Character c1, Character c2, Map map)
@@ -217,13 +218,20 @@ namespace Racegame
             this.Opacity = 0;
         }
 
-
+        private void FinishCheck(Player a, Player b)
+        {
+            if(a.GameEnded == true ||
+                b.GameEnded == true)
+            {
+                racefinished = true;
+            }
+        }
 
         private void GameTimer_Tick(object sender, EventArgs e)
         {
             game.Execute();
+            FinishCheck(p1, p2);
         }
-
 
 
         private void Racegame_Paint(object sender, PaintEventArgs e)
@@ -243,14 +251,12 @@ namespace Racegame
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            if (keyData == Keys.Return &&
-                PlayerControls.Visible == true)
+            if (racefinished == true)
             {
-                countDown = 4;
-            }
-            if (keyData == Keys.Escape)
-            {
-                FadeOutTimer.Enabled = true;
+                if (keyData == Keys.Return)
+                {
+                    FadeOutTimer.Enabled = true;
+                }
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
@@ -315,11 +321,6 @@ namespace Racegame
             {
                 this.Opacity -= 0.05;
             }
-        }
-
-        private void MainMenu_Click(object sender, EventArgs e)
-        {
-            FadeOutTimer.Enabled = true;
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
