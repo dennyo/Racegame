@@ -1121,9 +1121,8 @@ namespace Racegame
                 {
                     if (this.Opacity == 1)
                     {
-                        SoundTimer.Enabled = true;
-                        player = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, "sounds/Selection Screen intro.wav"));
-                        player.Play();
+                        player = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, "sounds/Selection Screen.wav"));
+                        player.PlayLooping();
                         FadeIn.Enabled = false;
                     }
                     this.Opacity += 0.1;
@@ -1197,8 +1196,6 @@ namespace Racegame
 
         private void SoundTimer_Tick(object sender, EventArgs e)
         {
-            if (Main.Visible == true)
-            {
                 if (counter < 4)
                 {
                     counter++;
@@ -1213,23 +1210,7 @@ namespace Racegame
                     player.PlayLooping();
                     SoundTimer.Enabled = false;
                     counter = 0;
-                }
-            }
-            if (CharacterSelection.Visible == true ||
-                MapSelection.Visible == true)
-            {
-                if (counter < 11)
-                {
-                    counter++;
-                }
-                if (counter == 11)
-                {
-                    player = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, "sounds/Selection screen.wav"));
-                    player.PlayLooping();
-                    SoundTimer.Enabled = false;
-
-                }
-            }
+            }          
         }
 
         private void PlayerTimer_Tick(object sender, EventArgs e) {
