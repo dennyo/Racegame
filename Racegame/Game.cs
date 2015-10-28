@@ -135,7 +135,7 @@ namespace Racegame {
 
 
 
-        public async void Sounds()
+        public async void Sounds(Map mp)
         {
             SoundPlayer fanfare = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, "sounds/Race Fanfare.wav"));
             SoundPlayer soundtrackplayer = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, Soundtrack));
@@ -144,10 +144,19 @@ namespace Racegame {
             fanfare.Play();
             await WaitMethod5();
             countdown.Play();
-            await WaitMethod5();
-            introplayer.Play();
-            await WaitMethod6();
-            soundtrackplayer.PlayLooping();
+            await WaitMethod7();
+
+            switch(mp) {
+                case Map.Standard:
+                    soundtrackplayer.PlayLooping();
+                    break;
+                default:
+                    introplayer.Play();
+                    await WaitMethod6();
+                    soundtrackplayer.PlayLooping();
+                    break;
+                    }
+
         }
 
         public void Execute() {
@@ -561,11 +570,15 @@ namespace Racegame {
         }
         async System.Threading.Tasks.Task WaitMethod5()
         {
-            await System.Threading.Tasks.Task.Delay(3100);
+            await System.Threading.Tasks.Task.Delay(3300);
         }
         async System.Threading.Tasks.Task WaitMethod6()
         {
             await System.Threading.Tasks.Task.Delay(Introlength);
+        }
+        async System.Threading.Tasks.Task WaitMethod7()
+        {
+            await System.Threading.Tasks.Task.Delay(3000);
         }
 
         public void SpeedMeter()
