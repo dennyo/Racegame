@@ -291,7 +291,7 @@ namespace Racegame {
                 deco.Draw(e.Graphics);
             }
 
-            if(p1.Y < p2.Y) {
+            if(p1.Y > p2.Y) {
                 p2.DrawPlayer(e.Graphics);
                 e.Graphics.ResetTransform();
                 p1.DrawPlayer(e.Graphics);
@@ -642,8 +642,8 @@ namespace Racegame {
         public bool CircleCollision(Rectangle Circle1, Rectangle Circle2)
         {
 
-            int R1 = Circle1.Width / 2;
-            int R2 = Circle2.Width / 2;
+            int R1 = (Circle1.Width - 16) / 2;
+            int R2 = (Circle2.Width - 16) / 2;
             int Cx1 = Convert.ToInt32(0.5 * (Circle1.Left + Circle1.Right));
             int Cy1 = Convert.ToInt32(0.5 * (Circle1.Top + Circle1.Bottom));
             int Cx2 = Convert.ToInt32(0.5 * (Circle2.Left + Circle2.Right));

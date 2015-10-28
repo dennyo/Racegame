@@ -219,6 +219,10 @@ namespace Racegame
                     Powerups.Add(new Powerup(614, 416));
                     p1Start = new Location(532, 86, 0);
                     p2Start = new Location(502, 156, 0);
+
+                    Decorations.Add(new Decoration(DecorationType.Piranha, 117, 183));
+                    Decorations.Add(new Decoration(DecorationType.Piranha, 248, 510));
+
                     Soundtrack = "sounds/Mario Circuit.wav";
                     intro = "sounds/Mario Circuit intro.wav";
                     IntroLength = 0;
