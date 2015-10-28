@@ -23,7 +23,7 @@ namespace Racegame
         Player p1;
         Player p2;
         MainMenu main;
-        SoundPlayer player;
+        SoundPlayer player, mainplayer, introplayer;
         public Game game;
         private bool PlayerUp = true;
         public bool PlaySelected = true;
@@ -156,7 +156,9 @@ namespace Racegame
                 EnterPressed == true &&
                 FadeIn.Enabled == false)
             {
-                player.Stop();
+                if(counter < 4) { introplayer.Stop(); }
+                if (counter >= 4) { mainplayer.Stop(); }
+                SoundTimer.Enabled = false;
                 FadeOut.Enabled = true;
                 BackgroundTimer.Enabled = false;
                 PlayerTimer.Enabled = true;
@@ -739,7 +741,6 @@ namespace Racegame
             if (MapChosen == true)
             {
                 FadeOut.Enabled = true;
-                player.Stop();
             }
         }
 
@@ -1112,8 +1113,8 @@ namespace Racegame
                     {
                         FadeIn.Enabled = false;
                         SoundTimer.Enabled = true;
-                        player = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, "sounds/Title screen intro.wav"));
-                        player.Play();
+                        introplayer = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, "sounds/Title screen intro.wav"));
+                        introplayer.Play();
                     }
                     this.Opacity += 0.2;
                 }
@@ -1125,7 +1126,7 @@ namespace Racegame
                         player.PlayLooping();
                         FadeIn.Enabled = false;
                     }
-                    this.Opacity += 0.1;
+                    this.Opacity += 0.2;
                 }
                 if (MapSelection.Visible == true)
                 {
@@ -1133,7 +1134,7 @@ namespace Racegame
                     {
                         FadeIn.Enabled = false;
                     }
-                    this.Opacity += 0.1;
+                    this.Opacity += 0.2;
                 }
             }
         }
@@ -1149,7 +1150,7 @@ namespace Racegame
                     FadeOut.Enabled = false;
                     FadeIn.Enabled = true;
                 }
-                this.Opacity -= 0.1;
+                this.Opacity -= 0.2;
             }
             if (CharacterSelection.Visible == true)
             {
@@ -1160,14 +1161,13 @@ namespace Racegame
                     MapSelection.Visible = true;
                     FadeIn.Enabled = true;
                 }
-                this.Opacity -= 0.1;
+                this.Opacity -= 0.2;
             }
             if (MapSelection.Visible == true)
             {
                 if (this.Opacity == 0 && MapChosen == true)
                 {
                     FadeOut.Enabled = false;
-                    player.Stop();
                     this.Hide();
                     Racegame frm = new Racegame(main, p1choice, p2choice, MapChoice);
                     frm.ShowDialog();
@@ -1206,8 +1206,8 @@ namespace Racegame
                 }
                 if (counter == 4)
                 {
-                    player = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, "sounds/Title screen.wav"));
-                    player.PlayLooping();
+                    mainplayer = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, "sounds/Title screen.wav"));
+                    mainplayer.PlayLooping();
                     SoundTimer.Enabled = false;
                     counter = 0;
             }          

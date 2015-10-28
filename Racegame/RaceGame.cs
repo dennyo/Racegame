@@ -24,6 +24,7 @@ namespace Racegame
         private MainMenu main;
         private SoundPlayer player;
         public Game game;
+        Map map;
         public PictureBox InterfaceBar;
         public string Soundtrack;
         public string intro;
@@ -36,6 +37,7 @@ namespace Racegame
         {
             InitializeComponent();
             this.main = main;
+            this.map = map;
             StartTimer.Enabled = true;
             int checkpointCounter = 0;
             this.InterfaceBar = Interface;
@@ -112,8 +114,8 @@ namespace Racegame
                     checkpointCounter = 10;
                     Powerups.Add(new Powerup(344, 224));
                     Powerups.Add(new Powerup(418, 202));
-                    p1Start = new Location(338, 690, -180);
-                    p2Start = new Location(338, 620, -180);
+                    p1Start = new Location(338, 650, -180);
+                    p2Start = new Location(388, 590, -180);
                     
                     RespawnPoints.Add(new Location(205, 646, -180));
                     RespawnPoints.Add(new Location(47, 450, -90));
@@ -182,7 +184,7 @@ namespace Racegame
                     p2Start = new Location(502, 156, 0);
                     Soundtrack = "sounds/Mario Circuit.wav";
                     intro = "sounds/Mario Circuit intro.wav";
-                    IntroLength = 10280;
+                    IntroLength = 0;
                     break;
 
                 case Map.Vanilla_Lake:
@@ -264,7 +266,7 @@ namespace Racegame
         {
             if (countDown == 7)
             {
-                game.Sounds();
+                game.Sounds(map);
             }
             if (countDown <= 4)
             {
