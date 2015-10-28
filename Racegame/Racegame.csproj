@@ -74,6 +74,7 @@
     <Compile Include="MainMenu.Designer.cs">
       <DependentUpon>MainMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="RedShell.cs" />
     <Compile Include="Shell.cs" />
     <EmbeddedResource Include="black.resx">
       <DependentUpon>black.cs</DependentUpon>

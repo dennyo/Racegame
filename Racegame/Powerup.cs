@@ -12,7 +12,7 @@ using System.Diagnostics;
 
 namespace Racegame {
 
-    public enum PowerupItem {Banana, Mushroom, Shell, None };
+    public enum PowerupItem {Banana, Mushroom, Shell, RedShell, None };
 
     public class Powerup {
 
@@ -21,7 +21,7 @@ namespace Racegame {
         private static Random rand;
         private int CurrentImage = 0;
         private List<Image> ImageSequence = new List<Image>();
-        private Image Banana, Mushroom, Shell;
+        private Image Banana, Mushroom, Shell, RedShell;
        // private PictureBox pb;
         public Rectangle rect;
         private PowerupItem current;
@@ -48,6 +48,7 @@ namespace Racegame {
             Mushroom = Image.FromFile(Path.Combine(Environment.CurrentDirectory, "powerup/MushroomIcon.png"));
             Banana = Image.FromFile(Path.Combine(Environment.CurrentDirectory, "powerup/BananaIcon.png"));
             Shell = Image.FromFile(Path.Combine(Environment.CurrentDirectory, "powerup/ShellIcon.png"));
+            RedShell = Image.FromFile(Path.Combine(Environment.CurrentDirectory, "powerup/RedShellIcon.png"));
 
             /*
                             Bitmap toReturn = new Bitmap(Width, Width);
@@ -77,7 +78,7 @@ namespace Racegame {
             p.HasItem = true;
             Thread t = new Thread(() => {
                 for(int i = 0; i < 30; i++) {
-                    switch(rand.Next(3)) {
+                    switch(rand.Next(4)) {
                         case 0:
                             p.ItemFrame.Image = Banana;
                             current = PowerupItem.Banana;
@@ -91,6 +92,10 @@ namespace Racegame {
                         case 2:
                             p.ItemFrame.Image = Shell;
                             current = PowerupItem.Shell;
+                            break;
+                        case 3:
+                            p.ItemFrame.Image = RedShell;
+                            current = PowerupItem.RedShell;
                             break;
                     }
                     Thread.Sleep(50);

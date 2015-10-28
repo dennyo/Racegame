@@ -569,8 +569,7 @@ namespace RaceGame {
                 Y++;
             }
         */
-
-        public async void PowerupHandler(Game g) {
+        public async void PowerupHandler(Game g, Map map) {
             if(!ActivatePowerup) return; 
             ActivatePowerup = false;
             PowerupItem temp = currentPowerup;
@@ -595,6 +594,17 @@ namespace RaceGame {
                     Immune = true;
                     Shell shell = new Shell(g, X, Y, Angle);
                     g.ShellItems.Add(shell);
+                    await Task.Delay(2000);
+                    Immune = false;
+
+                    break;
+
+                case PowerupItem.RedShell:
+                    //Location(player)+1==Shell.jpg
+                    //
+                    Immune = true;
+                    RedShell redshell = new RedShell(g, X, Y, Angle, map);
+                    g.RedShellItems.Add(redshell);
                     await Task.Delay(2000);
                     Immune = false;
 

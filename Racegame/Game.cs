@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Media;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -19,6 +20,7 @@ namespace Racegame {
 
     public class Game {
 
+        private Thread soundPlayThread;
         public bool isLoaded = false;
         public bool CheckpointPassed = false;
         public bool FinishPassed = false;
@@ -26,6 +28,7 @@ namespace Racegame {
 
         public List<Banana> BananaItems = new List<Banana>();
         public List<Shell> ShellItems = new List<Shell>();
+        public List<RedShell> RedShellItems = new List<RedShell>();
         public List<Powerup> Powerups = new List<Powerup>();
         public List<Location> RespawnPoints = new List<Location>();
         public List<Decoration> Decorations = new List<Decoration>();
@@ -42,7 +45,7 @@ namespace Racegame {
         SoundPlayer mainMenuSound;
         Player p1;
         Player p2;
-        Map map;
+        public Map map;
         public Form form;
         Label FinishMessage;
         MainMenu main;
@@ -127,13 +130,10 @@ namespace Racegame {
                     checkpoints = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Rainbow_Road/checkpoints.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
                     break; 
             }
-
-            //pw.SpinItemBox(p1);
-            //pw.Rotate();
-
+            this.soundPlayThread = new Thread(soundtrackplay);
+            this.soundPlayThread.Name = "SoundPlayerLoop";
+            this.soundPlayThread.IsBackground = true;
         }
-
-
 
         public async void Sounds(Map mp)
         {
@@ -159,7 +159,28 @@ namespace Racegame {
 
         }
 
-        public void Execute() {
+        public async void Sounds()
+        {
+            SoundPlayer fanfare = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, "sounds/Race Fanfare.wav"));
+            SoundPlayer countdown = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, "sounds/Countdown.wav"));
+            fanfare.Play();
+            await WaitMethod5();
+            countdown.Play();
+            await WaitMethod6();
+            this.soundPlayThread.Start();
+        }
+
+        public void soundtrackplay()
+        {
+            SoundPlayer introplayer = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, Intro));
+            SoundPlayer soundtrackplayer = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, Soundtrack));
+            soundtrackplayer.Load();
+            introplayer.PlaySync();
+            soundtrackplayer.PlaySync();
+        }
+
+        public void Execute()
+        {
             rg.Invalidate();
             FuelHandler();
             BorderHandler();
@@ -175,9 +196,9 @@ namespace Racegame {
             p2.rect.X = Convert.ToInt32(p2.X);
             p2.rect.Y = Convert.ToInt32(p2.Y);
             ColorHandler();
-
-            p1.PowerupHandler(this);
-            p2.PowerupHandler(this);
+            
+            p1.PowerupHandler(this, map);
+            p2.PowerupHandler(this, map);
 
             foreach(Powerup pw in Powerups) {
                 pw.Collision(this, p1);
@@ -189,11 +210,23 @@ namespace Racegame {
                 if(!p1.Hit) ban.Collision(p1);
                 if(!p2.Hit) ban.Collision(p2);
             }
-
             foreach(Shell she in ShellItems) {
                 if(!p1.Hit) she.Collision(p1);
                 if(!p2.Hit) she.Collision(p2);
             }
+
+            foreach (Shell she in ShellItems)
+            {
+                if(!p1.Hit) she.Collision(p1);
+                if(!p2.Hit) she.Collision(p2);
+            }
+
+            foreach (RedShell red in RedShellItems)
+            {
+               if (!p1.Hit) red.Collision(p1);
+               if (!p2.Hit) red.Collision(p2);
+            }
+
         }
 
         public void ColorHandler() {
@@ -287,7 +320,19 @@ namespace Racegame {
             }catch(Exception) { }
             //e.Graphics.Dispose();
 
-            foreach(Decoration deco in Decorations) {
+            try
+            {
+                foreach (RedShell red in RedShellItems)
+                {
+
+                    red.Draw(e.Graphics, colormap, p1, p2);
+
+                }
+            }
+            catch (Exception) { }
+            //e.Graphics.Dispose();
+
+            foreach (Decoration deco in Decorations) {
                 deco.Draw(e.Graphics);
             }
 
@@ -642,8 +687,8 @@ namespace Racegame {
         public bool CircleCollision(Rectangle Circle1, Rectangle Circle2)
         {
 
-            int R1 = (Circle1.Width - 16) / 2;
-            int R2 = (Circle2.Width - 16) / 2;
+            int R1 = (Circle1.Width - 8) / 2;
+            int R2 = (Circle2.Width - 8) / 2;
             int Cx1 = Convert.ToInt32(0.5 * (Circle1.Left + Circle1.Right));
             int Cy1 = Convert.ToInt32(0.5 * (Circle1.Top + Circle1.Bottom));
             int Cx2 = Convert.ToInt32(0.5 * (Circle2.Left + Circle2.Right));
