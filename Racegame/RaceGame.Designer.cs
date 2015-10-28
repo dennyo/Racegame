@@ -103,7 +103,7 @@
             // FuelBox2
             // 
             this.FuelBox2.BackColor = System.Drawing.Color.Red;
-            this.FuelBox2.Location = new System.Drawing.Point(739, 40);
+            this.FuelBox2.Location = new System.Drawing.Point(740, 40);
             this.FuelBox2.Name = "FuelBox2";
             this.FuelBox2.Size = new System.Drawing.Size(72, 12);
             this.FuelBox2.TabIndex = 9;

@@ -46,6 +46,7 @@ namespace RaceGame {
         private bool SpeedBoost = false;
         public bool Immune = false;
         public bool Hit = false;
+        public bool Fallen = false;
         public bool IsPitstop = false;
         private string name;
         private Bitmap image;
@@ -295,13 +296,13 @@ namespace RaceGame {
             if(Angle <= -356 || Angle >= 356) {
                 Angle = 0;
             }
-            if(((LeftActive && !DownActive) || (RightActive && DownActive && Speed < 0)) && Speed != 0 && !Hit) {
+            if(((LeftActive && !DownActive) || (RightActive && DownActive && Speed < 0)) && Speed != 0 && !Hit && !Fallen) {
                 Angle -= Math.Abs(3 * Math.Abs(Speed) / 7 + 1);
             }
-            if (((RightActive && !DownActive) || (LeftActive && DownActive && Speed < 0)) && Speed != 0 && !Hit) {
+            if (((RightActive && !DownActive) || (LeftActive && DownActive && Speed < 0)) && Speed != 0 && !Hit && !Fallen) {
                 Angle += Math.Abs(3 * Math.Abs(Speed) / 7 + 1);
             }
-            if(!GameEnded && !Hit && !Collision) {
+            if(!GameEnded && !Hit && !Collision && !Fallen) {
                 MaxSpeed = 9;
             }
             if(GameEnded) {
@@ -450,8 +451,8 @@ namespace RaceGame {
             switch(getColor(col.R, col.G, col.B)) {
 
                 case ColorHandler.Gat:
-                    if(!Hit) {
-                        Hit = true;
+                    if(!Fallen) {
+                        Fallen = true;
                         MaxSpeed = 0;
                         Speed = 0;
 
@@ -475,7 +476,7 @@ namespace RaceGame {
                         Angle = lastCheckpoint.Angle;
                         Width = 64;
                         Height = 64;
-                        Hit = false;
+                        Fallen = false;
                         await Task.Delay(100);
                     }   
                     break;

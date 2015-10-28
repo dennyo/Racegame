@@ -93,7 +93,6 @@ namespace Racegame
                     Powerups.Add(new Powerup(786, 596));
                     p1Start = new Location(390, 274, -90);
                     p2Start = new Location(458, 314, -90);
-                    //278, 102; 48, 676; 368, 546; 883, 166; 946, 670
     
                     Decorations.Add(new Decoration(DecorationType.Piranha, 278, 102));
                     Decorations.Add(new Decoration(DecorationType.Piranha, 48, 676));
@@ -123,8 +122,7 @@ namespace Racegame
                     RespawnPoints.Add(new Location(800, 527, -315));
                     RespawnPoints.Add(new Location(629, 648, -165));
                     RespawnPoints.Add(new Location(359, 559, -180));
-                    // 100, 658; 888, 146
-    
+
                     Decorations.Add(new Decoration(DecorationType.Mole, 100, 658));
                     Decorations.Add(new Decoration(DecorationType.Mole, 888, 146));
 
@@ -150,8 +148,6 @@ namespace Racegame
                     RespawnPoints.Add(new Location(900, 301, -270));
                     RespawnPoints.Add(new Location(760, 654, -180));
                     RespawnPoints.Add(new Location(552, 627, -180));
-
-                    //	Ghost: 188, 248; 554, 385; 644, 52; 792, 547
                     
                     Decorations.Add(new Decoration(DecorationType.Ghost, 188, 248));
                     Decorations.Add(new Decoration(DecorationType.Ghost, 554, 385));
@@ -180,7 +176,6 @@ namespace Racegame
                     RespawnPoints.Add(new Location(296, 539, -180));
                     RespawnPoints.Add(new Location(92, 567, -105));
                     RespawnPoints.Add(new Location(116, 345, -90));
-                    //386, 324; 688, 458; 890, 706
                     
                     Decorations.Add(new Decoration(DecorationType.Red_Fish, 386, 324));
                     Decorations.Add(new Decoration(DecorationType.Red_Fish, 688, 458));
@@ -246,7 +241,6 @@ namespace Racegame
                     RespawnPoints.Add(new Location(648, 636, -15));
                     RespawnPoints.Add(new Location(760, 576, -45));
                     RespawnPoints.Add(new Location(819, 432, -90));
-                    //370, 428; 620, 338
 
                     Decorations.Add(new Decoration(DecorationType.Blue_Fish, 370, 428));
                     Decorations.Add(new Decoration(DecorationType.Blue_Fish, 620, 338));
