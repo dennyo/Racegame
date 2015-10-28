@@ -28,6 +28,7 @@ namespace Racegame {
         public List<Shell> ShellItems = new List<Shell>();
         public List<Powerup> Powerups = new List<Powerup>();
         public List<Location> RespawnPoints = new List<Location>();
+        public List<Decoration> Decorations = new List<Decoration>();
 
         Image Banana = new Bitmap(Path.Combine(Environment.CurrentDirectory, "Banana.png"));
         Image Mushroom = new Bitmap(Path.Combine(Environment.CurrentDirectory, "Mushroom.png"));
@@ -52,7 +53,7 @@ namespace Racegame {
         int Introlength;
 
 
-        public Game(MainMenu main, Racegame rg, Form form, Player p1, Player p2, Map map, string soundtrack, string intro, int introlength, Label FinishMessage, int checkpointAmount, List<Powerup> Powerups, List<Location> RespawnPoints)
+        public Game(MainMenu main, Racegame rg, Form form, Player p1, Player p2, Map map, string soundtrack, string intro, int introlength, Label FinishMessage, int checkpointAmount, List<Powerup> Powerups, List<Location> RespawnPoints, List<Decoration> Decorations)
         {
             this.p1 = p1;
             this.p2 = p2;
@@ -63,6 +64,7 @@ namespace Racegame {
             this.rg = rg;
             this.Powerups = Powerups;
             this.RespawnPoints = RespawnPoints;
+            this.Decorations = Decorations;
             this.Intro = intro;
             this.Introlength = introlength;
             this.Soundtrack = soundtrack;
@@ -276,6 +278,9 @@ namespace Racegame {
             }catch(Exception) { }
             //e.Graphics.Dispose();
 
+            foreach(Decoration deco in Decorations) {
+                deco.Draw(e.Graphics);
+            }
 
             if(p1.Y < p2.Y) {
                 p2.DrawPlayer(e.Graphics);

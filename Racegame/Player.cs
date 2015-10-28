@@ -132,7 +132,7 @@ namespace RaceGame {
                     return "cars/joris/Joris" + number + ".png";
 
                 case Character.Nynke:
-                    return "cars/nynke/F" + number + ".png";
+                    return "cars/nynke/N" + number + ".png";
 
                 case Character.Dick:
                     return "cars/dick/D" + number + ".png";

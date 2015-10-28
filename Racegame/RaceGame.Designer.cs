@@ -50,6 +50,7 @@
             this.FadeOutTimer = new System.Windows.Forms.Timer(this.components);
             this.player2Head = new System.Windows.Forms.PictureBox();
             this.player1Head = new System.Windows.Forms.PictureBox();
+            this.DecoTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Player1Box)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FuelBox2)).BeginInit();
@@ -237,6 +238,11 @@
             this.player1Head.TabIndex = 28;
             this.player1Head.TabStop = false;
             // 
+            // DecoTimer
+            // 
+            this.DecoTimer.Enabled = true;
+            this.DecoTimer.Interval = 50;
+            // 
             // Racegame
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -303,5 +309,6 @@
         private System.Windows.Forms.Timer FadeOutTimer;
         private System.Windows.Forms.PictureBox player2Head;
         private System.Windows.Forms.PictureBox player1Head;
+        private System.Windows.Forms.Timer DecoTimer;
     }
 }

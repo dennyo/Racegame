@@ -30,6 +30,7 @@ namespace Racegame
         int countDown = 9;
         public int IntroLength;
         public bool racefinished = false;
+        public System.Windows.Forms.Timer Decotimer;
 
 
         public Racegame(MainMenu main, Character c1, Character c2, Map map)
@@ -39,6 +40,7 @@ namespace Racegame
             StartTimer.Enabled = true;
             int checkpointCounter = 0;
             this.InterfaceBar = Interface;
+            this.Decotimer = DecoTimer;
             player1Head.BackColor = Color.FromArgb(64, 72, 56);
             player2Head.BackColor = Color.FromArgb(64, 72, 56);
 
@@ -47,6 +49,7 @@ namespace Racegame
 
             List<Powerup> Powerups = new List<Powerup>();
             List<Location> RespawnPoints = new List<Location>();
+            List<Decoration> Decorations = new List<Decoration>();
             Location p1Start = new Location(0, 0, 0);
             Location p2Start = new Location(0, 0, 0);
 
@@ -70,6 +73,13 @@ namespace Racegame
                     RespawnPoints.Add(new Location(348, 558, -90));
                     RespawnPoints.Add(new Location(348, 558, -90));
                     RespawnPoints.Add(new Location(348, 558, -90));
+                    // 646, 54; 300, 572; 608, 712; 828, 558
+    
+                    Decorations.Add(new Decoration(DecorationType.FireBall, 646, 54));
+                    Decorations.Add(new Decoration(DecorationType.FireBall, 300, 572));
+                    Decorations.Add(new Decoration(DecorationType.FireBall, 608, 712));
+                    Decorations.Add(new Decoration(DecorationType.FireBall, 828, 558));
+
                     Soundtrack = "sounds/Bowser Castle.wav";
                     intro = "sounds/Bowser Castle intro.wav";
                     IntroLength = 4080;
@@ -169,6 +179,11 @@ namespace Racegame
                     RespawnPoints.Add(new Location(538, 615, -180));
                     RespawnPoints.Add(new Location(255, 654, -180));
                     RespawnPoints.Add(new Location(65, 550, -90));
+
+                    Decorations.Add(new Decoration(DecorationType.Star, 302, 234));
+                    Decorations.Add(new Decoration(DecorationType.Star, 902, 200));
+                    Decorations.Add(new Decoration(DecorationType.Star, 738, 588));
+
                     Soundtrack = "sounds/Rainbow Road.wav";
                     intro = "sounds/Rainbow Road intro.wav";
                     IntroLength = 13040;
@@ -202,6 +217,11 @@ namespace Racegame
                     RespawnPoints.Add(new Location(648, 636, -15));
                     RespawnPoints.Add(new Location(760, 576, -45));
                     RespawnPoints.Add(new Location(819, 432, -90));
+                    //370, 428; 620, 338
+
+                    Decorations.Add(new Decoration(DecorationType.Blue_Fish, 370, 428));
+                    Decorations.Add(new Decoration(DecorationType.Blue_Fish, 620, 338));
+
                     Soundtrack = "sounds/Vanilla lake.wav";
                     intro = "sounds/Vanilla lake intro.wav";
                     IntroLength = 29270;
@@ -212,7 +232,7 @@ namespace Racegame
 
             p2 = new Player("Player 2", c2, this, null, Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.ControlKey, FuelBox2, Player2Box, Fueladder2, Speed2, checkpointCounter, p2Start);
             p1 = new Player("Player 1", c1, this, null, Keys.W, Keys.S, Keys.D, Keys.A, Keys.ShiftKey, FuelBox, Player1Box, Fueladder, Speed1, checkpointCounter, p1Start);
-            Game game = new Game(main, this, this, p1, p2, map, Soundtrack, intro, IntroLength, FinishMessage, 3, Powerups, RespawnPoints);
+            Game game = new Game(main, this, this, p1, p2, map, Soundtrack, intro, IntroLength, FinishMessage, 3, Powerups, RespawnPoints, Decorations);
             this.game = game;
             this.BackgroundImage = game.circuit;
             this.Opacity = 0;
