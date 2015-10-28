@@ -55,6 +55,7 @@
     <Compile Include="black.designer.cs">
       <DependentUpon>black.cs</DependentUpon>
     </Compile>
+    <Compile Include="Decoration.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="Powerup.cs" />
     <Compile Include="RaceGame.cs">

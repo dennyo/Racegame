@@ -66,6 +66,7 @@ namespace RaceGame {
         public Label lapCounter;
         private Location start;
         public string victory;
+        private int LastColor = 265;
 
 
         public Player(string name, Character character, Form main, Bitmap imagew, Keys up, Keys down, Keys right, Keys left, Keys action, PictureBox fuel, PictureBox itemframe, System.Windows.Forms.Timer fuelTimer, Label speedLabel, int totalCheckpoints, Location start) {
@@ -312,9 +313,9 @@ namespace RaceGame {
         public async void FinishHandler(Label message, Bitmap image)
         {
             int xCenter = (int)(X + Width / 2);
-            int yCenter = (int)(Y + Height / 2);
+            int yCenter = (int)(Y + Height / 3 * 2);
             System.Drawing.Color col = image.GetPixel(xCenter, yCenter);
-
+            if(getColor(col.R, col.G, col.B) == ColorHandler.Finish) LastColor = 265;
             if (checkpointsPassed.Count == totalCheckpoints && getColor(col.R, col.G, col.B) == ColorHandler.Finish)
             {
                 laps++;
@@ -377,12 +378,13 @@ namespace RaceGame {
         public void CheckpointChecker(Game g, Bitmap image) {
             if(lastCheckpoint == null) lastCheckpoint = (g.RespawnPoints.Count == 0 ? start : g.RespawnPoints[0]);
             int xCenter = (int) (X + Width / 2);
-            int yCenter = (int) (Y + Height / 2);
+            int yCenter = (int) (Y + Height / 3 * 2);
 
             System.Drawing.Color col = image.GetPixel(xCenter, yCenter);
-            if(col.R % 5 == 0 && col.G == 0 && col.B == 0 && col.R >= 255 - totalCheckpoints * 10) {
+            if(col.R % 5 == 0 && col.G == 0 && col.B == 0 && col.R >= 255 - totalCheckpoints * 10 && col.R + 10 == LastColor) {
                 if(!checkpointsPassed.Contains(col.R)) checkpointsPassed.Add(col.R);
                 if(g.RespawnPoints.Count > 0) lastCheckpoint = g.RespawnPoints[checkpointsPassed.Count - 1];
+                LastColor = col.R;
             }
 
         }
@@ -398,29 +400,29 @@ namespace RaceGame {
 
         public void HandleWalls(Bitmap image) {
             int xCenter = (int) (X + Width / 2);
-            int yCenter = (int) (Y + (Height /3 * 2));
+            int yCenter = (int) (Y + (Height / 3 * 2));
             System.Drawing.Color col = image.GetPixel(xCenter, yCenter);
 
             switch(getColor(col.R, col.G, col.B)) {
                 
                 case ColorHandler.Wall_Red:
-                    X -= Math.Abs(Speed);
+                    X -= Math.Abs(Speed) + 2;
                     //X -= Math.Abs(Speed) + 10;
                     break;
 
                 case ColorHandler.Wall_Green:
                     //X += Math.Abs(Speed) + 10;
-                    X += Math.Abs(Speed);
+                    X += Math.Abs(Speed) + 2;
                     break;
                     
                 case ColorHandler.Wall_Blue:
                     //Y += Math.Abs(Speed) + 10;
-                    Y += Math.Abs(Speed);
+                    Y += Math.Abs(Speed) + 2;
                     break;
 
                 case ColorHandler.Wall_Light_Blue:
                     //Y -= Math.Abs(Speed) + 10;
-                    Y -= Math.Abs(Speed);
+                    Y -= Math.Abs(Speed) + 2;
                     break;
 
             }
@@ -442,7 +444,7 @@ namespace RaceGame {
             //B 0
             
             int xCenter = (int) (X + Width / 2);
-            int yCenter = (int) (Y + Height / 2);
+            int yCenter = (int) (Y + (Height / 3 * 2));
             System.Drawing.Color col = image.GetPixel(xCenter, yCenter);
             //Console.WriteLine(temp);
             switch(getColor(col.R, col.G, col.B)) {

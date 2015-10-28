@@ -333,8 +333,8 @@ namespace Racegame
             e.Graphics.DrawImage(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "laps/" + (p2.laps >= 6 ? 5 : p2.laps) + ".png")), new Rectangle(723, 64, 48, 54));
             e.Graphics.DrawImage(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "laps/of5.png")), new Rectangle(250, 82, 54, 38));
             e.Graphics.DrawImage(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "laps/of5.png")), new Rectangle(772, 82, 54, 38));
-            if(p1.PitstopCounter != 0) e.Graphics.DrawImage(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Pitstop/Pit" + (p1.PitstopCounter > 5 ? 5 : p1.PitstopCounter) + ".png")), new Rectangle(302, 44, 68, 32));
-            if(p2.PitstopCounter != 0) e.Graphics.DrawImage(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Pitstop/Pit" + (p2.PitstopCounter > 5 ? 5 : p2.PitstopCounter) + ".png")), new Rectangle(654, 44, 68, 32));
+            if(p1.PitstopCounter != 0) e.Graphics.DrawImage(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Pitstop/Pit" + (p1.PitstopCounter > 5 ? 5 : p1.PitstopCounter) + "L.png")), new Rectangle(302, 44, 68, 32));
+            if(p2.PitstopCounter != 0) e.Graphics.DrawImage(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Pitstop/Pit" + (p2.PitstopCounter > 5 ? 5 : p2.PitstopCounter) + "R.png")), new Rectangle(654, 44, 68, 32));
 
         }
     }
