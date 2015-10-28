@@ -210,7 +210,7 @@ namespace Racegame {
             }else {
                 b.BackColor = Color.Red;
             }
-            if (a.Fuel <= 0)
+            if (a.Fuel <= 0 && !a.GameEnded)
             {
                 a.MaxSpeed = 2;
             }

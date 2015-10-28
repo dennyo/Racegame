@@ -25,6 +25,7 @@ namespace Racegame
         MainMenu main;
         SoundPlayer player;
         public Game game;
+        private bool PlayerUp = true;
         public bool PlaySelected = true;
         public bool QuitSelected = false;
         public bool DavidSelected = true;
@@ -158,6 +159,7 @@ namespace Racegame
                 player.Stop();
                 FadeOut.Enabled = true;
                 BackgroundTimer.Enabled = false;
+                PlayerTimer.Enabled = true;
                 EnterPressed = false;
             }
 
@@ -208,6 +210,7 @@ namespace Racegame
             {
                 FadeOut.Enabled = true;
                 EnterPressed = false;
+                PlayerTimer.Enabled = false;
             }
         }
 
@@ -1227,6 +1230,30 @@ namespace Racegame
 
                 }
             }
+        }
+
+        private void PlayerTimer_Tick(object sender, EventArgs e) {
+            if (CurrentImage < 4)
+            {
+                CurrentImage++;
+            }
+            else
+            {
+                CurrentImage = 1;
+                PlayerUp = !PlayerUp;
+            }
+            CharacterSelection.BackgroundImage = Image.FromFile(Path.Combine(Environment.CurrentDirectory, "chars/Charscreen" + CurrentImage + ".png"));
+            Console.WriteLine(CurrentImage);
+
+            Jop.Location = new Point(Jop.Location.X, Jop.Location.Y - (PlayerUp ? ((CurrentImage - 1)) : - ((CurrentImage - 1))));
+            Nynke.Location = new Point(Nynke.Location.X, Nynke.Location.Y - (PlayerUp ? ((CurrentImage - 1)) : - ((CurrentImage - 1))));
+            Fiona.Location = new Point(Fiona.Location.X, Fiona.Location.Y - (PlayerUp ? ((CurrentImage - 1)) : - ((CurrentImage - 1))));
+            Sibbele.Location = new Point(Sibbele.Location.X, Sibbele.Location.Y - (PlayerUp ? ((CurrentImage - 1)) : - ((CurrentImage - 1))));
+            Joris.Location = new Point(Joris.Location.X, Joris.Location.Y - (PlayerUp ? ((CurrentImage - 1)) : - ((CurrentImage - 1))));
+            Dick.Location = new Point(Dick.Location.X, Dick.Location.Y - (PlayerUp ? ((CurrentImage - 1)) : - ((CurrentImage - 1))));
+            Jos.Location = new Point(Jos.Location.X, Jos.Location.Y - (PlayerUp ? ((CurrentImage - 1)) : - ((CurrentImage - 1))));
+            David.Location = new Point(David.Location.X, David.Location.Y - (PlayerUp ? ((CurrentImage - 1)) : - ((CurrentImage - 1))));
+
         }
     }
 }

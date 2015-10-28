@@ -28,6 +28,7 @@ namespace RaceGame {
         public float Speed = 0;
         public int Health = 100;
         public int Fuel = 7500;
+        public int PitstopCounter = 0;
         public float Angle = 0f;
         public Keys up, down, right, left, action;
         public bool Finished = false;
@@ -45,6 +46,7 @@ namespace RaceGame {
         private bool SpeedBoost = false;
         public bool Immune = false;
         public bool Hit = false;
+        public bool IsPitstop = false;
         private string name;
         private Bitmap image;
         public bool HasItem = false;
@@ -301,19 +303,12 @@ namespace RaceGame {
             if(!GameEnded && !Hit && !Collision) {
                 MaxSpeed = 9;
             }
+            if(GameEnded) {
+                MaxSpeed = 0;
+            }
 
         }
-
-
-
-
-
-
-
-
-
-
-
+        
         public async void FinishHandler(Label message, Bitmap image)
         {
             int xCenter = (int)(X + Width / 2);
@@ -492,6 +487,8 @@ namespace RaceGame {
                     break;
 
                 case ColorHandler.Pitstop:
+                    if(!IsPitstop) PitstopCounter++;
+                    IsPitstop = true;
                     MaxSpeed = 3;
                     if(Health > 90) {
                         Health = 100;
@@ -507,6 +504,7 @@ namespace RaceGame {
                     break;
 
                 case ColorHandler.None:
+                    IsPitstop = false;
                     break;
             }   
 
@@ -591,7 +589,6 @@ namespace RaceGame {
                     break;
                     
                 case PowerupItem.Shell:
-                    //
                     Immune = true;
                     Shell shell = new Shell(g, X, Y, Angle);
                     g.ShellItems.Add(shell);
