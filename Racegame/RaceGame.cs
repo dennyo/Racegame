@@ -93,6 +93,14 @@ namespace Racegame
                     Powerups.Add(new Powerup(786, 596));
                     p1Start = new Location(390, 274, -90);
                     p2Start = new Location(458, 314, -90);
+                    //278, 102; 48, 676; 368, 546; 883, 166; 946, 670
+    
+                    Decorations.Add(new Decoration(DecorationType.Piranha, 278, 102));
+                    Decorations.Add(new Decoration(DecorationType.Piranha, 48, 676));
+                    Decorations.Add(new Decoration(DecorationType.Piranha, 368, 546));
+                    Decorations.Add(new Decoration(DecorationType.Piranha, 883, 166));
+                    Decorations.Add(new Decoration(DecorationType.Piranha, 946, 670));
+
                     Soundtrack = "sounds/Choco Island.wav";
                     intro = "sounds/Choco Island intro.wav";
                     IntroLength = 2000;
@@ -115,6 +123,11 @@ namespace Racegame
                     RespawnPoints.Add(new Location(800, 527, -315));
                     RespawnPoints.Add(new Location(629, 648, -165));
                     RespawnPoints.Add(new Location(359, 559, -180));
+                    // 100, 658; 888, 146
+    
+                    Decorations.Add(new Decoration(DecorationType.Mole, 100, 658));
+                    Decorations.Add(new Decoration(DecorationType.Mole, 888, 146));
+
                     Soundtrack = "sounds/Donut Plains.wav";
                     intro = "sounds/Donut Plains intro.wav";
                     IntroLength = 210;
@@ -137,6 +150,14 @@ namespace Racegame
                     RespawnPoints.Add(new Location(900, 301, -270));
                     RespawnPoints.Add(new Location(760, 654, -180));
                     RespawnPoints.Add(new Location(552, 627, -180));
+
+                    //	Ghost: 188, 248; 554, 385; 644, 52; 792, 547
+                    
+                    Decorations.Add(new Decoration(DecorationType.Ghost, 188, 248));
+                    Decorations.Add(new Decoration(DecorationType.Ghost, 554, 385));
+                    Decorations.Add(new Decoration(DecorationType.Ghost, 644, 52));
+                    Decorations.Add(new Decoration(DecorationType.Ghost, 792, 547));
+
                     Soundtrack = "sounds/Ghost Valley.wav";
                     intro = "sounds/Ghost Valley intro.wav";
                     IntroLength = 6170;
@@ -159,6 +180,12 @@ namespace Racegame
                     RespawnPoints.Add(new Location(296, 539, -180));
                     RespawnPoints.Add(new Location(92, 567, -105));
                     RespawnPoints.Add(new Location(116, 345, -90));
+                    //386, 324; 688, 458; 890, 706
+                    
+                    Decorations.Add(new Decoration(DecorationType.Red_Fish, 386, 324));
+                    Decorations.Add(new Decoration(DecorationType.Red_Fish, 688, 458));
+                    Decorations.Add(new Decoration(DecorationType.Red_Fish, 890, 706));
+
                     Soundtrack = "sounds/Koopa Beach.wav";
                     intro = "sounds/Koopa Beach intro.wav";
                     IntroLength = 15220;

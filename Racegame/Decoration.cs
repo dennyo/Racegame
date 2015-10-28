@@ -17,11 +17,14 @@ namespace Racegame {
         public int Y;
         private int Width;
         private int Height;
-        private int Counter = 0;
+        private int YCounter = 0;
+        private int XCounter = 0;
         private Image image, image2;
         private DecorationType type;
         private bool one = true;
         private bool Increase = false;
+        private bool XIncrease = false;
+        private bool YIncrease = false;
         private bool Init = true;
         private Random rand;
         private Timer timer;
@@ -48,11 +51,12 @@ namespace Racegame {
 
                 case DecorationType.FireBall:
                     image = Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Decoration/Fireball.png"));
-                    Counter = -70;
+                    YCounter = -70;
                     break;
 
                 case DecorationType.Ghost:
                     image = Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Decoration/GhostL.png"));
+                    image2 = Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Decoration/GhostR.png"));
 
                     break;
 
@@ -98,15 +102,18 @@ namespace Racegame {
                     break;
                     
                 case DecorationType.Ghost:
-
+                    timer.Interval = 70;
+                    Ghost();
                     break;
 
                 case DecorationType.Mole:
-
+                    timer.Interval = 50;
+                    Mole();
                     break;
 
                 case DecorationType.Piranha:
-
+                    timer.Interval = 100;
+                    Piranha();
                     break;
 
                 case DecorationType.Red_Fish:
@@ -123,17 +130,50 @@ namespace Racegame {
         }
 
         public void Draw(Graphics g) {
-            if(one) g.DrawImage(image, new Rectangle(X, Y + Counter, Width, Height));
-            if(!one) g.DrawImage(image2, new Rectangle(X, Y + Counter, Width, Height));
+            if(one) g.DrawImage(image, new Rectangle(X + XCounter, Y + YCounter, Width, Height));
+            if(!one) g.DrawImage(image2, new Rectangle(X + XCounter, Y + YCounter, Width, Height));
         }
 
         private void FireBall() {
-            if(Increase) Counter -= 5;
-            if(!Increase) Counter += 5;
+            if(Increase) YCounter -= 5;
+            if(!Increase) YCounter += 5;
             ChangeSize();
         }
 
+        private void Mole() {
+            if(Increase) YCounter -= 5;
+            if(!Increase) YCounter += 5;
+            ChangeSize();
+        }
+
+        private void Ghost() {
+            if(XCounter > 40) {
+                XIncrease = false;
+                one = !one;
+            }
+            if(XCounter < -40) {
+                XIncrease = true;
+                one = !one;
+            }
+            if(XIncrease) {
+                XCounter += 1;
+            } else {
+                XCounter -= 1;
+            }
+            if(YCounter > 10) YIncrease = false;
+            if(YCounter < -10) YIncrease = true;
+            if(YIncrease) {
+                YCounter += 2;
+            } else {
+                YCounter -= 2;
+            }
+        }
+
         private void Fish() {
+            one = !one;
+        }
+
+        private void Piranha() {
             one = !one;
         }
 
