@@ -25,6 +25,7 @@ namespace Racegame {
         public bool FinishPassed = false;
         private bool iscolliding = false;
         private bool collisioncheckerenabled = false;
+        private bool playerfinish = false;
         public List<Banana> BananaItems = new List<Banana>();
         public List<Shell> ShellItems = new List<Shell>();
         public List<RedShell> RedShellItems = new List<RedShell>();
@@ -158,7 +159,10 @@ namespace Racegame {
             SpeedMeter();
             Checkpointhandler();
             PlayerCollision();
-            FinishHandler();
+            if (playerfinish == false)
+            {
+                FinishHandler();
+            }
             p1.rect.X = Convert.ToInt32(p1.X);
             p1.rect.Y = Convert.ToInt32(p1.Y);
             p2.rect.X = Convert.ToInt32(p2.X);
@@ -475,16 +479,25 @@ formGraphics.Dispose();*/
             p2.CheckpointChecker(this, checkpoints);
         }
 
-        public void FinishHandler()
-        {
-            p1.FinishHandler(FinishMessage, checkpoints);
-            p2.FinishHandler(FinishMessage, checkpoints);
-            
-            if(p1.Finished || p2.Finished) {
-                p1.MaxSpeed = 0;
-                p1.GameEnded = true;
-                p2.MaxSpeed = 0;
-                p2.GameEnded = true;              
+        public void FinishHandler()        {
+
+            {
+
+                    p1.FinishHandler(FinishMessage, checkpoints);
+                    p2.FinishHandler(FinishMessage, checkpoints);
+
+
+                    if (p1.Finished || p2.Finished)
+                    {
+                        playerfinish = true;
+                        p1.MaxSpeed = 0;
+                        p1.GameEnded = true;
+                        p2.MaxSpeed = 0;
+                        p2.GameEnded = true;
+                    }
+
+
+                
             }
         }
 
