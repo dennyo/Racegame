@@ -20,7 +20,6 @@ namespace Racegame {
 
     public class Game {
 
-        private Thread soundPlayThread;
         public bool isLoaded = false;
         public bool CheckpointPassed = false;
         public bool FinishPassed = false;
@@ -130,53 +129,22 @@ namespace Racegame {
                     checkpoints = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Rainbow_Road/checkpoints.png")), new Size(form.ClientSize.Width, form.ClientSize.Height));
                     break; 
             }
-            this.soundPlayThread = new Thread(soundtrackplay);
-            this.soundPlayThread.Name = "SoundPlayerLoop";
-            this.soundPlayThread.IsBackground = true;
-        }
-
-        public async void Sounds(Map mp)
-        {
-            SoundPlayer fanfare = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, "sounds/Race Fanfare.wav"));
-            SoundPlayer soundtrackplayer = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, Soundtrack));
-            SoundPlayer countdown = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, "sounds/Countdown.wav"));
-            SoundPlayer introplayer = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, Intro));
-            fanfare.Play();
-            await WaitMethod5();
-            countdown.Play();
-            await WaitMethod7();
-
-            switch(mp) {
-                case Map.Standard:
-                    soundtrackplayer.PlayLooping();
-                    break;
-                default:
-                    introplayer.Play();
-                    await WaitMethod6();
-                    soundtrackplayer.PlayLooping();
-                    break;
-                    }
-
         }
 
         public async void Sounds()
         {
             SoundPlayer fanfare = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, "sounds/Race Fanfare.wav"));
             SoundPlayer countdown = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, "sounds/Countdown.wav"));
+            var introplayer = new System.Windows.Media.MediaPlayer();
+            SoundPlayer soundtrackplayer = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, Soundtrack));
             fanfare.Play();
             await WaitMethod5();
             countdown.Play();
+            await WaitMethod7();
+            introplayer.Open(new Uri(Path.Combine(Environment.CurrentDirectory, Intro)));
+            introplayer.Play();
             await WaitMethod6();
-            this.soundPlayThread.Start();
-        }
-
-        public void soundtrackplay()
-        {
-            SoundPlayer introplayer = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, Intro));
-            SoundPlayer soundtrackplayer = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, Soundtrack));
-            soundtrackplayer.Load();
-            introplayer.PlaySync();
-            soundtrackplayer.PlaySync();
+            soundtrackplayer.PlayLooping();
         }
 
         public void Execute()
@@ -628,7 +596,7 @@ formGraphics.Dispose();*/
         }
         async System.Threading.Tasks.Task WaitMethod6()
         {
-            await System.Threading.Tasks.Task.Delay(Introlength);
+            await System.Threading.Tasks.Task.Delay(Introlength + 625);
         }
         async System.Threading.Tasks.Task WaitMethod7()
         {

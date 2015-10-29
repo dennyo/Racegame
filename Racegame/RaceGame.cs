@@ -225,7 +225,7 @@ namespace Racegame
 
                     Soundtrack = "sounds/Mario Circuit.wav";
                     intro = "sounds/Mario Circuit intro.wav";
-                    IntroLength = 0;
+                    IntroLength = 10280;
                     break;
 
                 case Map.Vanilla_Lake:
@@ -311,7 +311,7 @@ namespace Racegame
         {
             if (countDown == 7)
             {
-                game.Sounds(map);
+                game.Sounds();
             }
             if (countDown <= 4)
             {
