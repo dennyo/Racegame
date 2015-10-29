@@ -17,13 +17,6 @@ namespace Racegame
         private string DavidIVookDaviddeBouwerGeorgischდავითაღმაშენებელიDavitAghmasjenebeliKoetaisi107324januari1122waskoningvanGeorgiëvan1089tot1125HijwasdeenigezoonvankoningGeorgeIIuithetBagrationenhuisenstondaandebasisvandegrootstebloeiperiodevanGeorgiëdeGeorgischeGoudenEeuw11001225zieGeschiedenisvanGeorgiëTijdenszijngeboorteenjeugdbeleefdeGeorgiëeenvanhaarmoeilijksteperiodendoorstelselmatigeaanvallenvandeislamitischeSeltsjoekendieeenjihaduitvochtentegenhetchristelijkevorstendomZijnvaderdieniettegendeproblemenwasopgewassenwerdgedwongenaftetredentengunstevanzijntoen16jarigezoon = "Waarom heb je dit helemaal gelezen?";
         private float X;
         private float Y;
-        private float Angle;
-        private Point one = new Point(885, 175);
-        private Point two = new Point(935, 410);
-        private Point three = new Point(580, 425);
-        private Point four = new Point(540, 670);
-        private Point five = new Point(115, 625);
-        private Point six = new Point(350, 200);
         private bool attackplayer = false;
         private bool attackplayer2 = false;
         private bool targetplayer = false;
@@ -35,6 +28,10 @@ namespace Racegame
         private int[] xmax;
         private int[] ymin;
         private int[] ymax;
+        private int[] xminextra;
+        private int[] xmaxextra;
+        private int[] yminextra;
+        private int[] ymaxextra;
         private float[] xDistances;
         private float[] yDistances;
         private float[] truexDistances;
@@ -47,7 +44,7 @@ namespace Racegame
         float yDistancePlayer;
         float xDistancePlayer2;
         float yDistancePlayer2;
-        int counter = 0;
+
         
 
         private Game game;
@@ -64,12 +61,12 @@ namespace Racegame
             this.game = g;
             this.X = X;
             this.Y = Y;
-            this.Angle = Angle;
             RedShell_Image = Image.FromFile(Path.Combine(Environment.CurrentDirectory, "RedShell.png"));
             kleuren.Add(new int[3] { 255, 0, 150 }, ColorHandler.Wall_Red);
             kleuren.Add(new int[3] { 0, 255, 150 }, ColorHandler.Wall_Green);
             kleuren.Add(new int[3] { 150, 0, 255 }, ColorHandler.Wall_Blue);
             kleuren.Add(new int[3] { 0, 255, 255 }, ColorHandler.Wall_Light_Blue);
+            kleuren.Add(new int[3] { 255, 0, 255 }, ColorHandler.Gat);
             sw = new Stopwatch();
             sw.Start();
             if (map == Map.Standard)
@@ -282,21 +279,388 @@ namespace Racegame
                 ymax[9] = 229;
                 ymax[10] = 229;
             }
+            if (map == Map.Choco_Island)
+            {
+                points = new Point[11];
+                xmin = new int[11];
+                xmax = new int[11];
+                ymin = new int[11];
+                ymax = new int[11];
+                xminextra = new int[4];
+                xmaxextra = new int[4];
+                yminextra = new int[4];
+                ymaxextra = new int[4];
+                xDistances = new float[11];
+                yDistances = new float[11];
+                truexDistances = new float[11];
+                trueyDistances = new float[11];
+                reached = new bool[11];
+                calc = new bool[11];
+                points[0] = new Point(525, 90);
+                points[1] = new Point(905, 335);
+                points[2] = new Point(885, 660);
+                points[3] = new Point(615, 440);
+                points[4] = new Point(410, 425);
+                points[5] = new Point(270, 220);
+                points[6] = new Point(100, 290);
+                points[7] = new Point(190, 680);
+                points[8] = new Point(460, 660);
+                points[9] = new Point(460, 660);
+                points[10] = new Point(460, 660);
 
+                xmin[0] = 390;
+                xmin[1] = 390;
+                xmin[2] = 821;
+                xmin[3] = 600;
+                xmin[4] = 390;
+                xmin[5] = 235;
+                xmin[6] = 0;
+                xmin[7] = 0;
+                xmin[8] = 0;
+                xmin[9] = 0;
+                xmin[10] = 0;
+                xminextra[0] = 401;
+                xminextra[1] = 551;
+                xminextra[2] = 710;
+                xminextra[3] = 600;
+                xmax[0] = 550;
+                xmax[1] = 1024;
+                xmax[2] = 1024;
+                xmax[3] = 1024;
+                xmax[4] = 709;
+                xmax[5] = 389;
+                xmax[6] = 234;
+                xmax[7] = 234;
+                xmax[8] = 400;
+                xmax[9] = 400;
+                xmax[10] = 400;
+                xmaxextra[0] = 599;
+                xmaxextra[1] = 1024;
+                xmaxextra[2] = 820;
+                xmaxextra[3] = 820;
+                ymin[0] = 155;
+                ymin[1] = 0;
+                ymin[2] = 321;
+                ymin[3] = 616;
+                ymin[4] = 321;
+                ymin[5] = 0;
+                ymin[6] = 0;
+                ymin[7] = 266;
+                ymin[8] = 546;
+                ymin[9] = 546;
+                ymin[10] = 546;
+                yminextra[0] = 486;
+                yminextra[1] = 155;
+                yminextra[2] = 321;
+                yminextra[3] = 485;
+                ymax[0] = 320;
+                ymax[1] = 154;
+                ymax[2] = 615;
+                ymax[3] = 768;
+                ymax[4] = 485;
+                ymax[5] = 485;
+                ymax[6] = 265;
+                ymax[7] = 545;
+                ymax[8] = 768;
+                ymax[9] = 768;
+                ymax[10] = 768;
+                ymaxextra[0] = 768;
+                ymaxextra[1] = 320;
+                ymaxextra[2] = 450;
+                ymaxextra[3] = 615;
+            }
+            if (map == Map.Donut_Plains)
+            {
+                points = new Point[11];
+                xmin = new int[11];
+                xmax = new int[11];
+                ymin = new int[11];
+                ymax = new int[11];
+                xDistances = new float[11];
+                yDistances = new float[11];
+                truexDistances = new float[11];
+                trueyDistances = new float[11];
+                reached = new bool[11];
+                calc = new bool[11];
+                points[0] = new Point(150, 210);
+                points[1] = new Point(900, 200);
+                points[2] = new Point(900, 360);
+                points[3] = new Point(350, 355);
+                points[4] = new Point(410, 455);
+                points[5] = new Point(880, 560);
+                points[6] = new Point(770, 690);
+                points[7] = new Point(365, 585);
+                points[8] = new Point(130, 680);
+                points[9] = new Point(130, 680);
+                points[10] = new Point(130, 680);
 
+                xmin[0] = 0;
+                xmin[1] = 0;
+                xmin[2] = 806;
+                xmin[3] = 440;
+                xmin[4] = 271;
+                xmin[5] = 271;
+                xmin[6] = 816;
+                xmin[7] = 400;
+                xmin[8] = 271;
+                xmin[9] = 271;
+                xmin[10] = 271;
+                xmax[0] = 270;
+                xmax[1] = 805;
+                xmax[2] = 1024;
+                xmax[3] = 1024;
+                xmax[4] = 439;
+                xmax[5] = 815;
+                xmax[6] = 1024;
+                xmax[7] = 815;
+                xmax[8] = 399;
+                xmax[9] = 399;
+                xmax[10] = 399;
+                ymin[0] = 245;
+                ymin[1] = 0;
+                ymin[2] = 0;
+                ymin[3] = 245;
+                ymin[4] = 245;
+                ymin[5] = 431;
+                ymin[6] = 431;
+                ymin[7] = 561;
+                ymin[8] = 561;
+                ymin[9] = 561;
+                ymin[10] = 561;
+                ymax[0] = 768;
+                ymax[1] = 244;
+                ymax[2] = 244;
+                ymax[3] = 430;
+                ymax[4] = 430;
+                ymax[5] = 560;
+                ymax[6] = 768;
+                ymax[7] = 768;
+                ymax[8] = 768;
+                ymax[9] = 768;
+                ymax[10] = 768;
+            }
+            if (map == Map.Ghost_Valley)
+            {
+                points = new Point[11];
+                xmin = new int[11];
+                xmax = new int[11];
+                ymin = new int[11];
+                ymax = new int[11];
+                xDistances = new float[11];
+                yDistances = new float[11];
+                truexDistances = new float[11];
+                trueyDistances = new float[11];
+                reached = new bool[11];
+                calc = new bool[11];
+                points[0] = new Point(90, 670);
+                points[1] = new Point(90, 180);
+                points[2] = new Point(385, 190);
+                points[3] = new Point(385, 500);
+                points[4] = new Point(625, 500);
+                points[5] = new Point(770, 325);
+                points[6] = new Point(775, 160);
+                points[7] = new Point(925, 165);
+                points[8] = new Point(925, 675);
+                points[9] = new Point(925, 675);
+                points[10] = new Point(925, 675);
+
+                xmin[0] = 135;
+                xmin[1] = 0;
+                xmin[2] = 0;
+                xmin[3] = 336;
+                xmin[4] = 135;
+                xmin[5] = 636;
+                xmin[6] = 636;
+                xmin[7] = 636;
+                xmin[8] = 836;
+                xmin[9] = 836;
+                xmin[10] = 836;
+                xmax[0] = 1024;
+                xmax[1] = 134;
+                xmax[2] = 335;
+                xmax[3] = 635;
+                xmax[4] = 635;
+                xmax[5] = 835;
+                xmax[6] = 835;
+                xmax[7] = 835;
+                xmax[8] = 1024;
+                xmax[9] = 1024;
+                xmax[10] = 1024;
+                ymin[0] = 595;
+                ymin[1] = 230;
+                ymin[2] = 0;
+                ymin[3] = 0;
+                ymin[4] = 326;
+                ymin[5] = 325;
+                ymin[6] = 210;
+                ymin[7] = 0;
+                ymin[8] = 0;
+                ymin[9] = 0;
+                ymin[10] = 0;
+                ymax[0] = 768;
+                ymax[1] = 768;
+                ymax[2] = 229;
+                ymax[3] = 325;
+                ymax[4] = 594;
+                ymax[5] = 594;
+                ymax[6] = 594;
+                ymax[7] = 209;
+                ymax[8] = 594;
+                ymax[9] = 594;
+                ymax[10] = 594;
+            }
+            if (map == Map.Koopa_Beach)
+            {
+                points = new Point[11];
+                xmin = new int[11];
+                xmax = new int[11];
+                ymin = new int[11];
+                ymax = new int[11];
+                xDistances = new float[11];
+                yDistances = new float[11];
+                truexDistances = new float[11];
+                trueyDistances = new float[11];
+                reached = new bool[11];
+                calc = new bool[11];
+                points[0] = new Point(205, 150);
+                points[1] = new Point(776, 170);
+                points[2] = new Point(870, 380);
+                points[3] = new Point(885, 595);
+                points[4] = new Point(435, 680);
+                points[5] = new Point(110, 625);
+                points[6] = new Point(90, 340);
+                points[7] = new Point(90, 340);
+                points[8] = new Point(90, 340);
+                points[9] = new Point(90, 340);
+                points[10] = new Point(90, 340);
+
+                xmin[0] = 0;
+                xmin[1] = 0;
+                xmin[2] = 751;
+                xmin[3] = 600;
+                xmin[4] = 495;
+                xmin[5] = 326;
+                xmin[6] = 0;
+                xmin[7] = 0;
+                xmin[8] = 0;
+                xmin[9] = 0;
+                xmin[10] = 0;
+                xmax[0] = 325;
+                xmax[1] = 750;
+                xmax[2] = 1024;
+                xmax[3] = 1024;
+                xmax[4] = 1024;
+                xmax[5] = 494;
+                xmax[6] = 325;
+                xmax[7] = 325;
+                xmax[8] = 325;
+                xmax[9] = 325;
+                xmax[10] = 325;
+                ymin[0] = 220;
+                ymin[1] = 0;
+                ymin[2] = 0;
+                ymin[3] = 220;
+                ymin[4] = 461;
+                ymin[5] = 461;
+                ymin[6] = 311;
+                ymin[7] = 311;
+                ymin[8] = 311;
+                ymin[9] = 311;
+                ymin[10] = 311;
+                ymax[0] = 310;
+                ymax[1] = 219;
+                ymax[2] = 219;
+                ymax[3] = 460;
+                ymax[4] = 768;
+                ymax[5] = 768;
+                ymax[6] = 768;
+                ymax[7] = 768;
+                ymax[8] = 768;
+                ymax[9] = 768;
+                ymax[10] = 768;
+            }
+            if (map == Map.Vanilla_Lake)
+            {
+                points = new Point[11];
+                xmin = new int[11];
+                xmax = new int[11];
+                ymin = new int[11];
+                ymax = new int[11];
+                xDistances = new float[11];
+                yDistances = new float[11];
+                truexDistances = new float[11];
+                trueyDistances = new float[11];
+                reached = new bool[11];
+                calc = new bool[11];
+                points[0] = new Point(925, 380);
+                points[1] = new Point(780, 165);
+                points[2] = new Point(215, 230);
+                points[3] = new Point(155, 675);
+                points[4] = new Point(905, 635);
+                points[5] = new Point(905, 635);
+                points[6] = new Point(905, 635);
+                points[7] = new Point(905, 635);
+                points[8] = new Point(905, 635);
+                points[9] = new Point(905, 635);
+                points[10] = new Point(905, 635);
+
+                xmin[0] = 695;
+                xmin[1] = 695;
+                xmin[2] = 265;
+                xmin[3] = 0;
+                xmin[4] = 0;
+                xmin[5] = 0;
+                xmin[6] = 0;
+                xmin[7] = 0;
+                xmin[8] = 0;
+                xmin[9] = 0;
+                xmin[10] = 0;
+                xmax[0] = 1024;
+                xmax[1] = 1024;
+                xmax[2] = 694;
+                xmax[3] = 264;
+                xmax[4] = 694;
+                xmax[5] = 694;
+                xmax[6] = 694;
+                xmax[7] = 694;
+                xmax[8] = 694;
+                xmax[9] = 694;
+                xmax[10] = 694;
+                ymin[0] = 370;
+                ymin[1] = 0;
+                ymin[2] = 0;
+                ymin[3] = 0;
+                ymin[4] = 521;
+                ymin[5] = 521;
+                ymin[6] = 521;
+                ymin[7] = 521;
+                ymin[8] = 521;
+                ymin[9] = 521;
+                ymin[10] = 521;
+                ymax[0] = 768;
+                ymax[1] = 369;
+                ymax[2] = 369;
+                ymax[3] = 520;
+                ymax[4] = 768;
+                ymax[5] = 768;
+                ymax[6] = 768;
+                ymax[7] = 768;
+                ymax[8] = 768;
+                ymax[9] = 768;
+                ymax[10] = 768;
+            }
         }
 
-        public void Draw(Graphics g, Bitmap image, Player player, Player player2)
+        public void Draw(Graphics g, Bitmap image, Player player, Player player2, Map map)
         {
             if (!Active) return;
             rect = new Rectangle((int)X, (int)Y, 42, 42);
             g.DrawImage(RedShell_Image, rect);
-            Console.WriteLine(X + " " + Y);
-            Move(image, player, player2);
+            Move(image, player, player2, map);
 
         }
 
-        public void Move(Bitmap image, Player player, Player player2)
+        public void Move(Bitmap image, Player player, Player player2, Map map)
         {
 
             xCenter = (int)(X + 42 / 2);
@@ -304,108 +668,17 @@ namespace Racegame
             System.Drawing.Color col = image.GetPixel(xCenter, yCenter);
             switch (getColor(col.R, col.G, col.B))
             {
-
-                case ColorHandler.Wall_Red:
-                    if ((Angle < 0 && Angle > -180) || (Angle > 0 && Angle < 180))
-                    {
-                        //up
-                        Angle = 110;
-                    }
-                    else
-                    {
-                        //down
-                        Angle = -110;
-                    }
+                case ColorHandler.Gat:
                     Active = false;
                     game.RedShellItems.Remove(this);
                     break;
-
-                case ColorHandler.Wall_Green:
-                    if ((Angle < 0 && Angle > -180) || (Angle > 0 && Angle < 180))
-                    {
-                        //up
-                        Angle = -10;
-                    }
-                    else
-                    {
-                        //down
-                        Angle = 10;
-                    }
-                    Active = false;
-                    game.RedShellItems.Remove(this);
-                    break;
-
-                case ColorHandler.Wall_Blue:
-                    if ((Angle < 0 && Angle > -180) || (Angle > 0 && Angle < 180))
-                    {
-                        //up
-                        Angle = 10;
-                    }
-                    else
-                    {
-                        //down
-                        Angle = -190;
-                    }
-                    Active = false;
-                    game.RedShellItems.Remove(this);
-                    break;
-
-                case ColorHandler.Wall_Light_Blue:
-                    if ((Angle < 0 && Angle > -180) || (Angle > 0 && Angle < 180))
-                    {
-                        //up
-                        Angle = -100;
-                    }
-                    else
-                    {
-                        //down
-                        Angle = 100;
-                    }
-                    Active = false;
-                    game.RedShellItems.Remove(this);
-                    break;
-            }
-            xDistancePlayer = xCenter - (player.X + player.Width / 2);
-            yDistancePlayer = yCenter - (player.Y + player.Height / 2);
-            xDistancePlayer2 = xCenter - (player2.X + player2.Width / 2);
-            yDistancePlayer2 = yCenter - (player2.Y + player2.Height / 2);
-            xDistances[0] = xCenter - points[0].X;
-            yDistances[0] = yCenter - points[0].Y;
-            xDistances[1] = xCenter - points[1].X;
-            yDistances[1] = yCenter - points[1].Y;
-            xDistances[2] = xCenter - points[2].X;
-            yDistances[2] = yCenter - points[2].Y;
-            xDistances[3] = xCenter - points[3].X;
-            yDistances[3] = yCenter - points[3].Y;
-            xDistances[4] = xCenter - points[4].X;
-            yDistances[4] = yCenter - points[4].Y;
-            xDistances[5] = xCenter - points[5].X;
-            yDistances[5] = yCenter - points[5].Y;
-            xDistances[6] = xCenter - points[6].X;
-            yDistances[6] = yCenter - points[6].Y;
-            xDistances[7] = xCenter - points[7].X;
-            yDistances[7] = yCenter - points[7].Y;
-            xDistances[8] = xCenter - points[8].X;
-            yDistances[8] = yCenter - points[8].Y;
-            xDistances[9] = xCenter - points[9].X;
-            yDistances[9] = yCenter - points[9].Y;
-            xDistances[10] = xCenter - points[10].X;
-            yDistances[10] = yCenter - points[10].Y;
-            if (targetchecked == false)
-            {
-                if (Math.Abs(xDistancePlayer) > Math.Abs(xDistancePlayer2))
-                {
-                    targetplayer = true;
-                }
-                else if (Math.Abs(xDistancePlayer) < Math.Abs(xDistancePlayer2))
-                {
-                    targetplayer2 = true;
-                }
-                targetchecked = true;
-            }
+            } 
+            xDistancePlayer = Convert.ToInt32(xCenter - (player.X + player.Width / 2));
+            yDistancePlayer = Convert.ToInt32(yCenter - (player.Y + player.Height / 2));
+            xDistancePlayer2 = Convert.ToInt32(xCenter - (player2.X + player2.Width / 2));
+            yDistancePlayer2 = Convert.ToInt32(yCenter - (player2.Y + player2.Height / 2));
             if (startchecked == false)
             {
-
                 if (xCenter >= xmin[0] && xCenter <= xmax[0] && yCenter >= ymin[0] && yCenter <= ymax[0])
                 {
                     reached[0] = false;
@@ -414,7 +687,7 @@ namespace Racegame
                     reached[3] = false;
                     reached[4] = false;
                     calc[0] = true;
-               
+
                 }
                 else if (xCenter >= xmin[1] && xCenter <= xmax[1] && yCenter >= ymin[1] && yCenter <= ymax[1])
                 {
@@ -424,7 +697,7 @@ namespace Racegame
                     reached[3] = false;
                     reached[4] = false;
                     calc[1] = true;
-                
+
                 }
                 else if (xCenter >= xmin[2] && xCenter <= xmax[2] && yCenter >= ymin[2] && yCenter <= ymax[2])
                 {
@@ -434,7 +707,6 @@ namespace Racegame
                     reached[3] = false;
                     reached[4] = false;
                     calc[2] = true;
-                    counter = 2;
                 }
                 else if (xCenter >= xmin[3] && xCenter <= xmax[3] && yCenter >= ymin[3] && yCenter <= ymax[3])
                 {
@@ -444,7 +716,7 @@ namespace Racegame
                     reached[3] = false;
                     reached[4] = false;
                     calc[3] = true;
-                
+
                 }
                 else if (xCenter >= xmin[4] && xCenter <= xmax[4] && yCenter >= ymin[4] && yCenter <= ymax[4])
                 {
@@ -454,7 +726,7 @@ namespace Racegame
                     reached[3] = true;
                     reached[4] = false;
                     calc[4] = true;
-               
+
                 }
                 else if (xCenter >= xmin[5] && xCenter <= xmax[5] && yCenter >= ymin[5] && yCenter <= ymax[5])
                 {
@@ -464,7 +736,7 @@ namespace Racegame
                     reached[3] = true;
                     reached[4] = true;
                     calc[5] = true;
- 
+
                 }
                 else if (xCenter >= xmin[6] && xCenter <= xmax[6] && yCenter >= ymin[6] && yCenter <= ymax[6])
                 {
@@ -543,247 +815,314 @@ namespace Racegame
                     calc[10] = true;
 
                 }
+                if (map == Map.Choco_Island)
+                {
+                    if (xCenter >= xminextra[0] && xCenter <= xmaxextra[0] && yCenter >= yminextra[0] && yCenter <= ymaxextra[0])
+                    {
+                        reached[0] = false;
+                        reached[1] = false;
+                        reached[2] = false;
+                        reached[3] = false;
+                        reached[4] = false;
+                        reached[5] = false;
+                        reached[6] = false;
+                        reached[7] = false;
+                        reached[8] = false;
+                        reached[9] = false;
+                        calc[0] = true;
+
+                    }
+                    else if (xCenter >= xminextra[1] && xCenter <= xmaxextra[1] && yCenter >= yminextra[1] && yCenter <= ymaxextra[1])
+                    {
+                        reached[0] = true;
+                        reached[1] = false;
+                        reached[2] = false;
+                        reached[3] = false;
+                        reached[4] = false;
+                        reached[5] = false;
+                        reached[6] = false;
+                        reached[7] = false;
+                        reached[8] = false;
+                        reached[9] = false;
+                        calc[1] = true;
+
+                    }
+                    else if (xCenter >= xminextra[2] && xCenter <= xmaxextra[2] && yCenter >= yminextra[2] && yCenter <= ymaxextra[2])
+                    {
+                        reached[0] = true;
+                        reached[1] = false;
+                        reached[2] = false;
+                        reached[3] = false;
+                        reached[4] = false;
+                        reached[5] = false;
+                        reached[6] = false;
+                        reached[7] = false;
+                        reached[8] = false;
+                        reached[9] = false;
+                        calc[1] = true;
+                    }
+                    else if (xCenter >= xminextra[3] && xCenter <= xmaxextra[3] && yCenter >= yminextra[3] && yCenter <= ymaxextra[3])
+                    {
+                        reached[0] = true;
+                        reached[1] = true;
+                        reached[2] = true;
+                        reached[3] = false;
+                        reached[4] = false;
+                        reached[5] = false;
+                        reached[6] = false;
+                        reached[7] = false;
+                        reached[8] = false;
+                        reached[9] = false;
+                        calc[3] = true;
+
+                    }
+                }
+                
                 startchecked = true;
             }
-            Console.WriteLine(reached[0]);
-            Console.WriteLine(reached[1]);
-            Console.WriteLine(reached[2]);
-            Console.WriteLine(reached[3]);
-            Console.WriteLine(reached[4]);
-            Console.WriteLine(reached[5]);
-            Console.WriteLine(reached[6]);
-            Console.WriteLine(reached[7]);
-            Console.WriteLine(reached[8]);
-            Console.WriteLine(reached[9]);
-            Console.WriteLine(reached[10]);
 
+                if (targetchecked == false)
+                {
+                    if (Math.Abs(xDistancePlayer) > Math.Abs(xDistancePlayer2))
+                    {
+                        targetplayer = true;
+                    }
+                    else if (Math.Abs(xDistancePlayer) < Math.Abs(xDistancePlayer2))
+                    {
+                        targetplayer2 = true;
+                    }
+                    targetchecked = true;
+                }
 
-
-
-            if (reached[0] == false && reached[1] == false && reached[2] == false
-                && reached[3] == false && reached[4] == false && reached[5] == false && reached[6] == false
-                && reached[7] == false && reached[8] == false && reached[9] == false &&
-                attackplayer == false && attackplayer2 == false)
-            {
+                if (reached[0] == false &&
+                    attackplayer == false && attackplayer2 == false)
+                {
+                     xDistances[0] = xCenter - points[0].X;
+                     yDistances[0] = yCenter - points[0].Y;
                 if (calc[0] == true)
-                {
-                    truexDistances[0] = Convert.ToInt32(xDistances[0]);
-                    trueyDistances[0] = Convert.ToInt32(yDistances[0]);
-                    calc[0] = false;
-                }
-                X -= truexDistances[0] / 30;
-                Y -= trueyDistances[0] / 30;
-                if (xDistances[0] > -20 && xDistances[0] < 20 && yDistances[0] > -20 && yDistances[0] < 20)
-                {
-                    reached[0] = true;
-                    calc[1] = true;
+                    {
+                        truexDistances[0] = (xDistances[0]);
+                        trueyDistances[0] = (yDistances[0]);
+                        calc[0] = false;
+                    }
+                    X -= truexDistances[0] / 30;
+                    Y -= trueyDistances[0] / 30;
+                    if (xDistances[0] > -20 && xDistances[0] < 20 && yDistances[0] > -20 && yDistances[0] < 20)
+                    {
+                        reached[0] = true;
+                        calc[1] = true;
 
+                    }
                 }
-            }
-            else if (reached[0] == true && reached[1] == false && reached[2] == false
-                && reached[3] == false && reached[4] == false && reached[5] == false && reached[6] == false
-                && reached[7] == false && reached[8] == false && reached[9] == false &&
-                attackplayer == false && attackplayer2 == false)
-            {
-                if (calc[1] == true)
+                else if (reached[0] == true && reached[1] == false &&
+                    attackplayer == false && attackplayer2 == false)
                 {
-                    truexDistances[1] = Convert.ToInt32(xDistances[1]);
-                    trueyDistances[1] = Convert.ToInt32(yDistances[1]);
-                    calc[1] = false;
-                }
-                X -= truexDistances[1] / 30;
-                Y -= trueyDistances[1] / 30;
-                if (xDistances[1] > -20 && xDistances[1] < 20 && yDistances[1] > -20 && yDistances[1] < 20)
-                {
-                    reached[1] = true;
-                    calc[2] = true;
+                    xDistances[1] = xCenter - points[1].X;
+                    yDistances[1] = yCenter - points[1].Y;
+                    if (calc[1] == true)
+                    {
+                        truexDistances[1] = xDistances[1];
+                        trueyDistances[1] = yDistances[1];
+                        calc[1] = false;
+                    }
+                    X -= truexDistances[1] / 30;
+                    Y -= trueyDistances[1] / 30;
+                    if (xDistances[1] > -20 && xDistances[1] < 20 && yDistances[1] > -20 && yDistances[1] < 20)
+                    {
+                        reached[1] = true;
+                        calc[2] = true;
 
+                    }
                 }
-            }
-            else if (reached[0] == true && reached[1] == true && reached[2] == false
-    && reached[3] == false && reached[4] == false && reached[5] == false && reached[6] == false
-                && reached[7] == false && reached[8] == false && reached[9] == false &&
-                attackplayer == false && attackplayer2 == false)
-            {
-                if (calc[2] == true)
+                else if (reached[0] == true && reached[1] == true && reached[2] == false &&
+                    attackplayer == false && attackplayer2 == false)
                 {
-                    truexDistances[2] = Convert.ToInt32(xDistances[2]);
-                    trueyDistances[2] = Convert.ToInt32(yDistances[2]);
-                    calc[2] = false;
-                }
-                X -= truexDistances[2] / 30;
-                Y -= trueyDistances[2] / 30;
-                if (xDistances[2] > -20 && xDistances[2] < 20 && yDistances[2] > -20 && yDistances[2] < 20)
-                {
-                    reached[2] = true;
-                    calc[3] = true;
+                    xDistances[2] = xCenter - points[2].X;
+                    yDistances[2] = yCenter - points[2].Y;
+                    if (calc[2] == true)
+                    {
+                        truexDistances[2] = xDistances[2];
+                        trueyDistances[2] = yDistances[2];
+                        calc[2] = false;
+                    }
+                    X -= truexDistances[2] / 30;
+                    Y -= trueyDistances[2] / 30;
+                    if (xDistances[2] > -20 && xDistances[2] < 20 && yDistances[2] > -20 && yDistances[2] < 20)
+                    {
+                        reached[2] = true;
+                        calc[3] = true;
 
+                    }
                 }
-            }
 
-            else if (reached[0] == true && reached[1] == true && reached[2] == true
-    && reached[3] == false && reached[4] == false && reached[5] == false && reached[6] == false
-                && reached[7] == false && reached[8] == false && reached[9] == false &&
-                attackplayer == false && attackplayer2 == false)
-            {
-                if (calc[3] == true)
+                else if (reached[0] == true && reached[1] == true && reached[2] == true
+        && reached[3] == false &&
+                    attackplayer == false && attackplayer2 == false)
                 {
-                    truexDistances[3] = Convert.ToInt32(xDistances[3]);
-                    trueyDistances[3] = Convert.ToInt32(yDistances[3]);
-                    calc[3] = false;
-                }
-                X -= truexDistances[3] / 30;
-                Y -= trueyDistances[3] / 30;
-                if (xDistances[3] > -20 && xDistances[3] < 20 && yDistances[3] > -20 && yDistances[3] < 20)
-                {
-                    reached[3] = true;
-                    calc[4] = true;
+                    xDistances[3] = xCenter - points[3].X;
+                    yDistances[3] = yCenter - points[3].Y;
+                    if (calc[3] == true)
+                    {
+                        truexDistances[3] = xDistances[3];
+                        trueyDistances[3] = yDistances[3];
+                        calc[3] = false;
+                    }
+                    X -= truexDistances[3] / 30;
+                    Y -= trueyDistances[3] / 30;
+                    if (xDistances[3] > -20 && xDistances[3] < 20 && yDistances[3] > -20 && yDistances[3] < 20)
+                    {
+                        reached[3] = true;
+                        calc[4] = true;
 
+                    }
                 }
-            }
-            else if (reached[0] == true && reached[1] == true && reached[2] == true
-    && reached[3] == true && reached[4] == false && reached[5] == false && reached[6] == false
-                && reached[7] == false && reached[8] == false && reached[9] == false &&
-                attackplayer == false && attackplayer2 == false)
-            {
-                if (calc[4] == true)
+                else if (reached[0] == true && reached[1] == true && reached[2] == true
+        && reached[3] == true && reached[4] == false &&
+                    attackplayer == false && attackplayer2 == false)
                 {
-                    truexDistances[4] = Convert.ToInt32(xDistances[4]);
-                    trueyDistances[4] = Convert.ToInt32(yDistances[4]);
-                    calc[4] = false;
-                }
-                X -= truexDistances[4] / 30;
-                Y -= trueyDistances[4] / 30;
+                    xDistances[4] = xCenter - points[4].X;
+                    yDistances[4] = yCenter - points[4].Y;
                 if (xDistances[4] > -20 && xDistances[4] < 20 && yDistances[4] > -20 && yDistances[4] < 20)
                 {
                     reached[4] = true;
                     calc[5] = true;
 
                 }
-            }
-            else if (reached[0] == true && reached[1] == true && reached[2] == true
- && reached[3] == true && reached[4] == true && reached[5] == false && reached[6] == false
-                && reached[7] == false && reached[8] == false && reached[9] == false &&
-                attackplayer == false && attackplayer2 == false)
-            {
-                if (calc[5] == true)
-                {
-                    truexDistances[5] = Convert.ToInt32(xDistances[5]);
-                    trueyDistances[5] = Convert.ToInt32(yDistances[5]);
-                    calc[5] = false;
+                if (calc[4] == true)
+                    {
+                        truexDistances[4] = xDistances[4];
+                        trueyDistances[4] = yDistances[4];
+                        calc[4] = false;
+                    }
+                    X -= truexDistances[4] / 30;
+                    Y -= trueyDistances[4] / 30;
                 }
-                X -= truexDistances[5] / 30;
-                Y -= trueyDistances[5] / 30;
+                else if (reached[0] == true && reached[1] == true && reached[2] == true
+     && reached[3] == true && reached[4] == true && reached[5] == false &&
+                    attackplayer == false && attackplayer2 == false)
+                {
+                    xDistances[5] = xCenter - points[5].X;
+                    yDistances[5] = yCenter - points[5].Y;
                 if (xDistances[5] > -20 && xDistances[5] < 20 && yDistances[5] > -20 && yDistances[5] < 20)
                 {
                     reached[5] = true;
                     calc[6] = true;
 
                 }
+                if (calc[5] == true)
+                    {
+                        truexDistances[5] = xDistances[5];
+                        trueyDistances[5] = yDistances[5];
+                        calc[5] = false;
+                    }
+                    X -= truexDistances[5] / 30;
+                    Y -= trueyDistances[5] / 30;
 
 
-            }
-            else if (reached[0] == true && reached[1] == true && reached[2] == true
-&& reached[3] == true && reached[4] == true && reached[5] == true && reached[6] == false
-    && reached[7] == false && reached[8] == false && reached[9] == false &&
-    attackplayer == false && attackplayer2 == false)
-            {
-                if (calc[6] == true)
-                {
-                    truexDistances[6] = Convert.ToInt32(xDistances[6]);
-                    trueyDistances[6] = Convert.ToInt32(yDistances[6]);
-                    calc[6] = false;
+
                 }
-                X -= truexDistances[6] / 30;
-                Y -= trueyDistances[6] / 30;
+                else if (reached[0] == true && reached[1] == true && reached[2] == true
+    && reached[3] == true && reached[4] == true && reached[5] == true && reached[6] == false
+       &&
+        attackplayer == false && attackplayer2 == false)
+                {
+                    xDistances[6] = xCenter - points[6].X;
+                    yDistances[6] = yCenter - points[6].Y;
                 if (xDistances[6] > -20 && xDistances[6] < 20 && yDistances[6] > -20 && yDistances[6] < 20)
                 {
                     reached[6] = true;
                     calc[7] = true;
 
                 }
+                if (calc[6] == true)
+                    {
+                        truexDistances[6] = xDistances[6];
+                        trueyDistances[6] = yDistances[6];
+                        calc[6] = false;
+                    }
+                    X -= truexDistances[6] / 30;
+                    Y -= trueyDistances[6] / 30;
 
 
-            }
-            else if (reached[0] == true && reached[1] == true && reached[2] == true
-&& reached[3] == true && reached[4] == true && reached[5] == true && reached[6] == true
-    && reached[7] == false && reached[8] == false && reached[9] == false &&
-    attackplayer == false && attackplayer2 == false)
-            {
-                if (calc[7] == true)
-                {
-                    truexDistances[7] = Convert.ToInt32(xDistances[7]);
-                    trueyDistances[7] = Convert.ToInt32(yDistances[7]);
-                    calc[7] = false;
-                }
-                X -= truexDistances[7] / 30;
-                Y -= trueyDistances[7] / 30;
-                if (xDistances[7] > -20 && xDistances[7] < 20 && yDistances[7] > -20 && yDistances[7] < 20)
-                {
-                    reached[7] = true;
-                    calc[8] = true;
 
                 }
-
-
-            }
-            else if (reached[0] == true && reached[1] == true && reached[2] == true
-&& reached[3] == true && reached[4] == true && reached[5] == true && reached[6] == true
-    && reached[7] == true && reached[8] == false && reached[9] == false &&
-    attackplayer == false && attackplayer2 == false)
-            {
-                if (calc[8] == true)
+                else if (reached[0] == true && reached[1] == true && reached[2] == true
+    && reached[3] == true && reached[4] == true && reached[5] == true && reached[6] == true
+        && reached[7] == false &&
+        attackplayer == false && attackplayer2 == false)
                 {
-                    truexDistances[8] = Convert.ToInt32(xDistances[8]);
-                    trueyDistances[8] = Convert.ToInt32(yDistances[8]);
-                    calc[8] = false;
+                    xDistances[7] = xCenter - points[7].X;
+                    yDistances[7] = yCenter - points[7].Y;
+                    if (calc[7] == true)
+                    {
+                        truexDistances[7] = xDistances[7];
+                        trueyDistances[7] = yDistances[7];
+                        calc[7] = false;
+                    }
+                    X -= truexDistances[7] / 30;
+                    Y -= trueyDistances[7] / 30;
+                    if (xDistances[7] > -20 && xDistances[7] < 20 && yDistances[7] > -20 && yDistances[7] < 20)
+                    {
+                        reached[7] = true;
+                        calc[8] = true;
+
+                    }
+
+
                 }
-                X -= truexDistances[8] / 30;
-                Y -= trueyDistances[8] / 30;
+                else if (reached[0] == true && reached[1] == true && reached[2] == true
+    && reached[3] == true && reached[4] == true && reached[5] == true && reached[6] == true
+        && reached[7] == true && reached[8] == false &&
+        attackplayer == false && attackplayer2 == false)
+                {
+                    xDistances[8] = xCenter - points[8].X;
+                    yDistances[8] = yCenter - points[8].Y;
                 if (xDistances[8] > -20 && xDistances[8] < 20 && yDistances[8] > -20 && yDistances[8] < 20)
                 {
                     reached[8] = true;
                     calc[9] = true;
 
                 }
-
-
-            }
-            else if (reached[0] == true && reached[1] == true && reached[2] == true
-&& reached[3] == true && reached[4] == true && reached[5] == true && reached[6] == true
-    && reached[7] == true && reached[8] == true && reached[9] == false &&
-    attackplayer == false && attackplayer2 == false)
-            {
-                if (calc[9] == true)
-                {
-                    truexDistances[9] = Convert.ToInt32(xDistances[9]);
-                    trueyDistances[9] = Convert.ToInt32(yDistances[9]);
-                    calc[9] = false;
+                if (calc[8] == true)
+                    {
+                        truexDistances[8] = xDistances[8];
+                        trueyDistances[8] = yDistances[8];
+                        calc[8] = false;
+                    }
+                    X -= truexDistances[8] / 30;
+                    Y -= trueyDistances[8] / 30;
                 }
-                X -= truexDistances[9] / 30;
-                Y -= trueyDistances[9] / 30;
+                else if (reached[0] == true && reached[1] == true && reached[2] == true
+    && reached[3] == true && reached[4] == true && reached[5] == true && reached[6] == true
+        && reached[7] == true && reached[8] == true && reached[9] == false &&
+        attackplayer == false && attackplayer2 == false)
+                {
+                    xDistances[9] = xCenter - points[9].X;
+                    yDistances[9] = yCenter - points[9].Y;
                 if (xDistances[9] > -20 && xDistances[9] < 20 && yDistances[9] > -20 && yDistances[9] < 20)
                 {
                     reached[9] = true;
                     calc[10] = true;
                 }
-            }
-            else if (reached[0] == true && reached[1] == true && reached[2] == true
-&& reached[3] == true && reached[4] == true && reached[5] == true && reached[6] == true
-&& reached[7] == true && reached[8] == true && reached[9] == true &&
-attackplayer == false && attackplayer2 == false)
-            {
-                if (calc[10] == true)
-                {
-                    truexDistances[10] = Convert.ToInt32(xDistances[10]);
-                    trueyDistances[10] = Convert.ToInt32(yDistances[10]);
-                    calc[10] = false;
+                if (calc[9] == true)
+                    {
+                        truexDistances[9] = xDistances[9];
+                        trueyDistances[9] = yDistances[9];
+                        calc[9] = false;
+                    }
+                    X -= truexDistances[9] / 30;
+                    Y -= trueyDistances[9] / 30;
                 }
-                X -= truexDistances[10] / 30;
-                Y -= trueyDistances[10] / 30;
-
+                else if (reached[0] == true && reached[1] == true && reached[2] == true
+    && reached[3] == true && reached[4] == true && reached[5] == true && reached[6] == true
+    && reached[7] == true && reached[8] == true && reached[9] == true &&
+    attackplayer == false && attackplayer2 == false)
+                {
+                    xDistances[10] = xCenter - points[10].X;
+                    yDistances[10] = yCenter - points[10].Y;
                 if (xDistances[10] > -20 && xDistances[10] < 20 && yDistances[10] > -20 && yDistances[10] < 20)
                 {
+                    reached[10] = true;
                     reached[0] = false;
                     reached[1] = false;
                     reached[2] = false;
@@ -797,6 +1136,15 @@ attackplayer == false && attackplayer2 == false)
                     reached[10] = false;
                     calc[0] = true;
                 }
+                if (calc[10] == true)
+                    { 
+                        truexDistances[10] = xDistances[10];
+                        trueyDistances[10] = yDistances[10];
+                        calc[10] = false;
+                    Console.WriteLine("Reset");
+                }
+                    X -= truexDistances[10] / 30;
+                    Y -= trueyDistances[10] / 30;
 
             }
 
@@ -853,11 +1201,42 @@ attackplayer == false && attackplayer2 == false)
             return ColorHandler.None;
         }
 
+        public void walls(Bitmap image)
+        {
+            System.Drawing.Color col = image.GetPixel(xCenter, yCenter);
+            switch (getColor(col.R, col.G, col.B))
+            {
+
+
+                case ColorHandler.Wall_Red:
+                    Active = false;
+                    game.RedShellItems.Remove(this);
+                    break;
+
+                case ColorHandler.Wall_Green:
+
+                    Active = false;
+                    game.RedShellItems.Remove(this);
+                    break;
+
+                case ColorHandler.Wall_Blue:
+
+                    Active = false;
+                    game.RedShellItems.Remove(this);
+                    break;
+
+                case ColorHandler.Wall_Light_Blue:
+
+                    Active = false;
+                    game.RedShellItems.Remove(this);
+                    break;
+            }
+        }
+
         public async void Collision(Player p)
         {
             if (!p.Immune && game.CircleCollision(p.rect, rect))
             {
-                p.PlaySound("gothit");
                 Active = false;
                 p.Hit = true;
 
