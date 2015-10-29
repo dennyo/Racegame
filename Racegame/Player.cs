@@ -255,7 +255,7 @@ namespace RaceGame {
                 Speed += 0.4f;
             }
 
-            if(((!Gas && !Brake) || Speed > MaxSpeed) && !SpeedBoost && !Hit) {
+            if(((!Gas && !Brake) || Math.Abs(Speed) > MaxSpeed) && !SpeedBoost && !Hit) {
                 if(Speed > -1 && Speed < 1) {
                     Speed = 0;
                 }
