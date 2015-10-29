@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace Racegame
 {
+    /// <summary>
+    /// black background when fading in/out of the form.
+    /// </summary>
     public partial class black : Form
     {
         public black()

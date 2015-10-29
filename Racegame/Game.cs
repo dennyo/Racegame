@@ -82,7 +82,7 @@ namespace Racegame {
             p2.FuelTimer.Tick += new System.EventHandler(this.Fueladder2_Tick);
 
             switch(map) {
-
+                // Loads correct colormaps and background for every map.
                 case Map.Standard:
                     circuit = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Standard/circuit.png")));
                     colormap = new Bitmap(Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Standard/colormap.png")));
@@ -132,8 +132,11 @@ namespace Racegame {
             }
         }
 
+        
+
         public async void Sounds()
         {
+            //Timing and playing of sounds and background music in the game.
             SoundPlayer fanfare = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, "sounds/Race Fanfare.wav"));
             SoundPlayer countdown = new SoundPlayer(Path.Combine(Environment.CurrentDirectory, "sounds/Countdown.wav"));
             var introplayer = new System.Windows.Media.MediaPlayer();
@@ -215,11 +218,12 @@ namespace Racegame {
 
         public void Fueling(Player a, PictureBox b)
         {
+            //adjusts fuelbar size to amount of fuel player has.
             a.Fuel -= Math.Abs(Convert.ToInt16(a.Speed));
             Size fuelboxsize = new Size(a.Fuel * 72 / 7500, 12);
             b.Size = fuelboxsize;
             if(a.Fuel <= 2500) {
-                b.BackColor = Color.Yellow;
+                b.BackColor = Color.Yellow; //when player is almost out of fuel, fuelbar turns yellow as a warning.
             }else {
                 b.BackColor = Color.Red;
             }
@@ -239,32 +243,23 @@ namespace Racegame {
         {
             if (a.X >= form.ClientSize.Width - p1.Width && a.SpeedX >= 0)
             {
-                a.Health -= Math.Abs(Convert.ToInt16(a.Speed));
                 a.Speed = 0;
                 a.X -= 10;
             }
             if (a.X <= 0)
             {
-                a.Health -= Math.Abs(Convert.ToInt16(a.Speed));
                 a.Speed = 0;
                 a.X += 10;
             }
             if (a.Y >= form.ClientSize.Height - a.Height && a.SpeedY >= 0)
             {
-                a.Health -= Math.Abs(Convert.ToInt16(a.Speed));
                 a.Speed = 0;
                 a.Y -= 10;
             }
             if (a.Y <= 0)
             {
-                a.Health -= Math.Abs(Convert.ToInt16(a.Speed));
                 a.Speed = 0;
                 a.Y += 10;
-            }
-
-            if (a.Health <= 0)
-            {
-                a.Speed = 0;
             }
         }
 
@@ -330,14 +325,7 @@ namespace Racegame {
             }
         }
 
-            /*
-            System.Drawing.Pen myPen;
-myPen = new System.Drawing.Pen(System.Drawing.Color.Red);
-System.Drawing.Graphics formGraphics = this.CreateGraphics();
-formGraphics.DrawLine(myPen, 0, 0, 200, 200);
-myPen.Dispose();
-formGraphics.Dispose();*/
-
+            
 
  
         public void ItemHandler()
@@ -348,7 +336,6 @@ formGraphics.Dispose();*/
 
         public void CheckItems(Player a, PictureBox b)
         {
-            ///Moet nog even naar gekeken worden want dit moet er wel zijn!
 
             if (a.X + a.Width >= b.Location.X &&
                 a.X <= b.Location.X + b.Size.Width &&
