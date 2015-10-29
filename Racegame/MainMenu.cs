@@ -18,6 +18,7 @@ namespace Racegame
 {
     public partial class Super_InformatiKart : Form
     {
+        //Here are all the interfacing of the menus. The main, character and maps.
         public float angle = 0;
         private int CurrentImage = 1;
         Graphics g;

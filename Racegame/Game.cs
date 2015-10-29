@@ -376,14 +376,6 @@ namespace Racegame {
 
         }
 
-        public void RespawnHandler()
-        {
-            /*if (p1.ItemBox.Visible == false)
-            {
-                RespawnItems(p1.ItemBox);
-            }*/
-        }
-
         public async void RespawnItems(PictureBox b)
         {
             await WaitMethod();

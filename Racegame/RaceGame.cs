@@ -284,8 +284,6 @@ namespace Racegame
         private void Racegame_Paint(object sender, PaintEventArgs e)
         {
             game.Racegame_Paint(sender, e);
-
-            //e.Graphics.Dispose();
         }
 
         private void FinishMessage_Click(object sender, EventArgs e)

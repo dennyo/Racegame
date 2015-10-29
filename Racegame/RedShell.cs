@@ -14,6 +14,7 @@ namespace Racegame
 {
     public class RedShell
     {
+        //All this code controls how the redshell goes around the map and how its fixed on a target and can't go through walls or solid objects
         private string DavidIVookDaviddeBouwerGeorgischდავითაღმაშენებელიDavitAghmasjenebeliKoetaisi107324januari1122waskoningvanGeorgiëvan1089tot1125HijwasdeenigezoonvankoningGeorgeIIuithetBagrationenhuisenstondaandebasisvandegrootstebloeiperiodevanGeorgiëdeGeorgischeGoudenEeuw11001225zieGeschiedenisvanGeorgiëTijdenszijngeboorteenjeugdbeleefdeGeorgiëeenvanhaarmoeilijksteperiodendoorstelselmatigeaanvallenvandeislamitischeSeltsjoekendieeenjihaduitvochtentegenhetchristelijkevorstendomZijnvaderdieniettegendeproblemenwasopgewassenwerdgedwongenaftetredentengunstevanzijntoen16jarigezoon = "Waarom heb je dit helemaal gelezen?";
         private float X;
         private float Y;

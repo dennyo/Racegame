@@ -507,19 +507,6 @@ namespace RaceGame {
             }
 
         }
-
-        /*
-            Kleiner maken van plaatje
-                
-            if(Width > 0) {
-                Width--;
-                X++;
-            }
-            if(Height > 0) {
-                Height--;
-                Y++;
-            }
-        */
         public async void PowerupHandler(Game g, Map map)
             /*This handles the power ups. When a itemblock is picked up is generates a powerup if that powerup is chosen. This than reads 
             it and choose the right effect for the powerup*/

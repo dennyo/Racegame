@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Racegame {
     public class Banana {
-
+        //This is the powerup of the banana
         private int X;
         private int Y;
         private Game game;
