@@ -23,8 +23,8 @@ namespace Racegame {
         public bool isLoaded = false;
         public bool CheckpointPassed = false;
         public bool FinishPassed = false;
-        //public Rectangle muur = new Rectangle(650 ,200 , 150, 150);
-
+        private bool iscolliding = false;
+        private bool collisioncheckerenabled = false;
         public List<Banana> BananaItems = new List<Banana>();
         public List<Shell> ShellItems = new List<Shell>();
         public List<RedShell> RedShellItems = new List<RedShell>();
@@ -183,19 +183,15 @@ namespace Racegame {
                 if(!p2.Hit) she.Collision(p2);
             }
 
-            foreach (Shell she in ShellItems)
+            try
             {
-                if(!p1.Hit) she.Collision(p1);
-                if(!p2.Hit) she.Collision(p2);
+                foreach (RedShell red in RedShellItems)
+                {
+                    if (!p1.Hit) red.Collision(p1);
+                    if (!p2.Hit) red.Collision(p2);
+                }
             }
-
-            foreach (RedShell red in RedShellItems)
-            {
-               if (!p1.Hit) red.Collision(p1);
-               if (!p2.Hit) red.Collision(p2);
-               red.walls(wallmap);
-            }
-
+            catch { }
         }
 
         public void ColorHandler() {
@@ -270,23 +266,31 @@ namespace Racegame {
 
         public void Racegame_Paint(object sender, PaintEventArgs e)
         {
-            foreach(Powerup pw in Powerups) {
+            foreach (Powerup pw in Powerups)
+            {
                 pw.Draw(e.Graphics);
             }
 
-            foreach(Banana ban in BananaItems) {
+            foreach (Banana ban in BananaItems)
+            {
                 ban.Draw(e.Graphics);
             }
 
-            try {
-                foreach(Shell she in ShellItems) {
-                    if(map != Map.Koopa_Beach && map != Map.Rainbow_Road) {
+            try
+            {
+                foreach (Shell she in ShellItems)
+                {
+                    if (map != Map.Koopa_Beach && map != Map.Rainbow_Road)
+                    {
                         she.Draw(e.Graphics, wallmap, colormap);
-                    } else {
+                    }
+                    else
+                    {
                         she.Draw(e.Graphics, colormap);
                     }
                 }
-            }catch(Exception) { }
+            }
+            catch (Exception) { }
             //e.Graphics.Dispose();
 
             try
@@ -301,21 +305,26 @@ namespace Racegame {
             catch (Exception) { }
             //e.Graphics.Dispose();
 
-            foreach (Decoration deco in Decorations) {
+            foreach (Decoration deco in Decorations)
+            {
                 deco.Draw(e.Graphics);
             }
 
-            if(p1.Y > p2.Y) {
+            if (p1.Y > p2.Y)
+            {
                 p2.DrawPlayer(e.Graphics);
                 e.Graphics.ResetTransform();
                 p1.DrawPlayer(e.Graphics);
                 e.Graphics.ResetTransform();
-            } else {
+            }
+            else
+            {
                 p1.DrawPlayer(e.Graphics);
                 e.Graphics.ResetTransform();
                 p2.DrawPlayer(e.Graphics);
                 e.Graphics.ResetTransform();
             }
+        }
 
             /*
             System.Drawing.Pen myPen;
@@ -326,165 +335,7 @@ myPen.Dispose();
 formGraphics.Dispose();*/
 
 
-        }
-
-        public async void CollisionHandler(Player a, Rectangle muur)
-        {
-            bool Collision = CollisionDetection(a.rect, muur);
-            if (Collision == true)
-            {
-
-                if (a.rect.X + 16 < muur.Left && a.rect.Y + 16 < muur.Bottom && a.rect.Y + 48 > muur.Top)
-                {
-                    a.X -= Math.Abs(p1.Speed) + 10;
-                    if (Math.Abs(a.Angle) < 45)
-                    {
-                        a.Speed = 0;
-                    }
-                    else if(a.Angle < -135 && a.Angle > -225)
-                    {
-                        a.Speed = 0;
-                    }
-                    else if(a.Angle > 135 && a.Angle < 225)
-                    {
-                        a.Speed = 0;
-                    }
-
-                    else { 
-                    if (a.Speed > 10)
-                        {
-                            a.Speed = 10;
-                        }
-                        await WaitMethod4();
-                        a.Speed = a.Speed / 2;
-                        await WaitMethod4();
-                        a.Speed = a.Speed / 2;
-                        await WaitMethod4();
-                        a.Speed = a.Speed / 2;
-                        await WaitMethod4();
-                        a.Speed = a.Speed / 2;
-                        await WaitMethod4();
-                        a.Speed = 0;
-                    }
-
-                }
-
-                else if (a.rect.X + 48 > muur.Right && a.rect.Y + 16 < muur.Bottom && a.rect.Y + 48 > muur.Top)
-                {
-                    a.X += Math.Abs(p1.Speed) + 10;
-                    if (Math.Abs(a.Angle) < 45)
-                    {
-                        a.Speed = 0;
-                    }
-                    else if (a.Angle < -135 && a.Angle > -225)
-                    {
-                        a.Speed = 0;
-                    }
-                    else if (a.Angle > 135 && a.Angle < 225)
-                    {
-                        a.Speed = 0;
-                    }
-
-                    else
-                    {
-                        if (a.Speed > 10)
-                        {
-                            a.Speed = 10;
-                        }
-                        await WaitMethod4();
-                        a.Speed = a.Speed / 2;
-                        await WaitMethod4();
-                        a.Speed = a.Speed / 2;
-                        await WaitMethod4();
-                        a.Speed = a.Speed / 2;
-                        await WaitMethod4();
-                        a.Speed = a.Speed / 2;
-                        await WaitMethod4();
-                        a.Speed = 0;
-                    }
-
-                }
-                else if (a.rect.Y + 16 < muur.Top)
-                {
-                    a.Y -= Math.Abs(p1.Speed) + 10;
-                    if (a.Angle < 315 && a.Angle > 225)
-                    {
-                        a.Speed = 0;
-                    }
-                    else if (a.Angle > -135 && a.Angle < -45)
-                    {
-                        a.Speed = 0;
-                    }
-                    else if (a.Angle < 135 && a.Angle > 45)
-                    {
-                        a.Speed = 0;
-                    }
-                    else if (a.Angle > -225 && a.Angle < -315)
-                    {
-                        a.Speed = 0;
-                    }
-
-                    else
-                    {
-                        if (a.Speed > 10)
-                        {
-                            a.Speed = 10;
-                        }
-                        await WaitMethod4();
-                        a.Speed = a.Speed / 2;
-                        await WaitMethod4();
-                        a.Speed = a.Speed / 2;
-                        await WaitMethod4();
-                        a.Speed = a.Speed / 2;
-                        await WaitMethod4();
-                        a.Speed = a.Speed / 2;
-                        await WaitMethod4();
-                        a.Speed = 0;
-                    }
-                }
-                else if (a.rect.Y + 48 > muur.Bottom)
-                {
-                    a.Y += Math.Abs(p1.Speed) + 10;
-                    if (a.Angle < 315 && a.Angle > 225)
-                    {
-                        a.Speed = 0;
-                    }
-                    else if (a.Angle > -135 && a.Angle < -45)
-                    {
-                        a.Speed = 0;
-                    }
-                    else if (a.Angle < 135 && a.Angle > 45)
-                    {
-                        a.Speed = 0;
-                    }
-                    else if (a.Angle > -225 && a.Angle < -315)
-                    {
-                        a.Speed = 0;
-                    }
-
-                    else
-                    {
-                        if (a.Speed > 10)
-                        {
-                            a.Speed = 10;
-                        }
-                        await WaitMethod4();
-                        a.Speed = a.Speed / 2;
-                        await WaitMethod4();
-                        a.Speed = a.Speed / 2;
-                        await WaitMethod4();
-                        a.Speed = a.Speed / 2;
-                        await WaitMethod4();
-                        a.Speed = a.Speed / 2;
-                        await WaitMethod4();
-                        a.Speed = 0;
-                    }
-                }
-
-
-            }
-            }
-
+ 
         public void ItemHandler()
         {
             //CheckItems(p1, p1.ItemBox);
@@ -649,7 +500,7 @@ formGraphics.Dispose();*/
 
         public void PlayerCollision()
         {
-            bool iscolliding = CircleCollision(p1.rect, p2.rect);
+            iscolliding = CircleCollision(p1.rect, p2.rect);
             if(iscolliding == true)
             {
                 p1.X += (p1.X - p2.X) * (Math.Abs(p2.Speed) / 9 + 0.4f) / 4;
@@ -664,20 +515,26 @@ formGraphics.Dispose();*/
 
         public bool CircleCollision(Rectangle Circle1, Rectangle Circle2)
         {
+            if (collisioncheckerenabled == true)
+            {
+                int R1 = (Circle1.Width - 8) / 2;
+                int R2 = (Circle2.Width - 8) / 2;
+                int Cx1 = Convert.ToInt32(0.5 * (Circle1.Left + Circle1.Right));
+                int Cy1 = Convert.ToInt32(0.5 * (Circle1.Top + Circle1.Bottom));
+                int Cx2 = Convert.ToInt32(0.5 * (Circle2.Left + Circle2.Right));
+                int Cy2 = Convert.ToInt32(0.5 * (Circle2.Top + Circle2.Bottom));
+                int Radius = R1 + R2;
 
-            int R1 = (Circle1.Width - 8) / 2;
-            int R2 = (Circle2.Width - 8) / 2;
-            int Cx1 = Convert.ToInt32(0.5 * (Circle1.Left + Circle1.Right));
-            int Cy1 = Convert.ToInt32(0.5 * (Circle1.Top + Circle1.Bottom));
-            int Cx2 = Convert.ToInt32(0.5 * (Circle2.Left + Circle2.Right));
-            int Cy2 = Convert.ToInt32(0.5 * (Circle2.Top + Circle2.Bottom));
-            int Radius = R1 + R2;
-
-            var deltaX = Cx1 - Cx2;
-            var deltaY = Cy1 - Cy2;
-
-            return deltaX * deltaX + deltaY * deltaY <= Radius * Radius;
-
+                var deltaX = Cx1 - Cx2;
+                var deltaY = Cy1 - Cy2;
+                return deltaX * deltaX + deltaY * deltaY <= Radius * Radius;
+                
+            }
+            else
+            {
+                collisioncheckerenabled = true;
+                return false;
+            }
         }
 
         public bool CollisionDetection(Rectangle circle, Rectangle rectangle)
