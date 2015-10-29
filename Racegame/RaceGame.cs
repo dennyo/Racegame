@@ -84,7 +84,7 @@ namespace Racegame
 
                     Soundtrack = "sounds/Bowser Castle.wav";
                     intro = "sounds/Bowser Castle intro.wav";
-                    IntroLength = 4080;
+                    IntroLength = 3880;
                     break;
 
                 case Map.Choco_Island:
@@ -102,7 +102,7 @@ namespace Racegame
 
                     Soundtrack = "sounds/Choco Island.wav";
                     intro = "sounds/Choco Island intro.wav";
-                    IntroLength = 2000;
+                    IntroLength = 1450;
                     break;
 
                 case Map.Donut_Plains:
