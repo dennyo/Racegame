@@ -12,7 +12,8 @@ namespace Racegame {
     public enum DecorationType {Star, Ghost, Mole, Red_Fish, Blue_Fish, Piranha, FireBall};
 
     public class Decoration {
-
+        /*This code all of it in this .cs generates the animations in the game
+        First it puts in images and let the animation play in the correct map.*/
         public int X;
         public int Y;
         private int Width;

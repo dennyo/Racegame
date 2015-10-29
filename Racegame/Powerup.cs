@@ -15,7 +15,7 @@ namespace Racegame {
     public enum PowerupItem {Banana, Mushroom, Shell, RedShell, None };
 
     public class Powerup {
-
+       
         private int X;
         private int Y;
         private static Random rand;
@@ -30,6 +30,7 @@ namespace Racegame {
         private bool Hit = false;
 
         public Powerup(int X, int Y) {
+    // This generates the powerups images so it circles between them in de top screen. And stops at one.
             this.X = X;
             this.Y = Y;
             rand = new Random();

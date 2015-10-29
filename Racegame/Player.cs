@@ -113,6 +113,7 @@ namespace RaceGame {
         }
 
         public string getCharacterUrl(Character ch, int number)
+            /*The use of this is characterselection. It gives the right character to the game. When its clicked*/
         {
             switch (ch)
             {
@@ -147,6 +148,7 @@ namespace RaceGame {
         }
 
         public void VictoryTune(Character ch)
+            /*Every victoryTune for a character. So if david wins this gives the right song to play and plays it*/
         {
             switch (ch)
             {
@@ -518,7 +520,10 @@ namespace RaceGame {
                 Y++;
             }
         */
-        public async void PowerupHandler(Game g, Map map) {
+        public async void PowerupHandler(Game g, Map map)
+            /*This handles the power ups. When a itemblock is picked up is generates a powerup if that powerup is chosen. This than reads 
+            it and choose the right effect for the powerup*/
+        {
             if(!ActivatePowerup) return; 
             ActivatePowerup = false;
             PowerupItem temp = currentPowerup;
