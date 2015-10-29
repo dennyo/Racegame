@@ -75,7 +75,7 @@ namespace Racegame {
             p.PlayItemBoxSound();
             p.HasItem = true;
             Thread t = new Thread(() => {
-                for(int i = 0; i < 30; i++) {
+                for(int i = 0; i < 50; i++) {
                     switch(rand.Next(4)) {
                         case 0:
                             p.ItemFrame.Image = Banana;

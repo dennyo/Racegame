@@ -210,7 +210,7 @@ namespace Racegame
 
                     Soundtrack = "sounds/Rainbow Road.wav";
                     intro = "sounds/Rainbow Road intro.wav";
-                    IntroLength = 13040;
+                    IntroLength = 12760;
                     break;
 
                 case Map.Standard:
