@@ -1177,7 +1177,6 @@ namespace Racegame
             {
                 if (this.Opacity == 0 && MapChosen == true)
                 {
-                    player.Stop();
                     FadeOut.Enabled = false;
                     this.Hide();
                     Racegame frm = new Racegame(main, p1choice, p2choice, MapChoice);
