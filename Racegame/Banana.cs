@@ -37,7 +37,7 @@ namespace Racegame {
                 Active = false;
                 p.Hit = true;
 
-                await Task.Delay(2000);
+                await Task.Delay(1500);
                 p.Hit = false;
                 game.BananaItems.Remove(this);
             }

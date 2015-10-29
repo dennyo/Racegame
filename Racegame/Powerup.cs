@@ -71,10 +71,8 @@ namespace Racegame {
             g.DrawImage(ImageSequence[CurrentImage / 2],  rect);
         }
 
-        public void DrawBanana(Graphics g) {
-        }
-
         public void SpinItemBox(Player p) {
+            p.PlaySound("itembox");
             p.HasItem = true;
             Thread t = new Thread(() => {
                 for(int i = 0; i < 30; i++) {
@@ -98,7 +96,7 @@ namespace Racegame {
                             current = PowerupItem.RedShell;
                             break;
                     }
-                    Thread.Sleep(50);
+                    Thread.Sleep(80);
 
                 }
                 p.currentPowerup = current;

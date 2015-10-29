@@ -183,6 +183,7 @@ namespace RaceGame {
         public void PlaySound(string sound) {
             MediaPlayer mp = new MediaPlayer();
             mp.Open(new Uri(Path.Combine(Environment.CurrentDirectory, "sounds/" + sound + ".wav")));
+            mp.Volume = 15;
             mp.Play();
         }
 
@@ -262,8 +263,12 @@ namespace RaceGame {
                 }
             }
 
-            if((Brake || (Hit && Speed > 0)) && Speed > - MaxSpeed && !SpeedBoost) {
+            if((Brake) && Speed > - MaxSpeed && !SpeedBoost) {
                 Speed -= 0.2f;
+            }
+
+            if(Hit) {
+                Speed += Speed < 0 ? 0.4f : -0.4f;
             }
 
             SpeedX = (float) Speed * ((float)Math.Cos(Math.PI / 180 * Angle));

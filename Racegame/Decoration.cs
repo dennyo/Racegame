@@ -92,7 +92,7 @@ namespace Racegame {
             switch(type) {
 
                 case DecorationType.Blue_Fish:
-                    timer.Interval = 100;
+                    timer.Interval = 50;
                     Fish();
                     break;
 
@@ -117,7 +117,7 @@ namespace Racegame {
                     break;
 
                 case DecorationType.Red_Fish:
-                    timer.Interval = 100;
+                    timer.Interval = 50;
                     Fish();
                     break;
 
@@ -171,6 +171,9 @@ namespace Racegame {
 
         private void Fish() {
             one = !one;
+            if(Increase) YCounter -= 5;
+            if(!Increase) YCounter += 5;
+            ChangeSize();
         }
 
         private void Piranha() {
@@ -186,7 +189,10 @@ namespace Racegame {
                 Increase = true;
                 timer.Interval = 2000;
             }
-            if(Width >= 32) Increase = false;
+            if(Width >= 32) {
+                Increase = false;
+                timer.Interval = 500;
+            }
             if(Increase) {
                 Width += 2;
                 Height += 2;
