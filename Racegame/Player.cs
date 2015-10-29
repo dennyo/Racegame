@@ -68,6 +68,8 @@ namespace RaceGame {
         private Location start;
         public string victory;
         private int LastColor = 265;
+        private MediaPlayer EffectPlayer;
+        private MediaPlayer ItemBoxPlayer;
 
 
         public Player(string name, Character character, Form main, Bitmap imagew, Keys up, Keys down, Keys right, Keys left, Keys action, PictureBox fuel, PictureBox itemframe, System.Windows.Forms.Timer fuelTimer, Label speedLabel, int totalCheckpoints, Location start) {
@@ -180,10 +182,16 @@ namespace RaceGame {
             g.DrawImage(RotateImage(), X, Y);
         }
 
-        public void PlaySound(string sound) {
-            MediaPlayer mp = new MediaPlayer();
-            mp.Open(new Uri(Path.Combine(Environment.CurrentDirectory, "sounds/" + sound + ".wav")));
-            mp.Play();
+        public void PlayEffectSound(string sound) {
+            EffectPlayer = new MediaPlayer();
+            EffectPlayer.Open(new Uri(Path.Combine(Environment.CurrentDirectory, "sounds/" + sound + ".wav")));
+            EffectPlayer.Play();
+        }
+
+        public void PlayItemBoxSound() {
+            ItemBoxPlayer = new MediaPlayer();
+            ItemBoxPlayer.Open(new Uri(Path.Combine(Environment.CurrentDirectory, "sounds/itembox.wav")));
+            ItemBoxPlayer.Play();
         }
 
         private Bitmap RotateImage() {
@@ -199,10 +207,6 @@ namespace RaceGame {
             return toReturn;
 
         }
-
-	    public bool isBetween(double angle1, double angle2, double check){
-		    return angle1 < angle2 ? check >= angle1 && check <= angle2 : check <= angle1 && check >= angle2;
-	    }
 
         public int getImageNumber(double angle) {
             if(angle > 360) {
@@ -251,7 +255,7 @@ namespace RaceGame {
                 Speed += 0.4f;
             }
 
-            if(((!Gas && !Brake) || Speed > MaxSpeed) && !SpeedBoost && !Hit) {
+            if(((!Gas && !Brake) || Math.Abs(Speed) > MaxSpeed) && !SpeedBoost && !Hit) {
                 if(Speed > -1 && Speed < 1) {
                     Speed = 0;
                 }
@@ -363,6 +367,7 @@ namespace RaceGame {
             int yCenter = (int) (Y + Height / 3 * 2);
 
             System.Drawing.Color col = image.GetPixel(xCenter, yCenter);
+
             if(col.R % 5 == 0 && col.G == 0 && col.B == 0 && col.R >= 255 - totalCheckpoints * 10 && col.R + 10 == LastColor) {
                 if(!checkpointsPassed.Contains(col.R)) checkpointsPassed.Add(col.R);
                 if(g.RespawnPoints.Count > 0) lastCheckpoint = g.RespawnPoints[checkpointsPassed.Count - 1];
@@ -552,7 +557,7 @@ namespace RaceGame {
                     break;
 
                 case PowerupItem.Mushroom:
-                    PlaySound("boost");
+                    PlayEffectSound("boost");
                     SpeedBoost = true;
                     MaxSpeed = 14;
                     Speed+=2;

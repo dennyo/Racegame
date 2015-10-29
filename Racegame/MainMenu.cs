@@ -69,6 +69,7 @@ namespace Racegame
         Image Selector1 = new Bitmap(Path.Combine(Environment.CurrentDirectory, "Character Select icon 1P.png"));
         Image Selector2 = new Bitmap(Path.Combine(Environment.CurrentDirectory, "Character Select icon 2P.png"));
         private List<Bitmap> BackgroundImages = new List<Bitmap>();
+        private MediaPlayer mp;
 
         public Super_InformatiKart()
         {
@@ -82,7 +83,7 @@ namespace Racegame
         }
         
         public void PlaySound(string sound) {
-            MediaPlayer mp = new MediaPlayer();
+            mp = new MediaPlayer();
             mp.Open(new Uri(Path.Combine(Environment.CurrentDirectory, "sounds/" + sound + ".wav")));
             mp.Play();
         }
@@ -1177,7 +1178,6 @@ namespace Racegame
             {
                 if (this.Opacity == 0 && MapChosen == true)
                 {
-                    player.Stop();
                     FadeOut.Enabled = false;
                     this.Hide();
                     Racegame frm = new Racegame(main, p1choice, p2choice, MapChoice);

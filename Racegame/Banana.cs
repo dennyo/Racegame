@@ -33,7 +33,7 @@ namespace Racegame {
 
         public async void Collision(Player p) {
             if(!p.Immune && game.CircleCollision(p.rect, rect)) {
-                p.PlaySound("spinout");
+                p.PlayEffectSound("spinout");
                 Active = false;
                 p.Hit = true;
 

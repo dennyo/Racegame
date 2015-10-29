@@ -72,7 +72,7 @@ namespace Racegame {
         }
 
         public void SpinItemBox(Player p) {
-            p.PlaySound("itembox");
+            p.PlayItemBoxSound();
             p.HasItem = true;
             Thread t = new Thread(() => {
                 for(int i = 0; i < 30; i++) {
