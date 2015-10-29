@@ -672,29 +672,6 @@ namespace Racegame
                     Active = false;
                     game.RedShellItems.Remove(this);
                     break;
-
-                case ColorHandler.Wall_Red:
-                    Active = false;
-                    game.RedShellItems.Remove(this);
-                    break;
-
-                case ColorHandler.Wall_Green:
-
-                    Active = false;
-                    game.RedShellItems.Remove(this);
-                    break;
-
-                case ColorHandler.Wall_Blue:
-
-                    Active = false;
-                    game.RedShellItems.Remove(this);
-                    break;
-
-                case ColorHandler.Wall_Light_Blue:
-
-                    Active = false;
-                    game.RedShellItems.Remove(this);
-                    break;
             } 
             xDistancePlayer = Convert.ToInt32(xCenter - (player.X + player.Width / 2));
             yDistancePlayer = Convert.ToInt32(yCenter - (player.Y + player.Height / 2));
@@ -1224,9 +1201,36 @@ namespace Racegame
             return ColorHandler.None;
         }
 
-        public void Muren(Bitmap image)
+        public void walls(Bitmap image)
         {
+            System.Drawing.Color col = image.GetPixel(xCenter, yCenter);
+            switch (getColor(col.R, col.G, col.B))
+            {
 
+
+                case ColorHandler.Wall_Red:
+                    Active = false;
+                    game.RedShellItems.Remove(this);
+                    break;
+
+                case ColorHandler.Wall_Green:
+
+                    Active = false;
+                    game.RedShellItems.Remove(this);
+                    break;
+
+                case ColorHandler.Wall_Blue:
+
+                    Active = false;
+                    game.RedShellItems.Remove(this);
+                    break;
+
+                case ColorHandler.Wall_Light_Blue:
+
+                    Active = false;
+                    game.RedShellItems.Remove(this);
+                    break;
+            }
         }
 
         public async void Collision(Player p)

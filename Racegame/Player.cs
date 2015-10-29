@@ -183,7 +183,6 @@ namespace RaceGame {
         public void PlaySound(string sound) {
             MediaPlayer mp = new MediaPlayer();
             mp.Open(new Uri(Path.Combine(Environment.CurrentDirectory, "sounds/" + sound + ".wav")));
-            mp.Volume = 15;
             mp.Play();
         }
 

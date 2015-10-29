@@ -193,6 +193,7 @@ namespace Racegame {
             {
                if (!p1.Hit) red.Collision(p1);
                if (!p2.Hit) red.Collision(p2);
+               red.walls(wallmap);
             }
 
         }
