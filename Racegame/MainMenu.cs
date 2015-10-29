@@ -12,6 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Racegame
 {
@@ -68,7 +69,6 @@ namespace Racegame
         Image Selector1 = new Bitmap(Path.Combine(Environment.CurrentDirectory, "Character Select icon 1P.png"));
         Image Selector2 = new Bitmap(Path.Combine(Environment.CurrentDirectory, "Character Select icon 2P.png"));
         private List<Bitmap> BackgroundImages = new List<Bitmap>();
-        //Image Background = new Bitmap(Path.Combine(Environment.CurrentDirectory, "Black.png"));
 
         public Super_InformatiKart()
         {
@@ -79,6 +79,12 @@ namespace Racegame
             {
                 BackgroundImages.Add(new Bitmap(Path.Combine(Environment.CurrentDirectory, "Main/T" + i + ".png")));
             }
+        }
+        
+        public void PlaySound(string sound) {
+            MediaPlayer mp = new MediaPlayer();
+            mp.Open(new Uri(Path.Combine(Environment.CurrentDirectory, "sounds/" + sound + ".wav")));
+            mp.Play();
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -147,6 +153,7 @@ namespace Racegame
         //
         private void MainSelection()
         {
+            if(EnterPressed) PlaySound("menuselect");
             if (PlaySelected == true)
             {
                 PlayQuit.BackgroundImage = new Bitmap(Path.Combine(Environment.CurrentDirectory, "textboxes/Play.png"));
@@ -451,6 +458,7 @@ namespace Racegame
 
         public Character ChoosingP1()
         {
+            if(EnterPressed) PlaySound("menuselect");
             if (DavidSelected == true && EnterPressed == true)
             {
                 DavidChosen = true;
@@ -534,6 +542,7 @@ namespace Racegame
 
         public Character ChoosingP2()
         {
+            if(EnterPressed) PlaySound("menuselect");
             if (DavidSelected == true && EnterPressed == true)
             {
                 DavidChosen = true;
@@ -980,6 +989,7 @@ namespace Racegame
 
         public Map Choosing()
         {
+            if(EnterPressed) PlaySound("menuselect");
             if (Map1Selected == true && EnterPressed == true)
             {
                 MapChosen = true;
@@ -1170,6 +1180,7 @@ namespace Racegame
                     FadeOut.Enabled = false;
                     this.Hide();
                     Racegame frm = new Racegame(main, p1choice, p2choice, MapChoice);
+                    PlaySound("menuselect");
                     frm.ShowDialog();
                     this.Close();
                 }

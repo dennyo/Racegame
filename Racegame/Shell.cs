@@ -168,6 +168,7 @@ namespace Racegame {
 
         public async void Collision(Player p) {
             if(!p.Immune && game.CircleCollision(p.rect, rect)) {
+                p.PlaySound("gothit");
                 Active = false;
                 p.Hit = true;
 

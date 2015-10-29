@@ -857,6 +857,7 @@ attackplayer == false && attackplayer2 == false)
         {
             if (!p.Immune && game.CircleCollision(p.rect, rect))
             {
+                p.PlaySound("gothit");
                 Active = false;
                 p.Hit = true;
 

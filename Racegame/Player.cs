@@ -92,7 +92,7 @@ namespace RaceGame {
             this.X = start.X;
             this.Y = start.Y;
             this.Angle = start.Angle;
-            //lastCheckpoint zetten
+
             main.KeyDown += ControlDownHandler;
             kleuren.Add(new int[3] {255, 150, 0}, ColorHandler.Pitstop);
             kleuren.Add(new int[3] {0, 255, 0}, ColorHandler.Gras);
@@ -180,36 +180,19 @@ namespace RaceGame {
             g.DrawImage(RotateImage(), X, Y);
         }
 
+        public void PlaySound(string sound) {
+            MediaPlayer mp = new MediaPlayer();
+            mp.Open(new Uri(Path.Combine(Environment.CurrentDirectory, "sounds/" + sound + ".wav")));
+            mp.Play();
+        }
+
         private Bitmap RotateImage() {
             Bitmap toReturn = new Bitmap(Width, Width);
 
             using(Graphics g = Graphics.FromImage(toReturn)){
-                //g.TranslateTransform(tempx, tempy);
-                //g.RotateTransform(Angle);
-                //g.TranslateTransform(- tempx, - tempy);
-                /*int number = 0;
-                if(Angle < 0) {
-                    number = (int) Math.Floor((Math.Abs(Angle) + 90) / (360 / 21) + 1);
-                }else {
-                    number = (int) Math.Floor((Angle + 90) / (360 / 21) + 1);
-                }*/
-                /*int number = (int) Math.Abs(Math.Floor((Math.Abs(Angle > 0 ? 360 - Angle : Angle) + 90) / (360 / 21)) + 1);
-                if(number >= 23) number = number - 22;*/
-                
 
                 Image img = Image.FromFile(Path.Combine(Environment.CurrentDirectory, getCharacterUrl(this.Character, getImageNumber(Angle))));
                 g.DrawImage(img, new Rectangle(new Point(0, 0), new Size(Width, Height)));
-
-                //Outline box
-                /*Pen pen = new Pen(Color.Black, 2);
-                pen.Alignment = PenAlignment.Inset; //<-- this
-                g.DrawRectangle(pen, new Rectangle(0, 0, Width, Width));
-                g.DrawEllipse(pen, new Rectangle(0 , 0, Width, Width));
-                g.DrawRectangle(pen, new Rectangle(0, 0, Width, Width));*/
-
-                //Center red dot.
-                //g.FillRectangle(new SolidBrush(Color.Red), tempx, tempy, 1, 1);
-
                 g.Dispose();
             }
 
@@ -258,21 +241,17 @@ namespace RaceGame {
         public void Move(Form form) {
             form.Invalidate();
 
-
-            if(Horn) {
-            }
-
             if(Gas && !Hit) {
-                if(SpeedX <= MaxSpeed && SpeedY <= MaxSpeed && Speed < MaxSpeed) {
-                    if(SpeedBoost) {
-                        Speed += 0.8f;
-                    }else {
-                        Speed += 0.2f;
-                    }
+                if(SpeedX <= MaxSpeed && SpeedY <= MaxSpeed && Speed < MaxSpeed && !SpeedBoost) {
+                    Speed += 0.2f;
                 }
             }
 
-            if(((!Gas && !Brake) || Speed > MaxSpeed)) {
+            if(Speed < MaxSpeed && SpeedBoost && !Hit) {
+                Speed += 0.4f;
+            }
+
+            if(((!Gas && !Brake) || Speed > MaxSpeed) && !SpeedBoost && !Hit) {
                 if(Speed > -1 && Speed < 1) {
                     Speed = 0;
                 }
@@ -283,7 +262,7 @@ namespace RaceGame {
                 }
             }
 
-            if((Brake || (Hit && Speed > 0)) && Speed > - MaxSpeed) {
+            if((Brake || (Hit && Speed > 0)) && Speed > - MaxSpeed && !SpeedBoost) {
                 Speed -= 0.2f;
             }
 
@@ -321,8 +300,6 @@ namespace RaceGame {
             {
                 laps++;
                 checkpointsPassed.Clear();
-
-                //if(laps != 0 && laps < 6) lapCounter.Image = new Bitmap(Path.Combine(Environment.CurrentDirectory, "laps/" + laps + ".png"));
 
                 if (laps >= 6)
                 {
@@ -408,21 +385,17 @@ namespace RaceGame {
                 
                 case ColorHandler.Wall_Red:
                     X -= Math.Abs(Speed) + 2;
-                    //X -= Math.Abs(Speed) + 10;
                     break;
 
                 case ColorHandler.Wall_Green:
-                    //X += Math.Abs(Speed) + 10;
                     X += Math.Abs(Speed) + 2;
                     break;
                     
                 case ColorHandler.Wall_Blue:
-                    //Y += Math.Abs(Speed) + 10;
                     Y += Math.Abs(Speed) + 2;
                     break;
 
                 case ColorHandler.Wall_Light_Blue:
-                    //Y -= Math.Abs(Speed) + 10;
                     Y -= Math.Abs(Speed) + 2;
                     break;
 
@@ -433,21 +406,9 @@ namespace RaceGame {
 
         public async void HandleColor(Bitmap image) {
 
-
-            //Oranje
-            //R 255
-            //G 150
-            //0
-
-            //Groen
-            //G 255
-            //R 0
-            //B 0
-            
             int xCenter = (int) (X + Width / 2);
             int yCenter = (int) (Y + (Height / 3 * 2));
             System.Drawing.Color col = image.GetPixel(xCenter, yCenter);
-            //Console.WriteLine(temp);
             switch(getColor(col.R, col.G, col.B)) {
 
                 case ColorHandler.Gat:
@@ -530,28 +491,7 @@ namespace RaceGame {
                 Brake = true;
             }
             if(e.KeyCode == action) {
-                //Code voor actions hier
                 if(currentPowerup != PowerupItem.None && !Hit) ActivatePowerup = true;
-
-                /*string sound = "";
-                Random rand = new Random();
-
-                switch(rand.Next(2)) {
-                    case 0:
-                        sound = "AIRPORN.wav";
-                        break;
-
-                    case 1:
-                        sound = "WILLIE.wav";
-                        break;
-                }
-
-                if (Character == Character.Jos) {
-                    sound = "r2d2.wav";
-                }
-
-                HornSound = sound;
-                if(HornEnded) Horn = true;*/
 
             }
 
@@ -580,13 +520,12 @@ namespace RaceGame {
             int YTemp = (int) (Y - Speed * ((float)Math.Sin(Math.PI / 180 * Angle)));
 
             switch(temp) {
-                //Doe dingen hier met het geselecteerde item
+
                 case PowerupItem.Banana:
-                    //als banaan etc...
                     Immune = true;
                     Banana banana = new Banana(g, XTemp + 10, YTemp + 10);
                     g.BananaItems.Add(banana);
-                    await Task.Delay(2000);
+                    await Task.Delay(1500);
                     Immune = false;
                     break;
                     
@@ -594,27 +533,26 @@ namespace RaceGame {
                     Immune = true;
                     Shell shell = new Shell(g, X, Y, Angle);
                     g.ShellItems.Add(shell);
-                    await Task.Delay(2000);
+                    await Task.Delay(1500);
                     Immune = false;
 
                     break;
 
                 case PowerupItem.RedShell:
-                    //Location(player)+1==Shell.jpg
-                    //
                     Immune = true;
                     RedShell redshell = new RedShell(g, X, Y, Angle, map);
                     g.RedShellItems.Add(redshell);
-                    await Task.Delay(2000);
+                    await Task.Delay(1500);
                     Immune = false;
 
                     break;
 
                 case PowerupItem.Mushroom:
+                    PlaySound("boost");
                     SpeedBoost = true;
                     MaxSpeed = 14;
                     Speed+=2;
-                    await Task.Delay(1000);
+                    await Task.Delay(1500);
                     SpeedBoost = false;
                     break;
 
