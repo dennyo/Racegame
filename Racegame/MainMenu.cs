@@ -153,7 +153,6 @@ namespace Racegame
         //
         private void MainSelection()
         {
-            if(EnterPressed) PlaySound("menuselect");
             if (PlaySelected == true)
             {
                 PlayQuit.BackgroundImage = new Bitmap(Path.Combine(Environment.CurrentDirectory, "textboxes/Play.png"));
@@ -163,6 +162,7 @@ namespace Racegame
                 EnterPressed == true &&
                 FadeIn.Enabled == false)
             {
+                PlaySound("MenuSelect");
                 if(counter < 4) { introplayer.Stop(); }
                 if (counter >= 4) { mainplayer.Stop(); }
                 SoundTimer.Enabled = false;
@@ -1180,7 +1180,6 @@ namespace Racegame
                     FadeOut.Enabled = false;
                     this.Hide();
                     Racegame frm = new Racegame(main, p1choice, p2choice, MapChoice);
-                    PlaySound("menuselect");
                     frm.ShowDialog();
                     this.Close();
                 }
