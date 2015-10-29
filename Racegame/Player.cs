@@ -286,7 +286,7 @@ namespace RaceGame {
             if (((RightActive && !DownActive) || (LeftActive && DownActive && Speed < 0)) && Speed != 0 && !Hit && !Fallen) {
                 Angle += Math.Abs(3 * Math.Abs(Speed) / 7 + 1);
             }
-            if(!GameEnded && !Hit && !Collision && !Fallen) {
+            if(!GameEnded && !Hit && !Collision && !Fallen && !SpeedBoost) {
                 MaxSpeed = 9;
             }
             if(GameEnded) {
