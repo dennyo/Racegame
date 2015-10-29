@@ -158,7 +158,6 @@ namespace Racegame {
             BorderHandler();
             p2.Move(form);
             p1.Move(form);
-            ItemHandler();
             SpeedMeter();
             Checkpointhandler();
             PlayerCollision();
@@ -325,15 +324,6 @@ namespace Racegame {
             }
         }
 
-            
-
- 
-        public void ItemHandler()
-        {
-            //CheckItems(p1, p1.ItemBox);
-            //CheckItems(p2, p2.ItemBox);
-        }
-
         public void CheckItems(Player a, PictureBox b)
         {
 
@@ -346,7 +336,6 @@ namespace Racegame {
                 b.Visible = false;
                 GetItem();
                 boost(a);
-                RespawnHandler();
             }
         }
 
