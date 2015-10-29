@@ -293,7 +293,7 @@ namespace Racegame {
                 foreach (RedShell red in RedShellItems)
                 {
 
-                    red.Draw(e.Graphics, colormap, p1, p2);
+                    red.Draw(e.Graphics, colormap, p1, p2, map);
 
                 }
             }
