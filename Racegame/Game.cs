@@ -183,19 +183,15 @@ namespace Racegame {
                 if(!p2.Hit) she.Collision(p2);
             }
 
-            foreach (Shell she in ShellItems)
+            try
             {
-                if(!p1.Hit) she.Collision(p1);
-                if(!p2.Hit) she.Collision(p2);
+                foreach (RedShell red in RedShellItems)
+                {
+                    if (!p1.Hit) red.Collision(p1);
+                    if (!p2.Hit) red.Collision(p2);
+                }
             }
-
-            foreach (RedShell red in RedShellItems)
-            {
-               if (!p1.Hit) red.Collision(p1);
-               if (!p2.Hit) red.Collision(p2);
-               red.walls(wallmap);
-            }
-
+            catch { }
         }
 
         public void ColorHandler() {

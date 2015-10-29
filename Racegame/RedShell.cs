@@ -231,8 +231,8 @@ namespace Racegame
                 points[6] = new Point(520, 689);
                 points[7] = new Point(80, 680);
                 points[8] = new Point(90, 160);
-                points[9] = new Point(935, 170);
-                points[10] = new Point(935, 170);
+                points[9] = new Point(900, 170);
+                points[10] = new Point(900, 170);
 
                 xmin[0] = 860;
                 xmin[1] = 821;
@@ -452,7 +452,7 @@ namespace Racegame
                 trueyDistances = new float[11];
                 reached = new bool[11];
                 calc = new bool[11];
-                points[0] = new Point(90, 670);
+                points[0] = new Point(120, 670);
                 points[1] = new Point(90, 180);
                 points[2] = new Point(385, 190);
                 points[3] = new Point(385, 500);
@@ -883,11 +883,11 @@ namespace Racegame
 
                 if (targetchecked == false)
                 {
-                    if (Math.Abs(xDistancePlayer) > Math.Abs(xDistancePlayer2))
+                    if (Math.Abs(xDistancePlayer) > Math.Abs(xDistancePlayer2) && Math.Abs(yDistancePlayer) > Math.Abs(yDistancePlayer2))
                     {
                         targetplayer = true;
                     }
-                    else if (Math.Abs(xDistancePlayer) < Math.Abs(xDistancePlayer2))
+                    else if (Math.Abs(xDistancePlayer) < Math.Abs(xDistancePlayer2)&& Math.Abs(yDistancePlayer) < Math.Abs(yDistancePlayer2))
                     {
                         targetplayer2 = true;
                     }
@@ -1201,37 +1201,7 @@ namespace Racegame
             return ColorHandler.None;
         }
 
-        public void walls(Bitmap image)
-        {
-            System.Drawing.Color col = image.GetPixel(xCenter, yCenter);
-            switch (getColor(col.R, col.G, col.B))
-            {
 
-
-                case ColorHandler.Wall_Red:
-                    Active = false;
-                    game.RedShellItems.Remove(this);
-                    break;
-
-                case ColorHandler.Wall_Green:
-
-                    Active = false;
-                    game.RedShellItems.Remove(this);
-                    break;
-
-                case ColorHandler.Wall_Blue:
-
-                    Active = false;
-                    game.RedShellItems.Remove(this);
-                    break;
-
-                case ColorHandler.Wall_Light_Blue:
-
-                    Active = false;
-                    game.RedShellItems.Remove(this);
-                    break;
-            }
-        }
 
         public async void Collision(Player p)
         {
